@@ -3,24 +3,25 @@
 
     <parent>
         <groupId>com.github.peterchenhdu</groupId>
-        <artifactId>future-framework</artifactId>
+        <artifactId>future-auth</artifactId>
         <version>0.0.1-SNAPSHOT</version>
     </parent>
 
     <modelVersion>4.0.0</modelVersion>
-    <artifactId>future-util</artifactId>
+    <artifactId>future-auth-cas-server</artifactId>
     <packaging>jar</packaging>
-    <name>future-util</name>
+    <name>future-auth-cas-server</name>
 
     <dependencies>
+        <dependency>
+            <groupId>org.jasig.cas</groupId>
+            <artifactId>cas-server-core</artifactId>
+        </dependency>
+
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>
             <scope>test</scope>
-        </dependency>
-        <dependency>
-            <groupId>com.github.peterchenhdu</groupId>
-            <artifactId>future-common</artifactId>
         </dependency>
     </dependencies>
 </project>

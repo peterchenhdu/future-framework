@@ -9,16 +9,11 @@
     </parent>
 
     <artifactId>future-client</artifactId>
-    <packaging>jar</packaging>
+    <packaging>pom</packaging>
     <name>future-client</name>
 
-    <dependencies>
-
-        <dependency>
-            <groupId>com.github.peterchenhdu</groupId>
-            <artifactId>future-common</artifactId>
-        </dependency>
-
-    </dependencies>
+    <modules>
+        <module>future-client-axis2</module>
+    </modules>
 
 </project>
