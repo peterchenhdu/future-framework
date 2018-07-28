@@ -14,4 +14,24 @@ import org.springframework.context.annotation.ImportResource;
 @Configuration
 @ImportResource("classpath:cas-context.xml")
 public class CasServerContext {
+
+//    @Bean
+//    public AuthenticationManagerImpl authenticationManager(StubPersonAttributeDao attributeRepository,
+//                                                           HttpClient httpClient) {
+//        AuthenticationManagerImpl authenticationManager = new AuthenticationManagerImpl();
+//        List<CredentialsToPrincipalResolver> credentialsToPrincipalResolvers = new ArrayList<>();
+//        credentialsToPrincipalResolvers.add(new HttpBasedServiceCredentialsToPrincipalResolver());
+//        UsernamePasswordCredentialsToPrincipalResolver upc = new UsernamePasswordCredentialsToPrincipalResolver();
+//        upc.setAttributeRepository(attributeRepository);
+//        credentialsToPrincipalResolvers.add(upc);
+//        authenticationManager.setCredentialsToPrincipalResolvers(credentialsToPrincipalResolvers);
+//
+//        List<AuthenticationHandler> authenticationHandlers = new ArrayList<>();
+//        authenticationHandlers.add(new SimpleTestUsernamePasswordAuthenticationHandler());
+//        HttpBasedServiceCredentialsAuthenticationHandler hca = new HttpBasedServiceCredentialsAuthenticationHandler();
+//        hca.setHttpClient(httpClient);
+//        hca.setRequireSecure(false);
+//        authenticationManager.setAuthenticationHandlers(authenticationHandlers);
+//        return authenticationManager;
+//    }
 }

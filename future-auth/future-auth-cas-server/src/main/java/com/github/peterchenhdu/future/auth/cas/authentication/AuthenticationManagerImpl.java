@@ -51,7 +51,7 @@ import java.util.List;
  * @see com.github.peterchenhdu.future.auth.cas.authentication.AuthenticationMetaDataPopulator
  */
 
-public final class AuthenticationManagerImpl extends AbstractAuthenticationManager {
+public class AuthenticationManagerImpl extends AbstractAuthenticationManager {
 
     /** An array of authentication handlers. */
     @NotNull

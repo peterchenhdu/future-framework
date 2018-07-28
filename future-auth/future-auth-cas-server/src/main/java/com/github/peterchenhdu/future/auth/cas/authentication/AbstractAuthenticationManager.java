@@ -43,8 +43,8 @@ public abstract class AbstractAuthenticationManager implements AuthenticationMan
 
         // we can only get here if the above method doesn't throw an exception. And if it doesn't, then the pair must not be null.
         final Principal p = pair.getSecond();
-        log.info("{} authenticated {} with credential {}.", pair.getFirst(), p, credentials);
-        log.debug("Attribute map for {}: {}", p.getId(), p.getAttributes());
+// TODO       log.info("{} authenticated {} with credential {}.", pair.getFirst(), p, credentials);
+// TODO       log.debug("Attribute map for {}: {}", p.getId(), p.getAttributes());
 
         Authentication authentication = new MutableAuthentication(p);
 
@@ -53,10 +53,14 @@ public abstract class AbstractAuthenticationManager implements AuthenticationMan
             authentication.getAttributes().put(AuthenticationManager.AUTHENTICATION_METHOD_ATTRIBUTE, a.getName());
         }
 
-        for (final AuthenticationMetaDataPopulator authenticationMetaDataPopulator : this.authenticationMetaDataPopulators) {
-            authentication = authenticationMetaDataPopulator
-                .populateAttributes(authentication, credentials);
+        if (this.authenticationMetaDataPopulators != null) {
+
+            for (final AuthenticationMetaDataPopulator authenticationMetaDataPopulator : this.authenticationMetaDataPopulators) {
+                authentication = authenticationMetaDataPopulator
+                        .populateAttributes(authentication, credentials);
+            }
         }
+
 
         return new ImmutableAuthentication(authentication.getPrincipal(),
             authentication.getAttributes());

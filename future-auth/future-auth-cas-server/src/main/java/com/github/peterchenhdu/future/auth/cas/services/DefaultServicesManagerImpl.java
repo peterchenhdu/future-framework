@@ -23,7 +23,7 @@ import javax.validation.constraints.NotNull;
  * @version $Revision$ $Date$
  * @since 3.1
  */
-public final class DefaultServicesManagerImpl implements ReloadableServicesManager {
+public class DefaultServicesManagerImpl implements ReloadableServicesManager {
 
     private final Logger log = LoggerFactory.getLogger(getClass());
 
