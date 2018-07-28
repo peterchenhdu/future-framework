@@ -18,8 +18,8 @@ import java.util.Arrays;
 public class WeatherWebServiceClient {
 
     /**
-     * @param args
-     * @throws RemoteException
+     * @param args args
+     * @throws RemoteException RemoteException
      */
     public static void main(String[] args) throws RemoteException {
         //wsdl--->  http://www.webxml.com.cn/WebServices/WeatherWebService.asmx?wsdl

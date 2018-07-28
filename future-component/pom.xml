@@ -8,12 +8,12 @@
     </parent>
 
     <modelVersion>4.0.0</modelVersion>
-    <artifactId>future-service</artifactId>
-    <packaging>jar</packaging>
-    <name>future-service</name>
+    <artifactId>future-component</artifactId>
+    <packaging>pom</packaging>
+    <name>future-component</name>
 
+    <modules>
+        <module>future-component-quartz</module>
+    </modules>
 
-    <dependencies>
-
-    </dependencies>
 </project>

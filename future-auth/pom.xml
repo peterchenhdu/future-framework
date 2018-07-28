@@ -14,6 +14,6 @@
 
     <modules>
         <module>future-auth-cas-server</module>
-		<module>future-auth-cas-client</module>
+        <module>future-auth-cas-client</module>
     </modules>
 </project>

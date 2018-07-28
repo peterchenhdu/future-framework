@@ -4,7 +4,7 @@
 
 /**
  * WeatherWebServiceStub.java
- *
+ * <p>
  * This file was auto-generated from WSDL
  * by the Apache Axis2 version: 1.7.8  Built on : May 19, 2018 (07:06:11 BST)
  */
@@ -30,8 +30,8 @@ public class WeatherWebServiceStub extends org.apache.axis2.client.Stub {
      *Constructor that takes in a configContext
      */
     public WeatherWebServiceStub(
-        org.apache.axis2.context.ConfigurationContext configurationContext,
-        String targetEndpoint) throws org.apache.axis2.AxisFault {
+            org.apache.axis2.context.ConfigurationContext configurationContext,
+            String targetEndpoint) throws org.apache.axis2.AxisFault {
         this(configurationContext, targetEndpoint, false);
     }
 
@@ -39,9 +39,9 @@ public class WeatherWebServiceStub extends org.apache.axis2.client.Stub {
      * Constructor that takes in a configContext  and useseperate listner
      */
     public WeatherWebServiceStub(
-        org.apache.axis2.context.ConfigurationContext configurationContext,
-        String targetEndpoint, boolean useSeparateListener)
-        throws org.apache.axis2.AxisFault {
+            org.apache.axis2.context.ConfigurationContext configurationContext,
+            String targetEndpoint, boolean useSeparateListener)
+            throws org.apache.axis2.AxisFault {
         //To populate AxisService
         populateAxisService();
         populateFaults();
@@ -50,23 +50,23 @@ public class WeatherWebServiceStub extends org.apache.axis2.client.Stub {
                 _service);
 
         _serviceClient.getOptions()
-                      .setTo(new org.apache.axis2.addressing.EndpointReference(
-                targetEndpoint));
+                .setTo(new org.apache.axis2.addressing.EndpointReference(
+                        targetEndpoint));
         _serviceClient.getOptions().setUseSeparateListener(useSeparateListener);
 
         //Set the soap version
         _serviceClient.getOptions()
-                      .setSoapVersionURI(org.apache.axiom.soap.SOAP12Constants.SOAP_ENVELOPE_NAMESPACE_URI);
+                .setSoapVersionURI(org.apache.axiom.soap.SOAP12Constants.SOAP_ENVELOPE_NAMESPACE_URI);
     }
 
     /**
      * Default Constructor
      */
     public WeatherWebServiceStub(
-        org.apache.axis2.context.ConfigurationContext configurationContext)
-        throws org.apache.axis2.AxisFault {
+            org.apache.axis2.context.ConfigurationContext configurationContext)
+            throws org.apache.axis2.AxisFault {
         this(configurationContext,
-            "http://www.webxml.com.cn/WebServices/WeatherWebService.asmx");
+                "http://www.webxml.com.cn/WebServices/WeatherWebService.asmx");
     }
 
     /**
@@ -80,7 +80,7 @@ public class WeatherWebServiceStub extends org.apache.axis2.client.Stub {
      * Constructor taking the target endpoint
      */
     public WeatherWebServiceStub(String targetEndpoint)
-        throws org.apache.axis2.AxisFault {
+            throws org.apache.axis2.AxisFault {
         this(null, targetEndpoint);
     }
 
@@ -93,7 +93,7 @@ public class WeatherWebServiceStub extends org.apache.axis2.client.Stub {
         counter = counter + 1;
 
         return Long.toString(System.currentTimeMillis()) +
-        "_" + counter;
+                "_" + counter;
     }
 
     private void populateAxisService() throws org.apache.axis2.AxisFault {
@@ -159,31 +159,31 @@ public class WeatherWebServiceStub extends org.apache.axis2.client.Stub {
      * @param getSupportProvince
      */
     public GetSupportProvinceResponse getSupportProvince(
-        GetSupportProvince getSupportProvince)
-        throws java.rmi.RemoteException {
+            GetSupportProvince getSupportProvince)
+            throws java.rmi.RemoteException {
         org.apache.axis2.context.MessageContext _messageContext = new org.apache.axis2.context.MessageContext();
 
         try {
             org.apache.axis2.client.OperationClient _operationClient = _serviceClient.createClient(_operations[0].getName());
             _operationClient.getOptions()
-                            .setAction("http://WebXml.com.cn/getSupportProvince");
+                    .setAction("http://WebXml.com.cn/getSupportProvince");
             _operationClient.getOptions().setExceptionToBeThrownOnSOAPFault(true);
 
             addPropertyToOperationClient(_operationClient,
-                org.apache.axis2.description.WSDL2Constants.ATTR_WHTTP_QUERY_PARAMETER_SEPARATOR,
-                "&");
+                    org.apache.axis2.description.WSDL2Constants.ATTR_WHTTP_QUERY_PARAMETER_SEPARATOR,
+                    "&");
 
             // create SOAP envelope with that payload
             org.apache.axiom.soap.SOAPEnvelope env = null;
 
             env = toEnvelope(getFactory(_operationClient.getOptions()
-                                                        .getSoapVersionURI()),
+                            .getSoapVersionURI()),
                     getSupportProvince,
                     optimizeContent(
-                        new javax.xml.namespace.QName("http://WebXml.com.cn/",
-                            "getSupportProvince")),
+                            new javax.xml.namespace.QName("http://WebXml.com.cn/",
+                                    "getSupportProvince")),
                     new javax.xml.namespace.QName("http://WebXml.com.cn/",
-                        "getSupportProvince"));
+                            "getSupportProvince"));
 
             //adding SOAP soap_headers
             _serviceClient.addHeadersToEnvelope(env);
@@ -200,7 +200,7 @@ public class WeatherWebServiceStub extends org.apache.axis2.client.Stub {
             org.apache.axiom.soap.SOAPEnvelope _returnEnv = _returnMessageContext.getEnvelope();
 
             Object object = fromOM(_returnEnv.getBody()
-                                                       .getFirstElement(),
+                            .getFirstElement(),
                     GetSupportProvinceResponse.class);
 
             return (GetSupportProvinceResponse) object;
@@ -209,25 +209,25 @@ public class WeatherWebServiceStub extends org.apache.axis2.client.Stub {
 
             if (faultElt != null) {
                 if (faultExceptionNameMap.containsKey(
-                            new org.apache.axis2.client.FaultMapKey(
+                        new org.apache.axis2.client.FaultMapKey(
                                 faultElt.getQName(), "getSupportProvince"))) {
                     //make the fault by reflection
                     try {
                         String exceptionClassName = (String) faultExceptionClassNameMap.get(new org.apache.axis2.client.FaultMapKey(
-                                    faultElt.getQName(), "getSupportProvince"));
+                                faultElt.getQName(), "getSupportProvince"));
                         Class exceptionClass = Class.forName(exceptionClassName);
                         java.lang.reflect.Constructor constructor = exceptionClass.getConstructor(String.class);
                         Exception ex = (Exception) constructor.newInstance(f.getMessage());
 
                         //message class
                         String messageClassName = (String) faultMessageMap.get(new org.apache.axis2.client.FaultMapKey(
-                                    faultElt.getQName(), "getSupportProvince"));
+                                faultElt.getQName(), "getSupportProvince"));
                         Class messageClass = Class.forName(messageClassName);
                         Object messageObject = fromOM(faultElt,
                                 messageClass);
                         java.lang.reflect.Method m = exceptionClass.getMethod("setFaultMessage",
-                                new Class[] { messageClass });
-                        m.invoke(ex, new Object[] { messageObject });
+                                new Class[]{messageClass});
+                        m.invoke(ex, new Object[]{messageObject});
 
                         throw new java.rmi.RemoteException(ex.getMessage(), ex);
                     } catch (ClassCastException e) {
@@ -258,7 +258,7 @@ public class WeatherWebServiceStub extends org.apache.axis2.client.Stub {
         } finally {
             if (_messageContext.getTransportOut() != null) {
                 _messageContext.getTransportOut().getSender()
-                               .cleanup(_messageContext);
+                        .cleanup(_messageContext);
             }
         }
     }
@@ -270,31 +270,31 @@ public class WeatherWebServiceStub extends org.apache.axis2.client.Stub {
      * @param getSupportCity
      */
     public GetSupportCityResponse getSupportCity(
-        GetSupportCity getSupportCity)
-        throws java.rmi.RemoteException {
+            GetSupportCity getSupportCity)
+            throws java.rmi.RemoteException {
         org.apache.axis2.context.MessageContext _messageContext = new org.apache.axis2.context.MessageContext();
 
         try {
             org.apache.axis2.client.OperationClient _operationClient = _serviceClient.createClient(_operations[1].getName());
             _operationClient.getOptions()
-                            .setAction("http://WebXml.com.cn/getSupportCity");
+                    .setAction("http://WebXml.com.cn/getSupportCity");
             _operationClient.getOptions().setExceptionToBeThrownOnSOAPFault(true);
 
             addPropertyToOperationClient(_operationClient,
-                org.apache.axis2.description.WSDL2Constants.ATTR_WHTTP_QUERY_PARAMETER_SEPARATOR,
-                "&");
+                    org.apache.axis2.description.WSDL2Constants.ATTR_WHTTP_QUERY_PARAMETER_SEPARATOR,
+                    "&");
 
             // create SOAP envelope with that payload
             org.apache.axiom.soap.SOAPEnvelope env = null;
 
             env = toEnvelope(getFactory(_operationClient.getOptions()
-                                                        .getSoapVersionURI()),
+                            .getSoapVersionURI()),
                     getSupportCity,
                     optimizeContent(
-                        new javax.xml.namespace.QName("http://WebXml.com.cn/",
-                            "getSupportCity")),
+                            new javax.xml.namespace.QName("http://WebXml.com.cn/",
+                                    "getSupportCity")),
                     new javax.xml.namespace.QName("http://WebXml.com.cn/",
-                        "getSupportCity"));
+                            "getSupportCity"));
 
             //adding SOAP soap_headers
             _serviceClient.addHeadersToEnvelope(env);
@@ -311,7 +311,7 @@ public class WeatherWebServiceStub extends org.apache.axis2.client.Stub {
             org.apache.axiom.soap.SOAPEnvelope _returnEnv = _returnMessageContext.getEnvelope();
 
             Object object = fromOM(_returnEnv.getBody()
-                                                       .getFirstElement(),
+                            .getFirstElement(),
                     GetSupportCityResponse.class);
 
             return (GetSupportCityResponse) object;
@@ -320,25 +320,25 @@ public class WeatherWebServiceStub extends org.apache.axis2.client.Stub {
 
             if (faultElt != null) {
                 if (faultExceptionNameMap.containsKey(
-                            new org.apache.axis2.client.FaultMapKey(
+                        new org.apache.axis2.client.FaultMapKey(
                                 faultElt.getQName(), "getSupportCity"))) {
                     //make the fault by reflection
                     try {
                         String exceptionClassName = (String) faultExceptionClassNameMap.get(new org.apache.axis2.client.FaultMapKey(
-                                    faultElt.getQName(), "getSupportCity"));
+                                faultElt.getQName(), "getSupportCity"));
                         Class exceptionClass = Class.forName(exceptionClassName);
                         java.lang.reflect.Constructor constructor = exceptionClass.getConstructor(String.class);
                         Exception ex = (Exception) constructor.newInstance(f.getMessage());
 
                         //message class
                         String messageClassName = (String) faultMessageMap.get(new org.apache.axis2.client.FaultMapKey(
-                                    faultElt.getQName(), "getSupportCity"));
+                                faultElt.getQName(), "getSupportCity"));
                         Class messageClass = Class.forName(messageClassName);
                         Object messageObject = fromOM(faultElt,
                                 messageClass);
                         java.lang.reflect.Method m = exceptionClass.getMethod("setFaultMessage",
-                                new Class[] { messageClass });
-                        m.invoke(ex, new Object[] { messageObject });
+                                new Class[]{messageClass});
+                        m.invoke(ex, new Object[]{messageObject});
 
                         throw new java.rmi.RemoteException(ex.getMessage(), ex);
                     } catch (ClassCastException e) {
@@ -369,7 +369,7 @@ public class WeatherWebServiceStub extends org.apache.axis2.client.Stub {
         } finally {
             if (_messageContext.getTransportOut() != null) {
                 _messageContext.getTransportOut().getSender()
-                               .cleanup(_messageContext);
+                        .cleanup(_messageContext);
             }
         }
     }
@@ -381,31 +381,31 @@ public class WeatherWebServiceStub extends org.apache.axis2.client.Stub {
      * @param getSupportDataSet
      */
     public GetSupportDataSetResponse getSupportDataSet(
-        GetSupportDataSet getSupportDataSet)
-        throws java.rmi.RemoteException {
+            GetSupportDataSet getSupportDataSet)
+            throws java.rmi.RemoteException {
         org.apache.axis2.context.MessageContext _messageContext = new org.apache.axis2.context.MessageContext();
 
         try {
             org.apache.axis2.client.OperationClient _operationClient = _serviceClient.createClient(_operations[2].getName());
             _operationClient.getOptions()
-                            .setAction("http://WebXml.com.cn/getSupportDataSet");
+                    .setAction("http://WebXml.com.cn/getSupportDataSet");
             _operationClient.getOptions().setExceptionToBeThrownOnSOAPFault(true);
 
             addPropertyToOperationClient(_operationClient,
-                org.apache.axis2.description.WSDL2Constants.ATTR_WHTTP_QUERY_PARAMETER_SEPARATOR,
-                "&");
+                    org.apache.axis2.description.WSDL2Constants.ATTR_WHTTP_QUERY_PARAMETER_SEPARATOR,
+                    "&");
 
             // create SOAP envelope with that payload
             org.apache.axiom.soap.SOAPEnvelope env = null;
 
             env = toEnvelope(getFactory(_operationClient.getOptions()
-                                                        .getSoapVersionURI()),
+                            .getSoapVersionURI()),
                     getSupportDataSet,
                     optimizeContent(
-                        new javax.xml.namespace.QName("http://WebXml.com.cn/",
-                            "getSupportDataSet")),
+                            new javax.xml.namespace.QName("http://WebXml.com.cn/",
+                                    "getSupportDataSet")),
                     new javax.xml.namespace.QName("http://WebXml.com.cn/",
-                        "getSupportDataSet"));
+                            "getSupportDataSet"));
 
             //adding SOAP soap_headers
             _serviceClient.addHeadersToEnvelope(env);
@@ -422,7 +422,7 @@ public class WeatherWebServiceStub extends org.apache.axis2.client.Stub {
             org.apache.axiom.soap.SOAPEnvelope _returnEnv = _returnMessageContext.getEnvelope();
 
             Object object = fromOM(_returnEnv.getBody()
-                                                       .getFirstElement(),
+                            .getFirstElement(),
                     GetSupportDataSetResponse.class);
 
             return (GetSupportDataSetResponse) object;
@@ -431,25 +431,25 @@ public class WeatherWebServiceStub extends org.apache.axis2.client.Stub {
 
             if (faultElt != null) {
                 if (faultExceptionNameMap.containsKey(
-                            new org.apache.axis2.client.FaultMapKey(
+                        new org.apache.axis2.client.FaultMapKey(
                                 faultElt.getQName(), "getSupportDataSet"))) {
                     //make the fault by reflection
                     try {
                         String exceptionClassName = (String) faultExceptionClassNameMap.get(new org.apache.axis2.client.FaultMapKey(
-                                    faultElt.getQName(), "getSupportDataSet"));
+                                faultElt.getQName(), "getSupportDataSet"));
                         Class exceptionClass = Class.forName(exceptionClassName);
                         java.lang.reflect.Constructor constructor = exceptionClass.getConstructor(String.class);
                         Exception ex = (Exception) constructor.newInstance(f.getMessage());
 
                         //message class
                         String messageClassName = (String) faultMessageMap.get(new org.apache.axis2.client.FaultMapKey(
-                                    faultElt.getQName(), "getSupportDataSet"));
+                                faultElt.getQName(), "getSupportDataSet"));
                         Class messageClass = Class.forName(messageClassName);
                         Object messageObject = fromOM(faultElt,
                                 messageClass);
                         java.lang.reflect.Method m = exceptionClass.getMethod("setFaultMessage",
-                                new Class[] { messageClass });
-                        m.invoke(ex, new Object[] { messageObject });
+                                new Class[]{messageClass});
+                        m.invoke(ex, new Object[]{messageObject});
 
                         throw new java.rmi.RemoteException(ex.getMessage(), ex);
                     } catch (ClassCastException e) {
@@ -480,7 +480,7 @@ public class WeatherWebServiceStub extends org.apache.axis2.client.Stub {
         } finally {
             if (_messageContext.getTransportOut() != null) {
                 _messageContext.getTransportOut().getSender()
-                               .cleanup(_messageContext);
+                        .cleanup(_messageContext);
             }
         }
     }
@@ -492,31 +492,31 @@ public class WeatherWebServiceStub extends org.apache.axis2.client.Stub {
      * @param getWeatherbyCityNamePro
      */
     public GetWeatherbyCityNameProResponse getWeatherbyCityNamePro(
-        GetWeatherbyCityNamePro getWeatherbyCityNamePro)
-        throws java.rmi.RemoteException {
+            GetWeatherbyCityNamePro getWeatherbyCityNamePro)
+            throws java.rmi.RemoteException {
         org.apache.axis2.context.MessageContext _messageContext = new org.apache.axis2.context.MessageContext();
 
         try {
             org.apache.axis2.client.OperationClient _operationClient = _serviceClient.createClient(_operations[3].getName());
             _operationClient.getOptions()
-                            .setAction("http://WebXml.com.cn/getWeatherbyCityNamePro");
+                    .setAction("http://WebXml.com.cn/getWeatherbyCityNamePro");
             _operationClient.getOptions().setExceptionToBeThrownOnSOAPFault(true);
 
             addPropertyToOperationClient(_operationClient,
-                org.apache.axis2.description.WSDL2Constants.ATTR_WHTTP_QUERY_PARAMETER_SEPARATOR,
-                "&");
+                    org.apache.axis2.description.WSDL2Constants.ATTR_WHTTP_QUERY_PARAMETER_SEPARATOR,
+                    "&");
 
             // create SOAP envelope with that payload
             org.apache.axiom.soap.SOAPEnvelope env = null;
 
             env = toEnvelope(getFactory(_operationClient.getOptions()
-                                                        .getSoapVersionURI()),
+                            .getSoapVersionURI()),
                     getWeatherbyCityNamePro,
                     optimizeContent(
-                        new javax.xml.namespace.QName("http://WebXml.com.cn/",
-                            "getWeatherbyCityNamePro")),
+                            new javax.xml.namespace.QName("http://WebXml.com.cn/",
+                                    "getWeatherbyCityNamePro")),
                     new javax.xml.namespace.QName("http://WebXml.com.cn/",
-                        "getWeatherbyCityNamePro"));
+                            "getWeatherbyCityNamePro"));
 
             //adding SOAP soap_headers
             _serviceClient.addHeadersToEnvelope(env);
@@ -533,7 +533,7 @@ public class WeatherWebServiceStub extends org.apache.axis2.client.Stub {
             org.apache.axiom.soap.SOAPEnvelope _returnEnv = _returnMessageContext.getEnvelope();
 
             Object object = fromOM(_returnEnv.getBody()
-                                                       .getFirstElement(),
+                            .getFirstElement(),
                     GetWeatherbyCityNameProResponse.class);
 
             return (GetWeatherbyCityNameProResponse) object;
@@ -542,27 +542,27 @@ public class WeatherWebServiceStub extends org.apache.axis2.client.Stub {
 
             if (faultElt != null) {
                 if (faultExceptionNameMap.containsKey(
-                            new org.apache.axis2.client.FaultMapKey(
+                        new org.apache.axis2.client.FaultMapKey(
                                 faultElt.getQName(), "getWeatherbyCityNamePro"))) {
                     //make the fault by reflection
                     try {
                         String exceptionClassName = (String) faultExceptionClassNameMap.get(new org.apache.axis2.client.FaultMapKey(
-                                    faultElt.getQName(),
-                                    "getWeatherbyCityNamePro"));
+                                faultElt.getQName(),
+                                "getWeatherbyCityNamePro"));
                         Class exceptionClass = Class.forName(exceptionClassName);
                         java.lang.reflect.Constructor constructor = exceptionClass.getConstructor(String.class);
                         Exception ex = (Exception) constructor.newInstance(f.getMessage());
 
                         //message class
                         String messageClassName = (String) faultMessageMap.get(new org.apache.axis2.client.FaultMapKey(
-                                    faultElt.getQName(),
-                                    "getWeatherbyCityNamePro"));
+                                faultElt.getQName(),
+                                "getWeatherbyCityNamePro"));
                         Class messageClass = Class.forName(messageClassName);
                         Object messageObject = fromOM(faultElt,
                                 messageClass);
                         java.lang.reflect.Method m = exceptionClass.getMethod("setFaultMessage",
-                                new Class[] { messageClass });
-                        m.invoke(ex, new Object[] { messageObject });
+                                new Class[]{messageClass});
+                        m.invoke(ex, new Object[]{messageObject});
 
                         throw new java.rmi.RemoteException(ex.getMessage(), ex);
                     } catch (ClassCastException e) {
@@ -593,7 +593,7 @@ public class WeatherWebServiceStub extends org.apache.axis2.client.Stub {
         } finally {
             if (_messageContext.getTransportOut() != null) {
                 _messageContext.getTransportOut().getSender()
-                               .cleanup(_messageContext);
+                        .cleanup(_messageContext);
             }
         }
     }
@@ -605,31 +605,31 @@ public class WeatherWebServiceStub extends org.apache.axis2.client.Stub {
      * @param getWeatherbyCityName
      */
     public GetWeatherbyCityNameResponse getWeatherbyCityName(
-        GetWeatherbyCityName getWeatherbyCityName)
-        throws java.rmi.RemoteException {
+            GetWeatherbyCityName getWeatherbyCityName)
+            throws java.rmi.RemoteException {
         org.apache.axis2.context.MessageContext _messageContext = new org.apache.axis2.context.MessageContext();
 
         try {
             org.apache.axis2.client.OperationClient _operationClient = _serviceClient.createClient(_operations[4].getName());
             _operationClient.getOptions()
-                            .setAction("http://WebXml.com.cn/getWeatherbyCityName");
+                    .setAction("http://WebXml.com.cn/getWeatherbyCityName");
             _operationClient.getOptions().setExceptionToBeThrownOnSOAPFault(true);
 
             addPropertyToOperationClient(_operationClient,
-                org.apache.axis2.description.WSDL2Constants.ATTR_WHTTP_QUERY_PARAMETER_SEPARATOR,
-                "&");
+                    org.apache.axis2.description.WSDL2Constants.ATTR_WHTTP_QUERY_PARAMETER_SEPARATOR,
+                    "&");
 
             // create SOAP envelope with that payload
             org.apache.axiom.soap.SOAPEnvelope env = null;
 
             env = toEnvelope(getFactory(_operationClient.getOptions()
-                                                        .getSoapVersionURI()),
+                            .getSoapVersionURI()),
                     getWeatherbyCityName,
                     optimizeContent(
-                        new javax.xml.namespace.QName("http://WebXml.com.cn/",
-                            "getWeatherbyCityName")),
+                            new javax.xml.namespace.QName("http://WebXml.com.cn/",
+                                    "getWeatherbyCityName")),
                     new javax.xml.namespace.QName("http://WebXml.com.cn/",
-                        "getWeatherbyCityName"));
+                            "getWeatherbyCityName"));
 
             //adding SOAP soap_headers
             _serviceClient.addHeadersToEnvelope(env);
@@ -646,7 +646,7 @@ public class WeatherWebServiceStub extends org.apache.axis2.client.Stub {
             org.apache.axiom.soap.SOAPEnvelope _returnEnv = _returnMessageContext.getEnvelope();
 
             Object object = fromOM(_returnEnv.getBody()
-                                                       .getFirstElement(),
+                            .getFirstElement(),
                     GetWeatherbyCityNameResponse.class);
 
             return (GetWeatherbyCityNameResponse) object;
@@ -655,25 +655,25 @@ public class WeatherWebServiceStub extends org.apache.axis2.client.Stub {
 
             if (faultElt != null) {
                 if (faultExceptionNameMap.containsKey(
-                            new org.apache.axis2.client.FaultMapKey(
+                        new org.apache.axis2.client.FaultMapKey(
                                 faultElt.getQName(), "getWeatherbyCityName"))) {
                     //make the fault by reflection
                     try {
                         String exceptionClassName = (String) faultExceptionClassNameMap.get(new org.apache.axis2.client.FaultMapKey(
-                                    faultElt.getQName(), "getWeatherbyCityName"));
+                                faultElt.getQName(), "getWeatherbyCityName"));
                         Class exceptionClass = Class.forName(exceptionClassName);
                         java.lang.reflect.Constructor constructor = exceptionClass.getConstructor(String.class);
                         Exception ex = (Exception) constructor.newInstance(f.getMessage());
 
                         //message class
                         String messageClassName = (String) faultMessageMap.get(new org.apache.axis2.client.FaultMapKey(
-                                    faultElt.getQName(), "getWeatherbyCityName"));
+                                faultElt.getQName(), "getWeatherbyCityName"));
                         Class messageClass = Class.forName(messageClassName);
                         Object messageObject = fromOM(faultElt,
                                 messageClass);
                         java.lang.reflect.Method m = exceptionClass.getMethod("setFaultMessage",
-                                new Class[] { messageClass });
-                        m.invoke(ex, new Object[] { messageObject });
+                                new Class[]{messageClass});
+                        m.invoke(ex, new Object[]{messageObject});
 
                         throw new java.rmi.RemoteException(ex.getMessage(), ex);
                     } catch (ClassCastException e) {
@@ -704,7 +704,7 @@ public class WeatherWebServiceStub extends org.apache.axis2.client.Stub {
         } finally {
             if (_messageContext.getTransportOut() != null) {
                 _messageContext.getTransportOut().getSender()
-                               .cleanup(_messageContext);
+                        .cleanup(_messageContext);
             }
         }
     }
@@ -724,126 +724,126 @@ public class WeatherWebServiceStub extends org.apache.axis2.client.Stub {
     }
 
     private org.apache.axiom.om.OMElement toOM(
-        GetSupportProvince param,
-        boolean optimizeContent) throws org.apache.axis2.AxisFault {
+            GetSupportProvince param,
+            boolean optimizeContent) throws org.apache.axis2.AxisFault {
         try {
             return param.getOMElement(GetSupportProvince.MY_QNAME,
-                org.apache.axiom.om.OMAbstractFactory.getOMFactory());
+                    org.apache.axiom.om.OMAbstractFactory.getOMFactory());
         } catch (org.apache.axis2.databinding.ADBException e) {
             throw org.apache.axis2.AxisFault.makeFault(e);
         }
     }
 
     private org.apache.axiom.om.OMElement toOM(
-        GetSupportProvinceResponse param,
-        boolean optimizeContent) throws org.apache.axis2.AxisFault {
+            GetSupportProvinceResponse param,
+            boolean optimizeContent) throws org.apache.axis2.AxisFault {
         try {
             return param.getOMElement(GetSupportProvinceResponse.MY_QNAME,
-                org.apache.axiom.om.OMAbstractFactory.getOMFactory());
+                    org.apache.axiom.om.OMAbstractFactory.getOMFactory());
         } catch (org.apache.axis2.databinding.ADBException e) {
             throw org.apache.axis2.AxisFault.makeFault(e);
         }
     }
 
     private org.apache.axiom.om.OMElement toOM(
-        GetSupportCity param,
-        boolean optimizeContent) throws org.apache.axis2.AxisFault {
+            GetSupportCity param,
+            boolean optimizeContent) throws org.apache.axis2.AxisFault {
         try {
             return param.getOMElement(GetSupportCity.MY_QNAME,
-                org.apache.axiom.om.OMAbstractFactory.getOMFactory());
+                    org.apache.axiom.om.OMAbstractFactory.getOMFactory());
         } catch (org.apache.axis2.databinding.ADBException e) {
             throw org.apache.axis2.AxisFault.makeFault(e);
         }
     }
 
     private org.apache.axiom.om.OMElement toOM(
-        GetSupportCityResponse param,
-        boolean optimizeContent) throws org.apache.axis2.AxisFault {
+            GetSupportCityResponse param,
+            boolean optimizeContent) throws org.apache.axis2.AxisFault {
         try {
             return param.getOMElement(GetSupportCityResponse.MY_QNAME,
-                org.apache.axiom.om.OMAbstractFactory.getOMFactory());
+                    org.apache.axiom.om.OMAbstractFactory.getOMFactory());
         } catch (org.apache.axis2.databinding.ADBException e) {
             throw org.apache.axis2.AxisFault.makeFault(e);
         }
     }
 
     private org.apache.axiom.om.OMElement toOM(
-        GetSupportDataSet param,
-        boolean optimizeContent) throws org.apache.axis2.AxisFault {
+            GetSupportDataSet param,
+            boolean optimizeContent) throws org.apache.axis2.AxisFault {
         try {
             return param.getOMElement(GetSupportDataSet.MY_QNAME,
-                org.apache.axiom.om.OMAbstractFactory.getOMFactory());
+                    org.apache.axiom.om.OMAbstractFactory.getOMFactory());
         } catch (org.apache.axis2.databinding.ADBException e) {
             throw org.apache.axis2.AxisFault.makeFault(e);
         }
     }
 
     private org.apache.axiom.om.OMElement toOM(
-        GetSupportDataSetResponse param,
-        boolean optimizeContent) throws org.apache.axis2.AxisFault {
+            GetSupportDataSetResponse param,
+            boolean optimizeContent) throws org.apache.axis2.AxisFault {
         try {
             return param.getOMElement(GetSupportDataSetResponse.MY_QNAME,
-                org.apache.axiom.om.OMAbstractFactory.getOMFactory());
+                    org.apache.axiom.om.OMAbstractFactory.getOMFactory());
         } catch (org.apache.axis2.databinding.ADBException e) {
             throw org.apache.axis2.AxisFault.makeFault(e);
         }
     }
 
     private org.apache.axiom.om.OMElement toOM(
-        GetWeatherbyCityNamePro param,
-        boolean optimizeContent) throws org.apache.axis2.AxisFault {
+            GetWeatherbyCityNamePro param,
+            boolean optimizeContent) throws org.apache.axis2.AxisFault {
         try {
             return param.getOMElement(GetWeatherbyCityNamePro.MY_QNAME,
-                org.apache.axiom.om.OMAbstractFactory.getOMFactory());
+                    org.apache.axiom.om.OMAbstractFactory.getOMFactory());
         } catch (org.apache.axis2.databinding.ADBException e) {
             throw org.apache.axis2.AxisFault.makeFault(e);
         }
     }
 
     private org.apache.axiom.om.OMElement toOM(
-        GetWeatherbyCityNameProResponse param,
-        boolean optimizeContent) throws org.apache.axis2.AxisFault {
+            GetWeatherbyCityNameProResponse param,
+            boolean optimizeContent) throws org.apache.axis2.AxisFault {
         try {
             return param.getOMElement(GetWeatherbyCityNameProResponse.MY_QNAME,
-                org.apache.axiom.om.OMAbstractFactory.getOMFactory());
+                    org.apache.axiom.om.OMAbstractFactory.getOMFactory());
         } catch (org.apache.axis2.databinding.ADBException e) {
             throw org.apache.axis2.AxisFault.makeFault(e);
         }
     }
 
     private org.apache.axiom.om.OMElement toOM(
-        GetWeatherbyCityName param,
-        boolean optimizeContent) throws org.apache.axis2.AxisFault {
+            GetWeatherbyCityName param,
+            boolean optimizeContent) throws org.apache.axis2.AxisFault {
         try {
             return param.getOMElement(GetWeatherbyCityName.MY_QNAME,
-                org.apache.axiom.om.OMAbstractFactory.getOMFactory());
+                    org.apache.axiom.om.OMAbstractFactory.getOMFactory());
         } catch (org.apache.axis2.databinding.ADBException e) {
             throw org.apache.axis2.AxisFault.makeFault(e);
         }
     }
 
     private org.apache.axiom.om.OMElement toOM(
-        GetWeatherbyCityNameResponse param,
-        boolean optimizeContent) throws org.apache.axis2.AxisFault {
+            GetWeatherbyCityNameResponse param,
+            boolean optimizeContent) throws org.apache.axis2.AxisFault {
         try {
             return param.getOMElement(GetWeatherbyCityNameResponse.MY_QNAME,
-                org.apache.axiom.om.OMAbstractFactory.getOMFactory());
+                    org.apache.axiom.om.OMAbstractFactory.getOMFactory());
         } catch (org.apache.axis2.databinding.ADBException e) {
             throw org.apache.axis2.AxisFault.makeFault(e);
         }
     }
 
     private org.apache.axiom.soap.SOAPEnvelope toEnvelope(
-        org.apache.axiom.soap.SOAPFactory factory,
-        GetSupportProvince param,
-        boolean optimizeContent, javax.xml.namespace.QName elementQName)
-        throws org.apache.axis2.AxisFault {
+            org.apache.axiom.soap.SOAPFactory factory,
+            GetSupportProvince param,
+            boolean optimizeContent, javax.xml.namespace.QName elementQName)
+            throws org.apache.axis2.AxisFault {
         try {
             org.apache.axiom.soap.SOAPEnvelope emptyEnvelope = factory.getDefaultEnvelope();
             emptyEnvelope.getBody()
-                         .addChild(param.getOMElement(
-                    GetSupportProvince.MY_QNAME,
-                    factory));
+                    .addChild(param.getOMElement(
+                            GetSupportProvince.MY_QNAME,
+                            factory));
 
             return emptyEnvelope;
         } catch (org.apache.axis2.databinding.ADBException e) {
@@ -853,16 +853,16 @@ public class WeatherWebServiceStub extends org.apache.axis2.client.Stub {
 
     /* methods to provide back word compatibility */
     private org.apache.axiom.soap.SOAPEnvelope toEnvelope(
-        org.apache.axiom.soap.SOAPFactory factory,
-        GetSupportCity param,
-        boolean optimizeContent, javax.xml.namespace.QName elementQName)
-        throws org.apache.axis2.AxisFault {
+            org.apache.axiom.soap.SOAPFactory factory,
+            GetSupportCity param,
+            boolean optimizeContent, javax.xml.namespace.QName elementQName)
+            throws org.apache.axis2.AxisFault {
         try {
             org.apache.axiom.soap.SOAPEnvelope emptyEnvelope = factory.getDefaultEnvelope();
             emptyEnvelope.getBody()
-                         .addChild(param.getOMElement(
-                    GetSupportCity.MY_QNAME,
-                    factory));
+                    .addChild(param.getOMElement(
+                            GetSupportCity.MY_QNAME,
+                            factory));
 
             return emptyEnvelope;
         } catch (org.apache.axis2.databinding.ADBException e) {
@@ -872,16 +872,16 @@ public class WeatherWebServiceStub extends org.apache.axis2.client.Stub {
 
     /* methods to provide back word compatibility */
     private org.apache.axiom.soap.SOAPEnvelope toEnvelope(
-        org.apache.axiom.soap.SOAPFactory factory,
-        GetSupportDataSet param,
-        boolean optimizeContent, javax.xml.namespace.QName elementQName)
-        throws org.apache.axis2.AxisFault {
+            org.apache.axiom.soap.SOAPFactory factory,
+            GetSupportDataSet param,
+            boolean optimizeContent, javax.xml.namespace.QName elementQName)
+            throws org.apache.axis2.AxisFault {
         try {
             org.apache.axiom.soap.SOAPEnvelope emptyEnvelope = factory.getDefaultEnvelope();
             emptyEnvelope.getBody()
-                         .addChild(param.getOMElement(
-                    GetSupportDataSet.MY_QNAME,
-                    factory));
+                    .addChild(param.getOMElement(
+                            GetSupportDataSet.MY_QNAME,
+                            factory));
 
             return emptyEnvelope;
         } catch (org.apache.axis2.databinding.ADBException e) {
@@ -891,16 +891,16 @@ public class WeatherWebServiceStub extends org.apache.axis2.client.Stub {
 
     /* methods to provide back word compatibility */
     private org.apache.axiom.soap.SOAPEnvelope toEnvelope(
-        org.apache.axiom.soap.SOAPFactory factory,
-        GetWeatherbyCityNamePro param,
-        boolean optimizeContent, javax.xml.namespace.QName elementQName)
-        throws org.apache.axis2.AxisFault {
+            org.apache.axiom.soap.SOAPFactory factory,
+            GetWeatherbyCityNamePro param,
+            boolean optimizeContent, javax.xml.namespace.QName elementQName)
+            throws org.apache.axis2.AxisFault {
         try {
             org.apache.axiom.soap.SOAPEnvelope emptyEnvelope = factory.getDefaultEnvelope();
             emptyEnvelope.getBody()
-                         .addChild(param.getOMElement(
-                    GetWeatherbyCityNamePro.MY_QNAME,
-                    factory));
+                    .addChild(param.getOMElement(
+                            GetWeatherbyCityNamePro.MY_QNAME,
+                            factory));
 
             return emptyEnvelope;
         } catch (org.apache.axis2.databinding.ADBException e) {
@@ -910,16 +910,16 @@ public class WeatherWebServiceStub extends org.apache.axis2.client.Stub {
 
     /* methods to provide back word compatibility */
     private org.apache.axiom.soap.SOAPEnvelope toEnvelope(
-        org.apache.axiom.soap.SOAPFactory factory,
-        GetWeatherbyCityName param,
-        boolean optimizeContent, javax.xml.namespace.QName elementQName)
-        throws org.apache.axis2.AxisFault {
+            org.apache.axiom.soap.SOAPFactory factory,
+            GetWeatherbyCityName param,
+            boolean optimizeContent, javax.xml.namespace.QName elementQName)
+            throws org.apache.axis2.AxisFault {
         try {
             org.apache.axiom.soap.SOAPEnvelope emptyEnvelope = factory.getDefaultEnvelope();
             emptyEnvelope.getBody()
-                         .addChild(param.getOMElement(
-                    GetWeatherbyCityName.MY_QNAME,
-                    factory));
+                    .addChild(param.getOMElement(
+                            GetWeatherbyCityName.MY_QNAME,
+                            factory));
 
             return emptyEnvelope;
         } catch (org.apache.axis2.databinding.ADBException e) {
@@ -933,60 +933,60 @@ public class WeatherWebServiceStub extends org.apache.axis2.client.Stub {
      *  get the default envelope
      */
     private org.apache.axiom.soap.SOAPEnvelope toEnvelope(
-        org.apache.axiom.soap.SOAPFactory factory) {
+            org.apache.axiom.soap.SOAPFactory factory) {
         return factory.getDefaultEnvelope();
     }
 
     private Object fromOM(org.apache.axiom.om.OMElement param,
-        Class type) throws org.apache.axis2.AxisFault {
+                          Class type) throws org.apache.axis2.AxisFault {
         try {
             if (GetSupportCity.class.equals(
-                        type)) {
+                    type)) {
                 return GetSupportCity.Factory.parse(param.getXMLStreamReaderWithoutCaching());
             }
 
             if (GetSupportCityResponse.class.equals(
-                        type)) {
+                    type)) {
                 return GetSupportCityResponse.Factory.parse(param.getXMLStreamReaderWithoutCaching());
             }
 
             if (GetSupportDataSet.class.equals(
-                        type)) {
+                    type)) {
                 return GetSupportDataSet.Factory.parse(param.getXMLStreamReaderWithoutCaching());
             }
 
             if (GetSupportDataSetResponse.class.equals(
-                        type)) {
+                    type)) {
                 return GetSupportDataSetResponse.Factory.parse(param.getXMLStreamReaderWithoutCaching());
             }
 
             if (GetSupportProvince.class.equals(
-                        type)) {
+                    type)) {
                 return GetSupportProvince.Factory.parse(param.getXMLStreamReaderWithoutCaching());
             }
 
             if (GetSupportProvinceResponse.class.equals(
-                        type)) {
+                    type)) {
                 return GetSupportProvinceResponse.Factory.parse(param.getXMLStreamReaderWithoutCaching());
             }
 
             if (GetWeatherbyCityName.class.equals(
-                        type)) {
+                    type)) {
                 return GetWeatherbyCityName.Factory.parse(param.getXMLStreamReaderWithoutCaching());
             }
 
             if (GetWeatherbyCityNamePro.class.equals(
-                        type)) {
+                    type)) {
                 return GetWeatherbyCityNamePro.Factory.parse(param.getXMLStreamReaderWithoutCaching());
             }
 
             if (GetWeatherbyCityNameProResponse.class.equals(
-                        type)) {
+                    type)) {
                 return GetWeatherbyCityNameProResponse.Factory.parse(param.getXMLStreamReaderWithoutCaching());
             }
 
             if (GetWeatherbyCityNameResponse.class.equals(
-                        type)) {
+                    type)) {
                 return GetWeatherbyCityNameResponse.Factory.parse(param.getXMLStreamReaderWithoutCaching());
             }
         } catch (Exception e) {
@@ -1008,23 +1008,23 @@ public class WeatherWebServiceStub extends org.apache.axis2.client.Stub {
          * @return org.apache.axiom.om.OMElement
          */
         public org.apache.axiom.om.OMElement getOMElement(
-            final javax.xml.namespace.QName parentQName,
-            final org.apache.axiom.om.OMFactory factory)
-            throws org.apache.axis2.databinding.ADBException {
+                final javax.xml.namespace.QName parentQName,
+                final org.apache.axiom.om.OMFactory factory)
+                throws org.apache.axis2.databinding.ADBException {
             return factory.createOMElement(new org.apache.axis2.databinding.ADBDataSource(
                     this, MY_QNAME));
         }
 
         public void serialize(final javax.xml.namespace.QName parentQName,
-            javax.xml.stream.XMLStreamWriter xmlWriter)
-            throws javax.xml.stream.XMLStreamException,
+                              javax.xml.stream.XMLStreamWriter xmlWriter)
+                throws javax.xml.stream.XMLStreamException,
                 org.apache.axis2.databinding.ADBException {
             serialize(parentQName, xmlWriter, false);
         }
 
         public void serialize(final javax.xml.namespace.QName parentQName,
-            javax.xml.stream.XMLStreamWriter xmlWriter, boolean serializeType)
-            throws javax.xml.stream.XMLStreamException,
+                              javax.xml.stream.XMLStreamWriter xmlWriter, boolean serializeType)
+                throws javax.xml.stream.XMLStreamException,
                 org.apache.axis2.databinding.ADBException {
             String prefix = null;
             String namespace = null;
@@ -1032,7 +1032,7 @@ public class WeatherWebServiceStub extends org.apache.axis2.client.Stub {
             prefix = parentQName.getPrefix();
             namespace = parentQName.getNamespaceURI();
             writeStartElement(prefix, namespace, parentQName.getLocalPart(),
-                xmlWriter);
+                    xmlWriter);
 
             if (serializeType) {
                 String namespacePrefix = registerPrefix(xmlWriter,
@@ -1041,12 +1041,12 @@ public class WeatherWebServiceStub extends org.apache.axis2.client.Stub {
                 if ((namespacePrefix != null) &&
                         (namespacePrefix.trim().length() > 0)) {
                     writeAttribute("xsi",
-                        "http://www.w3.org/2001/XMLSchema-instance", "type",
-                        namespacePrefix + ":getSupportDataSet", xmlWriter);
+                            "http://www.w3.org/2001/XMLSchema-instance", "type",
+                            namespacePrefix + ":getSupportDataSet", xmlWriter);
                 } else {
                     writeAttribute("xsi",
-                        "http://www.w3.org/2001/XMLSchema-instance", "type",
-                        "getSupportDataSet", xmlWriter);
+                            "http://www.w3.org/2001/XMLSchema-instance", "type",
+                            "getSupportDataSet", xmlWriter);
                 }
             }
 
@@ -1054,7 +1054,7 @@ public class WeatherWebServiceStub extends org.apache.axis2.client.Stub {
         }
 
         private static String generatePrefix(
-            String namespace) {
+                String namespace) {
             if (namespace.equals("http://WebXml.com.cn/")) {
                 return "ns1";
             }
@@ -1066,9 +1066,9 @@ public class WeatherWebServiceStub extends org.apache.axis2.client.Stub {
          * Utility method to write an element start tag.
          */
         private void writeStartElement(String prefix,
-            String namespace, String localPart,
-            javax.xml.stream.XMLStreamWriter xmlWriter)
-            throws javax.xml.stream.XMLStreamException {
+                                       String namespace, String localPart,
+                                       javax.xml.stream.XMLStreamWriter xmlWriter)
+                throws javax.xml.stream.XMLStreamException {
             String writerPrefix = xmlWriter.getPrefix(namespace);
 
             if (writerPrefix != null) {
@@ -1090,15 +1090,15 @@ public class WeatherWebServiceStub extends org.apache.axis2.client.Stub {
          * Util method to write an attribute with the ns prefix
          */
         private void writeAttribute(String prefix,
-            String namespace, String attName,
-            String attValue,
-            javax.xml.stream.XMLStreamWriter xmlWriter)
-            throws javax.xml.stream.XMLStreamException {
+                                    String namespace, String attName,
+                                    String attValue,
+                                    javax.xml.stream.XMLStreamWriter xmlWriter)
+                throws javax.xml.stream.XMLStreamException {
             String writerPrefix = xmlWriter.getPrefix(namespace);
 
             if (writerPrefix != null) {
                 xmlWriter.writeAttribute(writerPrefix, namespace, attName,
-                    attValue);
+                        attValue);
             } else {
                 xmlWriter.writeNamespace(prefix, namespace);
                 xmlWriter.setPrefix(prefix, namespace);
@@ -1110,14 +1110,14 @@ public class WeatherWebServiceStub extends org.apache.axis2.client.Stub {
          * Util method to write an attribute without the ns prefix
          */
         private void writeAttribute(String namespace,
-            String attName, String attValue,
-            javax.xml.stream.XMLStreamWriter xmlWriter)
-            throws javax.xml.stream.XMLStreamException {
+                                    String attName, String attValue,
+                                    javax.xml.stream.XMLStreamWriter xmlWriter)
+                throws javax.xml.stream.XMLStreamException {
             if (namespace.equals("")) {
                 xmlWriter.writeAttribute(attName, attValue);
             } else {
                 xmlWriter.writeAttribute(registerPrefix(xmlWriter, namespace),
-                    namespace, attName, attValue);
+                        namespace, attName, attValue);
             }
         }
 
@@ -1125,9 +1125,9 @@ public class WeatherWebServiceStub extends org.apache.axis2.client.Stub {
          * Util method to write an attribute without the ns prefix
          */
         private void writeQNameAttribute(String namespace,
-            String attName, javax.xml.namespace.QName qname,
-            javax.xml.stream.XMLStreamWriter xmlWriter)
-            throws javax.xml.stream.XMLStreamException {
+                                         String attName, javax.xml.namespace.QName qname,
+                                         javax.xml.stream.XMLStreamWriter xmlWriter)
+                throws javax.xml.stream.XMLStreamException {
             String attributeNamespace = qname.getNamespaceURI();
             String attributePrefix = xmlWriter.getPrefix(attributeNamespace);
 
@@ -1148,7 +1148,7 @@ public class WeatherWebServiceStub extends org.apache.axis2.client.Stub {
             } else {
                 registerPrefix(xmlWriter, namespace);
                 xmlWriter.writeAttribute(attributePrefix, namespace, attName,
-                    attributeValue);
+                        attributeValue);
             }
         }
 
@@ -1156,8 +1156,8 @@ public class WeatherWebServiceStub extends org.apache.axis2.client.Stub {
          *  method to handle Qnames
          */
         private void writeQName(javax.xml.namespace.QName qname,
-            javax.xml.stream.XMLStreamWriter xmlWriter)
-            throws javax.xml.stream.XMLStreamException {
+                                javax.xml.stream.XMLStreamWriter xmlWriter)
+                throws javax.xml.stream.XMLStreamException {
             String namespaceURI = qname.getNamespaceURI();
 
             if (namespaceURI != null) {
@@ -1171,8 +1171,8 @@ public class WeatherWebServiceStub extends org.apache.axis2.client.Stub {
 
                 if (prefix.trim().length() > 0) {
                     xmlWriter.writeCharacters(prefix + ":" +
-                        org.apache.axis2.databinding.utils.ConverterUtil.convertToString(
-                            qname));
+                            org.apache.axis2.databinding.utils.ConverterUtil.convertToString(
+                                    qname));
                 } else {
                     // i.e this is the default namespace
                     xmlWriter.writeCharacters(org.apache.axis2.databinding.utils.ConverterUtil.convertToString(
@@ -1185,8 +1185,8 @@ public class WeatherWebServiceStub extends org.apache.axis2.client.Stub {
         }
 
         private void writeQNames(javax.xml.namespace.QName[] qnames,
-            javax.xml.stream.XMLStreamWriter xmlWriter)
-            throws javax.xml.stream.XMLStreamException {
+                                 javax.xml.stream.XMLStreamWriter xmlWriter)
+                throws javax.xml.stream.XMLStreamException {
             if (qnames != null) {
                 // we have to store this data until last moment since it is not possible to write any
                 // namespace data after writing the charactor data
@@ -1212,8 +1212,8 @@ public class WeatherWebServiceStub extends org.apache.axis2.client.Stub {
 
                         if (prefix.trim().length() > 0) {
                             stringToWrite.append(prefix).append(":")
-                                         .append(org.apache.axis2.databinding.utils.ConverterUtil.convertToString(
-                                    qnames[i]));
+                                    .append(org.apache.axis2.databinding.utils.ConverterUtil.convertToString(
+                                            qnames[i]));
                         } else {
                             stringToWrite.append(org.apache.axis2.databinding.utils.ConverterUtil.convertToString(
                                     qnames[i]));
@@ -1232,9 +1232,9 @@ public class WeatherWebServiceStub extends org.apache.axis2.client.Stub {
          * Register a namespace prefix
          */
         private String registerPrefix(
-            javax.xml.stream.XMLStreamWriter xmlWriter,
-            String namespace)
-            throws javax.xml.stream.XMLStreamException {
+                javax.xml.stream.XMLStreamWriter xmlWriter,
+                String namespace)
+                throws javax.xml.stream.XMLStreamException {
             String prefix = xmlWriter.getPrefix(namespace);
 
             if (prefix == null) {
@@ -1273,8 +1273,8 @@ public class WeatherWebServiceStub extends org.apache.axis2.client.Stub {
              *                If this object is a complex type, the reader is positioned at the end element of its outer element
              */
             public static GetSupportDataSet parse(
-                javax.xml.stream.XMLStreamReader reader)
-                throws Exception {
+                    javax.xml.stream.XMLStreamReader reader)
+                    throws Exception {
                 GetSupportDataSet object = new GetSupportDataSet();
 
                 int event;
@@ -1290,8 +1290,8 @@ public class WeatherWebServiceStub extends org.apache.axis2.client.Stub {
                     currentQName = reader.getName();
 
                     if (reader.getAttributeValue(
-                                "http://www.w3.org/2001/XMLSchema-instance",
-                                "type") != null) {
+                            "http://www.w3.org/2001/XMLSchema-instance",
+                            "type") != null) {
                         String fullTypeName = reader.getAttributeValue("http://www.w3.org/2001/XMLSchema-instance",
                                 "type");
 
@@ -1306,15 +1306,15 @@ public class WeatherWebServiceStub extends org.apache.axis2.client.Stub {
                             nsPrefix = (nsPrefix == null) ? "" : nsPrefix;
 
                             String type = fullTypeName.substring(fullTypeName.indexOf(
-                                        ":") + 1);
+                                    ":") + 1);
 
                             if (!"getSupportDataSet".equals(type)) {
                                 //find namespace for the prefix
                                 String nsUri = reader.getNamespaceContext()
-                                                               .getNamespaceURI(nsPrefix);
+                                        .getNamespaceURI(nsPrefix);
 
                                 return (GetSupportDataSet) ExtensionMapper.getTypeObject(nsUri,
-                                    type, reader);
+                                        type, reader);
                             }
                         }
                     }
@@ -1386,23 +1386,23 @@ public class WeatherWebServiceStub extends org.apache.axis2.client.Stub {
          * @return org.apache.axiom.om.OMElement
          */
         public org.apache.axiom.om.OMElement getOMElement(
-            final javax.xml.namespace.QName parentQName,
-            final org.apache.axiom.om.OMFactory factory)
-            throws org.apache.axis2.databinding.ADBException {
+                final javax.xml.namespace.QName parentQName,
+                final org.apache.axiom.om.OMFactory factory)
+                throws org.apache.axis2.databinding.ADBException {
             return factory.createOMElement(new org.apache.axis2.databinding.ADBDataSource(
                     this, MY_QNAME));
         }
 
         public void serialize(final javax.xml.namespace.QName parentQName,
-            javax.xml.stream.XMLStreamWriter xmlWriter)
-            throws javax.xml.stream.XMLStreamException,
+                              javax.xml.stream.XMLStreamWriter xmlWriter)
+                throws javax.xml.stream.XMLStreamException,
                 org.apache.axis2.databinding.ADBException {
             serialize(parentQName, xmlWriter, false);
         }
 
         public void serialize(final javax.xml.namespace.QName parentQName,
-            javax.xml.stream.XMLStreamWriter xmlWriter, boolean serializeType)
-            throws javax.xml.stream.XMLStreamException,
+                              javax.xml.stream.XMLStreamWriter xmlWriter, boolean serializeType)
+                throws javax.xml.stream.XMLStreamException,
                 org.apache.axis2.databinding.ADBException {
             String prefix = null;
             String namespace = null;
@@ -1410,7 +1410,7 @@ public class WeatherWebServiceStub extends org.apache.axis2.client.Stub {
             prefix = parentQName.getPrefix();
             namespace = parentQName.getNamespaceURI();
             writeStartElement(prefix, namespace, parentQName.getLocalPart(),
-                xmlWriter);
+                    xmlWriter);
 
             if (serializeType) {
                 String namespacePrefix = registerPrefix(xmlWriter,
@@ -1419,12 +1419,12 @@ public class WeatherWebServiceStub extends org.apache.axis2.client.Stub {
                 if ((namespacePrefix != null) &&
                         (namespacePrefix.trim().length() > 0)) {
                     writeAttribute("xsi",
-                        "http://www.w3.org/2001/XMLSchema-instance", "type",
-                        namespacePrefix + ":DataSet", xmlWriter);
+                            "http://www.w3.org/2001/XMLSchema-instance", "type",
+                            namespacePrefix + ":DataSet", xmlWriter);
                 } else {
                     writeAttribute("xsi",
-                        "http://www.w3.org/2001/XMLSchema-instance", "type",
-                        "DataSet", xmlWriter);
+                            "http://www.w3.org/2001/XMLSchema-instance", "type",
+                            "DataSet", xmlWriter);
                 }
             }
 
@@ -1432,21 +1432,21 @@ public class WeatherWebServiceStub extends org.apache.axis2.client.Stub {
                 localSchema.serialize(xmlWriter);
             } else {
                 throw new org.apache.axis2.databinding.ADBException(
-                    "schema cannot be null!!");
+                        "schema cannot be null!!");
             }
 
             if (localExtraElement != null) {
                 localExtraElement.serialize(xmlWriter);
             } else {
                 throw new org.apache.axis2.databinding.ADBException(
-                    "extraElement cannot be null!!");
+                        "extraElement cannot be null!!");
             }
 
             xmlWriter.writeEndElement();
         }
 
         private static String generatePrefix(
-            String namespace) {
+                String namespace) {
             if (namespace.equals("http://WebXml.com.cn/")) {
                 return "ns1";
             }
@@ -1458,9 +1458,9 @@ public class WeatherWebServiceStub extends org.apache.axis2.client.Stub {
          * Utility method to write an element start tag.
          */
         private void writeStartElement(String prefix,
-            String namespace, String localPart,
-            javax.xml.stream.XMLStreamWriter xmlWriter)
-            throws javax.xml.stream.XMLStreamException {
+                                       String namespace, String localPart,
+                                       javax.xml.stream.XMLStreamWriter xmlWriter)
+                throws javax.xml.stream.XMLStreamException {
             String writerPrefix = xmlWriter.getPrefix(namespace);
 
             if (writerPrefix != null) {
@@ -1482,15 +1482,15 @@ public class WeatherWebServiceStub extends org.apache.axis2.client.Stub {
          * Util method to write an attribute with the ns prefix
          */
         private void writeAttribute(String prefix,
-            String namespace, String attName,
-            String attValue,
-            javax.xml.stream.XMLStreamWriter xmlWriter)
-            throws javax.xml.stream.XMLStreamException {
+                                    String namespace, String attName,
+                                    String attValue,
+                                    javax.xml.stream.XMLStreamWriter xmlWriter)
+                throws javax.xml.stream.XMLStreamException {
             String writerPrefix = xmlWriter.getPrefix(namespace);
 
             if (writerPrefix != null) {
                 xmlWriter.writeAttribute(writerPrefix, namespace, attName,
-                    attValue);
+                        attValue);
             } else {
                 xmlWriter.writeNamespace(prefix, namespace);
                 xmlWriter.setPrefix(prefix, namespace);
@@ -1502,14 +1502,14 @@ public class WeatherWebServiceStub extends org.apache.axis2.client.Stub {
          * Util method to write an attribute without the ns prefix
          */
         private void writeAttribute(String namespace,
-            String attName, String attValue,
-            javax.xml.stream.XMLStreamWriter xmlWriter)
-            throws javax.xml.stream.XMLStreamException {
+                                    String attName, String attValue,
+                                    javax.xml.stream.XMLStreamWriter xmlWriter)
+                throws javax.xml.stream.XMLStreamException {
             if (namespace.equals("")) {
                 xmlWriter.writeAttribute(attName, attValue);
             } else {
                 xmlWriter.writeAttribute(registerPrefix(xmlWriter, namespace),
-                    namespace, attName, attValue);
+                        namespace, attName, attValue);
             }
         }
 
@@ -1517,9 +1517,9 @@ public class WeatherWebServiceStub extends org.apache.axis2.client.Stub {
          * Util method to write an attribute without the ns prefix
          */
         private void writeQNameAttribute(String namespace,
-            String attName, javax.xml.namespace.QName qname,
-            javax.xml.stream.XMLStreamWriter xmlWriter)
-            throws javax.xml.stream.XMLStreamException {
+                                         String attName, javax.xml.namespace.QName qname,
+                                         javax.xml.stream.XMLStreamWriter xmlWriter)
+                throws javax.xml.stream.XMLStreamException {
             String attributeNamespace = qname.getNamespaceURI();
             String attributePrefix = xmlWriter.getPrefix(attributeNamespace);
 
@@ -1540,7 +1540,7 @@ public class WeatherWebServiceStub extends org.apache.axis2.client.Stub {
             } else {
                 registerPrefix(xmlWriter, namespace);
                 xmlWriter.writeAttribute(attributePrefix, namespace, attName,
-                    attributeValue);
+                        attributeValue);
             }
         }
 
@@ -1548,8 +1548,8 @@ public class WeatherWebServiceStub extends org.apache.axis2.client.Stub {
          *  method to handle Qnames
          */
         private void writeQName(javax.xml.namespace.QName qname,
-            javax.xml.stream.XMLStreamWriter xmlWriter)
-            throws javax.xml.stream.XMLStreamException {
+                                javax.xml.stream.XMLStreamWriter xmlWriter)
+                throws javax.xml.stream.XMLStreamException {
             String namespaceURI = qname.getNamespaceURI();
 
             if (namespaceURI != null) {
@@ -1563,8 +1563,8 @@ public class WeatherWebServiceStub extends org.apache.axis2.client.Stub {
 
                 if (prefix.trim().length() > 0) {
                     xmlWriter.writeCharacters(prefix + ":" +
-                        org.apache.axis2.databinding.utils.ConverterUtil.convertToString(
-                            qname));
+                            org.apache.axis2.databinding.utils.ConverterUtil.convertToString(
+                                    qname));
                 } else {
                     // i.e this is the default namespace
                     xmlWriter.writeCharacters(org.apache.axis2.databinding.utils.ConverterUtil.convertToString(
@@ -1577,8 +1577,8 @@ public class WeatherWebServiceStub extends org.apache.axis2.client.Stub {
         }
 
         private void writeQNames(javax.xml.namespace.QName[] qnames,
-            javax.xml.stream.XMLStreamWriter xmlWriter)
-            throws javax.xml.stream.XMLStreamException {
+                                 javax.xml.stream.XMLStreamWriter xmlWriter)
+                throws javax.xml.stream.XMLStreamException {
             if (qnames != null) {
                 // we have to store this data until last moment since it is not possible to write any
                 // namespace data after writing the charactor data
@@ -1604,8 +1604,8 @@ public class WeatherWebServiceStub extends org.apache.axis2.client.Stub {
 
                         if (prefix.trim().length() > 0) {
                             stringToWrite.append(prefix).append(":")
-                                         .append(org.apache.axis2.databinding.utils.ConverterUtil.convertToString(
-                                    qnames[i]));
+                                    .append(org.apache.axis2.databinding.utils.ConverterUtil.convertToString(
+                                            qnames[i]));
                         } else {
                             stringToWrite.append(org.apache.axis2.databinding.utils.ConverterUtil.convertToString(
                                     qnames[i]));
@@ -1624,9 +1624,9 @@ public class WeatherWebServiceStub extends org.apache.axis2.client.Stub {
          * Register a namespace prefix
          */
         private String registerPrefix(
-            javax.xml.stream.XMLStreamWriter xmlWriter,
-            String namespace)
-            throws javax.xml.stream.XMLStreamException {
+                javax.xml.stream.XMLStreamWriter xmlWriter,
+                String namespace)
+                throws javax.xml.stream.XMLStreamException {
             String prefix = xmlWriter.getPrefix(namespace);
 
             if (prefix == null) {
@@ -1665,7 +1665,7 @@ public class WeatherWebServiceStub extends org.apache.axis2.client.Stub {
              *                If this object is a complex type, the reader is positioned at the end element of its outer element
              */
             public static DataSet parse(javax.xml.stream.XMLStreamReader reader)
-                throws Exception {
+                    throws Exception {
                 DataSet object = new DataSet();
 
                 int event;
@@ -1693,8 +1693,8 @@ public class WeatherWebServiceStub extends org.apache.axis2.client.Stub {
                     }
 
                     if (reader.getAttributeValue(
-                                "http://www.w3.org/2001/XMLSchema-instance",
-                                "type") != null) {
+                            "http://www.w3.org/2001/XMLSchema-instance",
+                            "type") != null) {
                         String fullTypeName = reader.getAttributeValue("http://www.w3.org/2001/XMLSchema-instance",
                                 "type");
 
@@ -1709,15 +1709,15 @@ public class WeatherWebServiceStub extends org.apache.axis2.client.Stub {
                             nsPrefix = (nsPrefix == null) ? "" : nsPrefix;
 
                             String type = fullTypeName.substring(fullTypeName.indexOf(
-                                        ":") + 1);
+                                    ":") + 1);
 
                             if (!"DataSet".equals(type)) {
                                 //find namespace for the prefix
                                 String nsUri = reader.getNamespaceContext()
-                                                               .getNamespaceURI(nsPrefix);
+                                        .getNamespaceURI(nsPrefix);
 
                                 return (DataSet) ExtensionMapper.getTypeObject(nsUri,
-                                    type, reader);
+                                        type, reader);
                             }
                         }
                     }
@@ -1738,8 +1738,8 @@ public class WeatherWebServiceStub extends org.apache.axis2.client.Stub {
                         // We need to wrap the reader so that it produces a fake START_DOCUMENT event
                         // this is needed by the builder classes
                         org.apache.axis2.databinding.utils.NamedStaxOMBuilder builder1 =
-                            new org.apache.axis2.databinding.utils.NamedStaxOMBuilder(new org.apache.axis2.util.StreamWrapper(
-                                    reader), startQname1);
+                                new org.apache.axis2.databinding.utils.NamedStaxOMBuilder(new org.apache.axis2.util.StreamWrapper(
+                                        reader), startQname1);
                         object.setSchema(builder1.getOMElement());
 
                         reader.next();
@@ -1748,7 +1748,7 @@ public class WeatherWebServiceStub extends org.apache.axis2.client.Stub {
                     else {
                         // 1 - A start element we are not expecting indicates an invalid parameter was passed
                         throw new org.apache.axis2.databinding.ADBException(
-                            "Unexpected subelement " + reader.getName());
+                                "Unexpected subelement " + reader.getName());
                     }
 
                     while (!reader.isStartElement() && !reader.isEndElement())
@@ -1761,8 +1761,8 @@ public class WeatherWebServiceStub extends org.apache.axis2.client.Stub {
                         // We need to wrap the reader so that it produces a fake START_DOCUMENT event
                         // this is needed by the builder classes
                         org.apache.axis2.databinding.utils.NamedStaxOMBuilder builder2 =
-                            new org.apache.axis2.databinding.utils.NamedStaxOMBuilder(new org.apache.axis2.util.StreamWrapper(
-                                    reader), startQname2);
+                                new org.apache.axis2.databinding.utils.NamedStaxOMBuilder(new org.apache.axis2.util.StreamWrapper(
+                                        reader), startQname2);
                         object.setExtraElement(builder2.getOMElement());
 
                         reader.next();
@@ -1771,7 +1771,7 @@ public class WeatherWebServiceStub extends org.apache.axis2.client.Stub {
                     else {
                         // 1 - A start element we are not expecting indicates an invalid parameter was passed
                         throw new org.apache.axis2.databinding.ADBException(
-                            "Unexpected subelement " + reader.getName());
+                                "Unexpected subelement " + reader.getName());
                     }
 
                     while (!reader.isStartElement() && !reader.isEndElement())
@@ -1780,7 +1780,7 @@ public class WeatherWebServiceStub extends org.apache.axis2.client.Stub {
                     if (reader.isStartElement()) {
                         // 2 - A start element we are not expecting indicates a trailing invalid property
                         throw new org.apache.axis2.databinding.ADBException(
-                            "Unexpected subelement " + reader.getName());
+                                "Unexpected subelement " + reader.getName());
                     }
                 } catch (javax.xml.stream.XMLStreamException e) {
                     throw new Exception(e);
@@ -1868,23 +1868,23 @@ public class WeatherWebServiceStub extends org.apache.axis2.client.Stub {
          * @return org.apache.axiom.om.OMElement
          */
         public org.apache.axiom.om.OMElement getOMElement(
-            final javax.xml.namespace.QName parentQName,
-            final org.apache.axiom.om.OMFactory factory)
-            throws org.apache.axis2.databinding.ADBException {
+                final javax.xml.namespace.QName parentQName,
+                final org.apache.axiom.om.OMFactory factory)
+                throws org.apache.axis2.databinding.ADBException {
             return factory.createOMElement(new org.apache.axis2.databinding.ADBDataSource(
                     this, MY_QNAME));
         }
 
         public void serialize(final javax.xml.namespace.QName parentQName,
-            javax.xml.stream.XMLStreamWriter xmlWriter)
-            throws javax.xml.stream.XMLStreamException,
+                              javax.xml.stream.XMLStreamWriter xmlWriter)
+                throws javax.xml.stream.XMLStreamException,
                 org.apache.axis2.databinding.ADBException {
             serialize(parentQName, xmlWriter, false);
         }
 
         public void serialize(final javax.xml.namespace.QName parentQName,
-            javax.xml.stream.XMLStreamWriter xmlWriter, boolean serializeType)
-            throws javax.xml.stream.XMLStreamException,
+                              javax.xml.stream.XMLStreamWriter xmlWriter, boolean serializeType)
+                throws javax.xml.stream.XMLStreamException,
                 org.apache.axis2.databinding.ADBException {
             String prefix = null;
             String namespace = null;
@@ -1892,7 +1892,7 @@ public class WeatherWebServiceStub extends org.apache.axis2.client.Stub {
             prefix = parentQName.getPrefix();
             namespace = parentQName.getNamespaceURI();
             writeStartElement(prefix, namespace, parentQName.getLocalPart(),
-                xmlWriter);
+                    xmlWriter);
 
             if (serializeType) {
                 String namespacePrefix = registerPrefix(xmlWriter,
@@ -1901,12 +1901,12 @@ public class WeatherWebServiceStub extends org.apache.axis2.client.Stub {
                 if ((namespacePrefix != null) &&
                         (namespacePrefix.trim().length() > 0)) {
                     writeAttribute("xsi",
-                        "http://www.w3.org/2001/XMLSchema-instance", "type",
-                        namespacePrefix + ":getWeatherbyCityNamePro", xmlWriter);
+                            "http://www.w3.org/2001/XMLSchema-instance", "type",
+                            namespacePrefix + ":getWeatherbyCityNamePro", xmlWriter);
                 } else {
                     writeAttribute("xsi",
-                        "http://www.w3.org/2001/XMLSchema-instance", "type",
-                        "getWeatherbyCityNamePro", xmlWriter);
+                            "http://www.w3.org/2001/XMLSchema-instance", "type",
+                            "getWeatherbyCityNamePro", xmlWriter);
                 }
             }
 
@@ -1917,7 +1917,7 @@ public class WeatherWebServiceStub extends org.apache.axis2.client.Stub {
                 if (localTheCityName == null) {
                     // write the nil attribute
                     throw new org.apache.axis2.databinding.ADBException(
-                        "theCityName cannot be null!!");
+                            "theCityName cannot be null!!");
                 } else {
                     xmlWriter.writeCharacters(localTheCityName);
                 }
@@ -1932,7 +1932,7 @@ public class WeatherWebServiceStub extends org.apache.axis2.client.Stub {
                 if (localTheUserID == null) {
                     // write the nil attribute
                     throw new org.apache.axis2.databinding.ADBException(
-                        "theUserID cannot be null!!");
+                            "theUserID cannot be null!!");
                 } else {
                     xmlWriter.writeCharacters(localTheUserID);
                 }
@@ -1944,7 +1944,7 @@ public class WeatherWebServiceStub extends org.apache.axis2.client.Stub {
         }
 
         private static String generatePrefix(
-            String namespace) {
+                String namespace) {
             if (namespace.equals("http://WebXml.com.cn/")) {
                 return "ns1";
             }
@@ -1956,9 +1956,9 @@ public class WeatherWebServiceStub extends org.apache.axis2.client.Stub {
          * Utility method to write an element start tag.
          */
         private void writeStartElement(String prefix,
-            String namespace, String localPart,
-            javax.xml.stream.XMLStreamWriter xmlWriter)
-            throws javax.xml.stream.XMLStreamException {
+                                       String namespace, String localPart,
+                                       javax.xml.stream.XMLStreamWriter xmlWriter)
+                throws javax.xml.stream.XMLStreamException {
             String writerPrefix = xmlWriter.getPrefix(namespace);
 
             if (writerPrefix != null) {
@@ -1980,15 +1980,15 @@ public class WeatherWebServiceStub extends org.apache.axis2.client.Stub {
          * Util method to write an attribute with the ns prefix
          */
         private void writeAttribute(String prefix,
-            String namespace, String attName,
-            String attValue,
-            javax.xml.stream.XMLStreamWriter xmlWriter)
-            throws javax.xml.stream.XMLStreamException {
+                                    String namespace, String attName,
+                                    String attValue,
+                                    javax.xml.stream.XMLStreamWriter xmlWriter)
+                throws javax.xml.stream.XMLStreamException {
             String writerPrefix = xmlWriter.getPrefix(namespace);
 
             if (writerPrefix != null) {
                 xmlWriter.writeAttribute(writerPrefix, namespace, attName,
-                    attValue);
+                        attValue);
             } else {
                 xmlWriter.writeNamespace(prefix, namespace);
                 xmlWriter.setPrefix(prefix, namespace);
@@ -2000,14 +2000,14 @@ public class WeatherWebServiceStub extends org.apache.axis2.client.Stub {
          * Util method to write an attribute without the ns prefix
          */
         private void writeAttribute(String namespace,
-            String attName, String attValue,
-            javax.xml.stream.XMLStreamWriter xmlWriter)
-            throws javax.xml.stream.XMLStreamException {
+                                    String attName, String attValue,
+                                    javax.xml.stream.XMLStreamWriter xmlWriter)
+                throws javax.xml.stream.XMLStreamException {
             if (namespace.equals("")) {
                 xmlWriter.writeAttribute(attName, attValue);
             } else {
                 xmlWriter.writeAttribute(registerPrefix(xmlWriter, namespace),
-                    namespace, attName, attValue);
+                        namespace, attName, attValue);
             }
         }
 
@@ -2015,9 +2015,9 @@ public class WeatherWebServiceStub extends org.apache.axis2.client.Stub {
          * Util method to write an attribute without the ns prefix
          */
         private void writeQNameAttribute(String namespace,
-            String attName, javax.xml.namespace.QName qname,
-            javax.xml.stream.XMLStreamWriter xmlWriter)
-            throws javax.xml.stream.XMLStreamException {
+                                         String attName, javax.xml.namespace.QName qname,
+                                         javax.xml.stream.XMLStreamWriter xmlWriter)
+                throws javax.xml.stream.XMLStreamException {
             String attributeNamespace = qname.getNamespaceURI();
             String attributePrefix = xmlWriter.getPrefix(attributeNamespace);
 
@@ -2038,7 +2038,7 @@ public class WeatherWebServiceStub extends org.apache.axis2.client.Stub {
             } else {
                 registerPrefix(xmlWriter, namespace);
                 xmlWriter.writeAttribute(attributePrefix, namespace, attName,
-                    attributeValue);
+                        attributeValue);
             }
         }
 
@@ -2046,8 +2046,8 @@ public class WeatherWebServiceStub extends org.apache.axis2.client.Stub {
          *  method to handle Qnames
          */
         private void writeQName(javax.xml.namespace.QName qname,
-            javax.xml.stream.XMLStreamWriter xmlWriter)
-            throws javax.xml.stream.XMLStreamException {
+                                javax.xml.stream.XMLStreamWriter xmlWriter)
+                throws javax.xml.stream.XMLStreamException {
             String namespaceURI = qname.getNamespaceURI();
 
             if (namespaceURI != null) {
@@ -2061,8 +2061,8 @@ public class WeatherWebServiceStub extends org.apache.axis2.client.Stub {
 
                 if (prefix.trim().length() > 0) {
                     xmlWriter.writeCharacters(prefix + ":" +
-                        org.apache.axis2.databinding.utils.ConverterUtil.convertToString(
-                            qname));
+                            org.apache.axis2.databinding.utils.ConverterUtil.convertToString(
+                                    qname));
                 } else {
                     // i.e this is the default namespace
                     xmlWriter.writeCharacters(org.apache.axis2.databinding.utils.ConverterUtil.convertToString(
@@ -2075,8 +2075,8 @@ public class WeatherWebServiceStub extends org.apache.axis2.client.Stub {
         }
 
         private void writeQNames(javax.xml.namespace.QName[] qnames,
-            javax.xml.stream.XMLStreamWriter xmlWriter)
-            throws javax.xml.stream.XMLStreamException {
+                                 javax.xml.stream.XMLStreamWriter xmlWriter)
+                throws javax.xml.stream.XMLStreamException {
             if (qnames != null) {
                 // we have to store this data until last moment since it is not possible to write any
                 // namespace data after writing the charactor data
@@ -2102,8 +2102,8 @@ public class WeatherWebServiceStub extends org.apache.axis2.client.Stub {
 
                         if (prefix.trim().length() > 0) {
                             stringToWrite.append(prefix).append(":")
-                                         .append(org.apache.axis2.databinding.utils.ConverterUtil.convertToString(
-                                    qnames[i]));
+                                    .append(org.apache.axis2.databinding.utils.ConverterUtil.convertToString(
+                                            qnames[i]));
                         } else {
                             stringToWrite.append(org.apache.axis2.databinding.utils.ConverterUtil.convertToString(
                                     qnames[i]));
@@ -2122,9 +2122,9 @@ public class WeatherWebServiceStub extends org.apache.axis2.client.Stub {
          * Register a namespace prefix
          */
         private String registerPrefix(
-            javax.xml.stream.XMLStreamWriter xmlWriter,
-            String namespace)
-            throws javax.xml.stream.XMLStreamException {
+                javax.xml.stream.XMLStreamWriter xmlWriter,
+                String namespace)
+                throws javax.xml.stream.XMLStreamException {
             String prefix = xmlWriter.getPrefix(namespace);
 
             if (prefix == null) {
@@ -2163,8 +2163,8 @@ public class WeatherWebServiceStub extends org.apache.axis2.client.Stub {
              *                If this object is a complex type, the reader is positioned at the end element of its outer element
              */
             public static GetWeatherbyCityNamePro parse(
-                javax.xml.stream.XMLStreamReader reader)
-                throws Exception {
+                    javax.xml.stream.XMLStreamReader reader)
+                    throws Exception {
                 GetWeatherbyCityNamePro object = new GetWeatherbyCityNamePro();
 
                 int event;
@@ -2180,8 +2180,8 @@ public class WeatherWebServiceStub extends org.apache.axis2.client.Stub {
                     currentQName = reader.getName();
 
                     if (reader.getAttributeValue(
-                                "http://www.w3.org/2001/XMLSchema-instance",
-                                "type") != null) {
+                            "http://www.w3.org/2001/XMLSchema-instance",
+                            "type") != null) {
                         String fullTypeName = reader.getAttributeValue("http://www.w3.org/2001/XMLSchema-instance",
                                 "type");
 
@@ -2196,15 +2196,15 @@ public class WeatherWebServiceStub extends org.apache.axis2.client.Stub {
                             nsPrefix = (nsPrefix == null) ? "" : nsPrefix;
 
                             String type = fullTypeName.substring(fullTypeName.indexOf(
-                                        ":") + 1);
+                                    ":") + 1);
 
                             if (!"getWeatherbyCityNamePro".equals(type)) {
                                 //find namespace for the prefix
                                 String nsUri = reader.getNamespaceContext()
-                                                               .getNamespaceURI(nsPrefix);
+                                        .getNamespaceURI(nsPrefix);
 
                                 return (GetWeatherbyCityNamePro) ExtensionMapper.getTypeObject(nsUri,
-                                    type, reader);
+                                        type, reader);
                             }
                         }
                     }
@@ -2220,16 +2220,16 @@ public class WeatherWebServiceStub extends org.apache.axis2.client.Stub {
 
                     if (reader.isStartElement() &&
                             new javax.xml.namespace.QName(
-                                "http://WebXml.com.cn/", "theCityName").equals(
-                                reader.getName())) {
+                                    "http://WebXml.com.cn/", "theCityName").equals(
+                                    reader.getName())) {
                         nillableValue = reader.getAttributeValue("http://www.w3.org/2001/XMLSchema-instance",
                                 "nil");
 
                         if ("true".equals(nillableValue) ||
                                 "1".equals(nillableValue)) {
                             throw new org.apache.axis2.databinding.ADBException(
-                                "The element: " + "theCityName" +
-                                "  cannot be null");
+                                    "The element: " + "theCityName" +
+                                            "  cannot be null");
                         }
 
                         String content = reader.getElementText();
@@ -2248,16 +2248,16 @@ public class WeatherWebServiceStub extends org.apache.axis2.client.Stub {
 
                     if (reader.isStartElement() &&
                             new javax.xml.namespace.QName(
-                                "http://WebXml.com.cn/", "theUserID").equals(
-                                reader.getName())) {
+                                    "http://WebXml.com.cn/", "theUserID").equals(
+                                    reader.getName())) {
                         nillableValue = reader.getAttributeValue("http://www.w3.org/2001/XMLSchema-instance",
                                 "nil");
 
                         if ("true".equals(nillableValue) ||
                                 "1".equals(nillableValue)) {
                             throw new org.apache.axis2.databinding.ADBException(
-                                "The element: " + "theUserID" +
-                                "  cannot be null");
+                                    "The element: " + "theUserID" +
+                                            "  cannot be null");
                         }
 
                         String content = reader.getElementText();
@@ -2277,7 +2277,7 @@ public class WeatherWebServiceStub extends org.apache.axis2.client.Stub {
                     if (reader.isStartElement()) {
                         // 2 - A start element we are not expecting indicates a trailing invalid property
                         throw new org.apache.axis2.databinding.ADBException(
-                            "Unexpected subelement " + reader.getName());
+                                "Unexpected subelement " + reader.getName());
                     }
                 } catch (javax.xml.stream.XMLStreamException e) {
                     throw new Exception(e);
@@ -2290,8 +2290,8 @@ public class WeatherWebServiceStub extends org.apache.axis2.client.Stub {
 
     public static class ExtensionMapper {
         public static Object getTypeObject(
-            String namespaceURI, String typeName,
-            javax.xml.stream.XMLStreamReader reader) throws Exception {
+                String namespaceURI, String typeName,
+                javax.xml.stream.XMLStreamReader reader) throws Exception {
             if ("http://WebXml.com.cn/".equals(namespaceURI) &&
                     "ArrayOfString".equals(typeName)) {
                 return ArrayOfString.Factory.parse(reader);
@@ -2303,7 +2303,7 @@ public class WeatherWebServiceStub extends org.apache.axis2.client.Stub {
             }
 
             throw new org.apache.axis2.databinding.ADBException(
-                "Unsupported type " + namespaceURI + " " + typeName);
+                    "Unsupported type " + namespaceURI + " " + typeName);
         }
     }
 
@@ -2339,7 +2339,7 @@ public class WeatherWebServiceStub extends org.apache.axis2.client.Stub {
          * @param param GetSupportDataSetResult
          */
         public void setGetSupportDataSetResult(
-            GetSupportDataSetResult_type0 param) {
+                GetSupportDataSetResult_type0 param) {
             localGetSupportDataSetResultTracker = param != null;
 
             this.localGetSupportDataSetResult = param;
@@ -2352,23 +2352,23 @@ public class WeatherWebServiceStub extends org.apache.axis2.client.Stub {
          * @return org.apache.axiom.om.OMElement
          */
         public org.apache.axiom.om.OMElement getOMElement(
-            final javax.xml.namespace.QName parentQName,
-            final org.apache.axiom.om.OMFactory factory)
-            throws org.apache.axis2.databinding.ADBException {
+                final javax.xml.namespace.QName parentQName,
+                final org.apache.axiom.om.OMFactory factory)
+                throws org.apache.axis2.databinding.ADBException {
             return factory.createOMElement(new org.apache.axis2.databinding.ADBDataSource(
                     this, MY_QNAME));
         }
 
         public void serialize(final javax.xml.namespace.QName parentQName,
-            javax.xml.stream.XMLStreamWriter xmlWriter)
-            throws javax.xml.stream.XMLStreamException,
+                              javax.xml.stream.XMLStreamWriter xmlWriter)
+                throws javax.xml.stream.XMLStreamException,
                 org.apache.axis2.databinding.ADBException {
             serialize(parentQName, xmlWriter, false);
         }
 
         public void serialize(final javax.xml.namespace.QName parentQName,
-            javax.xml.stream.XMLStreamWriter xmlWriter, boolean serializeType)
-            throws javax.xml.stream.XMLStreamException,
+                              javax.xml.stream.XMLStreamWriter xmlWriter, boolean serializeType)
+                throws javax.xml.stream.XMLStreamException,
                 org.apache.axis2.databinding.ADBException {
             String prefix = null;
             String namespace = null;
@@ -2376,7 +2376,7 @@ public class WeatherWebServiceStub extends org.apache.axis2.client.Stub {
             prefix = parentQName.getPrefix();
             namespace = parentQName.getNamespaceURI();
             writeStartElement(prefix, namespace, parentQName.getLocalPart(),
-                xmlWriter);
+                    xmlWriter);
 
             if (serializeType) {
                 String namespacePrefix = registerPrefix(xmlWriter,
@@ -2385,32 +2385,32 @@ public class WeatherWebServiceStub extends org.apache.axis2.client.Stub {
                 if ((namespacePrefix != null) &&
                         (namespacePrefix.trim().length() > 0)) {
                     writeAttribute("xsi",
-                        "http://www.w3.org/2001/XMLSchema-instance", "type",
-                        namespacePrefix + ":getSupportDataSetResponse",
-                        xmlWriter);
+                            "http://www.w3.org/2001/XMLSchema-instance", "type",
+                            namespacePrefix + ":getSupportDataSetResponse",
+                            xmlWriter);
                 } else {
                     writeAttribute("xsi",
-                        "http://www.w3.org/2001/XMLSchema-instance", "type",
-                        "getSupportDataSetResponse", xmlWriter);
+                            "http://www.w3.org/2001/XMLSchema-instance", "type",
+                            "getSupportDataSetResponse", xmlWriter);
                 }
             }
 
             if (localGetSupportDataSetResultTracker) {
                 if (localGetSupportDataSetResult == null) {
                     throw new org.apache.axis2.databinding.ADBException(
-                        "getSupportDataSetResult cannot be null!!");
+                            "getSupportDataSetResult cannot be null!!");
                 }
 
                 localGetSupportDataSetResult.serialize(new javax.xml.namespace.QName(
-                        "http://WebXml.com.cn/", "getSupportDataSetResult"),
-                    xmlWriter);
+                                "http://WebXml.com.cn/", "getSupportDataSetResult"),
+                        xmlWriter);
             }
 
             xmlWriter.writeEndElement();
         }
 
         private static String generatePrefix(
-            String namespace) {
+                String namespace) {
             if (namespace.equals("http://WebXml.com.cn/")) {
                 return "ns1";
             }
@@ -2422,9 +2422,9 @@ public class WeatherWebServiceStub extends org.apache.axis2.client.Stub {
          * Utility method to write an element start tag.
          */
         private void writeStartElement(String prefix,
-            String namespace, String localPart,
-            javax.xml.stream.XMLStreamWriter xmlWriter)
-            throws javax.xml.stream.XMLStreamException {
+                                       String namespace, String localPart,
+                                       javax.xml.stream.XMLStreamWriter xmlWriter)
+                throws javax.xml.stream.XMLStreamException {
             String writerPrefix = xmlWriter.getPrefix(namespace);
 
             if (writerPrefix != null) {
@@ -2446,15 +2446,15 @@ public class WeatherWebServiceStub extends org.apache.axis2.client.Stub {
          * Util method to write an attribute with the ns prefix
          */
         private void writeAttribute(String prefix,
-            String namespace, String attName,
-            String attValue,
-            javax.xml.stream.XMLStreamWriter xmlWriter)
-            throws javax.xml.stream.XMLStreamException {
+                                    String namespace, String attName,
+                                    String attValue,
+                                    javax.xml.stream.XMLStreamWriter xmlWriter)
+                throws javax.xml.stream.XMLStreamException {
             String writerPrefix = xmlWriter.getPrefix(namespace);
 
             if (writerPrefix != null) {
                 xmlWriter.writeAttribute(writerPrefix, namespace, attName,
-                    attValue);
+                        attValue);
             } else {
                 xmlWriter.writeNamespace(prefix, namespace);
                 xmlWriter.setPrefix(prefix, namespace);
@@ -2466,14 +2466,14 @@ public class WeatherWebServiceStub extends org.apache.axis2.client.Stub {
          * Util method to write an attribute without the ns prefix
          */
         private void writeAttribute(String namespace,
-            String attName, String attValue,
-            javax.xml.stream.XMLStreamWriter xmlWriter)
-            throws javax.xml.stream.XMLStreamException {
+                                    String attName, String attValue,
+                                    javax.xml.stream.XMLStreamWriter xmlWriter)
+                throws javax.xml.stream.XMLStreamException {
             if (namespace.equals("")) {
                 xmlWriter.writeAttribute(attName, attValue);
             } else {
                 xmlWriter.writeAttribute(registerPrefix(xmlWriter, namespace),
-                    namespace, attName, attValue);
+                        namespace, attName, attValue);
             }
         }
 
@@ -2481,9 +2481,9 @@ public class WeatherWebServiceStub extends org.apache.axis2.client.Stub {
          * Util method to write an attribute without the ns prefix
          */
         private void writeQNameAttribute(String namespace,
-            String attName, javax.xml.namespace.QName qname,
-            javax.xml.stream.XMLStreamWriter xmlWriter)
-            throws javax.xml.stream.XMLStreamException {
+                                         String attName, javax.xml.namespace.QName qname,
+                                         javax.xml.stream.XMLStreamWriter xmlWriter)
+                throws javax.xml.stream.XMLStreamException {
             String attributeNamespace = qname.getNamespaceURI();
             String attributePrefix = xmlWriter.getPrefix(attributeNamespace);
 
@@ -2504,7 +2504,7 @@ public class WeatherWebServiceStub extends org.apache.axis2.client.Stub {
             } else {
                 registerPrefix(xmlWriter, namespace);
                 xmlWriter.writeAttribute(attributePrefix, namespace, attName,
-                    attributeValue);
+                        attributeValue);
             }
         }
 
@@ -2512,8 +2512,8 @@ public class WeatherWebServiceStub extends org.apache.axis2.client.Stub {
          *  method to handle Qnames
          */
         private void writeQName(javax.xml.namespace.QName qname,
-            javax.xml.stream.XMLStreamWriter xmlWriter)
-            throws javax.xml.stream.XMLStreamException {
+                                javax.xml.stream.XMLStreamWriter xmlWriter)
+                throws javax.xml.stream.XMLStreamException {
             String namespaceURI = qname.getNamespaceURI();
 
             if (namespaceURI != null) {
@@ -2527,8 +2527,8 @@ public class WeatherWebServiceStub extends org.apache.axis2.client.Stub {
 
                 if (prefix.trim().length() > 0) {
                     xmlWriter.writeCharacters(prefix + ":" +
-                        org.apache.axis2.databinding.utils.ConverterUtil.convertToString(
-                            qname));
+                            org.apache.axis2.databinding.utils.ConverterUtil.convertToString(
+                                    qname));
                 } else {
                     // i.e this is the default namespace
                     xmlWriter.writeCharacters(org.apache.axis2.databinding.utils.ConverterUtil.convertToString(
@@ -2541,8 +2541,8 @@ public class WeatherWebServiceStub extends org.apache.axis2.client.Stub {
         }
 
         private void writeQNames(javax.xml.namespace.QName[] qnames,
-            javax.xml.stream.XMLStreamWriter xmlWriter)
-            throws javax.xml.stream.XMLStreamException {
+                                 javax.xml.stream.XMLStreamWriter xmlWriter)
+                throws javax.xml.stream.XMLStreamException {
             if (qnames != null) {
                 // we have to store this data until last moment since it is not possible to write any
                 // namespace data after writing the charactor data
@@ -2568,8 +2568,8 @@ public class WeatherWebServiceStub extends org.apache.axis2.client.Stub {
 
                         if (prefix.trim().length() > 0) {
                             stringToWrite.append(prefix).append(":")
-                                         .append(org.apache.axis2.databinding.utils.ConverterUtil.convertToString(
-                                    qnames[i]));
+                                    .append(org.apache.axis2.databinding.utils.ConverterUtil.convertToString(
+                                            qnames[i]));
                         } else {
                             stringToWrite.append(org.apache.axis2.databinding.utils.ConverterUtil.convertToString(
                                     qnames[i]));
@@ -2588,9 +2588,9 @@ public class WeatherWebServiceStub extends org.apache.axis2.client.Stub {
          * Register a namespace prefix
          */
         private String registerPrefix(
-            javax.xml.stream.XMLStreamWriter xmlWriter,
-            String namespace)
-            throws javax.xml.stream.XMLStreamException {
+                javax.xml.stream.XMLStreamWriter xmlWriter,
+                String namespace)
+                throws javax.xml.stream.XMLStreamException {
             String prefix = xmlWriter.getPrefix(namespace);
 
             if (prefix == null) {
@@ -2629,8 +2629,8 @@ public class WeatherWebServiceStub extends org.apache.axis2.client.Stub {
              *                If this object is a complex type, the reader is positioned at the end element of its outer element
              */
             public static GetSupportDataSetResponse parse(
-                javax.xml.stream.XMLStreamReader reader)
-                throws Exception {
+                    javax.xml.stream.XMLStreamReader reader)
+                    throws Exception {
                 GetSupportDataSetResponse object = new GetSupportDataSetResponse();
 
                 int event;
@@ -2646,8 +2646,8 @@ public class WeatherWebServiceStub extends org.apache.axis2.client.Stub {
                     currentQName = reader.getName();
 
                     if (reader.getAttributeValue(
-                                "http://www.w3.org/2001/XMLSchema-instance",
-                                "type") != null) {
+                            "http://www.w3.org/2001/XMLSchema-instance",
+                            "type") != null) {
                         String fullTypeName = reader.getAttributeValue("http://www.w3.org/2001/XMLSchema-instance",
                                 "type");
 
@@ -2662,15 +2662,15 @@ public class WeatherWebServiceStub extends org.apache.axis2.client.Stub {
                             nsPrefix = (nsPrefix == null) ? "" : nsPrefix;
 
                             String type = fullTypeName.substring(fullTypeName.indexOf(
-                                        ":") + 1);
+                                    ":") + 1);
 
                             if (!"getSupportDataSetResponse".equals(type)) {
                                 //find namespace for the prefix
                                 String nsUri = reader.getNamespaceContext()
-                                                               .getNamespaceURI(nsPrefix);
+                                        .getNamespaceURI(nsPrefix);
 
                                 return (GetSupportDataSetResponse) ExtensionMapper.getTypeObject(nsUri,
-                                    type, reader);
+                                        type, reader);
                             }
                         }
                     }
@@ -2686,9 +2686,9 @@ public class WeatherWebServiceStub extends org.apache.axis2.client.Stub {
 
                     if (reader.isStartElement() &&
                             new javax.xml.namespace.QName(
-                                "http://WebXml.com.cn/",
-                                "getSupportDataSetResult").equals(
-                                reader.getName())) {
+                                    "http://WebXml.com.cn/",
+                                    "getSupportDataSetResult").equals(
+                                    reader.getName())) {
                         object.setGetSupportDataSetResult(GetSupportDataSetResult_type0.Factory.parse(
                                 reader));
 
@@ -2704,7 +2704,7 @@ public class WeatherWebServiceStub extends org.apache.axis2.client.Stub {
                     if (reader.isStartElement()) {
                         // 2 - A start element we are not expecting indicates a trailing invalid property
                         throw new org.apache.axis2.databinding.ADBException(
-                            "Unexpected subelement " + reader.getName());
+                                "Unexpected subelement " + reader.getName());
                     }
                 } catch (javax.xml.stream.XMLStreamException e) {
                     throw new Exception(e);
@@ -2747,23 +2747,23 @@ public class WeatherWebServiceStub extends org.apache.axis2.client.Stub {
          * @return org.apache.axiom.om.OMElement
          */
         public org.apache.axiom.om.OMElement getOMElement(
-            final javax.xml.namespace.QName parentQName,
-            final org.apache.axiom.om.OMFactory factory)
-            throws org.apache.axis2.databinding.ADBException {
+                final javax.xml.namespace.QName parentQName,
+                final org.apache.axiom.om.OMFactory factory)
+                throws org.apache.axis2.databinding.ADBException {
             return factory.createOMElement(new org.apache.axis2.databinding.ADBDataSource(
                     this, MY_QNAME));
         }
 
         public void serialize(final javax.xml.namespace.QName parentQName,
-            javax.xml.stream.XMLStreamWriter xmlWriter)
-            throws javax.xml.stream.XMLStreamException,
+                              javax.xml.stream.XMLStreamWriter xmlWriter)
+                throws javax.xml.stream.XMLStreamException,
                 org.apache.axis2.databinding.ADBException {
             serialize(parentQName, xmlWriter, false);
         }
 
         public void serialize(final javax.xml.namespace.QName parentQName,
-            javax.xml.stream.XMLStreamWriter xmlWriter, boolean serializeType)
-            throws javax.xml.stream.XMLStreamException,
+                              javax.xml.stream.XMLStreamWriter xmlWriter, boolean serializeType)
+                throws javax.xml.stream.XMLStreamException,
                 org.apache.axis2.databinding.ADBException {
             //We can safely assume an element has only one type associated with it
             if (localArrayOfString == null) {
@@ -2772,8 +2772,8 @@ public class WeatherWebServiceStub extends org.apache.axis2.client.Stub {
 
                 // write the nil attribute
                 writeAttribute("xsi",
-                    "http://www.w3.org/2001/XMLSchema-instance", "nil", "1",
-                    xmlWriter);
+                        "http://www.w3.org/2001/XMLSchema-instance", "nil", "1",
+                        xmlWriter);
                 xmlWriter.writeEndElement();
             } else {
                 localArrayOfString.serialize(MY_QNAME, xmlWriter);
@@ -2781,7 +2781,7 @@ public class WeatherWebServiceStub extends org.apache.axis2.client.Stub {
         }
 
         private static String generatePrefix(
-            String namespace) {
+                String namespace) {
             if (namespace.equals("http://WebXml.com.cn/")) {
                 return "ns1";
             }
@@ -2793,9 +2793,9 @@ public class WeatherWebServiceStub extends org.apache.axis2.client.Stub {
          * Utility method to write an element start tag.
          */
         private void writeStartElement(String prefix,
-            String namespace, String localPart,
-            javax.xml.stream.XMLStreamWriter xmlWriter)
-            throws javax.xml.stream.XMLStreamException {
+                                       String namespace, String localPart,
+                                       javax.xml.stream.XMLStreamWriter xmlWriter)
+                throws javax.xml.stream.XMLStreamException {
             String writerPrefix = xmlWriter.getPrefix(namespace);
 
             if (writerPrefix != null) {
@@ -2817,15 +2817,15 @@ public class WeatherWebServiceStub extends org.apache.axis2.client.Stub {
          * Util method to write an attribute with the ns prefix
          */
         private void writeAttribute(String prefix,
-            String namespace, String attName,
-            String attValue,
-            javax.xml.stream.XMLStreamWriter xmlWriter)
-            throws javax.xml.stream.XMLStreamException {
+                                    String namespace, String attName,
+                                    String attValue,
+                                    javax.xml.stream.XMLStreamWriter xmlWriter)
+                throws javax.xml.stream.XMLStreamException {
             String writerPrefix = xmlWriter.getPrefix(namespace);
 
             if (writerPrefix != null) {
                 xmlWriter.writeAttribute(writerPrefix, namespace, attName,
-                    attValue);
+                        attValue);
             } else {
                 xmlWriter.writeNamespace(prefix, namespace);
                 xmlWriter.setPrefix(prefix, namespace);
@@ -2837,14 +2837,14 @@ public class WeatherWebServiceStub extends org.apache.axis2.client.Stub {
          * Util method to write an attribute without the ns prefix
          */
         private void writeAttribute(String namespace,
-            String attName, String attValue,
-            javax.xml.stream.XMLStreamWriter xmlWriter)
-            throws javax.xml.stream.XMLStreamException {
+                                    String attName, String attValue,
+                                    javax.xml.stream.XMLStreamWriter xmlWriter)
+                throws javax.xml.stream.XMLStreamException {
             if (namespace.equals("")) {
                 xmlWriter.writeAttribute(attName, attValue);
             } else {
                 xmlWriter.writeAttribute(registerPrefix(xmlWriter, namespace),
-                    namespace, attName, attValue);
+                        namespace, attName, attValue);
             }
         }
 
@@ -2852,9 +2852,9 @@ public class WeatherWebServiceStub extends org.apache.axis2.client.Stub {
          * Util method to write an attribute without the ns prefix
          */
         private void writeQNameAttribute(String namespace,
-            String attName, javax.xml.namespace.QName qname,
-            javax.xml.stream.XMLStreamWriter xmlWriter)
-            throws javax.xml.stream.XMLStreamException {
+                                         String attName, javax.xml.namespace.QName qname,
+                                         javax.xml.stream.XMLStreamWriter xmlWriter)
+                throws javax.xml.stream.XMLStreamException {
             String attributeNamespace = qname.getNamespaceURI();
             String attributePrefix = xmlWriter.getPrefix(attributeNamespace);
 
@@ -2875,7 +2875,7 @@ public class WeatherWebServiceStub extends org.apache.axis2.client.Stub {
             } else {
                 registerPrefix(xmlWriter, namespace);
                 xmlWriter.writeAttribute(attributePrefix, namespace, attName,
-                    attributeValue);
+                        attributeValue);
             }
         }
 
@@ -2883,8 +2883,8 @@ public class WeatherWebServiceStub extends org.apache.axis2.client.Stub {
          *  method to handle Qnames
          */
         private void writeQName(javax.xml.namespace.QName qname,
-            javax.xml.stream.XMLStreamWriter xmlWriter)
-            throws javax.xml.stream.XMLStreamException {
+                                javax.xml.stream.XMLStreamWriter xmlWriter)
+                throws javax.xml.stream.XMLStreamException {
             String namespaceURI = qname.getNamespaceURI();
 
             if (namespaceURI != null) {
@@ -2898,8 +2898,8 @@ public class WeatherWebServiceStub extends org.apache.axis2.client.Stub {
 
                 if (prefix.trim().length() > 0) {
                     xmlWriter.writeCharacters(prefix + ":" +
-                        org.apache.axis2.databinding.utils.ConverterUtil.convertToString(
-                            qname));
+                            org.apache.axis2.databinding.utils.ConverterUtil.convertToString(
+                                    qname));
                 } else {
                     // i.e this is the default namespace
                     xmlWriter.writeCharacters(org.apache.axis2.databinding.utils.ConverterUtil.convertToString(
@@ -2912,8 +2912,8 @@ public class WeatherWebServiceStub extends org.apache.axis2.client.Stub {
         }
 
         private void writeQNames(javax.xml.namespace.QName[] qnames,
-            javax.xml.stream.XMLStreamWriter xmlWriter)
-            throws javax.xml.stream.XMLStreamException {
+                                 javax.xml.stream.XMLStreamWriter xmlWriter)
+                throws javax.xml.stream.XMLStreamException {
             if (qnames != null) {
                 // we have to store this data until last moment since it is not possible to write any
                 // namespace data after writing the charactor data
@@ -2939,8 +2939,8 @@ public class WeatherWebServiceStub extends org.apache.axis2.client.Stub {
 
                         if (prefix.trim().length() > 0) {
                             stringToWrite.append(prefix).append(":")
-                                         .append(org.apache.axis2.databinding.utils.ConverterUtil.convertToString(
-                                    qnames[i]));
+                                    .append(org.apache.axis2.databinding.utils.ConverterUtil.convertToString(
+                                            qnames[i]));
                         } else {
                             stringToWrite.append(org.apache.axis2.databinding.utils.ConverterUtil.convertToString(
                                     qnames[i]));
@@ -2959,9 +2959,9 @@ public class WeatherWebServiceStub extends org.apache.axis2.client.Stub {
          * Register a namespace prefix
          */
         private String registerPrefix(
-            javax.xml.stream.XMLStreamWriter xmlWriter,
-            String namespace)
-            throws javax.xml.stream.XMLStreamException {
+                javax.xml.stream.XMLStreamWriter xmlWriter,
+                String namespace)
+                throws javax.xml.stream.XMLStreamException {
             String prefix = xmlWriter.getPrefix(namespace);
 
             if (prefix == null) {
@@ -3000,8 +3000,8 @@ public class WeatherWebServiceStub extends org.apache.axis2.client.Stub {
              *                If this object is a complex type, the reader is positioned at the end element of its outer element
              */
             public static ArrayOfStringE parse(
-                javax.xml.stream.XMLStreamReader reader)
-                throws Exception {
+                    javax.xml.stream.XMLStreamReader reader)
+                    throws Exception {
                 ArrayOfStringE object = new ArrayOfStringE();
 
                 int event;
@@ -3036,8 +3036,8 @@ public class WeatherWebServiceStub extends org.apache.axis2.client.Stub {
                         if (reader.isStartElement()) {
                             if (reader.isStartElement() &&
                                     new javax.xml.namespace.QName(
-                                        "http://WebXml.com.cn/", "ArrayOfString").equals(
-                                        reader.getName())) {
+                                            "http://WebXml.com.cn/", "ArrayOfString").equals(
+                                            reader.getName())) {
                                 nillableValue = reader.getAttributeValue("http://www.w3.org/2001/XMLSchema-instance",
                                         "nil");
 
@@ -3054,8 +3054,8 @@ public class WeatherWebServiceStub extends org.apache.axis2.client.Stub {
                             else {
                                 // 3 - A start element we are not expecting indicates an invalid parameter was passed
                                 throw new org.apache.axis2.databinding.ADBException(
-                                    "Unexpected subelement " +
-                                    reader.getName());
+                                        "Unexpected subelement " +
+                                                reader.getName());
                             }
                         } else {
                             reader.next();
@@ -3114,23 +3114,23 @@ public class WeatherWebServiceStub extends org.apache.axis2.client.Stub {
          * @return org.apache.axiom.om.OMElement
          */
         public org.apache.axiom.om.OMElement getOMElement(
-            final javax.xml.namespace.QName parentQName,
-            final org.apache.axiom.om.OMFactory factory)
-            throws org.apache.axis2.databinding.ADBException {
+                final javax.xml.namespace.QName parentQName,
+                final org.apache.axiom.om.OMFactory factory)
+                throws org.apache.axis2.databinding.ADBException {
             return factory.createOMElement(new org.apache.axis2.databinding.ADBDataSource(
                     this, MY_QNAME));
         }
 
         public void serialize(final javax.xml.namespace.QName parentQName,
-            javax.xml.stream.XMLStreamWriter xmlWriter)
-            throws javax.xml.stream.XMLStreamException,
+                              javax.xml.stream.XMLStreamWriter xmlWriter)
+                throws javax.xml.stream.XMLStreamException,
                 org.apache.axis2.databinding.ADBException {
             serialize(parentQName, xmlWriter, false);
         }
 
         public void serialize(final javax.xml.namespace.QName parentQName,
-            javax.xml.stream.XMLStreamWriter xmlWriter, boolean serializeType)
-            throws javax.xml.stream.XMLStreamException,
+                              javax.xml.stream.XMLStreamWriter xmlWriter, boolean serializeType)
+                throws javax.xml.stream.XMLStreamException,
                 org.apache.axis2.databinding.ADBException {
             String prefix = null;
             String namespace = null;
@@ -3138,7 +3138,7 @@ public class WeatherWebServiceStub extends org.apache.axis2.client.Stub {
             prefix = parentQName.getPrefix();
             namespace = parentQName.getNamespaceURI();
             writeStartElement(prefix, namespace, parentQName.getLocalPart(),
-                xmlWriter);
+                    xmlWriter);
 
             if (serializeType) {
                 String namespacePrefix = registerPrefix(xmlWriter,
@@ -3147,12 +3147,12 @@ public class WeatherWebServiceStub extends org.apache.axis2.client.Stub {
                 if ((namespacePrefix != null) &&
                         (namespacePrefix.trim().length() > 0)) {
                     writeAttribute("xsi",
-                        "http://www.w3.org/2001/XMLSchema-instance", "type",
-                        namespacePrefix + ":getWeatherbyCityName", xmlWriter);
+                            "http://www.w3.org/2001/XMLSchema-instance", "type",
+                            namespacePrefix + ":getWeatherbyCityName", xmlWriter);
                 } else {
                     writeAttribute("xsi",
-                        "http://www.w3.org/2001/XMLSchema-instance", "type",
-                        "getWeatherbyCityName", xmlWriter);
+                            "http://www.w3.org/2001/XMLSchema-instance", "type",
+                            "getWeatherbyCityName", xmlWriter);
                 }
             }
 
@@ -3163,7 +3163,7 @@ public class WeatherWebServiceStub extends org.apache.axis2.client.Stub {
                 if (localTheCityName == null) {
                     // write the nil attribute
                     throw new org.apache.axis2.databinding.ADBException(
-                        "theCityName cannot be null!!");
+                            "theCityName cannot be null!!");
                 } else {
                     xmlWriter.writeCharacters(localTheCityName);
                 }
@@ -3175,7 +3175,7 @@ public class WeatherWebServiceStub extends org.apache.axis2.client.Stub {
         }
 
         private static String generatePrefix(
-            String namespace) {
+                String namespace) {
             if (namespace.equals("http://WebXml.com.cn/")) {
                 return "ns1";
             }
@@ -3187,9 +3187,9 @@ public class WeatherWebServiceStub extends org.apache.axis2.client.Stub {
          * Utility method to write an element start tag.
          */
         private void writeStartElement(String prefix,
-            String namespace, String localPart,
-            javax.xml.stream.XMLStreamWriter xmlWriter)
-            throws javax.xml.stream.XMLStreamException {
+                                       String namespace, String localPart,
+                                       javax.xml.stream.XMLStreamWriter xmlWriter)
+                throws javax.xml.stream.XMLStreamException {
             String writerPrefix = xmlWriter.getPrefix(namespace);
 
             if (writerPrefix != null) {
@@ -3211,15 +3211,15 @@ public class WeatherWebServiceStub extends org.apache.axis2.client.Stub {
          * Util method to write an attribute with the ns prefix
          */
         private void writeAttribute(String prefix,
-            String namespace, String attName,
-            String attValue,
-            javax.xml.stream.XMLStreamWriter xmlWriter)
-            throws javax.xml.stream.XMLStreamException {
+                                    String namespace, String attName,
+                                    String attValue,
+                                    javax.xml.stream.XMLStreamWriter xmlWriter)
+                throws javax.xml.stream.XMLStreamException {
             String writerPrefix = xmlWriter.getPrefix(namespace);
 
             if (writerPrefix != null) {
                 xmlWriter.writeAttribute(writerPrefix, namespace, attName,
-                    attValue);
+                        attValue);
             } else {
                 xmlWriter.writeNamespace(prefix, namespace);
                 xmlWriter.setPrefix(prefix, namespace);
@@ -3231,14 +3231,14 @@ public class WeatherWebServiceStub extends org.apache.axis2.client.Stub {
          * Util method to write an attribute without the ns prefix
          */
         private void writeAttribute(String namespace,
-            String attName, String attValue,
-            javax.xml.stream.XMLStreamWriter xmlWriter)
-            throws javax.xml.stream.XMLStreamException {
+                                    String attName, String attValue,
+                                    javax.xml.stream.XMLStreamWriter xmlWriter)
+                throws javax.xml.stream.XMLStreamException {
             if (namespace.equals("")) {
                 xmlWriter.writeAttribute(attName, attValue);
             } else {
                 xmlWriter.writeAttribute(registerPrefix(xmlWriter, namespace),
-                    namespace, attName, attValue);
+                        namespace, attName, attValue);
             }
         }
 
@@ -3246,9 +3246,9 @@ public class WeatherWebServiceStub extends org.apache.axis2.client.Stub {
          * Util method to write an attribute without the ns prefix
          */
         private void writeQNameAttribute(String namespace,
-            String attName, javax.xml.namespace.QName qname,
-            javax.xml.stream.XMLStreamWriter xmlWriter)
-            throws javax.xml.stream.XMLStreamException {
+                                         String attName, javax.xml.namespace.QName qname,
+                                         javax.xml.stream.XMLStreamWriter xmlWriter)
+                throws javax.xml.stream.XMLStreamException {
             String attributeNamespace = qname.getNamespaceURI();
             String attributePrefix = xmlWriter.getPrefix(attributeNamespace);
 
@@ -3269,7 +3269,7 @@ public class WeatherWebServiceStub extends org.apache.axis2.client.Stub {
             } else {
                 registerPrefix(xmlWriter, namespace);
                 xmlWriter.writeAttribute(attributePrefix, namespace, attName,
-                    attributeValue);
+                        attributeValue);
             }
         }
 
@@ -3277,8 +3277,8 @@ public class WeatherWebServiceStub extends org.apache.axis2.client.Stub {
          *  method to handle Qnames
          */
         private void writeQName(javax.xml.namespace.QName qname,
-            javax.xml.stream.XMLStreamWriter xmlWriter)
-            throws javax.xml.stream.XMLStreamException {
+                                javax.xml.stream.XMLStreamWriter xmlWriter)
+                throws javax.xml.stream.XMLStreamException {
             String namespaceURI = qname.getNamespaceURI();
 
             if (namespaceURI != null) {
@@ -3292,8 +3292,8 @@ public class WeatherWebServiceStub extends org.apache.axis2.client.Stub {
 
                 if (prefix.trim().length() > 0) {
                     xmlWriter.writeCharacters(prefix + ":" +
-                        org.apache.axis2.databinding.utils.ConverterUtil.convertToString(
-                            qname));
+                            org.apache.axis2.databinding.utils.ConverterUtil.convertToString(
+                                    qname));
                 } else {
                     // i.e this is the default namespace
                     xmlWriter.writeCharacters(org.apache.axis2.databinding.utils.ConverterUtil.convertToString(
@@ -3306,8 +3306,8 @@ public class WeatherWebServiceStub extends org.apache.axis2.client.Stub {
         }
 
         private void writeQNames(javax.xml.namespace.QName[] qnames,
-            javax.xml.stream.XMLStreamWriter xmlWriter)
-            throws javax.xml.stream.XMLStreamException {
+                                 javax.xml.stream.XMLStreamWriter xmlWriter)
+                throws javax.xml.stream.XMLStreamException {
             if (qnames != null) {
                 // we have to store this data until last moment since it is not possible to write any
                 // namespace data after writing the charactor data
@@ -3333,8 +3333,8 @@ public class WeatherWebServiceStub extends org.apache.axis2.client.Stub {
 
                         if (prefix.trim().length() > 0) {
                             stringToWrite.append(prefix).append(":")
-                                         .append(org.apache.axis2.databinding.utils.ConverterUtil.convertToString(
-                                    qnames[i]));
+                                    .append(org.apache.axis2.databinding.utils.ConverterUtil.convertToString(
+                                            qnames[i]));
                         } else {
                             stringToWrite.append(org.apache.axis2.databinding.utils.ConverterUtil.convertToString(
                                     qnames[i]));
@@ -3353,9 +3353,9 @@ public class WeatherWebServiceStub extends org.apache.axis2.client.Stub {
          * Register a namespace prefix
          */
         private String registerPrefix(
-            javax.xml.stream.XMLStreamWriter xmlWriter,
-            String namespace)
-            throws javax.xml.stream.XMLStreamException {
+                javax.xml.stream.XMLStreamWriter xmlWriter,
+                String namespace)
+                throws javax.xml.stream.XMLStreamException {
             String prefix = xmlWriter.getPrefix(namespace);
 
             if (prefix == null) {
@@ -3394,8 +3394,8 @@ public class WeatherWebServiceStub extends org.apache.axis2.client.Stub {
              *                If this object is a complex type, the reader is positioned at the end element of its outer element
              */
             public static GetWeatherbyCityName parse(
-                javax.xml.stream.XMLStreamReader reader)
-                throws Exception {
+                    javax.xml.stream.XMLStreamReader reader)
+                    throws Exception {
                 GetWeatherbyCityName object = new GetWeatherbyCityName();
 
                 int event;
@@ -3411,8 +3411,8 @@ public class WeatherWebServiceStub extends org.apache.axis2.client.Stub {
                     currentQName = reader.getName();
 
                     if (reader.getAttributeValue(
-                                "http://www.w3.org/2001/XMLSchema-instance",
-                                "type") != null) {
+                            "http://www.w3.org/2001/XMLSchema-instance",
+                            "type") != null) {
                         String fullTypeName = reader.getAttributeValue("http://www.w3.org/2001/XMLSchema-instance",
                                 "type");
 
@@ -3427,15 +3427,15 @@ public class WeatherWebServiceStub extends org.apache.axis2.client.Stub {
                             nsPrefix = (nsPrefix == null) ? "" : nsPrefix;
 
                             String type = fullTypeName.substring(fullTypeName.indexOf(
-                                        ":") + 1);
+                                    ":") + 1);
 
                             if (!"getWeatherbyCityName".equals(type)) {
                                 //find namespace for the prefix
                                 String nsUri = reader.getNamespaceContext()
-                                                               .getNamespaceURI(nsPrefix);
+                                        .getNamespaceURI(nsPrefix);
 
                                 return (GetWeatherbyCityName) ExtensionMapper.getTypeObject(nsUri,
-                                    type, reader);
+                                        type, reader);
                             }
                         }
                     }
@@ -3451,16 +3451,16 @@ public class WeatherWebServiceStub extends org.apache.axis2.client.Stub {
 
                     if (reader.isStartElement() &&
                             new javax.xml.namespace.QName(
-                                "http://WebXml.com.cn/", "theCityName").equals(
-                                reader.getName())) {
+                                    "http://WebXml.com.cn/", "theCityName").equals(
+                                    reader.getName())) {
                         nillableValue = reader.getAttributeValue("http://www.w3.org/2001/XMLSchema-instance",
                                 "nil");
 
                         if ("true".equals(nillableValue) ||
                                 "1".equals(nillableValue)) {
                             throw new org.apache.axis2.databinding.ADBException(
-                                "The element: " + "theCityName" +
-                                "  cannot be null");
+                                    "The element: " + "theCityName" +
+                                            "  cannot be null");
                         }
 
                         String content = reader.getElementText();
@@ -3480,7 +3480,7 @@ public class WeatherWebServiceStub extends org.apache.axis2.client.Stub {
                     if (reader.isStartElement()) {
                         // 2 - A start element we are not expecting indicates a trailing invalid property
                         throw new org.apache.axis2.databinding.ADBException(
-                            "Unexpected subelement " + reader.getName());
+                                "Unexpected subelement " + reader.getName());
                     }
                 } catch (javax.xml.stream.XMLStreamException e) {
                     throw new Exception(e);
@@ -3535,23 +3535,23 @@ public class WeatherWebServiceStub extends org.apache.axis2.client.Stub {
          * @return org.apache.axiom.om.OMElement
          */
         public org.apache.axiom.om.OMElement getOMElement(
-            final javax.xml.namespace.QName parentQName,
-            final org.apache.axiom.om.OMFactory factory)
-            throws org.apache.axis2.databinding.ADBException {
+                final javax.xml.namespace.QName parentQName,
+                final org.apache.axiom.om.OMFactory factory)
+                throws org.apache.axis2.databinding.ADBException {
             return factory.createOMElement(new org.apache.axis2.databinding.ADBDataSource(
                     this, MY_QNAME));
         }
 
         public void serialize(final javax.xml.namespace.QName parentQName,
-            javax.xml.stream.XMLStreamWriter xmlWriter)
-            throws javax.xml.stream.XMLStreamException,
+                              javax.xml.stream.XMLStreamWriter xmlWriter)
+                throws javax.xml.stream.XMLStreamException,
                 org.apache.axis2.databinding.ADBException {
             serialize(parentQName, xmlWriter, false);
         }
 
         public void serialize(final javax.xml.namespace.QName parentQName,
-            javax.xml.stream.XMLStreamWriter xmlWriter, boolean serializeType)
-            throws javax.xml.stream.XMLStreamException,
+                              javax.xml.stream.XMLStreamWriter xmlWriter, boolean serializeType)
+                throws javax.xml.stream.XMLStreamException,
                 org.apache.axis2.databinding.ADBException {
             String prefix = null;
             String namespace = null;
@@ -3559,7 +3559,7 @@ public class WeatherWebServiceStub extends org.apache.axis2.client.Stub {
             prefix = parentQName.getPrefix();
             namespace = parentQName.getNamespaceURI();
             writeStartElement(prefix, namespace, parentQName.getLocalPart(),
-                xmlWriter);
+                    xmlWriter);
 
             if (serializeType) {
                 String namespacePrefix = registerPrefix(xmlWriter,
@@ -3568,32 +3568,32 @@ public class WeatherWebServiceStub extends org.apache.axis2.client.Stub {
                 if ((namespacePrefix != null) &&
                         (namespacePrefix.trim().length() > 0)) {
                     writeAttribute("xsi",
-                        "http://www.w3.org/2001/XMLSchema-instance", "type",
-                        namespacePrefix + ":getSupportProvinceResponse",
-                        xmlWriter);
+                            "http://www.w3.org/2001/XMLSchema-instance", "type",
+                            namespacePrefix + ":getSupportProvinceResponse",
+                            xmlWriter);
                 } else {
                     writeAttribute("xsi",
-                        "http://www.w3.org/2001/XMLSchema-instance", "type",
-                        "getSupportProvinceResponse", xmlWriter);
+                            "http://www.w3.org/2001/XMLSchema-instance", "type",
+                            "getSupportProvinceResponse", xmlWriter);
                 }
             }
 
             if (localGetSupportProvinceResultTracker) {
                 if (localGetSupportProvinceResult == null) {
                     throw new org.apache.axis2.databinding.ADBException(
-                        "getSupportProvinceResult cannot be null!!");
+                            "getSupportProvinceResult cannot be null!!");
                 }
 
                 localGetSupportProvinceResult.serialize(new javax.xml.namespace.QName(
-                        "http://WebXml.com.cn/", "getSupportProvinceResult"),
-                    xmlWriter);
+                                "http://WebXml.com.cn/", "getSupportProvinceResult"),
+                        xmlWriter);
             }
 
             xmlWriter.writeEndElement();
         }
 
         private static String generatePrefix(
-            String namespace) {
+                String namespace) {
             if (namespace.equals("http://WebXml.com.cn/")) {
                 return "ns1";
             }
@@ -3605,9 +3605,9 @@ public class WeatherWebServiceStub extends org.apache.axis2.client.Stub {
          * Utility method to write an element start tag.
          */
         private void writeStartElement(String prefix,
-            String namespace, String localPart,
-            javax.xml.stream.XMLStreamWriter xmlWriter)
-            throws javax.xml.stream.XMLStreamException {
+                                       String namespace, String localPart,
+                                       javax.xml.stream.XMLStreamWriter xmlWriter)
+                throws javax.xml.stream.XMLStreamException {
             String writerPrefix = xmlWriter.getPrefix(namespace);
 
             if (writerPrefix != null) {
@@ -3629,15 +3629,15 @@ public class WeatherWebServiceStub extends org.apache.axis2.client.Stub {
          * Util method to write an attribute with the ns prefix
          */
         private void writeAttribute(String prefix,
-            String namespace, String attName,
-            String attValue,
-            javax.xml.stream.XMLStreamWriter xmlWriter)
-            throws javax.xml.stream.XMLStreamException {
+                                    String namespace, String attName,
+                                    String attValue,
+                                    javax.xml.stream.XMLStreamWriter xmlWriter)
+                throws javax.xml.stream.XMLStreamException {
             String writerPrefix = xmlWriter.getPrefix(namespace);
 
             if (writerPrefix != null) {
                 xmlWriter.writeAttribute(writerPrefix, namespace, attName,
-                    attValue);
+                        attValue);
             } else {
                 xmlWriter.writeNamespace(prefix, namespace);
                 xmlWriter.setPrefix(prefix, namespace);
@@ -3649,14 +3649,14 @@ public class WeatherWebServiceStub extends org.apache.axis2.client.Stub {
          * Util method to write an attribute without the ns prefix
          */
         private void writeAttribute(String namespace,
-            String attName, String attValue,
-            javax.xml.stream.XMLStreamWriter xmlWriter)
-            throws javax.xml.stream.XMLStreamException {
+                                    String attName, String attValue,
+                                    javax.xml.stream.XMLStreamWriter xmlWriter)
+                throws javax.xml.stream.XMLStreamException {
             if (namespace.equals("")) {
                 xmlWriter.writeAttribute(attName, attValue);
             } else {
                 xmlWriter.writeAttribute(registerPrefix(xmlWriter, namespace),
-                    namespace, attName, attValue);
+                        namespace, attName, attValue);
             }
         }
 
@@ -3664,9 +3664,9 @@ public class WeatherWebServiceStub extends org.apache.axis2.client.Stub {
          * Util method to write an attribute without the ns prefix
          */
         private void writeQNameAttribute(String namespace,
-            String attName, javax.xml.namespace.QName qname,
-            javax.xml.stream.XMLStreamWriter xmlWriter)
-            throws javax.xml.stream.XMLStreamException {
+                                         String attName, javax.xml.namespace.QName qname,
+                                         javax.xml.stream.XMLStreamWriter xmlWriter)
+                throws javax.xml.stream.XMLStreamException {
             String attributeNamespace = qname.getNamespaceURI();
             String attributePrefix = xmlWriter.getPrefix(attributeNamespace);
 
@@ -3687,7 +3687,7 @@ public class WeatherWebServiceStub extends org.apache.axis2.client.Stub {
             } else {
                 registerPrefix(xmlWriter, namespace);
                 xmlWriter.writeAttribute(attributePrefix, namespace, attName,
-                    attributeValue);
+                        attributeValue);
             }
         }
 
@@ -3695,8 +3695,8 @@ public class WeatherWebServiceStub extends org.apache.axis2.client.Stub {
          *  method to handle Qnames
          */
         private void writeQName(javax.xml.namespace.QName qname,
-            javax.xml.stream.XMLStreamWriter xmlWriter)
-            throws javax.xml.stream.XMLStreamException {
+                                javax.xml.stream.XMLStreamWriter xmlWriter)
+                throws javax.xml.stream.XMLStreamException {
             String namespaceURI = qname.getNamespaceURI();
 
             if (namespaceURI != null) {
@@ -3710,8 +3710,8 @@ public class WeatherWebServiceStub extends org.apache.axis2.client.Stub {
 
                 if (prefix.trim().length() > 0) {
                     xmlWriter.writeCharacters(prefix + ":" +
-                        org.apache.axis2.databinding.utils.ConverterUtil.convertToString(
-                            qname));
+                            org.apache.axis2.databinding.utils.ConverterUtil.convertToString(
+                                    qname));
                 } else {
                     // i.e this is the default namespace
                     xmlWriter.writeCharacters(org.apache.axis2.databinding.utils.ConverterUtil.convertToString(
@@ -3724,8 +3724,8 @@ public class WeatherWebServiceStub extends org.apache.axis2.client.Stub {
         }
 
         private void writeQNames(javax.xml.namespace.QName[] qnames,
-            javax.xml.stream.XMLStreamWriter xmlWriter)
-            throws javax.xml.stream.XMLStreamException {
+                                 javax.xml.stream.XMLStreamWriter xmlWriter)
+                throws javax.xml.stream.XMLStreamException {
             if (qnames != null) {
                 // we have to store this data until last moment since it is not possible to write any
                 // namespace data after writing the charactor data
@@ -3751,8 +3751,8 @@ public class WeatherWebServiceStub extends org.apache.axis2.client.Stub {
 
                         if (prefix.trim().length() > 0) {
                             stringToWrite.append(prefix).append(":")
-                                         .append(org.apache.axis2.databinding.utils.ConverterUtil.convertToString(
-                                    qnames[i]));
+                                    .append(org.apache.axis2.databinding.utils.ConverterUtil.convertToString(
+                                            qnames[i]));
                         } else {
                             stringToWrite.append(org.apache.axis2.databinding.utils.ConverterUtil.convertToString(
                                     qnames[i]));
@@ -3771,9 +3771,9 @@ public class WeatherWebServiceStub extends org.apache.axis2.client.Stub {
          * Register a namespace prefix
          */
         private String registerPrefix(
-            javax.xml.stream.XMLStreamWriter xmlWriter,
-            String namespace)
-            throws javax.xml.stream.XMLStreamException {
+                javax.xml.stream.XMLStreamWriter xmlWriter,
+                String namespace)
+                throws javax.xml.stream.XMLStreamException {
             String prefix = xmlWriter.getPrefix(namespace);
 
             if (prefix == null) {
@@ -3812,8 +3812,8 @@ public class WeatherWebServiceStub extends org.apache.axis2.client.Stub {
              *                If this object is a complex type, the reader is positioned at the end element of its outer element
              */
             public static GetSupportProvinceResponse parse(
-                javax.xml.stream.XMLStreamReader reader)
-                throws Exception {
+                    javax.xml.stream.XMLStreamReader reader)
+                    throws Exception {
                 GetSupportProvinceResponse object = new GetSupportProvinceResponse();
 
                 int event;
@@ -3829,8 +3829,8 @@ public class WeatherWebServiceStub extends org.apache.axis2.client.Stub {
                     currentQName = reader.getName();
 
                     if (reader.getAttributeValue(
-                                "http://www.w3.org/2001/XMLSchema-instance",
-                                "type") != null) {
+                            "http://www.w3.org/2001/XMLSchema-instance",
+                            "type") != null) {
                         String fullTypeName = reader.getAttributeValue("http://www.w3.org/2001/XMLSchema-instance",
                                 "type");
 
@@ -3845,15 +3845,15 @@ public class WeatherWebServiceStub extends org.apache.axis2.client.Stub {
                             nsPrefix = (nsPrefix == null) ? "" : nsPrefix;
 
                             String type = fullTypeName.substring(fullTypeName.indexOf(
-                                        ":") + 1);
+                                    ":") + 1);
 
                             if (!"getSupportProvinceResponse".equals(type)) {
                                 //find namespace for the prefix
                                 String nsUri = reader.getNamespaceContext()
-                                                               .getNamespaceURI(nsPrefix);
+                                        .getNamespaceURI(nsPrefix);
 
                                 return (GetSupportProvinceResponse) ExtensionMapper.getTypeObject(nsUri,
-                                    type, reader);
+                                        type, reader);
                             }
                         }
                     }
@@ -3869,9 +3869,9 @@ public class WeatherWebServiceStub extends org.apache.axis2.client.Stub {
 
                     if (reader.isStartElement() &&
                             new javax.xml.namespace.QName(
-                                "http://WebXml.com.cn/",
-                                "getSupportProvinceResult").equals(
-                                reader.getName())) {
+                                    "http://WebXml.com.cn/",
+                                    "getSupportProvinceResult").equals(
+                                    reader.getName())) {
                         object.setGetSupportProvinceResult(ArrayOfString.Factory.parse(
                                 reader));
 
@@ -3887,7 +3887,7 @@ public class WeatherWebServiceStub extends org.apache.axis2.client.Stub {
                     if (reader.isStartElement()) {
                         // 2 - A start element we are not expecting indicates a trailing invalid property
                         throw new org.apache.axis2.databinding.ADBException(
-                            "Unexpected subelement " + reader.getName());
+                                "Unexpected subelement " + reader.getName());
                     }
                 } catch (javax.xml.stream.XMLStreamException e) {
                     throw new Exception(e);
@@ -3909,23 +3909,23 @@ public class WeatherWebServiceStub extends org.apache.axis2.client.Stub {
          * @return org.apache.axiom.om.OMElement
          */
         public org.apache.axiom.om.OMElement getOMElement(
-            final javax.xml.namespace.QName parentQName,
-            final org.apache.axiom.om.OMFactory factory)
-            throws org.apache.axis2.databinding.ADBException {
+                final javax.xml.namespace.QName parentQName,
+                final org.apache.axiom.om.OMFactory factory)
+                throws org.apache.axis2.databinding.ADBException {
             return factory.createOMElement(new org.apache.axis2.databinding.ADBDataSource(
                     this, MY_QNAME));
         }
 
         public void serialize(final javax.xml.namespace.QName parentQName,
-            javax.xml.stream.XMLStreamWriter xmlWriter)
-            throws javax.xml.stream.XMLStreamException,
+                              javax.xml.stream.XMLStreamWriter xmlWriter)
+                throws javax.xml.stream.XMLStreamException,
                 org.apache.axis2.databinding.ADBException {
             serialize(parentQName, xmlWriter, false);
         }
 
         public void serialize(final javax.xml.namespace.QName parentQName,
-            javax.xml.stream.XMLStreamWriter xmlWriter, boolean serializeType)
-            throws javax.xml.stream.XMLStreamException,
+                              javax.xml.stream.XMLStreamWriter xmlWriter, boolean serializeType)
+                throws javax.xml.stream.XMLStreamException,
                 org.apache.axis2.databinding.ADBException {
             String prefix = null;
             String namespace = null;
@@ -3933,7 +3933,7 @@ public class WeatherWebServiceStub extends org.apache.axis2.client.Stub {
             prefix = parentQName.getPrefix();
             namespace = parentQName.getNamespaceURI();
             writeStartElement(prefix, namespace, parentQName.getLocalPart(),
-                xmlWriter);
+                    xmlWriter);
 
             if (serializeType) {
                 String namespacePrefix = registerPrefix(xmlWriter,
@@ -3942,12 +3942,12 @@ public class WeatherWebServiceStub extends org.apache.axis2.client.Stub {
                 if ((namespacePrefix != null) &&
                         (namespacePrefix.trim().length() > 0)) {
                     writeAttribute("xsi",
-                        "http://www.w3.org/2001/XMLSchema-instance", "type",
-                        namespacePrefix + ":getSupportProvince", xmlWriter);
+                            "http://www.w3.org/2001/XMLSchema-instance", "type",
+                            namespacePrefix + ":getSupportProvince", xmlWriter);
                 } else {
                     writeAttribute("xsi",
-                        "http://www.w3.org/2001/XMLSchema-instance", "type",
-                        "getSupportProvince", xmlWriter);
+                            "http://www.w3.org/2001/XMLSchema-instance", "type",
+                            "getSupportProvince", xmlWriter);
                 }
             }
 
@@ -3955,7 +3955,7 @@ public class WeatherWebServiceStub extends org.apache.axis2.client.Stub {
         }
 
         private static String generatePrefix(
-            String namespace) {
+                String namespace) {
             if (namespace.equals("http://WebXml.com.cn/")) {
                 return "ns1";
             }
@@ -3967,9 +3967,9 @@ public class WeatherWebServiceStub extends org.apache.axis2.client.Stub {
          * Utility method to write an element start tag.
          */
         private void writeStartElement(String prefix,
-            String namespace, String localPart,
-            javax.xml.stream.XMLStreamWriter xmlWriter)
-            throws javax.xml.stream.XMLStreamException {
+                                       String namespace, String localPart,
+                                       javax.xml.stream.XMLStreamWriter xmlWriter)
+                throws javax.xml.stream.XMLStreamException {
             String writerPrefix = xmlWriter.getPrefix(namespace);
 
             if (writerPrefix != null) {
@@ -3991,15 +3991,15 @@ public class WeatherWebServiceStub extends org.apache.axis2.client.Stub {
          * Util method to write an attribute with the ns prefix
          */
         private void writeAttribute(String prefix,
-            String namespace, String attName,
-            String attValue,
-            javax.xml.stream.XMLStreamWriter xmlWriter)
-            throws javax.xml.stream.XMLStreamException {
+                                    String namespace, String attName,
+                                    String attValue,
+                                    javax.xml.stream.XMLStreamWriter xmlWriter)
+                throws javax.xml.stream.XMLStreamException {
             String writerPrefix = xmlWriter.getPrefix(namespace);
 
             if (writerPrefix != null) {
                 xmlWriter.writeAttribute(writerPrefix, namespace, attName,
-                    attValue);
+                        attValue);
             } else {
                 xmlWriter.writeNamespace(prefix, namespace);
                 xmlWriter.setPrefix(prefix, namespace);
@@ -4011,14 +4011,14 @@ public class WeatherWebServiceStub extends org.apache.axis2.client.Stub {
          * Util method to write an attribute without the ns prefix
          */
         private void writeAttribute(String namespace,
-            String attName, String attValue,
-            javax.xml.stream.XMLStreamWriter xmlWriter)
-            throws javax.xml.stream.XMLStreamException {
+                                    String attName, String attValue,
+                                    javax.xml.stream.XMLStreamWriter xmlWriter)
+                throws javax.xml.stream.XMLStreamException {
             if (namespace.equals("")) {
                 xmlWriter.writeAttribute(attName, attValue);
             } else {
                 xmlWriter.writeAttribute(registerPrefix(xmlWriter, namespace),
-                    namespace, attName, attValue);
+                        namespace, attName, attValue);
             }
         }
 
@@ -4026,9 +4026,9 @@ public class WeatherWebServiceStub extends org.apache.axis2.client.Stub {
          * Util method to write an attribute without the ns prefix
          */
         private void writeQNameAttribute(String namespace,
-            String attName, javax.xml.namespace.QName qname,
-            javax.xml.stream.XMLStreamWriter xmlWriter)
-            throws javax.xml.stream.XMLStreamException {
+                                         String attName, javax.xml.namespace.QName qname,
+                                         javax.xml.stream.XMLStreamWriter xmlWriter)
+                throws javax.xml.stream.XMLStreamException {
             String attributeNamespace = qname.getNamespaceURI();
             String attributePrefix = xmlWriter.getPrefix(attributeNamespace);
 
@@ -4049,7 +4049,7 @@ public class WeatherWebServiceStub extends org.apache.axis2.client.Stub {
             } else {
                 registerPrefix(xmlWriter, namespace);
                 xmlWriter.writeAttribute(attributePrefix, namespace, attName,
-                    attributeValue);
+                        attributeValue);
             }
         }
 
@@ -4057,8 +4057,8 @@ public class WeatherWebServiceStub extends org.apache.axis2.client.Stub {
          *  method to handle Qnames
          */
         private void writeQName(javax.xml.namespace.QName qname,
-            javax.xml.stream.XMLStreamWriter xmlWriter)
-            throws javax.xml.stream.XMLStreamException {
+                                javax.xml.stream.XMLStreamWriter xmlWriter)
+                throws javax.xml.stream.XMLStreamException {
             String namespaceURI = qname.getNamespaceURI();
 
             if (namespaceURI != null) {
@@ -4072,8 +4072,8 @@ public class WeatherWebServiceStub extends org.apache.axis2.client.Stub {
 
                 if (prefix.trim().length() > 0) {
                     xmlWriter.writeCharacters(prefix + ":" +
-                        org.apache.axis2.databinding.utils.ConverterUtil.convertToString(
-                            qname));
+                            org.apache.axis2.databinding.utils.ConverterUtil.convertToString(
+                                    qname));
                 } else {
                     // i.e this is the default namespace
                     xmlWriter.writeCharacters(org.apache.axis2.databinding.utils.ConverterUtil.convertToString(
@@ -4086,8 +4086,8 @@ public class WeatherWebServiceStub extends org.apache.axis2.client.Stub {
         }
 
         private void writeQNames(javax.xml.namespace.QName[] qnames,
-            javax.xml.stream.XMLStreamWriter xmlWriter)
-            throws javax.xml.stream.XMLStreamException {
+                                 javax.xml.stream.XMLStreamWriter xmlWriter)
+                throws javax.xml.stream.XMLStreamException {
             if (qnames != null) {
                 // we have to store this data until last moment since it is not possible to write any
                 // namespace data after writing the charactor data
@@ -4113,8 +4113,8 @@ public class WeatherWebServiceStub extends org.apache.axis2.client.Stub {
 
                         if (prefix.trim().length() > 0) {
                             stringToWrite.append(prefix).append(":")
-                                         .append(org.apache.axis2.databinding.utils.ConverterUtil.convertToString(
-                                    qnames[i]));
+                                    .append(org.apache.axis2.databinding.utils.ConverterUtil.convertToString(
+                                            qnames[i]));
                         } else {
                             stringToWrite.append(org.apache.axis2.databinding.utils.ConverterUtil.convertToString(
                                     qnames[i]));
@@ -4133,9 +4133,9 @@ public class WeatherWebServiceStub extends org.apache.axis2.client.Stub {
          * Register a namespace prefix
          */
         private String registerPrefix(
-            javax.xml.stream.XMLStreamWriter xmlWriter,
-            String namespace)
-            throws javax.xml.stream.XMLStreamException {
+                javax.xml.stream.XMLStreamWriter xmlWriter,
+                String namespace)
+                throws javax.xml.stream.XMLStreamException {
             String prefix = xmlWriter.getPrefix(namespace);
 
             if (prefix == null) {
@@ -4174,8 +4174,8 @@ public class WeatherWebServiceStub extends org.apache.axis2.client.Stub {
              *                If this object is a complex type, the reader is positioned at the end element of its outer element
              */
             public static GetSupportProvince parse(
-                javax.xml.stream.XMLStreamReader reader)
-                throws Exception {
+                    javax.xml.stream.XMLStreamReader reader)
+                    throws Exception {
                 GetSupportProvince object = new GetSupportProvince();
 
                 int event;
@@ -4191,8 +4191,8 @@ public class WeatherWebServiceStub extends org.apache.axis2.client.Stub {
                     currentQName = reader.getName();
 
                     if (reader.getAttributeValue(
-                                "http://www.w3.org/2001/XMLSchema-instance",
-                                "type") != null) {
+                            "http://www.w3.org/2001/XMLSchema-instance",
+                            "type") != null) {
                         String fullTypeName = reader.getAttributeValue("http://www.w3.org/2001/XMLSchema-instance",
                                 "type");
 
@@ -4207,15 +4207,15 @@ public class WeatherWebServiceStub extends org.apache.axis2.client.Stub {
                             nsPrefix = (nsPrefix == null) ? "" : nsPrefix;
 
                             String type = fullTypeName.substring(fullTypeName.indexOf(
-                                        ":") + 1);
+                                    ":") + 1);
 
                             if (!"getSupportProvince".equals(type)) {
                                 //find namespace for the prefix
                                 String nsUri = reader.getNamespaceContext()
-                                                               .getNamespaceURI(nsPrefix);
+                                        .getNamespaceURI(nsPrefix);
 
                                 return (GetSupportProvince) ExtensionMapper.getTypeObject(nsUri,
-                                    type, reader);
+                                        type, reader);
                             }
                         }
                     }
@@ -4289,7 +4289,7 @@ public class WeatherWebServiceStub extends org.apache.axis2.client.Stub {
          */
         public void addString(String param) {
             if (localString == null) {
-                localString = new String[] {  };
+                localString = new String[]{};
             }
 
             //update the setting tracker
@@ -4307,23 +4307,23 @@ public class WeatherWebServiceStub extends org.apache.axis2.client.Stub {
          * @return org.apache.axiom.om.OMElement
          */
         public org.apache.axiom.om.OMElement getOMElement(
-            final javax.xml.namespace.QName parentQName,
-            final org.apache.axiom.om.OMFactory factory)
-            throws org.apache.axis2.databinding.ADBException {
+                final javax.xml.namespace.QName parentQName,
+                final org.apache.axiom.om.OMFactory factory)
+                throws org.apache.axis2.databinding.ADBException {
             return factory.createOMElement(new org.apache.axis2.databinding.ADBDataSource(
                     this, parentQName));
         }
 
         public void serialize(final javax.xml.namespace.QName parentQName,
-            javax.xml.stream.XMLStreamWriter xmlWriter)
-            throws javax.xml.stream.XMLStreamException,
+                              javax.xml.stream.XMLStreamWriter xmlWriter)
+                throws javax.xml.stream.XMLStreamException,
                 org.apache.axis2.databinding.ADBException {
             serialize(parentQName, xmlWriter, false);
         }
 
         public void serialize(final javax.xml.namespace.QName parentQName,
-            javax.xml.stream.XMLStreamWriter xmlWriter, boolean serializeType)
-            throws javax.xml.stream.XMLStreamException,
+                              javax.xml.stream.XMLStreamWriter xmlWriter, boolean serializeType)
+                throws javax.xml.stream.XMLStreamException,
                 org.apache.axis2.databinding.ADBException {
             String prefix = null;
             String namespace = null;
@@ -4331,7 +4331,7 @@ public class WeatherWebServiceStub extends org.apache.axis2.client.Stub {
             prefix = parentQName.getPrefix();
             namespace = parentQName.getNamespaceURI();
             writeStartElement(prefix, namespace, parentQName.getLocalPart(),
-                xmlWriter);
+                    xmlWriter);
 
             if (serializeType) {
                 String namespacePrefix = registerPrefix(xmlWriter,
@@ -4340,12 +4340,12 @@ public class WeatherWebServiceStub extends org.apache.axis2.client.Stub {
                 if ((namespacePrefix != null) &&
                         (namespacePrefix.trim().length() > 0)) {
                     writeAttribute("xsi",
-                        "http://www.w3.org/2001/XMLSchema-instance", "type",
-                        namespacePrefix + ":ArrayOfString", xmlWriter);
+                            "http://www.w3.org/2001/XMLSchema-instance", "type",
+                            namespacePrefix + ":ArrayOfString", xmlWriter);
                 } else {
                     writeAttribute("xsi",
-                        "http://www.w3.org/2001/XMLSchema-instance", "type",
-                        "ArrayOfString", xmlWriter);
+                            "http://www.w3.org/2001/XMLSchema-instance", "type",
+                            "ArrayOfString", xmlWriter);
                 }
             }
 
@@ -4356,7 +4356,7 @@ public class WeatherWebServiceStub extends org.apache.axis2.client.Stub {
                     for (int i = 0; i < localString.length; i++) {
                         if (localString[i] != null) {
                             writeStartElement(null, namespace, "string",
-                                xmlWriter);
+                                    xmlWriter);
 
                             xmlWriter.writeCharacters(org.apache.axis2.databinding.utils.ConverterUtil.convertToString(
                                     localString[i]));
@@ -4366,10 +4366,10 @@ public class WeatherWebServiceStub extends org.apache.axis2.client.Stub {
                             // write null attribute
                             namespace = "http://WebXml.com.cn/";
                             writeStartElement(null, namespace, "string",
-                                xmlWriter);
+                                    xmlWriter);
                             writeAttribute("xsi",
-                                "http://www.w3.org/2001/XMLSchema-instance",
-                                "nil", "1", xmlWriter);
+                                    "http://www.w3.org/2001/XMLSchema-instance",
+                                    "nil", "1", xmlWriter);
                             xmlWriter.writeEndElement();
                         }
                     }
@@ -4377,12 +4377,12 @@ public class WeatherWebServiceStub extends org.apache.axis2.client.Stub {
                     // write the null attribute
                     // write null attribute
                     writeStartElement(null, "http://WebXml.com.cn/", "string",
-                        xmlWriter);
+                            xmlWriter);
 
                     // write the nil attribute
                     writeAttribute("xsi",
-                        "http://www.w3.org/2001/XMLSchema-instance", "nil",
-                        "1", xmlWriter);
+                            "http://www.w3.org/2001/XMLSchema-instance", "nil",
+                            "1", xmlWriter);
                     xmlWriter.writeEndElement();
                 }
             }
@@ -4391,7 +4391,7 @@ public class WeatherWebServiceStub extends org.apache.axis2.client.Stub {
         }
 
         private static String generatePrefix(
-            String namespace) {
+                String namespace) {
             if (namespace.equals("http://WebXml.com.cn/")) {
                 return "ns1";
             }
@@ -4403,9 +4403,9 @@ public class WeatherWebServiceStub extends org.apache.axis2.client.Stub {
          * Utility method to write an element start tag.
          */
         private void writeStartElement(String prefix,
-            String namespace, String localPart,
-            javax.xml.stream.XMLStreamWriter xmlWriter)
-            throws javax.xml.stream.XMLStreamException {
+                                       String namespace, String localPart,
+                                       javax.xml.stream.XMLStreamWriter xmlWriter)
+                throws javax.xml.stream.XMLStreamException {
             String writerPrefix = xmlWriter.getPrefix(namespace);
 
             if (writerPrefix != null) {
@@ -4427,15 +4427,15 @@ public class WeatherWebServiceStub extends org.apache.axis2.client.Stub {
          * Util method to write an attribute with the ns prefix
          */
         private void writeAttribute(String prefix,
-            String namespace, String attName,
-            String attValue,
-            javax.xml.stream.XMLStreamWriter xmlWriter)
-            throws javax.xml.stream.XMLStreamException {
+                                    String namespace, String attName,
+                                    String attValue,
+                                    javax.xml.stream.XMLStreamWriter xmlWriter)
+                throws javax.xml.stream.XMLStreamException {
             String writerPrefix = xmlWriter.getPrefix(namespace);
 
             if (writerPrefix != null) {
                 xmlWriter.writeAttribute(writerPrefix, namespace, attName,
-                    attValue);
+                        attValue);
             } else {
                 xmlWriter.writeNamespace(prefix, namespace);
                 xmlWriter.setPrefix(prefix, namespace);
@@ -4447,14 +4447,14 @@ public class WeatherWebServiceStub extends org.apache.axis2.client.Stub {
          * Util method to write an attribute without the ns prefix
          */
         private void writeAttribute(String namespace,
-            String attName, String attValue,
-            javax.xml.stream.XMLStreamWriter xmlWriter)
-            throws javax.xml.stream.XMLStreamException {
+                                    String attName, String attValue,
+                                    javax.xml.stream.XMLStreamWriter xmlWriter)
+                throws javax.xml.stream.XMLStreamException {
             if (namespace.equals("")) {
                 xmlWriter.writeAttribute(attName, attValue);
             } else {
                 xmlWriter.writeAttribute(registerPrefix(xmlWriter, namespace),
-                    namespace, attName, attValue);
+                        namespace, attName, attValue);
             }
         }
 
@@ -4462,9 +4462,9 @@ public class WeatherWebServiceStub extends org.apache.axis2.client.Stub {
          * Util method to write an attribute without the ns prefix
          */
         private void writeQNameAttribute(String namespace,
-            String attName, javax.xml.namespace.QName qname,
-            javax.xml.stream.XMLStreamWriter xmlWriter)
-            throws javax.xml.stream.XMLStreamException {
+                                         String attName, javax.xml.namespace.QName qname,
+                                         javax.xml.stream.XMLStreamWriter xmlWriter)
+                throws javax.xml.stream.XMLStreamException {
             String attributeNamespace = qname.getNamespaceURI();
             String attributePrefix = xmlWriter.getPrefix(attributeNamespace);
 
@@ -4485,7 +4485,7 @@ public class WeatherWebServiceStub extends org.apache.axis2.client.Stub {
             } else {
                 registerPrefix(xmlWriter, namespace);
                 xmlWriter.writeAttribute(attributePrefix, namespace, attName,
-                    attributeValue);
+                        attributeValue);
             }
         }
 
@@ -4493,8 +4493,8 @@ public class WeatherWebServiceStub extends org.apache.axis2.client.Stub {
          *  method to handle Qnames
          */
         private void writeQName(javax.xml.namespace.QName qname,
-            javax.xml.stream.XMLStreamWriter xmlWriter)
-            throws javax.xml.stream.XMLStreamException {
+                                javax.xml.stream.XMLStreamWriter xmlWriter)
+                throws javax.xml.stream.XMLStreamException {
             String namespaceURI = qname.getNamespaceURI();
 
             if (namespaceURI != null) {
@@ -4508,8 +4508,8 @@ public class WeatherWebServiceStub extends org.apache.axis2.client.Stub {
 
                 if (prefix.trim().length() > 0) {
                     xmlWriter.writeCharacters(prefix + ":" +
-                        org.apache.axis2.databinding.utils.ConverterUtil.convertToString(
-                            qname));
+                            org.apache.axis2.databinding.utils.ConverterUtil.convertToString(
+                                    qname));
                 } else {
                     // i.e this is the default namespace
                     xmlWriter.writeCharacters(org.apache.axis2.databinding.utils.ConverterUtil.convertToString(
@@ -4522,8 +4522,8 @@ public class WeatherWebServiceStub extends org.apache.axis2.client.Stub {
         }
 
         private void writeQNames(javax.xml.namespace.QName[] qnames,
-            javax.xml.stream.XMLStreamWriter xmlWriter)
-            throws javax.xml.stream.XMLStreamException {
+                                 javax.xml.stream.XMLStreamWriter xmlWriter)
+                throws javax.xml.stream.XMLStreamException {
             if (qnames != null) {
                 // we have to store this data until last moment since it is not possible to write any
                 // namespace data after writing the charactor data
@@ -4549,8 +4549,8 @@ public class WeatherWebServiceStub extends org.apache.axis2.client.Stub {
 
                         if (prefix.trim().length() > 0) {
                             stringToWrite.append(prefix).append(":")
-                                         .append(org.apache.axis2.databinding.utils.ConverterUtil.convertToString(
-                                    qnames[i]));
+                                    .append(org.apache.axis2.databinding.utils.ConverterUtil.convertToString(
+                                            qnames[i]));
                         } else {
                             stringToWrite.append(org.apache.axis2.databinding.utils.ConverterUtil.convertToString(
                                     qnames[i]));
@@ -4569,9 +4569,9 @@ public class WeatherWebServiceStub extends org.apache.axis2.client.Stub {
          * Register a namespace prefix
          */
         private String registerPrefix(
-            javax.xml.stream.XMLStreamWriter xmlWriter,
-            String namespace)
-            throws javax.xml.stream.XMLStreamException {
+                javax.xml.stream.XMLStreamWriter xmlWriter,
+                String namespace)
+                throws javax.xml.stream.XMLStreamException {
             String prefix = xmlWriter.getPrefix(namespace);
 
             if (prefix == null) {
@@ -4610,8 +4610,8 @@ public class WeatherWebServiceStub extends org.apache.axis2.client.Stub {
              *                If this object is a complex type, the reader is positioned at the end element of its outer element
              */
             public static ArrayOfString parse(
-                javax.xml.stream.XMLStreamReader reader)
-                throws Exception {
+                    javax.xml.stream.XMLStreamReader reader)
+                    throws Exception {
                 ArrayOfString object = new ArrayOfString();
 
                 int event;
@@ -4627,8 +4627,8 @@ public class WeatherWebServiceStub extends org.apache.axis2.client.Stub {
                     currentQName = reader.getName();
 
                     if (reader.getAttributeValue(
-                                "http://www.w3.org/2001/XMLSchema-instance",
-                                "type") != null) {
+                            "http://www.w3.org/2001/XMLSchema-instance",
+                            "type") != null) {
                         String fullTypeName = reader.getAttributeValue("http://www.w3.org/2001/XMLSchema-instance",
                                 "type");
 
@@ -4643,15 +4643,15 @@ public class WeatherWebServiceStub extends org.apache.axis2.client.Stub {
                             nsPrefix = (nsPrefix == null) ? "" : nsPrefix;
 
                             String type = fullTypeName.substring(fullTypeName.indexOf(
-                                        ":") + 1);
+                                    ":") + 1);
 
                             if (!"ArrayOfString".equals(type)) {
                                 //find namespace for the prefix
                                 String nsUri = reader.getNamespaceContext()
-                                                               .getNamespaceURI(nsPrefix);
+                                        .getNamespaceURI(nsPrefix);
 
                                 return (ArrayOfString) ExtensionMapper.getTypeObject(nsUri,
-                                    type, reader);
+                                        type, reader);
                             }
                         }
                     }
@@ -4669,8 +4669,8 @@ public class WeatherWebServiceStub extends org.apache.axis2.client.Stub {
 
                     if (reader.isStartElement() &&
                             new javax.xml.namespace.QName(
-                                "http://WebXml.com.cn/", "string").equals(
-                                reader.getName())) {
+                                    "http://WebXml.com.cn/", "string").equals(
+                                    reader.getName())) {
                         // Process the array and step past its final element's end.
                         nillableValue = reader.getAttributeValue("http://www.w3.org/2001/XMLSchema-instance",
                                 "nil");
@@ -4706,8 +4706,8 @@ public class WeatherWebServiceStub extends org.apache.axis2.client.Stub {
                                 loopDone1 = true;
                             } else {
                                 if (new javax.xml.namespace.QName(
-                                            "http://WebXml.com.cn/", "string").equals(
-                                            reader.getName())) {
+                                        "http://WebXml.com.cn/", "string").equals(
+                                        reader.getName())) {
                                     nillableValue = reader.getAttributeValue("http://www.w3.org/2001/XMLSchema-instance",
                                             "nil");
 
@@ -4739,7 +4739,7 @@ public class WeatherWebServiceStub extends org.apache.axis2.client.Stub {
                     if (reader.isStartElement()) {
                         // 2 - A start element we are not expecting indicates a trailing invalid property
                         throw new org.apache.axis2.databinding.ADBException(
-                            "Unexpected subelement " + reader.getName());
+                                "Unexpected subelement " + reader.getName());
                     }
                 } catch (javax.xml.stream.XMLStreamException e) {
                     throw new Exception(e);
@@ -4794,23 +4794,23 @@ public class WeatherWebServiceStub extends org.apache.axis2.client.Stub {
          * @return org.apache.axiom.om.OMElement
          */
         public org.apache.axiom.om.OMElement getOMElement(
-            final javax.xml.namespace.QName parentQName,
-            final org.apache.axiom.om.OMFactory factory)
-            throws org.apache.axis2.databinding.ADBException {
+                final javax.xml.namespace.QName parentQName,
+                final org.apache.axiom.om.OMFactory factory)
+                throws org.apache.axis2.databinding.ADBException {
             return factory.createOMElement(new org.apache.axis2.databinding.ADBDataSource(
                     this, MY_QNAME));
         }
 
         public void serialize(final javax.xml.namespace.QName parentQName,
-            javax.xml.stream.XMLStreamWriter xmlWriter)
-            throws javax.xml.stream.XMLStreamException,
+                              javax.xml.stream.XMLStreamWriter xmlWriter)
+                throws javax.xml.stream.XMLStreamException,
                 org.apache.axis2.databinding.ADBException {
             serialize(parentQName, xmlWriter, false);
         }
 
         public void serialize(final javax.xml.namespace.QName parentQName,
-            javax.xml.stream.XMLStreamWriter xmlWriter, boolean serializeType)
-            throws javax.xml.stream.XMLStreamException,
+                              javax.xml.stream.XMLStreamWriter xmlWriter, boolean serializeType)
+                throws javax.xml.stream.XMLStreamException,
                 org.apache.axis2.databinding.ADBException {
             String prefix = null;
             String namespace = null;
@@ -4818,7 +4818,7 @@ public class WeatherWebServiceStub extends org.apache.axis2.client.Stub {
             prefix = parentQName.getPrefix();
             namespace = parentQName.getNamespaceURI();
             writeStartElement(prefix, namespace, parentQName.getLocalPart(),
-                xmlWriter);
+                    xmlWriter);
 
             if (serializeType) {
                 String namespacePrefix = registerPrefix(xmlWriter,
@@ -4827,32 +4827,32 @@ public class WeatherWebServiceStub extends org.apache.axis2.client.Stub {
                 if ((namespacePrefix != null) &&
                         (namespacePrefix.trim().length() > 0)) {
                     writeAttribute("xsi",
-                        "http://www.w3.org/2001/XMLSchema-instance", "type",
-                        namespacePrefix + ":getWeatherbyCityNameProResponse",
-                        xmlWriter);
+                            "http://www.w3.org/2001/XMLSchema-instance", "type",
+                            namespacePrefix + ":getWeatherbyCityNameProResponse",
+                            xmlWriter);
                 } else {
                     writeAttribute("xsi",
-                        "http://www.w3.org/2001/XMLSchema-instance", "type",
-                        "getWeatherbyCityNameProResponse", xmlWriter);
+                            "http://www.w3.org/2001/XMLSchema-instance", "type",
+                            "getWeatherbyCityNameProResponse", xmlWriter);
                 }
             }
 
             if (localGetWeatherbyCityNameProResultTracker) {
                 if (localGetWeatherbyCityNameProResult == null) {
                     throw new org.apache.axis2.databinding.ADBException(
-                        "getWeatherbyCityNameProResult cannot be null!!");
+                            "getWeatherbyCityNameProResult cannot be null!!");
                 }
 
                 localGetWeatherbyCityNameProResult.serialize(new javax.xml.namespace.QName(
-                        "http://WebXml.com.cn/", "getWeatherbyCityNameProResult"),
-                    xmlWriter);
+                                "http://WebXml.com.cn/", "getWeatherbyCityNameProResult"),
+                        xmlWriter);
             }
 
             xmlWriter.writeEndElement();
         }
 
         private static String generatePrefix(
-            String namespace) {
+                String namespace) {
             if (namespace.equals("http://WebXml.com.cn/")) {
                 return "ns1";
             }
@@ -4864,9 +4864,9 @@ public class WeatherWebServiceStub extends org.apache.axis2.client.Stub {
          * Utility method to write an element start tag.
          */
         private void writeStartElement(String prefix,
-            String namespace, String localPart,
-            javax.xml.stream.XMLStreamWriter xmlWriter)
-            throws javax.xml.stream.XMLStreamException {
+                                       String namespace, String localPart,
+                                       javax.xml.stream.XMLStreamWriter xmlWriter)
+                throws javax.xml.stream.XMLStreamException {
             String writerPrefix = xmlWriter.getPrefix(namespace);
 
             if (writerPrefix != null) {
@@ -4888,15 +4888,15 @@ public class WeatherWebServiceStub extends org.apache.axis2.client.Stub {
          * Util method to write an attribute with the ns prefix
          */
         private void writeAttribute(String prefix,
-            String namespace, String attName,
-            String attValue,
-            javax.xml.stream.XMLStreamWriter xmlWriter)
-            throws javax.xml.stream.XMLStreamException {
+                                    String namespace, String attName,
+                                    String attValue,
+                                    javax.xml.stream.XMLStreamWriter xmlWriter)
+                throws javax.xml.stream.XMLStreamException {
             String writerPrefix = xmlWriter.getPrefix(namespace);
 
             if (writerPrefix != null) {
                 xmlWriter.writeAttribute(writerPrefix, namespace, attName,
-                    attValue);
+                        attValue);
             } else {
                 xmlWriter.writeNamespace(prefix, namespace);
                 xmlWriter.setPrefix(prefix, namespace);
@@ -4908,14 +4908,14 @@ public class WeatherWebServiceStub extends org.apache.axis2.client.Stub {
          * Util method to write an attribute without the ns prefix
          */
         private void writeAttribute(String namespace,
-            String attName, String attValue,
-            javax.xml.stream.XMLStreamWriter xmlWriter)
-            throws javax.xml.stream.XMLStreamException {
+                                    String attName, String attValue,
+                                    javax.xml.stream.XMLStreamWriter xmlWriter)
+                throws javax.xml.stream.XMLStreamException {
             if (namespace.equals("")) {
                 xmlWriter.writeAttribute(attName, attValue);
             } else {
                 xmlWriter.writeAttribute(registerPrefix(xmlWriter, namespace),
-                    namespace, attName, attValue);
+                        namespace, attName, attValue);
             }
         }
 
@@ -4923,9 +4923,9 @@ public class WeatherWebServiceStub extends org.apache.axis2.client.Stub {
          * Util method to write an attribute without the ns prefix
          */
         private void writeQNameAttribute(String namespace,
-            String attName, javax.xml.namespace.QName qname,
-            javax.xml.stream.XMLStreamWriter xmlWriter)
-            throws javax.xml.stream.XMLStreamException {
+                                         String attName, javax.xml.namespace.QName qname,
+                                         javax.xml.stream.XMLStreamWriter xmlWriter)
+                throws javax.xml.stream.XMLStreamException {
             String attributeNamespace = qname.getNamespaceURI();
             String attributePrefix = xmlWriter.getPrefix(attributeNamespace);
 
@@ -4946,7 +4946,7 @@ public class WeatherWebServiceStub extends org.apache.axis2.client.Stub {
             } else {
                 registerPrefix(xmlWriter, namespace);
                 xmlWriter.writeAttribute(attributePrefix, namespace, attName,
-                    attributeValue);
+                        attributeValue);
             }
         }
 
@@ -4954,8 +4954,8 @@ public class WeatherWebServiceStub extends org.apache.axis2.client.Stub {
          *  method to handle Qnames
          */
         private void writeQName(javax.xml.namespace.QName qname,
-            javax.xml.stream.XMLStreamWriter xmlWriter)
-            throws javax.xml.stream.XMLStreamException {
+                                javax.xml.stream.XMLStreamWriter xmlWriter)
+                throws javax.xml.stream.XMLStreamException {
             String namespaceURI = qname.getNamespaceURI();
 
             if (namespaceURI != null) {
@@ -4969,8 +4969,8 @@ public class WeatherWebServiceStub extends org.apache.axis2.client.Stub {
 
                 if (prefix.trim().length() > 0) {
                     xmlWriter.writeCharacters(prefix + ":" +
-                        org.apache.axis2.databinding.utils.ConverterUtil.convertToString(
-                            qname));
+                            org.apache.axis2.databinding.utils.ConverterUtil.convertToString(
+                                    qname));
                 } else {
                     // i.e this is the default namespace
                     xmlWriter.writeCharacters(org.apache.axis2.databinding.utils.ConverterUtil.convertToString(
@@ -4983,8 +4983,8 @@ public class WeatherWebServiceStub extends org.apache.axis2.client.Stub {
         }
 
         private void writeQNames(javax.xml.namespace.QName[] qnames,
-            javax.xml.stream.XMLStreamWriter xmlWriter)
-            throws javax.xml.stream.XMLStreamException {
+                                 javax.xml.stream.XMLStreamWriter xmlWriter)
+                throws javax.xml.stream.XMLStreamException {
             if (qnames != null) {
                 // we have to store this data until last moment since it is not possible to write any
                 // namespace data after writing the charactor data
@@ -5010,8 +5010,8 @@ public class WeatherWebServiceStub extends org.apache.axis2.client.Stub {
 
                         if (prefix.trim().length() > 0) {
                             stringToWrite.append(prefix).append(":")
-                                         .append(org.apache.axis2.databinding.utils.ConverterUtil.convertToString(
-                                    qnames[i]));
+                                    .append(org.apache.axis2.databinding.utils.ConverterUtil.convertToString(
+                                            qnames[i]));
                         } else {
                             stringToWrite.append(org.apache.axis2.databinding.utils.ConverterUtil.convertToString(
                                     qnames[i]));
@@ -5030,9 +5030,9 @@ public class WeatherWebServiceStub extends org.apache.axis2.client.Stub {
          * Register a namespace prefix
          */
         private String registerPrefix(
-            javax.xml.stream.XMLStreamWriter xmlWriter,
-            String namespace)
-            throws javax.xml.stream.XMLStreamException {
+                javax.xml.stream.XMLStreamWriter xmlWriter,
+                String namespace)
+                throws javax.xml.stream.XMLStreamException {
             String prefix = xmlWriter.getPrefix(namespace);
 
             if (prefix == null) {
@@ -5071,8 +5071,8 @@ public class WeatherWebServiceStub extends org.apache.axis2.client.Stub {
              *                If this object is a complex type, the reader is positioned at the end element of its outer element
              */
             public static GetWeatherbyCityNameProResponse parse(
-                javax.xml.stream.XMLStreamReader reader)
-                throws Exception {
+                    javax.xml.stream.XMLStreamReader reader)
+                    throws Exception {
                 GetWeatherbyCityNameProResponse object = new GetWeatherbyCityNameProResponse();
 
                 int event;
@@ -5088,8 +5088,8 @@ public class WeatherWebServiceStub extends org.apache.axis2.client.Stub {
                     currentQName = reader.getName();
 
                     if (reader.getAttributeValue(
-                                "http://www.w3.org/2001/XMLSchema-instance",
-                                "type") != null) {
+                            "http://www.w3.org/2001/XMLSchema-instance",
+                            "type") != null) {
                         String fullTypeName = reader.getAttributeValue("http://www.w3.org/2001/XMLSchema-instance",
                                 "type");
 
@@ -5104,15 +5104,15 @@ public class WeatherWebServiceStub extends org.apache.axis2.client.Stub {
                             nsPrefix = (nsPrefix == null) ? "" : nsPrefix;
 
                             String type = fullTypeName.substring(fullTypeName.indexOf(
-                                        ":") + 1);
+                                    ":") + 1);
 
                             if (!"getWeatherbyCityNameProResponse".equals(type)) {
                                 //find namespace for the prefix
                                 String nsUri = reader.getNamespaceContext()
-                                                               .getNamespaceURI(nsPrefix);
+                                        .getNamespaceURI(nsPrefix);
 
                                 return (GetWeatherbyCityNameProResponse) ExtensionMapper.getTypeObject(nsUri,
-                                    type, reader);
+                                        type, reader);
                             }
                         }
                     }
@@ -5128,9 +5128,9 @@ public class WeatherWebServiceStub extends org.apache.axis2.client.Stub {
 
                     if (reader.isStartElement() &&
                             new javax.xml.namespace.QName(
-                                "http://WebXml.com.cn/",
-                                "getWeatherbyCityNameProResult").equals(
-                                reader.getName())) {
+                                    "http://WebXml.com.cn/",
+                                    "getWeatherbyCityNameProResult").equals(
+                                    reader.getName())) {
                         object.setGetWeatherbyCityNameProResult(ArrayOfString.Factory.parse(
                                 reader));
 
@@ -5146,7 +5146,7 @@ public class WeatherWebServiceStub extends org.apache.axis2.client.Stub {
                     if (reader.isStartElement()) {
                         // 2 - A start element we are not expecting indicates a trailing invalid property
                         throw new org.apache.axis2.databinding.ADBException(
-                            "Unexpected subelement " + reader.getName());
+                                "Unexpected subelement " + reader.getName());
                     }
                 } catch (javax.xml.stream.XMLStreamException e) {
                     throw new Exception(e);
@@ -5201,23 +5201,23 @@ public class WeatherWebServiceStub extends org.apache.axis2.client.Stub {
          * @return org.apache.axiom.om.OMElement
          */
         public org.apache.axiom.om.OMElement getOMElement(
-            final javax.xml.namespace.QName parentQName,
-            final org.apache.axiom.om.OMFactory factory)
-            throws org.apache.axis2.databinding.ADBException {
+                final javax.xml.namespace.QName parentQName,
+                final org.apache.axiom.om.OMFactory factory)
+                throws org.apache.axis2.databinding.ADBException {
             return factory.createOMElement(new org.apache.axis2.databinding.ADBDataSource(
                     this, MY_QNAME));
         }
 
         public void serialize(final javax.xml.namespace.QName parentQName,
-            javax.xml.stream.XMLStreamWriter xmlWriter)
-            throws javax.xml.stream.XMLStreamException,
+                              javax.xml.stream.XMLStreamWriter xmlWriter)
+                throws javax.xml.stream.XMLStreamException,
                 org.apache.axis2.databinding.ADBException {
             serialize(parentQName, xmlWriter, false);
         }
 
         public void serialize(final javax.xml.namespace.QName parentQName,
-            javax.xml.stream.XMLStreamWriter xmlWriter, boolean serializeType)
-            throws javax.xml.stream.XMLStreamException,
+                              javax.xml.stream.XMLStreamWriter xmlWriter, boolean serializeType)
+                throws javax.xml.stream.XMLStreamException,
                 org.apache.axis2.databinding.ADBException {
             String prefix = null;
             String namespace = null;
@@ -5225,7 +5225,7 @@ public class WeatherWebServiceStub extends org.apache.axis2.client.Stub {
             prefix = parentQName.getPrefix();
             namespace = parentQName.getNamespaceURI();
             writeStartElement(prefix, namespace, parentQName.getLocalPart(),
-                xmlWriter);
+                    xmlWriter);
 
             if (serializeType) {
                 String namespacePrefix = registerPrefix(xmlWriter,
@@ -5234,31 +5234,31 @@ public class WeatherWebServiceStub extends org.apache.axis2.client.Stub {
                 if ((namespacePrefix != null) &&
                         (namespacePrefix.trim().length() > 0)) {
                     writeAttribute("xsi",
-                        "http://www.w3.org/2001/XMLSchema-instance", "type",
-                        namespacePrefix + ":getSupportCityResponse", xmlWriter);
+                            "http://www.w3.org/2001/XMLSchema-instance", "type",
+                            namespacePrefix + ":getSupportCityResponse", xmlWriter);
                 } else {
                     writeAttribute("xsi",
-                        "http://www.w3.org/2001/XMLSchema-instance", "type",
-                        "getSupportCityResponse", xmlWriter);
+                            "http://www.w3.org/2001/XMLSchema-instance", "type",
+                            "getSupportCityResponse", xmlWriter);
                 }
             }
 
             if (localGetSupportCityResultTracker) {
                 if (localGetSupportCityResult == null) {
                     throw new org.apache.axis2.databinding.ADBException(
-                        "getSupportCityResult cannot be null!!");
+                            "getSupportCityResult cannot be null!!");
                 }
 
                 localGetSupportCityResult.serialize(new javax.xml.namespace.QName(
-                        "http://WebXml.com.cn/", "getSupportCityResult"),
-                    xmlWriter);
+                                "http://WebXml.com.cn/", "getSupportCityResult"),
+                        xmlWriter);
             }
 
             xmlWriter.writeEndElement();
         }
 
         private static String generatePrefix(
-            String namespace) {
+                String namespace) {
             if (namespace.equals("http://WebXml.com.cn/")) {
                 return "ns1";
             }
@@ -5270,9 +5270,9 @@ public class WeatherWebServiceStub extends org.apache.axis2.client.Stub {
          * Utility method to write an element start tag.
          */
         private void writeStartElement(String prefix,
-            String namespace, String localPart,
-            javax.xml.stream.XMLStreamWriter xmlWriter)
-            throws javax.xml.stream.XMLStreamException {
+                                       String namespace, String localPart,
+                                       javax.xml.stream.XMLStreamWriter xmlWriter)
+                throws javax.xml.stream.XMLStreamException {
             String writerPrefix = xmlWriter.getPrefix(namespace);
 
             if (writerPrefix != null) {
@@ -5294,15 +5294,15 @@ public class WeatherWebServiceStub extends org.apache.axis2.client.Stub {
          * Util method to write an attribute with the ns prefix
          */
         private void writeAttribute(String prefix,
-            String namespace, String attName,
-            String attValue,
-            javax.xml.stream.XMLStreamWriter xmlWriter)
-            throws javax.xml.stream.XMLStreamException {
+                                    String namespace, String attName,
+                                    String attValue,
+                                    javax.xml.stream.XMLStreamWriter xmlWriter)
+                throws javax.xml.stream.XMLStreamException {
             String writerPrefix = xmlWriter.getPrefix(namespace);
 
             if (writerPrefix != null) {
                 xmlWriter.writeAttribute(writerPrefix, namespace, attName,
-                    attValue);
+                        attValue);
             } else {
                 xmlWriter.writeNamespace(prefix, namespace);
                 xmlWriter.setPrefix(prefix, namespace);
@@ -5314,14 +5314,14 @@ public class WeatherWebServiceStub extends org.apache.axis2.client.Stub {
          * Util method to write an attribute without the ns prefix
          */
         private void writeAttribute(String namespace,
-            String attName, String attValue,
-            javax.xml.stream.XMLStreamWriter xmlWriter)
-            throws javax.xml.stream.XMLStreamException {
+                                    String attName, String attValue,
+                                    javax.xml.stream.XMLStreamWriter xmlWriter)
+                throws javax.xml.stream.XMLStreamException {
             if (namespace.equals("")) {
                 xmlWriter.writeAttribute(attName, attValue);
             } else {
                 xmlWriter.writeAttribute(registerPrefix(xmlWriter, namespace),
-                    namespace, attName, attValue);
+                        namespace, attName, attValue);
             }
         }
 
@@ -5329,9 +5329,9 @@ public class WeatherWebServiceStub extends org.apache.axis2.client.Stub {
          * Util method to write an attribute without the ns prefix
          */
         private void writeQNameAttribute(String namespace,
-            String attName, javax.xml.namespace.QName qname,
-            javax.xml.stream.XMLStreamWriter xmlWriter)
-            throws javax.xml.stream.XMLStreamException {
+                                         String attName, javax.xml.namespace.QName qname,
+                                         javax.xml.stream.XMLStreamWriter xmlWriter)
+                throws javax.xml.stream.XMLStreamException {
             String attributeNamespace = qname.getNamespaceURI();
             String attributePrefix = xmlWriter.getPrefix(attributeNamespace);
 
@@ -5352,7 +5352,7 @@ public class WeatherWebServiceStub extends org.apache.axis2.client.Stub {
             } else {
                 registerPrefix(xmlWriter, namespace);
                 xmlWriter.writeAttribute(attributePrefix, namespace, attName,
-                    attributeValue);
+                        attributeValue);
             }
         }
 
@@ -5360,8 +5360,8 @@ public class WeatherWebServiceStub extends org.apache.axis2.client.Stub {
          *  method to handle Qnames
          */
         private void writeQName(javax.xml.namespace.QName qname,
-            javax.xml.stream.XMLStreamWriter xmlWriter)
-            throws javax.xml.stream.XMLStreamException {
+                                javax.xml.stream.XMLStreamWriter xmlWriter)
+                throws javax.xml.stream.XMLStreamException {
             String namespaceURI = qname.getNamespaceURI();
 
             if (namespaceURI != null) {
@@ -5375,8 +5375,8 @@ public class WeatherWebServiceStub extends org.apache.axis2.client.Stub {
 
                 if (prefix.trim().length() > 0) {
                     xmlWriter.writeCharacters(prefix + ":" +
-                        org.apache.axis2.databinding.utils.ConverterUtil.convertToString(
-                            qname));
+                            org.apache.axis2.databinding.utils.ConverterUtil.convertToString(
+                                    qname));
                 } else {
                     // i.e this is the default namespace
                     xmlWriter.writeCharacters(org.apache.axis2.databinding.utils.ConverterUtil.convertToString(
@@ -5389,8 +5389,8 @@ public class WeatherWebServiceStub extends org.apache.axis2.client.Stub {
         }
 
         private void writeQNames(javax.xml.namespace.QName[] qnames,
-            javax.xml.stream.XMLStreamWriter xmlWriter)
-            throws javax.xml.stream.XMLStreamException {
+                                 javax.xml.stream.XMLStreamWriter xmlWriter)
+                throws javax.xml.stream.XMLStreamException {
             if (qnames != null) {
                 // we have to store this data until last moment since it is not possible to write any
                 // namespace data after writing the charactor data
@@ -5416,8 +5416,8 @@ public class WeatherWebServiceStub extends org.apache.axis2.client.Stub {
 
                         if (prefix.trim().length() > 0) {
                             stringToWrite.append(prefix).append(":")
-                                         .append(org.apache.axis2.databinding.utils.ConverterUtil.convertToString(
-                                    qnames[i]));
+                                    .append(org.apache.axis2.databinding.utils.ConverterUtil.convertToString(
+                                            qnames[i]));
                         } else {
                             stringToWrite.append(org.apache.axis2.databinding.utils.ConverterUtil.convertToString(
                                     qnames[i]));
@@ -5436,9 +5436,9 @@ public class WeatherWebServiceStub extends org.apache.axis2.client.Stub {
          * Register a namespace prefix
          */
         private String registerPrefix(
-            javax.xml.stream.XMLStreamWriter xmlWriter,
-            String namespace)
-            throws javax.xml.stream.XMLStreamException {
+                javax.xml.stream.XMLStreamWriter xmlWriter,
+                String namespace)
+                throws javax.xml.stream.XMLStreamException {
             String prefix = xmlWriter.getPrefix(namespace);
 
             if (prefix == null) {
@@ -5477,8 +5477,8 @@ public class WeatherWebServiceStub extends org.apache.axis2.client.Stub {
              *                If this object is a complex type, the reader is positioned at the end element of its outer element
              */
             public static GetSupportCityResponse parse(
-                javax.xml.stream.XMLStreamReader reader)
-                throws Exception {
+                    javax.xml.stream.XMLStreamReader reader)
+                    throws Exception {
                 GetSupportCityResponse object = new GetSupportCityResponse();
 
                 int event;
@@ -5494,8 +5494,8 @@ public class WeatherWebServiceStub extends org.apache.axis2.client.Stub {
                     currentQName = reader.getName();
 
                     if (reader.getAttributeValue(
-                                "http://www.w3.org/2001/XMLSchema-instance",
-                                "type") != null) {
+                            "http://www.w3.org/2001/XMLSchema-instance",
+                            "type") != null) {
                         String fullTypeName = reader.getAttributeValue("http://www.w3.org/2001/XMLSchema-instance",
                                 "type");
 
@@ -5510,15 +5510,15 @@ public class WeatherWebServiceStub extends org.apache.axis2.client.Stub {
                             nsPrefix = (nsPrefix == null) ? "" : nsPrefix;
 
                             String type = fullTypeName.substring(fullTypeName.indexOf(
-                                        ":") + 1);
+                                    ":") + 1);
 
                             if (!"getSupportCityResponse".equals(type)) {
                                 //find namespace for the prefix
                                 String nsUri = reader.getNamespaceContext()
-                                                               .getNamespaceURI(nsPrefix);
+                                        .getNamespaceURI(nsPrefix);
 
                                 return (GetSupportCityResponse) ExtensionMapper.getTypeObject(nsUri,
-                                    type, reader);
+                                        type, reader);
                             }
                         }
                     }
@@ -5534,8 +5534,8 @@ public class WeatherWebServiceStub extends org.apache.axis2.client.Stub {
 
                     if (reader.isStartElement() &&
                             new javax.xml.namespace.QName(
-                                "http://WebXml.com.cn/", "getSupportCityResult").equals(
-                                reader.getName())) {
+                                    "http://WebXml.com.cn/", "getSupportCityResult").equals(
+                                    reader.getName())) {
                         object.setGetSupportCityResult(ArrayOfString.Factory.parse(
                                 reader));
 
@@ -5551,7 +5551,7 @@ public class WeatherWebServiceStub extends org.apache.axis2.client.Stub {
                     if (reader.isStartElement()) {
                         // 2 - A start element we are not expecting indicates a trailing invalid property
                         throw new org.apache.axis2.databinding.ADBException(
-                            "Unexpected subelement " + reader.getName());
+                                "Unexpected subelement " + reader.getName());
                     }
                 } catch (javax.xml.stream.XMLStreamException e) {
                     throw new Exception(e);
@@ -5606,23 +5606,23 @@ public class WeatherWebServiceStub extends org.apache.axis2.client.Stub {
          * @return org.apache.axiom.om.OMElement
          */
         public org.apache.axiom.om.OMElement getOMElement(
-            final javax.xml.namespace.QName parentQName,
-            final org.apache.axiom.om.OMFactory factory)
-            throws org.apache.axis2.databinding.ADBException {
+                final javax.xml.namespace.QName parentQName,
+                final org.apache.axiom.om.OMFactory factory)
+                throws org.apache.axis2.databinding.ADBException {
             return factory.createOMElement(new org.apache.axis2.databinding.ADBDataSource(
                     this, MY_QNAME));
         }
 
         public void serialize(final javax.xml.namespace.QName parentQName,
-            javax.xml.stream.XMLStreamWriter xmlWriter)
-            throws javax.xml.stream.XMLStreamException,
+                              javax.xml.stream.XMLStreamWriter xmlWriter)
+                throws javax.xml.stream.XMLStreamException,
                 org.apache.axis2.databinding.ADBException {
             serialize(parentQName, xmlWriter, false);
         }
 
         public void serialize(final javax.xml.namespace.QName parentQName,
-            javax.xml.stream.XMLStreamWriter xmlWriter, boolean serializeType)
-            throws javax.xml.stream.XMLStreamException,
+                              javax.xml.stream.XMLStreamWriter xmlWriter, boolean serializeType)
+                throws javax.xml.stream.XMLStreamException,
                 org.apache.axis2.databinding.ADBException {
             String prefix = null;
             String namespace = null;
@@ -5630,7 +5630,7 @@ public class WeatherWebServiceStub extends org.apache.axis2.client.Stub {
             prefix = parentQName.getPrefix();
             namespace = parentQName.getNamespaceURI();
             writeStartElement(prefix, namespace, parentQName.getLocalPart(),
-                xmlWriter);
+                    xmlWriter);
 
             if (serializeType) {
                 String namespacePrefix = registerPrefix(xmlWriter,
@@ -5639,12 +5639,12 @@ public class WeatherWebServiceStub extends org.apache.axis2.client.Stub {
                 if ((namespacePrefix != null) &&
                         (namespacePrefix.trim().length() > 0)) {
                     writeAttribute("xsi",
-                        "http://www.w3.org/2001/XMLSchema-instance", "type",
-                        namespacePrefix + ":getSupportCity", xmlWriter);
+                            "http://www.w3.org/2001/XMLSchema-instance", "type",
+                            namespacePrefix + ":getSupportCity", xmlWriter);
                 } else {
                     writeAttribute("xsi",
-                        "http://www.w3.org/2001/XMLSchema-instance", "type",
-                        "getSupportCity", xmlWriter);
+                            "http://www.w3.org/2001/XMLSchema-instance", "type",
+                            "getSupportCity", xmlWriter);
                 }
             }
 
@@ -5655,7 +5655,7 @@ public class WeatherWebServiceStub extends org.apache.axis2.client.Stub {
                 if (localByProvinceName == null) {
                     // write the nil attribute
                     throw new org.apache.axis2.databinding.ADBException(
-                        "byProvinceName cannot be null!!");
+                            "byProvinceName cannot be null!!");
                 } else {
                     xmlWriter.writeCharacters(localByProvinceName);
                 }
@@ -5667,7 +5667,7 @@ public class WeatherWebServiceStub extends org.apache.axis2.client.Stub {
         }
 
         private static String generatePrefix(
-            String namespace) {
+                String namespace) {
             if (namespace.equals("http://WebXml.com.cn/")) {
                 return "ns1";
             }
@@ -5679,9 +5679,9 @@ public class WeatherWebServiceStub extends org.apache.axis2.client.Stub {
          * Utility method to write an element start tag.
          */
         private void writeStartElement(String prefix,
-            String namespace, String localPart,
-            javax.xml.stream.XMLStreamWriter xmlWriter)
-            throws javax.xml.stream.XMLStreamException {
+                                       String namespace, String localPart,
+                                       javax.xml.stream.XMLStreamWriter xmlWriter)
+                throws javax.xml.stream.XMLStreamException {
             String writerPrefix = xmlWriter.getPrefix(namespace);
 
             if (writerPrefix != null) {
@@ -5703,15 +5703,15 @@ public class WeatherWebServiceStub extends org.apache.axis2.client.Stub {
          * Util method to write an attribute with the ns prefix
          */
         private void writeAttribute(String prefix,
-            String namespace, String attName,
-            String attValue,
-            javax.xml.stream.XMLStreamWriter xmlWriter)
-            throws javax.xml.stream.XMLStreamException {
+                                    String namespace, String attName,
+                                    String attValue,
+                                    javax.xml.stream.XMLStreamWriter xmlWriter)
+                throws javax.xml.stream.XMLStreamException {
             String writerPrefix = xmlWriter.getPrefix(namespace);
 
             if (writerPrefix != null) {
                 xmlWriter.writeAttribute(writerPrefix, namespace, attName,
-                    attValue);
+                        attValue);
             } else {
                 xmlWriter.writeNamespace(prefix, namespace);
                 xmlWriter.setPrefix(prefix, namespace);
@@ -5723,14 +5723,14 @@ public class WeatherWebServiceStub extends org.apache.axis2.client.Stub {
          * Util method to write an attribute without the ns prefix
          */
         private void writeAttribute(String namespace,
-            String attName, String attValue,
-            javax.xml.stream.XMLStreamWriter xmlWriter)
-            throws javax.xml.stream.XMLStreamException {
+                                    String attName, String attValue,
+                                    javax.xml.stream.XMLStreamWriter xmlWriter)
+                throws javax.xml.stream.XMLStreamException {
             if (namespace.equals("")) {
                 xmlWriter.writeAttribute(attName, attValue);
             } else {
                 xmlWriter.writeAttribute(registerPrefix(xmlWriter, namespace),
-                    namespace, attName, attValue);
+                        namespace, attName, attValue);
             }
         }
 
@@ -5738,9 +5738,9 @@ public class WeatherWebServiceStub extends org.apache.axis2.client.Stub {
          * Util method to write an attribute without the ns prefix
          */
         private void writeQNameAttribute(String namespace,
-            String attName, javax.xml.namespace.QName qname,
-            javax.xml.stream.XMLStreamWriter xmlWriter)
-            throws javax.xml.stream.XMLStreamException {
+                                         String attName, javax.xml.namespace.QName qname,
+                                         javax.xml.stream.XMLStreamWriter xmlWriter)
+                throws javax.xml.stream.XMLStreamException {
             String attributeNamespace = qname.getNamespaceURI();
             String attributePrefix = xmlWriter.getPrefix(attributeNamespace);
 
@@ -5761,7 +5761,7 @@ public class WeatherWebServiceStub extends org.apache.axis2.client.Stub {
             } else {
                 registerPrefix(xmlWriter, namespace);
                 xmlWriter.writeAttribute(attributePrefix, namespace, attName,
-                    attributeValue);
+                        attributeValue);
             }
         }
 
@@ -5769,8 +5769,8 @@ public class WeatherWebServiceStub extends org.apache.axis2.client.Stub {
          *  method to handle Qnames
          */
         private void writeQName(javax.xml.namespace.QName qname,
-            javax.xml.stream.XMLStreamWriter xmlWriter)
-            throws javax.xml.stream.XMLStreamException {
+                                javax.xml.stream.XMLStreamWriter xmlWriter)
+                throws javax.xml.stream.XMLStreamException {
             String namespaceURI = qname.getNamespaceURI();
 
             if (namespaceURI != null) {
@@ -5784,8 +5784,8 @@ public class WeatherWebServiceStub extends org.apache.axis2.client.Stub {
 
                 if (prefix.trim().length() > 0) {
                     xmlWriter.writeCharacters(prefix + ":" +
-                        org.apache.axis2.databinding.utils.ConverterUtil.convertToString(
-                            qname));
+                            org.apache.axis2.databinding.utils.ConverterUtil.convertToString(
+                                    qname));
                 } else {
                     // i.e this is the default namespace
                     xmlWriter.writeCharacters(org.apache.axis2.databinding.utils.ConverterUtil.convertToString(
@@ -5798,8 +5798,8 @@ public class WeatherWebServiceStub extends org.apache.axis2.client.Stub {
         }
 
         private void writeQNames(javax.xml.namespace.QName[] qnames,
-            javax.xml.stream.XMLStreamWriter xmlWriter)
-            throws javax.xml.stream.XMLStreamException {
+                                 javax.xml.stream.XMLStreamWriter xmlWriter)
+                throws javax.xml.stream.XMLStreamException {
             if (qnames != null) {
                 // we have to store this data until last moment since it is not possible to write any
                 // namespace data after writing the charactor data
@@ -5825,8 +5825,8 @@ public class WeatherWebServiceStub extends org.apache.axis2.client.Stub {
 
                         if (prefix.trim().length() > 0) {
                             stringToWrite.append(prefix).append(":")
-                                         .append(org.apache.axis2.databinding.utils.ConverterUtil.convertToString(
-                                    qnames[i]));
+                                    .append(org.apache.axis2.databinding.utils.ConverterUtil.convertToString(
+                                            qnames[i]));
                         } else {
                             stringToWrite.append(org.apache.axis2.databinding.utils.ConverterUtil.convertToString(
                                     qnames[i]));
@@ -5845,9 +5845,9 @@ public class WeatherWebServiceStub extends org.apache.axis2.client.Stub {
          * Register a namespace prefix
          */
         private String registerPrefix(
-            javax.xml.stream.XMLStreamWriter xmlWriter,
-            String namespace)
-            throws javax.xml.stream.XMLStreamException {
+                javax.xml.stream.XMLStreamWriter xmlWriter,
+                String namespace)
+                throws javax.xml.stream.XMLStreamException {
             String prefix = xmlWriter.getPrefix(namespace);
 
             if (prefix == null) {
@@ -5886,8 +5886,8 @@ public class WeatherWebServiceStub extends org.apache.axis2.client.Stub {
              *                If this object is a complex type, the reader is positioned at the end element of its outer element
              */
             public static GetSupportCity parse(
-                javax.xml.stream.XMLStreamReader reader)
-                throws Exception {
+                    javax.xml.stream.XMLStreamReader reader)
+                    throws Exception {
                 GetSupportCity object = new GetSupportCity();
 
                 int event;
@@ -5903,8 +5903,8 @@ public class WeatherWebServiceStub extends org.apache.axis2.client.Stub {
                     currentQName = reader.getName();
 
                     if (reader.getAttributeValue(
-                                "http://www.w3.org/2001/XMLSchema-instance",
-                                "type") != null) {
+                            "http://www.w3.org/2001/XMLSchema-instance",
+                            "type") != null) {
                         String fullTypeName = reader.getAttributeValue("http://www.w3.org/2001/XMLSchema-instance",
                                 "type");
 
@@ -5919,15 +5919,15 @@ public class WeatherWebServiceStub extends org.apache.axis2.client.Stub {
                             nsPrefix = (nsPrefix == null) ? "" : nsPrefix;
 
                             String type = fullTypeName.substring(fullTypeName.indexOf(
-                                        ":") + 1);
+                                    ":") + 1);
 
                             if (!"getSupportCity".equals(type)) {
                                 //find namespace for the prefix
                                 String nsUri = reader.getNamespaceContext()
-                                                               .getNamespaceURI(nsPrefix);
+                                        .getNamespaceURI(nsPrefix);
 
                                 return (GetSupportCity) ExtensionMapper.getTypeObject(nsUri,
-                                    type, reader);
+                                        type, reader);
                             }
                         }
                     }
@@ -5943,16 +5943,16 @@ public class WeatherWebServiceStub extends org.apache.axis2.client.Stub {
 
                     if (reader.isStartElement() &&
                             new javax.xml.namespace.QName(
-                                "http://WebXml.com.cn/", "byProvinceName").equals(
-                                reader.getName())) {
+                                    "http://WebXml.com.cn/", "byProvinceName").equals(
+                                    reader.getName())) {
                         nillableValue = reader.getAttributeValue("http://www.w3.org/2001/XMLSchema-instance",
                                 "nil");
 
                         if ("true".equals(nillableValue) ||
                                 "1".equals(nillableValue)) {
                             throw new org.apache.axis2.databinding.ADBException(
-                                "The element: " + "byProvinceName" +
-                                "  cannot be null");
+                                    "The element: " + "byProvinceName" +
+                                            "  cannot be null");
                         }
 
                         String content = reader.getElementText();
@@ -5972,7 +5972,7 @@ public class WeatherWebServiceStub extends org.apache.axis2.client.Stub {
                     if (reader.isStartElement()) {
                         // 2 - A start element we are not expecting indicates a trailing invalid property
                         throw new org.apache.axis2.databinding.ADBException(
-                            "Unexpected subelement " + reader.getName());
+                                "Unexpected subelement " + reader.getName());
                     }
                 } catch (javax.xml.stream.XMLStreamException e) {
                     throw new Exception(e);
@@ -6027,23 +6027,23 @@ public class WeatherWebServiceStub extends org.apache.axis2.client.Stub {
          * @return org.apache.axiom.om.OMElement
          */
         public org.apache.axiom.om.OMElement getOMElement(
-            final javax.xml.namespace.QName parentQName,
-            final org.apache.axiom.om.OMFactory factory)
-            throws org.apache.axis2.databinding.ADBException {
+                final javax.xml.namespace.QName parentQName,
+                final org.apache.axiom.om.OMFactory factory)
+                throws org.apache.axis2.databinding.ADBException {
             return factory.createOMElement(new org.apache.axis2.databinding.ADBDataSource(
                     this, MY_QNAME));
         }
 
         public void serialize(final javax.xml.namespace.QName parentQName,
-            javax.xml.stream.XMLStreamWriter xmlWriter)
-            throws javax.xml.stream.XMLStreamException,
+                              javax.xml.stream.XMLStreamWriter xmlWriter)
+                throws javax.xml.stream.XMLStreamException,
                 org.apache.axis2.databinding.ADBException {
             serialize(parentQName, xmlWriter, false);
         }
 
         public void serialize(final javax.xml.namespace.QName parentQName,
-            javax.xml.stream.XMLStreamWriter xmlWriter, boolean serializeType)
-            throws javax.xml.stream.XMLStreamException,
+                              javax.xml.stream.XMLStreamWriter xmlWriter, boolean serializeType)
+                throws javax.xml.stream.XMLStreamException,
                 org.apache.axis2.databinding.ADBException {
             String prefix = null;
             String namespace = null;
@@ -6051,7 +6051,7 @@ public class WeatherWebServiceStub extends org.apache.axis2.client.Stub {
             prefix = parentQName.getPrefix();
             namespace = parentQName.getNamespaceURI();
             writeStartElement(prefix, namespace, parentQName.getLocalPart(),
-                xmlWriter);
+                    xmlWriter);
 
             if (serializeType) {
                 String namespacePrefix = registerPrefix(xmlWriter,
@@ -6060,32 +6060,32 @@ public class WeatherWebServiceStub extends org.apache.axis2.client.Stub {
                 if ((namespacePrefix != null) &&
                         (namespacePrefix.trim().length() > 0)) {
                     writeAttribute("xsi",
-                        "http://www.w3.org/2001/XMLSchema-instance", "type",
-                        namespacePrefix + ":getWeatherbyCityNameResponse",
-                        xmlWriter);
+                            "http://www.w3.org/2001/XMLSchema-instance", "type",
+                            namespacePrefix + ":getWeatherbyCityNameResponse",
+                            xmlWriter);
                 } else {
                     writeAttribute("xsi",
-                        "http://www.w3.org/2001/XMLSchema-instance", "type",
-                        "getWeatherbyCityNameResponse", xmlWriter);
+                            "http://www.w3.org/2001/XMLSchema-instance", "type",
+                            "getWeatherbyCityNameResponse", xmlWriter);
                 }
             }
 
             if (localGetWeatherbyCityNameResultTracker) {
                 if (localGetWeatherbyCityNameResult == null) {
                     throw new org.apache.axis2.databinding.ADBException(
-                        "getWeatherbyCityNameResult cannot be null!!");
+                            "getWeatherbyCityNameResult cannot be null!!");
                 }
 
                 localGetWeatherbyCityNameResult.serialize(new javax.xml.namespace.QName(
-                        "http://WebXml.com.cn/", "getWeatherbyCityNameResult"),
-                    xmlWriter);
+                                "http://WebXml.com.cn/", "getWeatherbyCityNameResult"),
+                        xmlWriter);
             }
 
             xmlWriter.writeEndElement();
         }
 
         private static String generatePrefix(
-            String namespace) {
+                String namespace) {
             if (namespace.equals("http://WebXml.com.cn/")) {
                 return "ns1";
             }
@@ -6097,9 +6097,9 @@ public class WeatherWebServiceStub extends org.apache.axis2.client.Stub {
          * Utility method to write an element start tag.
          */
         private void writeStartElement(String prefix,
-            String namespace, String localPart,
-            javax.xml.stream.XMLStreamWriter xmlWriter)
-            throws javax.xml.stream.XMLStreamException {
+                                       String namespace, String localPart,
+                                       javax.xml.stream.XMLStreamWriter xmlWriter)
+                throws javax.xml.stream.XMLStreamException {
             String writerPrefix = xmlWriter.getPrefix(namespace);
 
             if (writerPrefix != null) {
@@ -6121,15 +6121,15 @@ public class WeatherWebServiceStub extends org.apache.axis2.client.Stub {
          * Util method to write an attribute with the ns prefix
          */
         private void writeAttribute(String prefix,
-            String namespace, String attName,
-            String attValue,
-            javax.xml.stream.XMLStreamWriter xmlWriter)
-            throws javax.xml.stream.XMLStreamException {
+                                    String namespace, String attName,
+                                    String attValue,
+                                    javax.xml.stream.XMLStreamWriter xmlWriter)
+                throws javax.xml.stream.XMLStreamException {
             String writerPrefix = xmlWriter.getPrefix(namespace);
 
             if (writerPrefix != null) {
                 xmlWriter.writeAttribute(writerPrefix, namespace, attName,
-                    attValue);
+                        attValue);
             } else {
                 xmlWriter.writeNamespace(prefix, namespace);
                 xmlWriter.setPrefix(prefix, namespace);
@@ -6141,14 +6141,14 @@ public class WeatherWebServiceStub extends org.apache.axis2.client.Stub {
          * Util method to write an attribute without the ns prefix
          */
         private void writeAttribute(String namespace,
-            String attName, String attValue,
-            javax.xml.stream.XMLStreamWriter xmlWriter)
-            throws javax.xml.stream.XMLStreamException {
+                                    String attName, String attValue,
+                                    javax.xml.stream.XMLStreamWriter xmlWriter)
+                throws javax.xml.stream.XMLStreamException {
             if (namespace.equals("")) {
                 xmlWriter.writeAttribute(attName, attValue);
             } else {
                 xmlWriter.writeAttribute(registerPrefix(xmlWriter, namespace),
-                    namespace, attName, attValue);
+                        namespace, attName, attValue);
             }
         }
 
@@ -6156,9 +6156,9 @@ public class WeatherWebServiceStub extends org.apache.axis2.client.Stub {
          * Util method to write an attribute without the ns prefix
          */
         private void writeQNameAttribute(String namespace,
-            String attName, javax.xml.namespace.QName qname,
-            javax.xml.stream.XMLStreamWriter xmlWriter)
-            throws javax.xml.stream.XMLStreamException {
+                                         String attName, javax.xml.namespace.QName qname,
+                                         javax.xml.stream.XMLStreamWriter xmlWriter)
+                throws javax.xml.stream.XMLStreamException {
             String attributeNamespace = qname.getNamespaceURI();
             String attributePrefix = xmlWriter.getPrefix(attributeNamespace);
 
@@ -6179,7 +6179,7 @@ public class WeatherWebServiceStub extends org.apache.axis2.client.Stub {
             } else {
                 registerPrefix(xmlWriter, namespace);
                 xmlWriter.writeAttribute(attributePrefix, namespace, attName,
-                    attributeValue);
+                        attributeValue);
             }
         }
 
@@ -6187,8 +6187,8 @@ public class WeatherWebServiceStub extends org.apache.axis2.client.Stub {
          *  method to handle Qnames
          */
         private void writeQName(javax.xml.namespace.QName qname,
-            javax.xml.stream.XMLStreamWriter xmlWriter)
-            throws javax.xml.stream.XMLStreamException {
+                                javax.xml.stream.XMLStreamWriter xmlWriter)
+                throws javax.xml.stream.XMLStreamException {
             String namespaceURI = qname.getNamespaceURI();
 
             if (namespaceURI != null) {
@@ -6202,8 +6202,8 @@ public class WeatherWebServiceStub extends org.apache.axis2.client.Stub {
 
                 if (prefix.trim().length() > 0) {
                     xmlWriter.writeCharacters(prefix + ":" +
-                        org.apache.axis2.databinding.utils.ConverterUtil.convertToString(
-                            qname));
+                            org.apache.axis2.databinding.utils.ConverterUtil.convertToString(
+                                    qname));
                 } else {
                     // i.e this is the default namespace
                     xmlWriter.writeCharacters(org.apache.axis2.databinding.utils.ConverterUtil.convertToString(
@@ -6216,8 +6216,8 @@ public class WeatherWebServiceStub extends org.apache.axis2.client.Stub {
         }
 
         private void writeQNames(javax.xml.namespace.QName[] qnames,
-            javax.xml.stream.XMLStreamWriter xmlWriter)
-            throws javax.xml.stream.XMLStreamException {
+                                 javax.xml.stream.XMLStreamWriter xmlWriter)
+                throws javax.xml.stream.XMLStreamException {
             if (qnames != null) {
                 // we have to store this data until last moment since it is not possible to write any
                 // namespace data after writing the charactor data
@@ -6243,8 +6243,8 @@ public class WeatherWebServiceStub extends org.apache.axis2.client.Stub {
 
                         if (prefix.trim().length() > 0) {
                             stringToWrite.append(prefix).append(":")
-                                         .append(org.apache.axis2.databinding.utils.ConverterUtil.convertToString(
-                                    qnames[i]));
+                                    .append(org.apache.axis2.databinding.utils.ConverterUtil.convertToString(
+                                            qnames[i]));
                         } else {
                             stringToWrite.append(org.apache.axis2.databinding.utils.ConverterUtil.convertToString(
                                     qnames[i]));
@@ -6263,9 +6263,9 @@ public class WeatherWebServiceStub extends org.apache.axis2.client.Stub {
          * Register a namespace prefix
          */
         private String registerPrefix(
-            javax.xml.stream.XMLStreamWriter xmlWriter,
-            String namespace)
-            throws javax.xml.stream.XMLStreamException {
+                javax.xml.stream.XMLStreamWriter xmlWriter,
+                String namespace)
+                throws javax.xml.stream.XMLStreamException {
             String prefix = xmlWriter.getPrefix(namespace);
 
             if (prefix == null) {
@@ -6304,8 +6304,8 @@ public class WeatherWebServiceStub extends org.apache.axis2.client.Stub {
              *                If this object is a complex type, the reader is positioned at the end element of its outer element
              */
             public static GetWeatherbyCityNameResponse parse(
-                javax.xml.stream.XMLStreamReader reader)
-                throws Exception {
+                    javax.xml.stream.XMLStreamReader reader)
+                    throws Exception {
                 GetWeatherbyCityNameResponse object = new GetWeatherbyCityNameResponse();
 
                 int event;
@@ -6321,8 +6321,8 @@ public class WeatherWebServiceStub extends org.apache.axis2.client.Stub {
                     currentQName = reader.getName();
 
                     if (reader.getAttributeValue(
-                                "http://www.w3.org/2001/XMLSchema-instance",
-                                "type") != null) {
+                            "http://www.w3.org/2001/XMLSchema-instance",
+                            "type") != null) {
                         String fullTypeName = reader.getAttributeValue("http://www.w3.org/2001/XMLSchema-instance",
                                 "type");
 
@@ -6337,15 +6337,15 @@ public class WeatherWebServiceStub extends org.apache.axis2.client.Stub {
                             nsPrefix = (nsPrefix == null) ? "" : nsPrefix;
 
                             String type = fullTypeName.substring(fullTypeName.indexOf(
-                                        ":") + 1);
+                                    ":") + 1);
 
                             if (!"getWeatherbyCityNameResponse".equals(type)) {
                                 //find namespace for the prefix
                                 String nsUri = reader.getNamespaceContext()
-                                                               .getNamespaceURI(nsPrefix);
+                                        .getNamespaceURI(nsPrefix);
 
                                 return (GetWeatherbyCityNameResponse) ExtensionMapper.getTypeObject(nsUri,
-                                    type, reader);
+                                        type, reader);
                             }
                         }
                     }
@@ -6361,9 +6361,9 @@ public class WeatherWebServiceStub extends org.apache.axis2.client.Stub {
 
                     if (reader.isStartElement() &&
                             new javax.xml.namespace.QName(
-                                "http://WebXml.com.cn/",
-                                "getWeatherbyCityNameResult").equals(
-                                reader.getName())) {
+                                    "http://WebXml.com.cn/",
+                                    "getWeatherbyCityNameResult").equals(
+                                    reader.getName())) {
                         object.setGetWeatherbyCityNameResult(ArrayOfString.Factory.parse(
                                 reader));
 
@@ -6379,7 +6379,7 @@ public class WeatherWebServiceStub extends org.apache.axis2.client.Stub {
                     if (reader.isStartElement()) {
                         // 2 - A start element we are not expecting indicates a trailing invalid property
                         throw new org.apache.axis2.databinding.ADBException(
-                            "Unexpected subelement " + reader.getName());
+                                "Unexpected subelement " + reader.getName());
                     }
                 } catch (javax.xml.stream.XMLStreamException e) {
                     throw new Exception(e);
@@ -6446,23 +6446,23 @@ public class WeatherWebServiceStub extends org.apache.axis2.client.Stub {
          * @return org.apache.axiom.om.OMElement
          */
         public org.apache.axiom.om.OMElement getOMElement(
-            final javax.xml.namespace.QName parentQName,
-            final org.apache.axiom.om.OMFactory factory)
-            throws org.apache.axis2.databinding.ADBException {
+                final javax.xml.namespace.QName parentQName,
+                final org.apache.axiom.om.OMFactory factory)
+                throws org.apache.axis2.databinding.ADBException {
             return factory.createOMElement(new org.apache.axis2.databinding.ADBDataSource(
                     this, parentQName));
         }
 
         public void serialize(final javax.xml.namespace.QName parentQName,
-            javax.xml.stream.XMLStreamWriter xmlWriter)
-            throws javax.xml.stream.XMLStreamException,
+                              javax.xml.stream.XMLStreamWriter xmlWriter)
+                throws javax.xml.stream.XMLStreamException,
                 org.apache.axis2.databinding.ADBException {
             serialize(parentQName, xmlWriter, false);
         }
 
         public void serialize(final javax.xml.namespace.QName parentQName,
-            javax.xml.stream.XMLStreamWriter xmlWriter, boolean serializeType)
-            throws javax.xml.stream.XMLStreamException,
+                              javax.xml.stream.XMLStreamWriter xmlWriter, boolean serializeType)
+                throws javax.xml.stream.XMLStreamException,
                 org.apache.axis2.databinding.ADBException {
             String prefix = null;
             String namespace = null;
@@ -6470,7 +6470,7 @@ public class WeatherWebServiceStub extends org.apache.axis2.client.Stub {
             prefix = parentQName.getPrefix();
             namespace = parentQName.getNamespaceURI();
             writeStartElement(prefix, namespace, parentQName.getLocalPart(),
-                xmlWriter);
+                    xmlWriter);
 
             if (serializeType) {
                 String namespacePrefix = registerPrefix(xmlWriter,
@@ -6479,13 +6479,13 @@ public class WeatherWebServiceStub extends org.apache.axis2.client.Stub {
                 if ((namespacePrefix != null) &&
                         (namespacePrefix.trim().length() > 0)) {
                     writeAttribute("xsi",
-                        "http://www.w3.org/2001/XMLSchema-instance", "type",
-                        namespacePrefix + ":getSupportDataSetResult_type0",
-                        xmlWriter);
+                            "http://www.w3.org/2001/XMLSchema-instance", "type",
+                            namespacePrefix + ":getSupportDataSetResult_type0",
+                            xmlWriter);
                 } else {
                     writeAttribute("xsi",
-                        "http://www.w3.org/2001/XMLSchema-instance", "type",
-                        "getSupportDataSetResult_type0", xmlWriter);
+                            "http://www.w3.org/2001/XMLSchema-instance", "type",
+                            "getSupportDataSetResult_type0", xmlWriter);
                 }
             }
 
@@ -6493,21 +6493,21 @@ public class WeatherWebServiceStub extends org.apache.axis2.client.Stub {
                 localSchema.serialize(xmlWriter);
             } else {
                 throw new org.apache.axis2.databinding.ADBException(
-                    "schema cannot be null!!");
+                        "schema cannot be null!!");
             }
 
             if (localExtraElement != null) {
                 localExtraElement.serialize(xmlWriter);
             } else {
                 throw new org.apache.axis2.databinding.ADBException(
-                    "extraElement cannot be null!!");
+                        "extraElement cannot be null!!");
             }
 
             xmlWriter.writeEndElement();
         }
 
         private static String generatePrefix(
-            String namespace) {
+                String namespace) {
             if (namespace.equals("http://WebXml.com.cn/")) {
                 return "ns1";
             }
@@ -6519,9 +6519,9 @@ public class WeatherWebServiceStub extends org.apache.axis2.client.Stub {
          * Utility method to write an element start tag.
          */
         private void writeStartElement(String prefix,
-            String namespace, String localPart,
-            javax.xml.stream.XMLStreamWriter xmlWriter)
-            throws javax.xml.stream.XMLStreamException {
+                                       String namespace, String localPart,
+                                       javax.xml.stream.XMLStreamWriter xmlWriter)
+                throws javax.xml.stream.XMLStreamException {
             String writerPrefix = xmlWriter.getPrefix(namespace);
 
             if (writerPrefix != null) {
@@ -6543,15 +6543,15 @@ public class WeatherWebServiceStub extends org.apache.axis2.client.Stub {
          * Util method to write an attribute with the ns prefix
          */
         private void writeAttribute(String prefix,
-            String namespace, String attName,
-            String attValue,
-            javax.xml.stream.XMLStreamWriter xmlWriter)
-            throws javax.xml.stream.XMLStreamException {
+                                    String namespace, String attName,
+                                    String attValue,
+                                    javax.xml.stream.XMLStreamWriter xmlWriter)
+                throws javax.xml.stream.XMLStreamException {
             String writerPrefix = xmlWriter.getPrefix(namespace);
 
             if (writerPrefix != null) {
                 xmlWriter.writeAttribute(writerPrefix, namespace, attName,
-                    attValue);
+                        attValue);
             } else {
                 xmlWriter.writeNamespace(prefix, namespace);
                 xmlWriter.setPrefix(prefix, namespace);
@@ -6563,14 +6563,14 @@ public class WeatherWebServiceStub extends org.apache.axis2.client.Stub {
          * Util method to write an attribute without the ns prefix
          */
         private void writeAttribute(String namespace,
-            String attName, String attValue,
-            javax.xml.stream.XMLStreamWriter xmlWriter)
-            throws javax.xml.stream.XMLStreamException {
+                                    String attName, String attValue,
+                                    javax.xml.stream.XMLStreamWriter xmlWriter)
+                throws javax.xml.stream.XMLStreamException {
             if (namespace.equals("")) {
                 xmlWriter.writeAttribute(attName, attValue);
             } else {
                 xmlWriter.writeAttribute(registerPrefix(xmlWriter, namespace),
-                    namespace, attName, attValue);
+                        namespace, attName, attValue);
             }
         }
 
@@ -6578,9 +6578,9 @@ public class WeatherWebServiceStub extends org.apache.axis2.client.Stub {
          * Util method to write an attribute without the ns prefix
          */
         private void writeQNameAttribute(String namespace,
-            String attName, javax.xml.namespace.QName qname,
-            javax.xml.stream.XMLStreamWriter xmlWriter)
-            throws javax.xml.stream.XMLStreamException {
+                                         String attName, javax.xml.namespace.QName qname,
+                                         javax.xml.stream.XMLStreamWriter xmlWriter)
+                throws javax.xml.stream.XMLStreamException {
             String attributeNamespace = qname.getNamespaceURI();
             String attributePrefix = xmlWriter.getPrefix(attributeNamespace);
 
@@ -6601,7 +6601,7 @@ public class WeatherWebServiceStub extends org.apache.axis2.client.Stub {
             } else {
                 registerPrefix(xmlWriter, namespace);
                 xmlWriter.writeAttribute(attributePrefix, namespace, attName,
-                    attributeValue);
+                        attributeValue);
             }
         }
 
@@ -6609,8 +6609,8 @@ public class WeatherWebServiceStub extends org.apache.axis2.client.Stub {
          *  method to handle Qnames
          */
         private void writeQName(javax.xml.namespace.QName qname,
-            javax.xml.stream.XMLStreamWriter xmlWriter)
-            throws javax.xml.stream.XMLStreamException {
+                                javax.xml.stream.XMLStreamWriter xmlWriter)
+                throws javax.xml.stream.XMLStreamException {
             String namespaceURI = qname.getNamespaceURI();
 
             if (namespaceURI != null) {
@@ -6624,8 +6624,8 @@ public class WeatherWebServiceStub extends org.apache.axis2.client.Stub {
 
                 if (prefix.trim().length() > 0) {
                     xmlWriter.writeCharacters(prefix + ":" +
-                        org.apache.axis2.databinding.utils.ConverterUtil.convertToString(
-                            qname));
+                            org.apache.axis2.databinding.utils.ConverterUtil.convertToString(
+                                    qname));
                 } else {
                     // i.e this is the default namespace
                     xmlWriter.writeCharacters(org.apache.axis2.databinding.utils.ConverterUtil.convertToString(
@@ -6638,8 +6638,8 @@ public class WeatherWebServiceStub extends org.apache.axis2.client.Stub {
         }
 
         private void writeQNames(javax.xml.namespace.QName[] qnames,
-            javax.xml.stream.XMLStreamWriter xmlWriter)
-            throws javax.xml.stream.XMLStreamException {
+                                 javax.xml.stream.XMLStreamWriter xmlWriter)
+                throws javax.xml.stream.XMLStreamException {
             if (qnames != null) {
                 // we have to store this data until last moment since it is not possible to write any
                 // namespace data after writing the charactor data
@@ -6665,8 +6665,8 @@ public class WeatherWebServiceStub extends org.apache.axis2.client.Stub {
 
                         if (prefix.trim().length() > 0) {
                             stringToWrite.append(prefix).append(":")
-                                         .append(org.apache.axis2.databinding.utils.ConverterUtil.convertToString(
-                                    qnames[i]));
+                                    .append(org.apache.axis2.databinding.utils.ConverterUtil.convertToString(
+                                            qnames[i]));
                         } else {
                             stringToWrite.append(org.apache.axis2.databinding.utils.ConverterUtil.convertToString(
                                     qnames[i]));
@@ -6685,9 +6685,9 @@ public class WeatherWebServiceStub extends org.apache.axis2.client.Stub {
          * Register a namespace prefix
          */
         private String registerPrefix(
-            javax.xml.stream.XMLStreamWriter xmlWriter,
-            String namespace)
-            throws javax.xml.stream.XMLStreamException {
+                javax.xml.stream.XMLStreamWriter xmlWriter,
+                String namespace)
+                throws javax.xml.stream.XMLStreamException {
             String prefix = xmlWriter.getPrefix(namespace);
 
             if (prefix == null) {
@@ -6726,8 +6726,8 @@ public class WeatherWebServiceStub extends org.apache.axis2.client.Stub {
              *                If this object is a complex type, the reader is positioned at the end element of its outer element
              */
             public static GetSupportDataSetResult_type0 parse(
-                javax.xml.stream.XMLStreamReader reader)
-                throws Exception {
+                    javax.xml.stream.XMLStreamReader reader)
+                    throws Exception {
                 GetSupportDataSetResult_type0 object = new GetSupportDataSetResult_type0();
 
                 int event;
@@ -6743,8 +6743,8 @@ public class WeatherWebServiceStub extends org.apache.axis2.client.Stub {
                     currentQName = reader.getName();
 
                     if (reader.getAttributeValue(
-                                "http://www.w3.org/2001/XMLSchema-instance",
-                                "type") != null) {
+                            "http://www.w3.org/2001/XMLSchema-instance",
+                            "type") != null) {
                         String fullTypeName = reader.getAttributeValue("http://www.w3.org/2001/XMLSchema-instance",
                                 "type");
 
@@ -6759,15 +6759,15 @@ public class WeatherWebServiceStub extends org.apache.axis2.client.Stub {
                             nsPrefix = (nsPrefix == null) ? "" : nsPrefix;
 
                             String type = fullTypeName.substring(fullTypeName.indexOf(
-                                        ":") + 1);
+                                    ":") + 1);
 
                             if (!"getSupportDataSetResult_type0".equals(type)) {
                                 //find namespace for the prefix
                                 String nsUri = reader.getNamespaceContext()
-                                                               .getNamespaceURI(nsPrefix);
+                                        .getNamespaceURI(nsPrefix);
 
                                 return (GetSupportDataSetResult_type0) ExtensionMapper.getTypeObject(nsUri,
-                                    type, reader);
+                                        type, reader);
                             }
                         }
                     }
@@ -6788,8 +6788,8 @@ public class WeatherWebServiceStub extends org.apache.axis2.client.Stub {
                         // We need to wrap the reader so that it produces a fake START_DOCUMENT event
                         // this is needed by the builder classes
                         org.apache.axis2.databinding.utils.NamedStaxOMBuilder builder1 =
-                            new org.apache.axis2.databinding.utils.NamedStaxOMBuilder(new org.apache.axis2.util.StreamWrapper(
-                                    reader), startQname1);
+                                new org.apache.axis2.databinding.utils.NamedStaxOMBuilder(new org.apache.axis2.util.StreamWrapper(
+                                        reader), startQname1);
                         object.setSchema(builder1.getOMElement());
 
                         reader.next();
@@ -6798,7 +6798,7 @@ public class WeatherWebServiceStub extends org.apache.axis2.client.Stub {
                     else {
                         // 1 - A start element we are not expecting indicates an invalid parameter was passed
                         throw new org.apache.axis2.databinding.ADBException(
-                            "Unexpected subelement " + reader.getName());
+                                "Unexpected subelement " + reader.getName());
                     }
 
                     while (!reader.isStartElement() && !reader.isEndElement())
@@ -6811,8 +6811,8 @@ public class WeatherWebServiceStub extends org.apache.axis2.client.Stub {
                         // We need to wrap the reader so that it produces a fake START_DOCUMENT event
                         // this is needed by the builder classes
                         org.apache.axis2.databinding.utils.NamedStaxOMBuilder builder2 =
-                            new org.apache.axis2.databinding.utils.NamedStaxOMBuilder(new org.apache.axis2.util.StreamWrapper(
-                                    reader), startQname2);
+                                new org.apache.axis2.databinding.utils.NamedStaxOMBuilder(new org.apache.axis2.util.StreamWrapper(
+                                        reader), startQname2);
                         object.setExtraElement(builder2.getOMElement());
 
                         reader.next();
@@ -6821,7 +6821,7 @@ public class WeatherWebServiceStub extends org.apache.axis2.client.Stub {
                     else {
                         // 1 - A start element we are not expecting indicates an invalid parameter was passed
                         throw new org.apache.axis2.databinding.ADBException(
-                            "Unexpected subelement " + reader.getName());
+                                "Unexpected subelement " + reader.getName());
                     }
 
                     while (!reader.isStartElement() && !reader.isEndElement())
@@ -6830,7 +6830,7 @@ public class WeatherWebServiceStub extends org.apache.axis2.client.Stub {
                     if (reader.isStartElement()) {
                         // 2 - A start element we are not expecting indicates a trailing invalid property
                         throw new org.apache.axis2.databinding.ADBException(
-                            "Unexpected subelement " + reader.getName());
+                                "Unexpected subelement " + reader.getName());
                     }
                 } catch (javax.xml.stream.XMLStreamException e) {
                     throw new Exception(e);
