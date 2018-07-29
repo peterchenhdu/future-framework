@@ -42,20 +42,16 @@ public final class HttpBasedServiceCredentialsAuthenticationHandler implements A
 
     public boolean authenticate(final Credentials credentials) {
         final HttpBasedServiceCredentials serviceCredentials = (HttpBasedServiceCredentials) credentials;
-        if (this.requireSecure
-            && !serviceCredentials.getCallbackUrl().getProtocol().equals(
+        if (this.requireSecure&& !serviceCredentials.getCallbackUrl().getProtocol().equals(
                 PROTOCOL_HTTPS)) {
             if (log.isDebugEnabled()) {
                 log.debug("Authentication failed because url was not secure.");
             }
             return false;
         }
-        log
-            .debug("Attempting to resolve credentials for "
-                + serviceCredentials);
+        log.debug("Attempting to resolve credentials for {}", serviceCredentials);
 
-        return this.httpClient.isValidEndPoint(serviceCredentials
-            .getCallbackUrl());
+        return this.httpClient.isValidEndPoint(serviceCredentials.getCallbackUrl());
     }
 
     /**
