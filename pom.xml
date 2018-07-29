@@ -54,7 +54,7 @@
 
 
         <!-- cas -->
-        <inspektr.version>1.0.7.GA</inspektr.version>
+        <inspektr.version>1.1.GA</inspektr.version>
         <person.directory.version>1.5.1</person.directory.version>
         <perf4j.version>0.9.14</perf4j.version>
         <commons.io.version>2.0</commons.io.version>

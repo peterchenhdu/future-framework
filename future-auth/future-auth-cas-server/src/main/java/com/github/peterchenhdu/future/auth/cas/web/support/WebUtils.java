@@ -48,8 +48,7 @@ public final class WebUtils {
         final List<ArgumentExtractor> argumentExtractors,
         final HttpServletRequest request) {
         for (final ArgumentExtractor argumentExtractor : argumentExtractors) {
-            final WebApplicationService service = argumentExtractor
-                .extractService(request);
+            final WebApplicationService service = argumentExtractor.extractService(request);
 
             if (service != null) {
                 return service;
