@@ -192,17 +192,5 @@ public class CodecUtils {
     }
 
 
-    public static void main(String[] args) throws UnsupportedEncodingException, DecoderException {
-        //加密内容
-        String content = "123456787654321123456787654321123456787654321123456787654321";
-        // 加密
-        System.out.println("加密前：" + content);
-        // 调用加密方法
-        String encryptResultStr = encryption(content);
-        System.out.println("加密后：" + encryptResultStr);
-        // 调用解密方法
-        String result = decryption(encryptResultStr);
-        // 解密内容进行解码
-        System.out.println("解密后：" + result);
-    }
+
 }
