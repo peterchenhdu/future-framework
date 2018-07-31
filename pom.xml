@@ -15,7 +15,7 @@
         <module>future-component</module>
         <module>future-dao</module>
         <module>future-datasource</module>
-        <module>future-demo</module>
+        <module>future-example</module>
         <module>future-resources</module>
         <module>future-service</module>
         <module>future-tool</module>

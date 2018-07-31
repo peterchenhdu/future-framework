@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<root>
+    <widget label="label1"/>
+    <widget plugin-class="com.github.peterchenhdu.future.example.digester3.plugins.TextLabel" label="label2"/>
+    <widget plugin-class="com.github.peterchenhdu.future.example.digester3.plugins.Slider" label="slider1"/>
+</root>

@@ -75,7 +75,7 @@
         </where>
     </sql>
     <sql id="Base_Column_List">
-    id, class_name, create_time, cron_expression, description, job_group, job_name, last_update_time, 
+    id, class_name, create_time, cron_expression, description, job_group, job_name, last_update_time,
     trigger_group, trigger_name, pause
   </sql>
     <select id="selectByExample" parameterType="com.github.peterchenhdu.future.example.quartz.model.jobdemo.ScheduleJobExample"
@@ -101,9 +101,9 @@
         where id = #{id,jdbcType=BIGINT}
     </select>
     <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
-    delete from jobdemo.schedule_job
-    where id = #{id,jdbcType=BIGINT}
-  </delete>
+        delete from jobdemo.schedule_job
+        where id = #{id,jdbcType=BIGINT}
+    </delete>
     <delete id="deleteByExample" parameterType="com.github.peterchenhdu.future.example.quartz.model.jobdemo.ScheduleJobExample">
         delete from jobdemo.schedule_job
         <if test="_parameter != null">
@@ -111,15 +111,15 @@
         </if>
     </delete>
     <insert id="insert" parameterType="com.github.peterchenhdu.future.example.quartz.model.jobdemo.ScheduleJob">
-    insert into jobdemo.schedule_job (id, class_name, create_time, 
-      cron_expression, description, job_group, 
-      job_name, last_update_time, trigger_group, 
-      trigger_name, pause)
-    values (#{id,jdbcType=BIGINT}, #{className,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, 
-      #{cronExpression,jdbcType=VARCHAR}, #{description,jdbcType=VARCHAR}, #{jobGroup,jdbcType=VARCHAR}, 
-      #{jobName,jdbcType=VARCHAR}, #{lastUpdateTime,jdbcType=TIMESTAMP}, #{triggerGroup,jdbcType=VARCHAR}, 
-      #{triggerName,jdbcType=VARCHAR}, #{pause,jdbcType=BIT})
-  </insert>
+        insert into jobdemo.schedule_job (id, class_name, create_time,
+        cron_expression, description, job_group,
+        job_name, last_update_time, trigger_group,
+        trigger_name, pause)
+        values (#{id,jdbcType=BIGINT}, #{className,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP},
+        #{cronExpression,jdbcType=VARCHAR}, #{description,jdbcType=VARCHAR}, #{jobGroup,jdbcType=VARCHAR},
+        #{jobName,jdbcType=VARCHAR}, #{lastUpdateTime,jdbcType=TIMESTAMP}, #{triggerGroup,jdbcType=VARCHAR},
+        #{triggerName,jdbcType=VARCHAR}, #{pause,jdbcType=BIT})
+    </insert>
     <insert id="insertSelective" parameterType="com.github.peterchenhdu.future.example.quartz.model.jobdemo.ScheduleJob">
         insert into jobdemo.schedule_job
         <trim prefix="(" suffix=")" suffixOverrides=",">
@@ -296,17 +296,17 @@
         where id = #{id,jdbcType=BIGINT}
     </update>
     <update id="updateByPrimaryKey" parameterType="com.github.peterchenhdu.future.example.quartz.model.jobdemo.ScheduleJob">
-    update jobdemo.schedule_job
-    set class_name = #{className,jdbcType=VARCHAR},
-      create_time = #{createTime,jdbcType=TIMESTAMP},
-      cron_expression = #{cronExpression,jdbcType=VARCHAR},
-      description = #{description,jdbcType=VARCHAR},
-      job_group = #{jobGroup,jdbcType=VARCHAR},
-      job_name = #{jobName,jdbcType=VARCHAR},
-      last_update_time = #{lastUpdateTime,jdbcType=TIMESTAMP},
-      trigger_group = #{triggerGroup,jdbcType=VARCHAR},
-      trigger_name = #{triggerName,jdbcType=VARCHAR},
-      pause = #{pause,jdbcType=BIT}
-    where id = #{id,jdbcType=BIGINT}
-  </update>
+        update jobdemo.schedule_job
+        set class_name = #{className,jdbcType=VARCHAR},
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+        cron_expression = #{cronExpression,jdbcType=VARCHAR},
+        description = #{description,jdbcType=VARCHAR},
+        job_group = #{jobGroup,jdbcType=VARCHAR},
+        job_name = #{jobName,jdbcType=VARCHAR},
+        last_update_time = #{lastUpdateTime,jdbcType=TIMESTAMP},
+        trigger_group = #{triggerGroup,jdbcType=VARCHAR},
+        trigger_name = #{triggerName,jdbcType=VARCHAR},
+        pause = #{pause,jdbcType=BIT}
+        where id = #{id,jdbcType=BIGINT}
+    </update>
 </mapper>
