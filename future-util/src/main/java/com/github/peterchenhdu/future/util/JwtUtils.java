@@ -20,13 +20,13 @@ import java.util.Date;
  * @author chenpi
  * @since 2018/7/30 23:06
  */
-public class JWTUtils {
+public class JwtUtils {
 
-    private JWTUtils() {
+    private JwtUtils() {
         throw new IllegalStateException("Utility class");
     }
 
-    private static final Logger logger = LoggerFactory.getLogger(JWTUtils.class);
+    private static final Logger logger = LoggerFactory.getLogger(JwtUtils.class);
 
     private static final SignatureAlgorithm SIGNATURE_ALGORITHM;
     private static final Key SIGNING_KEY;
