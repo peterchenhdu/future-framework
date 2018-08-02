@@ -31,6 +31,10 @@
             <groupId>com.github.peterchenhdu</groupId>
             <artifactId>future-component-quartz</artifactId>
         </dependency>
+        <dependency>
+            <groupId>com.github.peterchenhdu</groupId>
+            <artifactId>future-config-webexception</artifactId>
+        </dependency>
 
         <dependency>
             <groupId>io.springfox</groupId>

@@ -37,7 +37,7 @@ public class QuartzRunner implements CommandLineRunner {
             scheduleJob.setTriggerName("testTrigger");
             scheduleJob.setTriggerGroup("testTriggerGroup");
             scheduleJob.setDescription("This is a test job");
-            scheduleJob.setClassName("com.github.peterchenhdu.future.demo.job.TestJob");
+            scheduleJob.setClassName("com.github.peterchenhdu.future.example.quartz.job.TestJob");
             //每5秒执行一次
             scheduleJob.setCronExpression("0/5 * * * * ?");
             try {

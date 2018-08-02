@@ -4,15 +4,16 @@
 
 package com.github.peterchenhdu.future.common.exception;
 
+import com.github.peterchenhdu.future.common.enums.ResponseEnum;
+
 /**
  * @author chenpi
  * @since 2018/08/01 23:01
  */
 public class FutureException extends RuntimeException {
 
-    private ErrorCodeEnum codeEnum;
+    private ResponseEnum codeEnum;
 
-    private String msg;
 
     public FutureException() {
         super();
@@ -20,27 +21,18 @@ public class FutureException extends RuntimeException {
 
     /**
      * @param codeEnum
-     * @param msg
      */
-    public FutureException(ErrorCodeEnum codeEnum, String msg) {
-        super(codeEnum.getCode() + ":" + msg);
+    public FutureException(ResponseEnum codeEnum) {
+        super(codeEnum.getDescription());
         this.codeEnum = codeEnum;
-        this.msg = msg;
     }
 
-    public ErrorCodeEnum getCodeEnum() {
+    public ResponseEnum getCodeEnum() {
         return codeEnum;
     }
 
-    public void setCodeEnum(ErrorCodeEnum codeEnum) {
+    public void setCodeEnum(ResponseEnum codeEnum) {
         this.codeEnum = codeEnum;
     }
 
-    public String getMsg() {
-        return msg;
-    }
-
-    public void setMsg(String msg) {
-        this.msg = msg;
-    }
 }

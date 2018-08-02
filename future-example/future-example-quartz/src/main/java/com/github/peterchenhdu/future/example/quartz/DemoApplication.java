@@ -13,7 +13,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  * @since 2018/7/28 15:42
  */
 @SpringBootApplication
-@MapperScan(basePackages = "com.github.peterchenhdu.future.demo.dao")
+@MapperScan(basePackages = "com.github.peterchenhdu.future.example.quartz.dao.jobdemo")
 public class DemoApplication {
 
     public static void main(String[] args) {

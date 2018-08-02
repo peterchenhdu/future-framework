@@ -13,6 +13,7 @@
         <module>future-client</module>
         <module>future-common</module>
         <module>future-component</module>
+        <module>future-config</module>
         <module>future-dao</module>
         <module>future-datasource</module>
         <module>future-example</module>
@@ -100,6 +101,11 @@
             <dependency>
                 <groupId>com.github.peterchenhdu</groupId>
                 <artifactId>framework-dao</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.github.peterchenhdu</groupId>
+                <artifactId>future-config-webexception</artifactId>
                 <version>${project.version}</version>
             </dependency>
             <dependency>

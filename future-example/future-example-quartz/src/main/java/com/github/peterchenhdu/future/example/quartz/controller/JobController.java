@@ -4,6 +4,8 @@
 
 package com.github.peterchenhdu.future.example.quartz.controller;
 
+import com.github.peterchenhdu.future.common.dto.ApiResponse;
+import com.github.peterchenhdu.future.common.enums.ResponseEnum;
 import com.github.peterchenhdu.future.example.quartz.dto.ResultEntity;
 import com.github.peterchenhdu.future.example.quartz.exception.ServiceException;
 import com.github.peterchenhdu.future.example.quartz.model.jobdemo.ScheduleJob;
@@ -33,8 +35,8 @@ public class JobController {
 
     @ApiOperation(value = "获取所有任务", tags = {"获取所有任务"}, notes = "注意问题点")
     @GetMapping
-    public List<ScheduleJob> getAllJob() {
-        return jobService.getAllJob();
+    public ApiResponse<List<ScheduleJob>> getAllJob() {
+        return new ApiResponse<>(ResponseEnum.SUCCESS, jobService.getAllJob());
     }
 
     @GetMapping("/{id}")

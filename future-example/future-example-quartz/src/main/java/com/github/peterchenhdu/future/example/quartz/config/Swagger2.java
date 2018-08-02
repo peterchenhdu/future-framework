@@ -30,7 +30,7 @@ public class Swagger2 {
                 //控制暴露出去的路径下的实例
                 //如果某个接口不想暴露,可以使用以下注解
                 //@ApiIgnore 这样,该接口就不会暴露在 swagger2 的页面下
-                .apis(RequestHandlerSelectors.basePackage("com.github.peterchenhdu.future.demo"))
+                .apis(RequestHandlerSelectors.basePackage("com.github.peterchenhdu.future.example.quartz"))
                 .paths(PathSelectors.any())
                 .build();
     }
