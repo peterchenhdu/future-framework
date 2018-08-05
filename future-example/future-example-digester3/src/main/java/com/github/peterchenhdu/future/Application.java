@@ -2,7 +2,7 @@
  * Copyright (c) 2011-2025 PiChen
  */
 
-package com.github.peterchenhdu.future.example.digester3;
+package com.github.peterchenhdu.future;
 
 /**
  * App
@@ -10,7 +10,7 @@ package com.github.peterchenhdu.future.example.digester3;
  * @author chenpi
  * @version 2017年5月29日
  */
-public class App {
+public class Application {
     public static void main(String[] args) {
         System.out.println("Hello World!");
     }

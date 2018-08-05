@@ -8,7 +8,7 @@ package apache.commons.test;
 
 import static org.junit.Assert.*;
 
-import com.github.peterchenhdu.future.example.digester3.App;
+import com.github.peterchenhdu.future.Application;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -56,7 +56,7 @@ public class AppTest {
 
     /**
      * Test method for
-     * {@link App#add(int, int)}.
+     * {@link Application#add(int, int)}.
      */
     @Test
     public void testAdd() {
@@ -65,7 +65,7 @@ public class AppTest {
 
     /**
      * Test method for
-     * {@link App#sub(int, int)}.
+     * {@link Application#sub(int, int)}.
      */
     @Test
     public void testSub() {

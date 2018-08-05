@@ -14,5 +14,6 @@
 
     <modules>
         <module>future-config-webexception</module>
+        <module>future-config-webswagger</module>
     </modules>
 </project>

@@ -11,7 +11,7 @@ Target Server Type    : PGSQL
 Target Server Version : 90609
 File Encoding         : 65001
 
-Date: 2018-07-28 16:44:07
+Date: 2018-08-05 23:04:55
 */
 
 
@@ -35,6 +35,18 @@ CREATE TABLE "jobdemo"."schedule_job" (
 WITH (OIDS=FALSE)
 
 ;
+COMMENT ON TABLE "jobdemo"."schedule_job" IS '计划任务表';
+COMMENT ON COLUMN "jobdemo"."schedule_job"."id" IS '主键ID';
+COMMENT ON COLUMN "jobdemo"."schedule_job"."class_name" IS '类名';
+COMMENT ON COLUMN "jobdemo"."schedule_job"."create_time" IS '创建时间';
+COMMENT ON COLUMN "jobdemo"."schedule_job"."cron_expression" IS '任务表达式';
+COMMENT ON COLUMN "jobdemo"."schedule_job"."description" IS '描述信息';
+COMMENT ON COLUMN "jobdemo"."schedule_job"."job_group" IS 'Job组';
+COMMENT ON COLUMN "jobdemo"."schedule_job"."job_name" IS 'Job名称';
+COMMENT ON COLUMN "jobdemo"."schedule_job"."last_update_time" IS '最后更新时间';
+COMMENT ON COLUMN "jobdemo"."schedule_job"."trigger_group" IS 'trigger组';
+COMMENT ON COLUMN "jobdemo"."schedule_job"."trigger_name" IS 'trigger名称';
+COMMENT ON COLUMN "jobdemo"."schedule_job"."pause" IS '暂停标志';
 
 -- ----------------------------
 -- Alter Sequences Owned By 

@@ -2,7 +2,7 @@
  * Copyright (c) 2011-2025 PiChen
  */
 
-package com.github.peterchenhdu.future.example.quartz.config;
+package com.github.peterchenhdu.future.config.webswagger;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

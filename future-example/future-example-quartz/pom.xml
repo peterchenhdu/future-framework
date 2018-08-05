@@ -35,15 +35,11 @@
             <groupId>com.github.peterchenhdu</groupId>
             <artifactId>future-config-webexception</artifactId>
         </dependency>
+        <dependency>
+            <groupId>com.github.peterchenhdu</groupId>
+            <artifactId>future-config-webswagger</artifactId>
+        </dependency>
 
-        <dependency>
-            <groupId>io.springfox</groupId>
-            <artifactId>springfox-swagger2</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>io.springfox</groupId>
-            <artifactId>springfox-swagger-ui</artifactId>
-        </dependency>
 
         <dependency>
             <groupId>com.google.guava</groupId>
