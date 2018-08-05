@@ -14,24 +14,39 @@ import org.mybatis.generator.internal.util.StringUtility;
 import tk.mybatis.mapper.generator.MapperCommentGenerator;
 
 import java.text.MessageFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.Properties;
 import java.util.Set;
 
+/**
+ * FutureMapperCommentGenerator
+ * @author chenpi
+ * @since 2018/8/3 22:57
+ */
 public class FutureMapperCommentGenerator extends MapperCommentGenerator {
     //开始的分隔符，例如mysql为`，sqlserver为[
     private String beginningDelimiter = "";
     //结束的分隔符，例如mysql为`，sqlserver为]
-    private String endingDelimiter    = "";
+    private String endingDelimiter = "";
     //强制生成注解
     private boolean forceAnnotation;
 
+    private Properties systemProperties;
+    private String currentDateStr;
+
     public FutureMapperCommentGenerator() {
         super();
+        systemProperties = System.getProperties();
+        currentDateStr = (new SimpleDateFormat("yyyy-MM-dd HH:mm:ss")).format(new Date());
     }
 
     @Override
     public void addJavaFileComment(CompilationUnit compilationUnit) {
-        return;
+        compilationUnit.addFileCommentLine("/*");
+        compilationUnit.addFileCommentLine(" * Copyright (c) 2011-2025 " + systemProperties.getProperty("user.name"));
+        compilationUnit.addFileCommentLine(" */");
+        compilationUnit.addFileCommentLine("");
     }
 
     /**
@@ -176,6 +191,11 @@ public class FutureMapperCommentGenerator extends MapperCommentGenerator {
 
     @Override
     public void addModelClassComment(TopLevelClass topLevelClass, IntrospectedTable introspectedTable) {
+        topLevelClass.addJavaDocLine("/**");
+        topLevelClass.addJavaDocLine(" * " + introspectedTable.getRemarks() + " - 实体类");
+        topLevelClass.addJavaDocLine(" * @author " + systemProperties.getProperty("user.name"));
+        topLevelClass.addJavaDocLine(" * @since " + currentDateStr);
+        topLevelClass.addJavaDocLine(" */");
     }
 
     /**

@@ -20,15 +20,17 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
+ * Application
+ *
  * @author chenpi
  * @since 2018/8/3 22:57
  */
-public class App {
+public class Application {
     public static void main(String[] args) throws IOException, XMLParserException, InvalidConfigurationException, SQLException, InterruptedException {
         List<String> warnings = new ArrayList<>();
         //如果这里出现空指针，直接写绝对路径即可。
         String genCfg = "/generatorConfig.xml";
-        File configFile = new File(App.class.getResource(genCfg).getFile());
+        File configFile = new File(Application.class.getResource(genCfg).getFile());
         ConfigurationParser cp = new ConfigurationParser(warnings);
         Configuration config = null;
         try {
