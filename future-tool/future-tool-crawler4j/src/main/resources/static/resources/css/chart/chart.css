@@ -1,0 +1,9 @@
+/*
+ * Copyright (c) 2011-2025 PiChen
+ */
+
+@CHARSET "UTF-8";
+.chart {
+    width: 600px;
+    height: 400px;
+}

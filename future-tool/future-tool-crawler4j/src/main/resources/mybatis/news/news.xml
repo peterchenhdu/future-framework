@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  ~ Copyright (c) 2011-2025 PiChen
+  -->
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.edu.hdu.infosys.dao.INewsDao">
+
+    <sql id="newsColumns">
+        url,
+        title,
+        content_text,
+        content_html,
+        src_url,
+        src_name,
+        publish_time,
+        crawler_src,
+        last_update_time,
+        create_time
+    </sql>
+
+
+    <insert id="saveNewsCont" parameterType="java.util.Map"
+            useGeneratedKeys="true" flushCache="false">
+        insert into ${tableName} (
+        url,
+        title,
+        content_html,
+        publish_time
+        ) values (
+        #{url},
+        #{title},
+        #{contentHtml},
+        str_to_date(#{publishTime}, '%Y-%m-%d %H:%i:%s')
+        )
+    </insert>
+
+    <insert id="saveNewsSum" parameterType="java.util.Map"
+            useGeneratedKeys="true" flushCache="false">
+        insert into ${tableName} (
+        url,
+        title,
+        src_url,
+        src_name,
+        publish_time,
+        crawler_src,
+        last_update_time,
+        create_time
+        ) values (
+        #{url},
+        #{title},
+        #{srcUrl},
+        #{srcName},
+        str_to_date(#{publishTime}, '%Y-%m-%d %H:%i:%s'),
+        #{crawlerSrc},
+        SYSDATE(),
+        SYSDATE()
+        )
+    </insert>
+
+    <select id="findByNews" parameterType="java.util.Map"
+            resultType="cn.edu.hdu.infosys.model.News">
+        SELECT
+        url,
+        title,
+        content_html as contentHtml,
+        DATE_FORMAT(publish_time, '%Y-%m-%d %H:%i:%s') as publishTime
+        FROM
+        ${tableName}
+        WHERE
+        url=#{url}
+    </select>
+
+    <select id="getCount" parameterType="java.util.Map"
+            resultType="long">
+        SELECT
+        count(*)
+        FROM
+        ${tableName}
+        WHERE 1=1
+
+    </select>
+
+
+    <update id="createNewTableCont" parameterType="String">
+        CREATE TABLE if not EXISTS ${tableName} (
+        `url` varchar(250) NOT NULL COMMENT '新闻url连接',
+        `title` varchar(200) NOT NULL COMMENT '新闻标题',
+        `content_html` longtext COMMENT '新闻内容html格式',
+        `publish_time` datetime DEFAULT NULL COMMENT '新闻发布时间',
+        PRIMARY KEY (`url`),
+        UNIQUE KEY `url_index` (`url`)
+        ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+    </update>
+
+    <update id="createNewTableSum" parameterType="String">
+        CREATE TABLE if not EXISTS ${tableName} (
+        `url` varchar(250) NOT NULL COMMENT '新闻url连接',
+        `title` varchar(200) NOT NULL COMMENT '新闻标题',
+        `src_url` varchar(600) DEFAULT NULL COMMENT '新闻来源链接',
+        `src_name` varchar(200) DEFAULT NULL COMMENT '新闻来源',
+        `publish_time` datetime DEFAULT NULL COMMENT '新闻发布时间',
+        `crawler_src` varchar(200) DEFAULT NULL COMMENT '爬取的网站',
+        `last_update_time` timestamp NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP,
+        `create_time` timestamp NULL DEFAULT '0000-00-00 00:00:00',
+        PRIMARY KEY (`url`),
+        UNIQUE KEY `url_index` (`url`)
+        ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+    </update>
+
+    <select id="findByTime" resultType="cn.edu.hdu.infosys.model.News">
+        SELECT
+        url,
+        title,
+        src_url as srcUrl,
+        src_name as srcName,
+        crawler_src as crawlerSrc,
+        DATE_FORMAT(publish_time, '%Y-%m-%d %H:%i:%s') as publishTime
+        FROM
+        ${tableName}
+        WHERE
+        publish_time<![CDATA[ >=]]>str_to_date(#{from}, '%Y-%m-%d %H:%i:%s')
+        AND
+        publish_time<![CDATA[ <=]]>str_to_date(#{to}, '%Y-%m-%d %H:%i:%s')
+        order by publish_time desc
+        <if test="offset != null and limit!=null">
+            limit #{offset}, #{limit}
+        </if>
+
+    </select>
+
+</mapper>

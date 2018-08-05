@@ -1,0 +1,45 @@
+/*
+ * Copyright (c) 2011-2025 PiChen
+ */
+
+body {
+    background-color: #eee;
+}
+
+.main-div .main-top {
+    height: 50px;
+    text-align: center;
+    line-height: 50px;
+    font-size: 24px;
+    font-weight: 700;
+}
+
+.main-div .content-div {
+
+}
+
+.main-div .record-num-span {
+    float: left;
+    font-size: 12px;
+    color: blue;
+}
+
+.news-stat {
+    background-color: #FFF;
+    padding: 10px;
+    margin-top: 20px;
+}
+
+.ant-menu-item span {
+    font-size: 16px;
+    font-family: Microsoft YaHei;
+}
+
+.ant-menu-horizontal {
+    text-align: center;
+}
+
+.ant-menu-horizontal > .ant-menu-item {
+    float: none;
+    display: inline-block;
+}

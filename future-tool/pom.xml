@@ -14,5 +14,6 @@
 
     <modules>
         <module>future-tool-mg</module>
+        <module>future-tool-crawler4j</module>
     </modules>
 </project>

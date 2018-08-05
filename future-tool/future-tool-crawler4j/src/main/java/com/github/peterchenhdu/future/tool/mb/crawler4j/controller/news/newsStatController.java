@@ -1,0 +1,62 @@
+
+/*
+ * Copyright (c) 2011-2025 PiChen
+ */
+
+package com.github.peterchenhdu.future.tool.mb.crawler4j.controller.news;
+
+import com.github.peterchenhdu.future.tool.mb.crawler4j.service.news.INewsService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
+
+import java.util.HashMap;
+import java.util.Map;
+
+
+/**
+ * @author Pi Chen
+ * @version infosys V1.0.0, 2016年12月13日
+ * @see
+ * @since infosys V1.0.0
+ */
+@RestController
+@RequestMapping(value = "/news")
+public class newsStatController {
+
+    @Autowired
+    private INewsService newsService;
+
+    /**
+     * 当前系统新闻每年总记录数
+     *
+     * @return
+     */
+    @RequestMapping(value = "/yearcount", method = RequestMethod.GET, produces = "application/json; charset=utf-8")
+    public ResponseEntity<Map<String, Object>> getYearCount(
+            @RequestParam(value = "from", defaultValue = "2000") int from,
+            @RequestParam(value = "to", defaultValue = "2016") int to) {
+        Map<String, Object> data = new HashMap<String, Object>();
+
+        for (int i = from; i <= to; i++) {
+            data.put(i + "", newsService.getYearCount(i));
+        }
+        return new ResponseEntity<Map<String, Object>>(data, HttpStatus.OK);
+    }
+
+    @RequestMapping(value = "/monthdata", method = RequestMethod.GET, produces = "application/json; charset=utf-8")
+    public ResponseEntity<Map<String, Object>> getByMonth(
+            @RequestParam(value = "month", defaultValue = "2000-01") String month,
+            @RequestParam(value = "offset", defaultValue = "0") long offset,
+            @RequestParam(value = "limit", defaultValue = "10") long limit) {
+        Map<String, Object> data = new HashMap<String, Object>();
+
+        data.put("rstData", newsService.findByMonth(month, offset, limit));
+        data.put("totalNum", newsService.getCount(month));
+        return new ResponseEntity<Map<String, Object>>(data, HttpStatus.OK);
+    }
+}
