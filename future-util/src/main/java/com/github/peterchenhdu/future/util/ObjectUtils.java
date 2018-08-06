@@ -12,8 +12,8 @@ import java.util.Map;
  * @author chenpi
  * @since 2018/7/30 23:06
  */
-public class FutureObjectUtils {
-    private FutureObjectUtils() {
+public class ObjectUtils {
+    private ObjectUtils() {
         throw new IllegalStateException("Utility class");
     }
 

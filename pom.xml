@@ -96,6 +96,11 @@
             <!-- future 模块 -->
             <dependency>
                 <groupId>com.github.peterchenhdu</groupId>
+                <artifactId>future-util</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.github.peterchenhdu</groupId>
                 <artifactId>future-common</artifactId>
                 <version>${project.version}</version>
             </dependency>

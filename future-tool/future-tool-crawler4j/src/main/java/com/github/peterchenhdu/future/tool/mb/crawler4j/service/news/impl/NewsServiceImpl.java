@@ -4,19 +4,17 @@
 
 package com.github.peterchenhdu.future.tool.mb.crawler4j.service.news.impl;
 
+import com.github.peterchenhdu.future.common.enums.CalendarFieldEnum;
 import com.github.peterchenhdu.future.tool.mb.crawler4j.common.base.BaseService;
 import com.github.peterchenhdu.future.tool.mb.crawler4j.dao.INewsDao;
 import com.github.peterchenhdu.future.tool.mb.crawler4j.model.News;
 import com.github.peterchenhdu.future.tool.mb.crawler4j.service.news.INewsService;
-import com.github.peterchenhdu.future.tool.mb.crawler4j.util.TimeUtil;
+import com.github.peterchenhdu.future.util.DateTimeUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.BadSqlGrammarException;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 
 @Service("newsService")
@@ -91,8 +89,8 @@ public class NewsServiceImpl extends BaseService implements INewsService {
     public List<News> findByMonth(String month, long offset, long limit) {
         String tableName = this.getSumTableNameByTime(month);
         String from = month + "-01 00:00:00";
-        String to = TimeUtil.getDate(from, 0, 1, 0, 0);
-        List<News> rst = new ArrayList<News>();
+        String to = DateTimeUtils.add(from, CalendarFieldEnum.MONTH, 1);
+        List<News> rst = new ArrayList<>();
 
         try {
             rst = newsDao.findByTime(tableName, from, to, offset, limit);

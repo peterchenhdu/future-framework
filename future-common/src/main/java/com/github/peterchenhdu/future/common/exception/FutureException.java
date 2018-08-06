@@ -14,6 +14,7 @@ public class FutureException extends RuntimeException {
 
     private ResponseEnum codeEnum;
 
+    private String detail;
 
     public FutureException() {
         super();
@@ -27,6 +28,12 @@ public class FutureException extends RuntimeException {
         this.codeEnum = codeEnum;
     }
 
+    public FutureException(ResponseEnum codeEnum, String detail) {
+        super(codeEnum.getDescription());
+        this.codeEnum = codeEnum;
+        this.detail = codeEnum.getDescription() + ": " + detail;
+    }
+
     public ResponseEnum getCodeEnum() {
         return codeEnum;
     }
@@ -35,4 +42,11 @@ public class FutureException extends RuntimeException {
         this.codeEnum = codeEnum;
     }
 
+    public String getDetail() {
+        return detail;
+    }
+
+    public void setDetail(String detail) {
+        this.detail = detail;
+    }
 }
