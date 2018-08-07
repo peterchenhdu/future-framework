@@ -7,7 +7,7 @@ package com.github.peterchenhdu.future.tool.mb.crawler4j.service.datacollection.
 import com.github.peterchenhdu.future.tool.mb.crawler4j.model.News;
 import com.github.peterchenhdu.future.tool.mb.crawler4j.service.news.INewsService;
 import com.github.peterchenhdu.future.tool.mb.crawler4j.service.news.impl.NewsServiceImpl;
-import com.github.peterchenhdu.future.tool.mb.crawler4j.util.BeanUtil;
+import com.github.peterchenhdu.future.util.SpringContextUtils;
 import edu.uci.ics.crawler4j.crawler.CrawlConfig;
 import edu.uci.ics.crawler4j.crawler.CrawlController;
 import edu.uci.ics.crawler4j.crawler.Page;
@@ -53,7 +53,7 @@ public class News163CrawlerService extends WebCrawler {
 //        "http://news.163.com/special/"
     };
 
-    private INewsService newsService = BeanUtil.getBean("newsService", NewsServiceImpl.class);
+    private INewsService newsService = SpringContextUtils.getBean("newsService", NewsServiceImpl.class);
     ;
 
     private static final Pattern IMAGE_EXTENSIONS = Pattern.compile(".*\\.(bmp|gif|jpg|png)$");

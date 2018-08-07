@@ -17,8 +17,8 @@ import com.github.peterchenhdu.future.tool.mb.crawler4j.common.log.Logger;
 import com.github.peterchenhdu.future.tool.mb.crawler4j.model.User;
 import com.github.peterchenhdu.future.tool.mb.crawler4j.service.user.IUserService;
 import com.github.peterchenhdu.future.tool.mb.crawler4j.service.user.impl.UserServiceImpl;
-import com.github.peterchenhdu.future.tool.mb.crawler4j.util.BeanUtil;
 import com.github.peterchenhdu.future.tool.mb.crawler4j.util.ProjectConfigUtil;
+import com.github.peterchenhdu.future.util.SpringContextUtils;
 import org.quartz.JobExecutionContext;
 import org.quartz.JobExecutionException;
 import org.springframework.scheduling.quartz.QuartzJobBean;
@@ -53,7 +53,7 @@ public class AddUserJob extends QuartzJobBean {
         try {
             Properties properties = ProjectConfigUtil.getConfig();
             if (BFConstant.TRUE.equals(properties.get("saveUserJob"))) {
-                IUserService userService = BeanUtil.getBean("userService", UserServiceImpl.class);
+                IUserService userService = SpringContextUtils.getBean("userService", UserServiceImpl.class);
                 logger.info("start calling saveUser.");
                 User user = new User();
                 user.setAddress(new Random().nextInt(10000) + "");
