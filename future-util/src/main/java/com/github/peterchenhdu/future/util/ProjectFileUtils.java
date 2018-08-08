@@ -2,7 +2,7 @@
  * Copyright (c) 2011-2025 PiChen
  */
 
-package com.github.peterchenhdu.future.tool.mb.crawler4j.util;
+package com.github.peterchenhdu.future.util;
 
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -18,16 +18,15 @@ import java.util.Properties;
  * @since infosys V1.0.0
  */
 
-public class ProjectConfigUtil {
-    public static final String CONFIG_FILE_RELATIVE_PATH = "./config.properties";
+public class ProjectFileUtils {
 
     /**
      * 获取配置信息
      *
      * @return
      */
-    public static Properties getConfig() {
-        Properties p = getProperties(CONFIG_FILE_RELATIVE_PATH);
+    public static Properties getConfig(String filePath) {
+        Properties p = getProperties(filePath);
         return p;
     }
 
@@ -37,7 +36,7 @@ public class ProjectConfigUtil {
      * @return
      */
     public static String getProjectClassesPath() {
-        URL fileUrl = ProjectConfigUtil.class.getClassLoader().getResource("");
+        URL fileUrl = ProjectFileUtils.class.getClassLoader().getResource("");
         String path = fileUrl.getPath();
         return path;
     }

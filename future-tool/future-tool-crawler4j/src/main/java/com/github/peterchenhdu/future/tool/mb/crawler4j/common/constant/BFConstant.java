@@ -23,4 +23,7 @@ public class BFConstant {
 
     public static final String TRUE = "true";
     public static final String FALSE = "false";
+
+    public static final String CONFIG_FILE_RELATIVE_PATH = "./config.properties";
+
 }
