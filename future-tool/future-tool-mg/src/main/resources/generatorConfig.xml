@@ -28,7 +28,7 @@
         </javaTypeResolver>
 
         <!--生成Model类存放位置-->
-        <javaModelGenerator targetPackage="com.github.peterchenhdu.future.demo.model"
+        <javaModelGenerator targetPackage="com.github.peterchenhdu.future.tool.mb.crawler4j.model"
                             targetProject="src/main/java">
             <property name="enableSubPackages" value="false"/><!--如果true,MBG会根据catalog和schema来生成子包-->
             <property name="trimStrings" value="true"/>
@@ -42,13 +42,13 @@
 
         <!--生成Dao类存放位置-->
         <javaClientGenerator type="XMLMAPPER"
-                             targetPackage="com.github.peterchenhdu.future.demo.dao"
+                             targetPackage="com.github.peterchenhdu.future.tool.mb.crawler4j.dao"
                              targetProject="src/main/java">
             <property name="enableSubPackages" value="false"/>
         </javaClientGenerator>
 
         <!--生成对应表及类名-->
-        <table tableName="schedule_job" schema="jobdemo" domainObjectName="ScheduleJob"
+        <table tableName="news" schema="crawler4j" domainObjectName="News"
                enableCountByExample="false"
                enableUpdateByExample="false"
                enableDeleteByExample="false"

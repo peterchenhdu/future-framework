@@ -4,9 +4,8 @@
 
 package com.github.peterchenhdu.future.tool.mb.crawler4j.service.news;
 
-import com.github.peterchenhdu.future.tool.mb.crawler4j.model.News;
 
-import java.util.List;
+import com.github.peterchenhdu.future.tool.mb.crawler4j.crawler4j.model.News;
 
 
 /**
@@ -17,13 +16,6 @@ import java.util.List;
  */
 public interface INewsService {
 
-    public News saveNews(News news);
+     int saveNews(News news);
 
-    public List<News> findByNews(News news);
-
-    public List<News> findByMonth(String month, long offset, long limit);
-
-    public long getYearCount(int year);
-
-    public long getCount(String month);
 }

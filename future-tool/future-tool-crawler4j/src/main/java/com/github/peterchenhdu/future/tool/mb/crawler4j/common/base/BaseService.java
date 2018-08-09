@@ -4,7 +4,8 @@
 package com.github.peterchenhdu.future.tool.mb.crawler4j.common.base;
 
 
-import com.github.peterchenhdu.future.tool.mb.crawler4j.common.log.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * @author Pi Chen
@@ -14,5 +15,5 @@ import com.github.peterchenhdu.future.tool.mb.crawler4j.common.log.Logger;
  */
 
 public class BaseService {
-    protected Logger logger = Logger.getLogger(this.getClass());
+    protected Logger logger = LoggerFactory.getLogger(this.getClass());
 }
