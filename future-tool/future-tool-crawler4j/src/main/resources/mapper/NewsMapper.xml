@@ -4,8 +4,8 @@
   -->
 
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.github.peterchenhdu.future.tool.mb.crawler4j.crawler4j.dao.NewsMapper">
-  <resultMap id="BaseResultMap" type="com.github.peterchenhdu.future.tool.mb.crawler4j.crawler4j.model.News">
+<mapper namespace="com.github.peterchenhdu.future.tool.crawler4j.dao.NewsMapper">
+  <resultMap id="BaseResultMap" type="com.github.peterchenhdu.future.tool.crawler4j.model.News">
     <!--
       WARNING - @mbg.generated
     -->
