@@ -15,20 +15,21 @@ import javax.servlet.http.HttpServletResponse;
  * Extends CookieGenerator to allow you to retrieve a value from a request.
  * <p>
  * Also has support for RememberMe Services
- *  
+ *
  * @author Scott Battaglia
  * @version $Revision: 1.1 $ $Date: 2005/08/19 18:27:17 $
  * @since 3.1
- *
  */
 public class CookieRetrievingCookieGenerator extends CookieGenerator {
-    
-    /** The maximum age the cookie should be remembered for.
-     * The default is three months (7889231 in seconds, according to Google) */
+
+    /**
+     * The maximum age the cookie should be remembered for.
+     * The default is three months (7889231 in seconds, according to Google)
+     */
     private int rememberMeMaxAge = 7889231;
-    
+
     public void addCookie(final HttpServletRequest request, final HttpServletResponse response, final String cookieValue) {
-        
+
         if (!StringUtils.hasText(request.getParameter(RememberMeCredentials.REQUEST_PARAMETER_REMEMBER_ME))) {
             super.addCookie(response, cookieValue);
         } else {
@@ -43,11 +44,11 @@ public class CookieRetrievingCookieGenerator extends CookieGenerator {
 
     public String retrieveCookieValue(final HttpServletRequest request) {
         final Cookie cookie = org.springframework.web.util.WebUtils.getCookie(
-            request, getCookieName());
+                request, getCookieName());
 
         return cookie == null ? null : cookie.getValue();
     }
-    
+
     public void setRememberMeMaxAge(final int maxAge) {
         this.rememberMeMaxAge = maxAge;
     }

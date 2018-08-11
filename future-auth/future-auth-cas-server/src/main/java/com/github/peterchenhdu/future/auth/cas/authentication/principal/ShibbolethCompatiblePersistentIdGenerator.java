@@ -11,16 +11,16 @@ import java.security.NoSuchAlgorithmException;
 
 /**
  * Generates PersistentIds based on the Shibboleth algorithm.
- * 
+ *
  * @author Scott Battaglia
  * @version $Revision: 1.1 $ $Date: 2007/04/20 19:39:31 $
  * @since 3.1
  */
 public final class ShibbolethCompatiblePersistentIdGenerator implements
-    PersistentIdGenerator {
+        PersistentIdGenerator {
 
     private static final byte CONST_SEPARATOR = (byte) '!';
-    
+
     @NotNull
     private byte[] salt;
 
@@ -33,7 +33,7 @@ public final class ShibbolethCompatiblePersistentIdGenerator implements
             md.update(CONST_SEPARATOR);
 
             return Base64.encodeBase64String(md.digest(this.salt)).replaceAll(
-                System.getProperty("line.separator"), "");
+                    System.getProperty("line.separator"), "");
         } catch (final NoSuchAlgorithmException e) {
             throw new RuntimeException(e);
         }

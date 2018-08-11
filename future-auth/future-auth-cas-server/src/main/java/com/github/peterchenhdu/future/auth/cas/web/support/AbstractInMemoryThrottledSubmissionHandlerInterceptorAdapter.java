@@ -16,8 +16,7 @@ import java.util.concurrent.ConcurrentMap;
  * <p>
  * Note, this class relies on an external method for decrementing the counts (i.e. a Quartz Job) and runs independent of the
  * threshold of the parent.
-
- * 
+ *
  * @author Scott Battaglia
  * @version $Revision$ $Date$
  * @since 3.0.5
@@ -51,7 +50,7 @@ public abstract class AbstractInMemoryThrottledSubmissionHandlerInterceptorAdapt
 
         final Date now = new Date();
         String key;
-        for (final Iterator<String> iter = keys.iterator(); iter.hasNext();) { 
+        for (final Iterator<String> iter = keys.iterator(); iter.hasNext(); ) {
             key = iter.next();
             if (submissionRate(now, this.ipMap.get(key)) < getThresholdRate()) {
                 log.trace("Removing entry for key {}", key);
@@ -66,8 +65,7 @@ public abstract class AbstractInMemoryThrottledSubmissionHandlerInterceptorAdapt
      *
      * @param a First date.
      * @param b Second date.
-     *
-     * @return  Instantaneous submission rate in submissions/sec, e.g. <code>a - b</code>.
+     * @return Instantaneous submission rate in submissions/sec, e.g. <code>a - b</code>.
      */
     private double submissionRate(final Date a, final Date b) {
         return 1000.0 / (a.getTime() - b.getTime());

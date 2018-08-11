@@ -8,13 +8,13 @@ package com.github.peterchenhdu.future.auth.cas.authentication.handler;
  * the credentials are not valid specificially because they are bad. Subclasses
  * can be specific to a certain type of Credentials
  * (BadUsernamePassowrdCredentials).
- * 
+ *
  * @author Scott Battaglia
  * @version $Revision$ $Date$
  * @since 3.0
  */
 public class BadCredentialsAuthenticationException extends
-    AuthenticationException {
+        AuthenticationException {
 
     /**
      * Static instance of class to prevent cost incurred by creating new
@@ -22,7 +22,9 @@ public class BadCredentialsAuthenticationException extends
      */
     public static final BadCredentialsAuthenticationException ERROR = new BadCredentialsAuthenticationException();
 
-    /** UID for serializable objects. */
+    /**
+     * UID for serializable objects.
+     */
     private static final long serialVersionUID = 3256719585087797044L;
 
     /**
@@ -42,7 +44,7 @@ public class BadCredentialsAuthenticationException extends
     /**
      * Constructor to allow for the chaining of exceptions. Constructor defaults
      * to default code.
-     * 
+     *
      * @param throwable the chainable exception.
      */
     public BadCredentialsAuthenticationException(final Throwable throwable) {
@@ -52,7 +54,7 @@ public class BadCredentialsAuthenticationException extends
     /**
      * Constructor method to allow for providing a custom code to associate with
      * this exception.
-     * 
+     *
      * @param code the code to use.
      */
     public BadCredentialsAuthenticationException(final String code) {
@@ -62,12 +64,12 @@ public class BadCredentialsAuthenticationException extends
     /**
      * Constructor to allow for the chaining of exceptions and use of a
      * non-default code.
-     * 
-     * @param code the user-specified code.
+     *
+     * @param code      the user-specified code.
      * @param throwable the chainable exception.
      */
     public BadCredentialsAuthenticationException(final String code,
-        final Throwable throwable) {
+                                                 final Throwable throwable) {
         super(code, throwable);
     }
 }

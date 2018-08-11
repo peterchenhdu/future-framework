@@ -23,19 +23,29 @@ import java.security.SecureRandom;
  */
 public final class SamlCompliantUniqueTicketIdGenerator implements UniqueTicketIdGenerator {
 
-    /** Assertion handles are randomly-generated 20-byte identifiers. */
+    /**
+     * Assertion handles are randomly-generated 20-byte identifiers.
+     */
     private static final int ASSERTION_HANDLE_SIZE = 20;
 
-    /** SAML 2 Type 0004 endpoint ID is 0x0001. */
-    private static final byte[] ENDPOINT_ID = { 0, 1 };
+    /**
+     * SAML 2 Type 0004 endpoint ID is 0x0001.
+     */
+    private static final byte[] ENDPOINT_ID = {0, 1};
 
-    /** SAML defines the source id as the server name. */
+    /**
+     * SAML defines the source id as the server name.
+     */
     private final byte[] sourceIdDigest;
 
-    /** Flag to indicate SAML2 compliance. Default is SAML1.1. */
+    /**
+     * Flag to indicate SAML2 compliance. Default is SAML1.1.
+     */
     private boolean saml2compliant;
 
-    /** Random generator to construct the AssertionHandle. */
+    /**
+     * Random generator to construct the AssertionHandle.
+     */
     private final SecureRandom random;
 
     public SamlCompliantUniqueTicketIdGenerator(final String sourceId) {

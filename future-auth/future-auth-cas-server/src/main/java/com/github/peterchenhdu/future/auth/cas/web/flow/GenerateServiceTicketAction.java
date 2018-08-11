@@ -17,14 +17,16 @@ import javax.validation.constraints.NotNull;
 /**
  * Action to generate a service ticket for a given Ticket Granting Ticket and
  * Service.
- * 
+ *
  * @author Scott Battaglia
  * @version $Revision$ $Date$
  * @since 3.0.4
  */
 public final class GenerateServiceTicketAction extends AbstractAction {
-    
-    /** Instance of CentralAuthenticationService. */
+
+    /**
+     * Instance of CentralAuthenticationService.
+     */
     @NotNull
     private CentralAuthenticationService centralAuthenticationService;
 
@@ -34,10 +36,10 @@ public final class GenerateServiceTicketAction extends AbstractAction {
 
         try {
             final String serviceTicketId = this.centralAuthenticationService
-                .grantServiceTicket(ticketGrantingTicket,
-                    service);
+                    .grantServiceTicket(ticketGrantingTicket,
+                            service);
             WebUtils.putServiceTicketInRequestScope(context,
-                serviceTicketId);
+                    serviceTicketId);
             return success();
         } catch (final TicketException e) {
             if (isGatewayPresent(context)) {
@@ -49,12 +51,12 @@ public final class GenerateServiceTicketAction extends AbstractAction {
     }
 
     public void setCentralAuthenticationService(
-        final CentralAuthenticationService centralAuthenticationService) {
+            final CentralAuthenticationService centralAuthenticationService) {
         this.centralAuthenticationService = centralAuthenticationService;
     }
 
     protected boolean isGatewayPresent(final RequestContext context) {
         return StringUtils.hasText(context.getExternalContext()
-            .getRequestParameterMap().get("gateway"));
+                .getRequestParameterMap().get("gateway"));
     }
 }

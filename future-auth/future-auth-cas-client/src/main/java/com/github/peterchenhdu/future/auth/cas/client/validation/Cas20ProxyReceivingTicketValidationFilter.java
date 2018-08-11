@@ -30,16 +30,15 @@ import com.github.peterchenhdu.future.auth.cas.client.util.ReflectUtils;
  * @author Brad Cupit (brad [at] lsu {dot} edu)
  * @version $Revision$ $Date$
  * @since 3.1
- *
  */
 public class Cas20ProxyReceivingTicketValidationFilter extends AbstractTicketValidationFilter {
 
-    private static final String[] RESERVED_INIT_PARAMS = new String[] {"proxyGrantingTicketStorageClass", "proxyReceptorUrl", "acceptAnyProxy", "allowedProxyChains", "casServerUrlPrefix", "proxyCallbackUrl", "renew", "exceptionOnValidationFailure", "redirectAfterValidation", "useSession", "serverName", "service", "artifactParameterName", "serviceParameterName", "encodeServiceUrl", "millisBetweenCleanUps", "hostnameVerifier", "encoding", "config"};
+    private static final String[] RESERVED_INIT_PARAMS = new String[]{"proxyGrantingTicketStorageClass", "proxyReceptorUrl", "acceptAnyProxy", "allowedProxyChains", "casServerUrlPrefix", "proxyCallbackUrl", "renew", "exceptionOnValidationFailure", "redirectAfterValidation", "useSession", "serverName", "service", "artifactParameterName", "serviceParameterName", "encodeServiceUrl", "millisBetweenCleanUps", "hostnameVerifier", "encoding", "config"};
 
     private static final int DEFAULT_MILLIS_BETWEEN_CLEANUPS = 60 * 1000;
 
     /**
-     * The URL to send to the CAS server as the URL that will process proxying requests on the CAS client. 
+     * The URL to send to the CAS server as the URL that will process proxying requests on the CAS client.
      */
     private String proxyReceptorUrl;
 
@@ -48,7 +47,7 @@ public class Cas20ProxyReceivingTicketValidationFilter extends AbstractTicketVal
     private TimerTask timerTask;
 
     private int millisBetweenCleanUps;
-    
+
     /**
      * Storage location of ProxyGrantingTickets and Proxy Ticket IOUs.
      */
@@ -124,10 +123,10 @@ public class Cas20ProxyReceivingTicketValidationFilter extends AbstractTicketVal
         validator.setRenew(parseBoolean(getPropertyFromInitParams(filterConfig, "renew", "false")));
         validator.setEncoding(getPropertyFromInitParams(filterConfig, "encoding", null));
 
-        final Map<String,String> additionalParameters = new HashMap<String,String>();
+        final Map<String, String> additionalParameters = new HashMap<String, String>();
         final List<String> params = Arrays.asList(RESERVED_INIT_PARAMS);
 
-        for (final Enumeration<?> e = filterConfig.getInitParameterNames(); e.hasMoreElements();) {
+        for (final Enumeration<?> e = filterConfig.getInitParameterNames(); e.hasMoreElements(); ) {
             final String s = (String) e.nextElement();
 
             if (!params.contains(s)) {

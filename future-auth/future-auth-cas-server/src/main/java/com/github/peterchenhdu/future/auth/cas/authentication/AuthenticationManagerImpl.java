@@ -42,25 +42,29 @@ import java.util.List;
  * CredentialsToPrincipal resolvers that know how to process the credentials
  * provided.
  * </ul>
- * 
+ *
  * @author Scott Battaglia
  * @version $Revision$ $Date$
- * @since 3.0
  * @see com.github.peterchenhdu.future.auth.cas.authentication.handler.AuthenticationHandler
  * @see com.github.peterchenhdu.future.auth.cas.authentication.principal.CredentialsToPrincipalResolver
  * @see com.github.peterchenhdu.future.auth.cas.authentication.AuthenticationMetaDataPopulator
+ * @since 3.0
  */
 
 public class AuthenticationManagerImpl extends AbstractAuthenticationManager {
 
-    /** An array of authentication handlers. */
+    /**
+     * An array of authentication handlers.
+     */
     @NotNull
-    @Size(min=1)
+    @Size(min = 1)
     private List<AuthenticationHandler> authenticationHandlers;
 
-    /** An array of CredentialsToPrincipalResolvers. */
+    /**
+     * An array of CredentialsToPrincipalResolvers.
+     */
     @NotNull
-    @Size(min=1)
+    @Size(min = 1)
     private List<CredentialsToPrincipalResolver> credentialsToPrincipalResolvers;
 
     @Override
@@ -69,7 +73,7 @@ public class AuthenticationManagerImpl extends AbstractAuthenticationManager {
         boolean authenticated = false;
         AuthenticationHandler authenticatedClass = null;
         String handlerName;
-        
+
         for (final AuthenticationHandler authenticationHandler : this.authenticationHandlers) {
             if (authenticationHandler.supports(credentials)) {
                 foundSupported = true;
@@ -104,7 +108,7 @@ public class AuthenticationManagerImpl extends AbstractAuthenticationManager {
                 log.info("Resolved principal " + principal);
                 foundSupported = true;
                 if (principal != null) {
-                    return new Pair<AuthenticationHandler,Principal>(authenticatedClass, principal);
+                    return new Pair<AuthenticationHandler, Principal>(authenticatedClass, principal);
                 }
             }
         }
@@ -125,16 +129,16 @@ public class AuthenticationManagerImpl extends AbstractAuthenticationManager {
      * @param authenticationHandlers The authenticationHandlers to set.
      */
     public void setAuthenticationHandlers(
-        final List<AuthenticationHandler> authenticationHandlers) {
+            final List<AuthenticationHandler> authenticationHandlers) {
         this.authenticationHandlers = authenticationHandlers;
     }
 
     /**
      * @param credentialsToPrincipalResolvers The
-     * credentialsToPrincipalResolvers to set.
+     *                                        credentialsToPrincipalResolvers to set.
      */
     public void setCredentialsToPrincipalResolvers(
-        final List<CredentialsToPrincipalResolver> credentialsToPrincipalResolvers) {
+            final List<CredentialsToPrincipalResolver> credentialsToPrincipalResolvers) {
         this.credentialsToPrincipalResolvers = credentialsToPrincipalResolvers;
     }
 }

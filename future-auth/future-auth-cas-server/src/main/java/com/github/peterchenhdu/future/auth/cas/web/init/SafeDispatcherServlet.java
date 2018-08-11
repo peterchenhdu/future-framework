@@ -30,26 +30,36 @@ import java.io.IOException;
  * The exception thrown by the underlying Spring DispatcherServlet init() and
  * caught in the SafeDispatcherServlet init() is exposed as a Servlet Context
  * attribute under the key "exceptionCaughtByServlet".
- * 
+ *
  * @author Andrew Petro
  * @version $Revision$ $Date$
  * @see DispatcherServlet
  */
 public final class SafeDispatcherServlet extends HttpServlet {
 
-    /** Unique Id for serialization. */
+    /**
+     * Unique Id for serialization.
+     */
     private static final long serialVersionUID = 1L;
 
-    /** Key under which we will store the exception in the ServletContext. */
+    /**
+     * Key under which we will store the exception in the ServletContext.
+     */
     public static final String CAUGHT_THROWABLE_KEY = "exceptionCaughtByServlet";
 
-    /** Instance of Commons Logging. */
+    /**
+     * Instance of Commons Logging.
+     */
     private static final Logger log = LoggerFactory.getLogger(SafeDispatcherServlet.class);
 
-    /** The actual DispatcherServlet to which we will delegate to. */
+    /**
+     * The actual DispatcherServlet to which we will delegate to.
+     */
     private DispatcherServlet delegate = new DispatcherServlet();
 
-    /** Boolean to determine if the application deployed successfully. */
+    /**
+     * Boolean to determine if the application deployed successfully.
+     */
     private boolean initSuccess = true;
 
     public void init(final ServletConfig config) {
@@ -69,8 +79,8 @@ public final class SafeDispatcherServlet extends HttpServlet {
              */
 
             final String message = "SafeDispatcherServlet: \n"
-                + "The Spring DispatcherServlet we wrap threw on init.\n"
-                + "But for our having caught this error, the servlet would not have initialized.";
+                    + "The Spring DispatcherServlet we wrap threw on init.\n"
+                    + "But for our having caught this error, the servlet would not have initialized.";
 
             // log it via Commons Logging
             log.error(message, t);
@@ -94,10 +104,10 @@ public final class SafeDispatcherServlet extends HttpServlet {
 
     /**
      * @throws ApplicationContextException if the DispatcherServlet does not
-     * initialize properly, but the servlet attempts to process a request.
+     *                                     initialize properly, but the servlet attempts to process a request.
      */
     public void service(final ServletRequest req, final ServletResponse resp)
-        throws ServletException, IOException {
+            throws ServletException, IOException {
         /*
          * Since our container calls only this method and not any of the other
          * HttpServlet runtime methods, such as doDelete(), etc., delegating
@@ -108,7 +118,7 @@ public final class SafeDispatcherServlet extends HttpServlet {
             this.delegate.service(req, resp);
         } else {
             throw new ApplicationContextException(
-                "Unable to initialize application context.");
+                    "Unable to initialize application context.");
         }
     }
 }

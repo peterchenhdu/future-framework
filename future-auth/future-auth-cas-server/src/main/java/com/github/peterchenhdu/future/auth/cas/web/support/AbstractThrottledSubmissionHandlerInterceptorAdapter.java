@@ -29,7 +29,7 @@ public abstract class AbstractThrottledSubmissionHandlerInterceptorAdapter exten
     private static final int DEFAULT_FAILURE_RANGE_IN_SECONDS = 60;
 
     private static final String DEFAULT_USERNAME_PARAMETER = "username";
-    
+
     private static final String SUCCESSFUL_AUTHENTICATION_EVENT = "success";
 
     protected final Logger log = LoggerFactory.getLogger(getClass());
@@ -74,11 +74,11 @@ public abstract class AbstractThrottledSubmissionHandlerInterceptorAdapter exten
         }
 
         RequestContext context = (RequestContext) request.getAttribute("flowRequestContext");
-        
+
         if (context == null || context.getCurrentEvent() == null) {
             return;
         }
-        
+
         // User successfully authenticated
         if (SUCCESSFUL_AUTHENTICATION_EVENT.equals(context.getCurrentEvent().getId())) {
             return;
@@ -118,7 +118,7 @@ public abstract class AbstractThrottledSubmissionHandlerInterceptorAdapter exten
 
     protected void recordThrottle(final HttpServletRequest request) {
         log.warn("Throttling submission from {}.  More than {} failed login attempts within {} seconds.",
-                new Object[] {request.getRemoteAddr(), failureThreshold, failureRangeInSeconds});
+                new Object[]{request.getRemoteAddr(), failureThreshold, failureRangeInSeconds});
     }
 
     protected abstract void recordSubmissionFailure(HttpServletRequest request);

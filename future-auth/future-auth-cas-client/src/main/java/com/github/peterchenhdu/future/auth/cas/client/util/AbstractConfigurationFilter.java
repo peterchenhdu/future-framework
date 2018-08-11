@@ -20,8 +20,8 @@ import org.apache.commons.logging.LogFactory;
  * @since 3.1
  */
 public abstract class AbstractConfigurationFilter implements Filter {
-	
-	protected final Log log = LogFactory.getLog(getClass());
+
+    protected final Log log = LogFactory.getLog(getClass());
 
     private boolean ignoreInitConfiguration = false;
 
@@ -35,21 +35,20 @@ public abstract class AbstractConfigurationFilter implements Filter {
      * <p>
      * Essentially the documented order is:
      * <ol>
-     *     <li>FilterConfig.getInitParameter</li>
-     *     <li>ServletContext.getInitParameter</li>
-     *     <li>java:comp/env/cas/SHORTFILTERNAME/{propertyName}</li>
-     *     <li>java:comp/env/cas/{propertyName}</li>
-     *     <li>Default Value</li>
+     * <li>FilterConfig.getInitParameter</li>
+     * <li>ServletContext.getInitParameter</li>
+     * <li>java:comp/env/cas/SHORTFILTERNAME/{propertyName}</li>
+     * <li>java:comp/env/cas/{propertyName}</li>
+     * <li>Default Value</li>
      * </ol>
-     *
      *
      * @param filterConfig the Filter Configuration.
      * @param propertyName the property to retrieve.
      * @param defaultValue the default value if the property is not found.
      * @return the property value, following the above conventions.  It will always return the more specific value (i.e.
-     *  filter vs. context).
+     * filter vs. context).
      */
-    protected final String getPropertyFromInitParams(final FilterConfig filterConfig, final String propertyName, final String defaultValue)  {
+    protected final String getPropertyFromInitParams(final FilterConfig filterConfig, final String propertyName, final String defaultValue) {
         final String value = filterConfig.getInitParameter(propertyName);
 
         if (CommonUtils.isNotBlank(value)) {
@@ -65,42 +64,42 @@ public abstract class AbstractConfigurationFilter implements Filter {
         }
         InitialContext context;
         try {
-         context = new InitialContext();
+            context = new InitialContext();
         } catch (final NamingException e) {
-        	log.warn(e,e);
-        	return defaultValue;
+            log.warn(e, e);
+            return defaultValue;
         }
-        
-        
-        final String shortName = this.getClass().getName().substring(this.getClass().getName().lastIndexOf(".")+1);
+
+
+        final String shortName = this.getClass().getName().substring(this.getClass().getName().lastIndexOf(".") + 1);
         final String value3 = loadFromContext(context, "java:comp/env/cas/" + shortName + "/" + propertyName);
-        
+
         if (CommonUtils.isNotBlank(value3)) {
             log.info("Property [" + propertyName + "] loaded from JNDI Filter Specific Property with value [" + value3 + "]");
-        	return value3;
+            return value3;
         }
-        
-        final String value4 = loadFromContext(context, "java:comp/env/cas/" + propertyName); 
-        
+
+        final String value4 = loadFromContext(context, "java:comp/env/cas/" + propertyName);
+
         if (CommonUtils.isNotBlank(value4)) {
             log.info("Property [" + propertyName + "] loaded from JNDI with value [" + value4 + "]");
-        	return value4;
+            return value4;
         }
 
         log.info("Property [" + propertyName + "] not found.  Using default value [" + defaultValue + "]");
         return defaultValue;
     }
-    
+
     protected final boolean parseBoolean(final String value) {
-    	return ((value != null) && value.equalsIgnoreCase("true"));
+        return ((value != null) && value.equalsIgnoreCase("true"));
     }
-    
+
     protected final String loadFromContext(final InitialContext context, final String path) {
-    	try {
-    		return (String) context.lookup(path);
-    	} catch (final NamingException e) {
-    		return null;
-    	}
+        try {
+            return (String) context.lookup(path);
+        } catch (final NamingException e) {
+            return null;
+        }
     }
 
     public final void setIgnoreInitConfiguration(boolean ignoreInitConfiguration) {

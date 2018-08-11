@@ -14,13 +14,19 @@ import java.util.concurrent.*;
  */
 public abstract class AbstractPoolMonitor extends AbstractNamedMonitor<PoolStatus> {
 
-    /** Default maximum wait time for asynchronous pool validation. */
+    /**
+     * Default maximum wait time for asynchronous pool validation.
+     */
     public static final int DEFAULT_MAX_WAIT = 3000;
 
-    /** Maximum amount of time in ms to wait while validating pool resources. */
+    /**
+     * Maximum amount of time in ms to wait while validating pool resources.
+     */
     private int maxWait = DEFAULT_MAX_WAIT;
 
-    /** Executor that performs pool resource validation. */
+    /**
+     * Executor that performs pool resource validation.
+     */
     @NotNull
     private ExecutorService executor;
 
@@ -47,7 +53,9 @@ public abstract class AbstractPoolMonitor extends AbstractNamedMonitor<PoolStatu
     }
 
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public PoolStatus observe() {
         final Future<StatusCode> result = this.executor.submit(new Validator());
         StatusCode code;
@@ -73,7 +81,6 @@ public abstract class AbstractPoolMonitor extends AbstractNamedMonitor<PoolStatu
      * obtain a pool resource, validate it, and return it to the pool.
      *
      * @return Status code describing pool health.
-     *
      * @throws Exception Thrown to indicate a serious problem with pool validation.
      */
     protected abstract StatusCode checkPool() throws Exception;

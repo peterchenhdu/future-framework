@@ -8,18 +8,22 @@ import java.util.concurrent.atomic.AtomicLong;
 /**
  * The default numeric generator for generating long values. Implementation
  * allows for wrapping (to restart count) if the maximum is reached.
- * 
+ *
  * @author Scott Battaglia
  * @version $Revision$ $Date$
  * @since 3.0
  */
 public final class DefaultLongNumericGenerator implements LongNumericGenerator {
 
-    /** The maximum length the string can be. */
+    /**
+     * The maximum length the string can be.
+     */
     private static final int MAX_STRING_LENGTH = Long.toString(Long.MAX_VALUE)
-        .length();
+            .length();
 
-    /** The minimum length the String can be. */
+    /**
+     * The minimum length the String can be.
+     */
     private static final int MIN_STRING_LENGTH = 1;
 
     private final AtomicLong count;

@@ -42,14 +42,16 @@ import org.opensaml.xml.schema.impl.XSStringBuilder;
  * Note that this class will currently not handle proxy authentication.
  * <p>
  * Note: This class currently expects a bean called "ServiceRegistry" to exist.
- * 
+ *
  * @author Scott Battaglia
  * @author Marvin S. Addison
  * @since 3.1
  */
 public final class Saml10SuccessResponseView extends AbstractSaml10ResponseView {
 
-    /** Namespace for custom attributes. */
+    /**
+     * Namespace for custom attributes.
+     */
     private static final String NAMESPACE = "http://www.ja-sig.org/products/cas/";
 
     private static final String REMEMBER_ME_ATTRIBUTE_NAME = "longTermAuthenticationRequestTokenUsed";
@@ -60,11 +62,15 @@ public final class Saml10SuccessResponseView extends AbstractSaml10ResponseView 
 
     private final XSStringBuilder attrValueBuilder = new XSStringBuilder();
 
-    /** The issuer, generally the hostname. */
+    /**
+     * The issuer, generally the hostname.
+     */
     @NotNull
     private String issuer;
 
-    /** The amount of time in milliseconds this is valid for. */
+    /**
+     * The amount of time in milliseconds this is valid for.
+     */
     @Min(1000)
     private long issueLength = 30000;
 

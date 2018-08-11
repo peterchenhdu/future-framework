@@ -18,7 +18,7 @@ import org.springframework.util.Assert;
  * implementations of the Ticket interface extend the AbstractTicket as it
  * handles common functionality amongst different ticket types (such as state
  * updating).
- * 
+ *
  * @author Scott Battaglia
  * @version $Revision$ $Date$
  * @since 3.0
@@ -26,37 +26,51 @@ import org.springframework.util.Assert;
 @MappedSuperclass
 public abstract class AbstractTicket implements Ticket, TicketState {
 
-    /** The ExpirationPolicy this ticket will be following. */
+    /**
+     * The ExpirationPolicy this ticket will be following.
+     */
     // XXX removed final
     @Lob
-    @Column(name="EXPIRATION_POLICY", nullable=false)
+    @Column(name = "EXPIRATION_POLICY", nullable = false)
     private ExpirationPolicy expirationPolicy;
 
-    /** The unique identifier for this ticket. */
+    /**
+     * The unique identifier for this ticket.
+     */
     @Id
-    @Column(name="ID", nullable=false)
+    @Column(name = "ID", nullable = false)
     private String id;
 
-    /** The TicketGrantingTicket this is associated with. */
+    /**
+     * The TicketGrantingTicket this is associated with.
+     */
     @ManyToOne
     private TicketGrantingTicketImpl ticketGrantingTicket;
 
-    /** The last time this ticket was used. */
-    @Column(name="LAST_TIME_USED")
+    /**
+     * The last time this ticket was used.
+     */
+    @Column(name = "LAST_TIME_USED")
     private long lastTimeUsed;
 
-    /** The previous last time this ticket was used. */
-    @Column(name="PREVIOUS_LAST_TIME_USED")
+    /**
+     * The previous last time this ticket was used.
+     */
+    @Column(name = "PREVIOUS_LAST_TIME_USED")
     private long previousLastTimeUsed;
 
-    /** The time the ticket was created. */
-    @Column(name="CREATION_TIME")
+    /**
+     * The time the ticket was created.
+     */
+    @Column(name = "CREATION_TIME")
     private long creationTime;
 
-    /** The number of times this was used. */
-    @Column(name="NUMBER_OF_TIMES_USED")
+    /**
+     * The number of times this was used.
+     */
+    @Column(name = "NUMBER_OF_TIMES_USED")
     private int countOfUses;
-    
+
     protected AbstractTicket() {
         // nothing to do
     }
@@ -64,14 +78,14 @@ public abstract class AbstractTicket implements Ticket, TicketState {
     /**
      * Constructs a new Ticket with a unique id, a possible parent Ticket (can
      * be null) and a specified Expiration Policy.
-     * 
-     * @param id the unique identifier for the ticket
-     * @param ticket the parent TicketGrantingTicket
+     *
+     * @param id               the unique identifier for the ticket
+     * @param ticket           the parent TicketGrantingTicket
      * @param expirationPolicy the expiration policy for the ticket.
      * @throws IllegalArgumentException if the id or expiration policy is null.
      */
     public AbstractTicket(final String id, final TicketGrantingTicketImpl ticket,
-        final ExpirationPolicy expirationPolicy) {
+                          final ExpirationPolicy expirationPolicy) {
         Assert.notNull(expirationPolicy, "expirationPolicy cannot be null");
         Assert.notNull(id, "id cannot be null");
 

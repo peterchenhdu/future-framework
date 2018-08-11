@@ -11,6 +11,7 @@ import javax.persistence.Table;
 
 /**
  * null - 实体类
+ *
  * @author PiChen
  * @since 2018-08-09 23:14:10
  */

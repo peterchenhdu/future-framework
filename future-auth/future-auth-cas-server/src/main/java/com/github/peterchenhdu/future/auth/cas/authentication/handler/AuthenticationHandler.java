@@ -15,7 +15,7 @@ import com.github.peterchenhdu.future.auth.cas.authentication.principal.Credenti
  * <p>
  * Callers to this class should first call supports to determine if the
  * AuthenticationHandler can authenticate the credentials provided.
- * 
+ *
  * @author Scott Battaglia
  * @version $Revision$ $Date$
  * @since 3.0
@@ -27,21 +27,21 @@ public interface AuthenticationHandler {
 
     /**
      * Method to determine if the credentials supplied are valid.
-     * 
+     *
      * @param credentials The credentials to validate.
      * @return true if valid, return false otherwise.
      * @throws AuthenticationException An AuthenticationException can contain
-     * details about why a particular authentication request failed.
+     *                                 details about why a particular authentication request failed.
      */
     boolean authenticate(Credentials credentials)
-        throws AuthenticationException;
+            throws AuthenticationException;
 
     /**
      * Method to check if the handler knows how to handle the credentials
      * provided. It may be a simple check of the Credentials class or something
      * more complicated such as scanning the information contained in the
      * Credentials object.
-     * 
+     *
      * @param credentials The credentials to check.
      * @return true if the handler supports the Credentials, false othewrise.
      */

@@ -5,11 +5,12 @@ package com.github.peterchenhdu.future.auth.cas.services;
 
 //import org.springframework.orm.jpa.support.JpaDaoSupport;
 //TODO 重新实现该类
+
 import java.util.List;
 
 /**
  * Implementation of the ServiceRegistryDao based on JPA.
- * 
+ *
  * @author Scott Battaglia
  * @version $Revision$ $Date$
  * @since 3.1
@@ -39,7 +40,7 @@ public final class JpaServiceRegistryDaoImpl
 //        if (!isNew) {
 //            getJpaTemplate().persist(r);
 //        }
-        
+
 //        return r;
         return null;
     }

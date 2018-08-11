@@ -39,9 +39,11 @@ import java.util.TimeZone;
  */
 public final class CommonUtils {
 
-    /** Instance of Commons Logging. */
+    /**
+     * Instance of Commons Logging.
+     */
     private static final Log LOG = LogFactory.getLog(CommonUtils.class);
-    
+
     /**
      * Constant representing the ProxyGrantingTicket IOU Request Parameter.
      */
@@ -148,16 +150,16 @@ public final class CommonUtils {
     /**
      * Constructs the URL to use to redirect to the CAS server.
      *
-     * @param casServerLoginUrl the CAS Server login url.
+     * @param casServerLoginUrl    the CAS Server login url.
      * @param serviceParameterName the name of the parameter that defines the service.
-     * @param serviceUrl the actual service's url.
-     * @param renew whether we should send renew or not.
-     * @param gateway where we should send gateway or not.
+     * @param serviceUrl           the actual service's url.
+     * @param renew                whether we should send renew or not.
+     * @param gateway              where we should send gateway or not.
      * @return the fully constructed redirect url.
      */
     public static String constructRedirectUrl(final String casServerLoginUrl, final String serviceParameterName, final String serviceUrl, final boolean renew, final boolean gateway) {
         try {
-        return casServerLoginUrl + (casServerLoginUrl.indexOf("?") != -1 ? "&" : "?") + serviceParameterName + "="
+            return casServerLoginUrl + (casServerLoginUrl.indexOf("?") != -1 ? "&" : "?") + serviceParameterName + "="
                     + URLEncoder.encode(serviceUrl, "UTF-8")
                     + (renew ? "&renew=true" : "")
                     + (gateway ? "&gateway=true" : "");
@@ -165,50 +167,50 @@ public final class CommonUtils {
             throw new RuntimeException(e);
         }
     }
-    
+
     public static void readAndRespondToProxyReceptorRequest(final HttpServletRequest request, final HttpServletResponse response, final ProxyGrantingTicketStorage proxyGrantingTicketStorage) throws IOException {
         final String proxyGrantingTicketIou = request.getParameter(PARAM_PROXY_GRANTING_TICKET_IOU);
 
-		final String proxyGrantingTicket = request.getParameter(PARAM_PROXY_GRANTING_TICKET);
+        final String proxyGrantingTicket = request.getParameter(PARAM_PROXY_GRANTING_TICKET);
 
-		if (CommonUtils.isBlank(proxyGrantingTicket) || CommonUtils.isBlank(proxyGrantingTicketIou)) {
-		    response.getWriter().write("");
-		    return;
-		}
+        if (CommonUtils.isBlank(proxyGrantingTicket) || CommonUtils.isBlank(proxyGrantingTicketIou)) {
+            response.getWriter().write("");
+            return;
+        }
 
-		if (LOG.isDebugEnabled()) {
-		    LOG.debug("Received proxyGrantingTicketId ["
-		            + proxyGrantingTicket + "] for proxyGrantingTicketIou ["
-		            + proxyGrantingTicketIou + "]");
-		}
+        if (LOG.isDebugEnabled()) {
+            LOG.debug("Received proxyGrantingTicketId ["
+                    + proxyGrantingTicket + "] for proxyGrantingTicketIou ["
+                    + proxyGrantingTicketIou + "]");
+        }
 
-		proxyGrantingTicketStorage.save(proxyGrantingTicketIou, proxyGrantingTicket);
+        proxyGrantingTicketStorage.save(proxyGrantingTicketIou, proxyGrantingTicket);
 
         if (LOG.isDebugEnabled()) {
             LOG.debug("Successfully saved proxyGrantingTicketId ["
-		            + proxyGrantingTicket + "] for proxyGrantingTicketIou ["
-		            + proxyGrantingTicketIou + "]");
+                    + proxyGrantingTicket + "] for proxyGrantingTicketIou ["
+                    + proxyGrantingTicketIou + "]");
         }
-		
-		response.getWriter().write("<?xml version=\"1.0\"?>");
-		response.getWriter().write("<casClient:proxySuccess xmlns:casClient=\"http://www.yale.edu/tp/casClient\" />");
+
+        response.getWriter().write("<?xml version=\"1.0\"?>");
+        response.getWriter().write("<casClient:proxySuccess xmlns:casClient=\"http://www.yale.edu/tp/casClient\" />");
     }
-    
-/**
+
+    /**
      * Constructs a service url from the HttpServletRequest or from the given
      * serviceUrl. Prefers the serviceUrl provided if both a serviceUrl and a
      * serviceName.
      *
-     * @param request  the HttpServletRequest
-     * @param response the HttpServletResponse
-     * @param service the configured service url (this will be used if not null)
-     * @param serverName the server name to  use to constuct the service url if the service param is empty
+     * @param request               the HttpServletRequest
+     * @param response              the HttpServletResponse
+     * @param service               the configured service url (this will be used if not null)
+     * @param serverName            the server name to  use to constuct the service url if the service param is empty
      * @param artifactParameterName the artifact parameter name to remove (i.e. ticket)
-     * @param encode whether to encode the url or not (i.e. Jsession).    
+     * @param encode                whether to encode the url or not (i.e. Jsession).
      * @return the service url to use.
      */
     public static String constructServiceUrl(final HttpServletRequest request,
-                                               final HttpServletResponse response, final String service, final String serverName, final String artifactParameterName, final boolean encode) {
+                                             final HttpServletResponse response, final String service, final String serverName, final String artifactParameterName, final boolean encode) {
         if (CommonUtils.isNotBlank(service)) {
             return encode ? response.encodeURL(service) : service;
         }
@@ -227,7 +229,7 @@ public final class CommonUtils {
             final int location = request.getQueryString().indexOf(artifactParameterName + "=");
 
             if (location == 0) {
-                final String returnValue = encode ? response.encodeURL(buffer.toString()): buffer.toString();
+                final String returnValue = encode ? response.encodeURL(buffer.toString()) : buffer.toString();
                 if (LOG.isDebugEnabled()) {
                     LOG.debug("serviceUrl generated: " + returnValue);
                 }
@@ -267,7 +269,7 @@ public final class CommonUtils {
      * <p>
      * If we see the "logoutRequest" parameter we MUST treat it as if calling the standard request.getParameter.
      *
-     * @param request the request to check.
+     * @param request   the request to check.
      * @param parameter the parameter to look for.
      * @return the value of the parameter.
      */
@@ -276,14 +278,14 @@ public final class CommonUtils {
             LOG.debug("safeGetParameter called on a POST HttpServletRequest for LogoutRequest.  Cannot complete check safely.  Reverting to standard behavior for this Parameter");
             return request.getParameter(parameter);
         }
-        return request.getQueryString() == null || request.getQueryString().indexOf(parameter) == -1 ? null : request.getParameter(parameter);       
+        return request.getQueryString() == null || request.getQueryString().indexOf(parameter) == -1 ? null : request.getParameter(parameter);
     }
 
     /**
      * Contacts the remote URL and returns the response.
      *
      * @param constructedUrl the url to contact.
-     * @param encoding the encoding to use.
+     * @param encoding       the encoding to use.
      * @return the response.
      */
     public static String getResponseFromServer(final URL constructedUrl, final String encoding) {
@@ -293,9 +295,9 @@ public final class CommonUtils {
     /**
      * Contacts the remote URL and returns the response.
      *
-     * @param constructedUrl the url to contact.
+     * @param constructedUrl   the url to contact.
      * @param hostnameVerifier Host name verifier to use for HTTPS connections.
-     * @param encoding the encoding to use.
+     * @param encoding         the encoding to use.
      * @return the response.
      */
     public static String getResponseFromServer(final URL constructedUrl, final HostnameVerifier hostnameVerifier, final String encoding) {
@@ -303,7 +305,7 @@ public final class CommonUtils {
         try {
             conn = constructedUrl.openConnection();
             if (conn instanceof HttpsURLConnection) {
-                ((HttpsURLConnection)conn).setHostnameVerifier(hostnameVerifier);
+                ((HttpsURLConnection) conn).setHostnameVerifier(hostnameVerifier);
             }
             final BufferedReader in;
 
@@ -326,15 +328,16 @@ public final class CommonUtils {
             throw new RuntimeException(e);
         } finally {
             if (conn != null && conn instanceof HttpURLConnection) {
-                ((HttpURLConnection)conn).disconnect();
+                ((HttpURLConnection) conn).disconnect();
             }
         }
 
     }
+
     /**
      * Contacts the remote URL and returns the response.
      *
-     * @param url the url to contact.
+     * @param url      the url to contact.
      * @param encoding the encoding to use.
      * @return the response.
      */
@@ -354,13 +357,13 @@ public final class CommonUtils {
         final ProxyListEditor editor = new ProxyListEditor();
         editor.setAsText(proxies);
         return (ProxyList) editor.getValue();
-     }
+    }
 
     /**
      * Sends the redirect message and captures the exceptions that we can't possibly do anything with.
      *
      * @param response the HttpServletResponse.  CANNOT be NULL.
-     * @param url the url to redirect to.
+     * @param url      the url to redirect to.
      */
     public static void sendRedirect(final HttpServletResponse response, final String url) {
         try {

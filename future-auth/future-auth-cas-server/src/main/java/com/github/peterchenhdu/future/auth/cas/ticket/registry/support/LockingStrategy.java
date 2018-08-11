@@ -10,14 +10,13 @@ package com.github.peterchenhdu.future.auth.cas.ticket.registry.support;
  * @author Marvin S. Addison
  * @version $Revision$
  * @since 3.3.6
- *
  */
 public interface LockingStrategy {
 
     /**
      * Attempt to acquire the lock.
      *
-     * @return  True if lock was successfully acquired, false otherwise.
+     * @return True if lock was successfully acquired, false otherwise.
      */
     boolean acquire();
 

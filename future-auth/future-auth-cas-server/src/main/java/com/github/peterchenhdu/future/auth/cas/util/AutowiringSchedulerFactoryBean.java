@@ -32,7 +32,7 @@ public final class AutowiringSchedulerFactoryBean extends SchedulerFactoryBean i
     private ApplicationContext applicationContext;
 
     public void afterPropertiesSet() throws Exception {
-        final Map<String,Trigger> triggers = this.applicationContext.getBeansOfType(Trigger.class);
+        final Map<String, Trigger> triggers = this.applicationContext.getBeansOfType(Trigger.class);
         super.setTriggers(triggers.values().toArray(new Trigger[triggers.size()]));
 
         if (log.isDebugEnabled()) {

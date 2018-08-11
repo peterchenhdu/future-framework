@@ -19,7 +19,9 @@ public class Cas20ProxyTicketValidator extends Cas20ServiceTicketValidator {
 
     private boolean acceptAnyProxy;
 
-    /** This should be a list of an array of Strings */
+    /**
+     * This should be a list of an array of Strings
+     */
     private ProxyList allowedProxyChains = new ProxyList();
 
     public Cas20ProxyTicketValidator(final String casServerUrlPrefix) {

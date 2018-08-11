@@ -13,8 +13,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- *  Abstract filter that contains code that is common to all CAS filters.
- *  <p>
+ * Abstract filter that contains code that is common to all CAS filters.
+ * <p>
  * The following filter options can be configured (either at the context-level or filter-level).
  * <ul>
  * <li><code>serverName</code> - the name of the CAS client server, in the format: localhost:8080 or localhost:8443 or localhost or https://localhost:8443</li>
@@ -28,27 +28,40 @@ import javax.servlet.http.HttpServletResponse;
  */
 public abstract class AbstractCasFilter extends AbstractConfigurationFilter {
 
-    /** Represents the constant for where the assertion will be located in memory. */
+    /**
+     * Represents the constant for where the assertion will be located in memory.
+     */
     public static final String CONST_CAS_ASSERTION = "_const_cas_assertion_";
 
-    /** Instance of commons logging for logging purposes. */
+    /**
+     * Instance of commons logging for logging purposes.
+     */
     protected final Log log = LogFactory.getLog(getClass());
 
-    /** Defines the parameter to look for for the artifact. */
+    /**
+     * Defines the parameter to look for for the artifact.
+     */
     private String artifactParameterName = "ticket";
 
-    /** Defines the parameter to look for for the service. */
+    /**
+     * Defines the parameter to look for for the service.
+     */
     private String serviceParameterName = "service";
-    
-    /** Sets where response.encodeUrl should be called on service urls when constructed. */
+
+    /**
+     * Sets where response.encodeUrl should be called on service urls when constructed.
+     */
     private boolean encodeServiceUrl = true;
 
     /**
      * The name of the server.  Should be in the following format: {protocol}:{hostName}:{port}.
-     * Standard ports can be excluded. */
+     * Standard ports can be excluded.
+     */
     private String serverName;
 
-    /** The exact url of the service. */
+    /**
+     * The exact url of the service.
+     */
     private String service;
 
     public final void init(final FilterConfig filterConfig) throws ServletException {
@@ -69,10 +82,11 @@ public abstract class AbstractCasFilter extends AbstractConfigurationFilter {
         init();
     }
 
-    /** Controls the ordering of filter initialization and checking by defining a method that runs before the init.
+    /**
+     * Controls the ordering of filter initialization and checking by defining a method that runs before the init.
+     *
      * @param filterConfig the original filter configuration.
      * @throws ServletException if there is a problem.
-     *
      */
     protected void initInternal(final FilterConfig filterConfig) throws ServletException {
         // template method
@@ -106,7 +120,7 @@ public abstract class AbstractCasFilter extends AbstractConfigurationFilter {
      */
     public final void setServerName(final String serverName) {
         if (serverName != null && serverName.endsWith("/")) {
-            this.serverName = serverName.substring(0, serverName.length()-1);
+            this.serverName = serverName.substring(0, serverName.length() - 1);
             log.info(String.format("Eliminated extra slash from serverName [%s].  It is now [%s]", serverName, this.serverName));
         } else {
             this.serverName = serverName;
@@ -124,9 +138,9 @@ public abstract class AbstractCasFilter extends AbstractConfigurationFilter {
     public final void setServiceParameterName(final String serviceParameterName) {
         this.serviceParameterName = serviceParameterName;
     }
-    
+
     public final void setEncodeServiceUrl(final boolean encodeServiceUrl) {
-    	this.encodeServiceUrl = encodeServiceUrl;
+        this.encodeServiceUrl = encodeServiceUrl;
     }
 
     public final String getArtifactParameterName() {

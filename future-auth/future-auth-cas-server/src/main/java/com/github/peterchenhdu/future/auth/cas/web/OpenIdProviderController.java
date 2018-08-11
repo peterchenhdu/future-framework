@@ -13,7 +13,7 @@ import javax.validation.constraints.NotNull;
 /**
  * Maps requests for usernames to a page that displays the Login URL for an
  * OpenId Identity Provider.
- * 
+ *
  * @author Scott Battaglia
  * @version $Revision: 1.1 $ $Date: 2005/08/19 18:27:17 $
  * @since 3.1
@@ -22,9 +22,9 @@ public final class OpenIdProviderController extends AbstractController {
 
     @NotNull
     private String loginUrl;
-    
+
     protected ModelAndView handleRequestInternal(final HttpServletRequest request,
-        final HttpServletResponse response) throws Exception {
+                                                 final HttpServletResponse response) throws Exception {
         return new ModelAndView("openIdProviderView", "openid_server", this.loginUrl);
     }
 

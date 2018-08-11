@@ -11,25 +11,39 @@ package com.github.peterchenhdu.future.auth.cas.monitor;
  */
 public class Status {
 
-    /** Generic UNKNOWN status. */
+    /**
+     * Generic UNKNOWN status.
+     */
     public static final Status UNKNOWN = new Status(StatusCode.UNKNOWN);
 
-    /** Generic OK status. */
+    /**
+     * Generic OK status.
+     */
     public static final Status OK = new Status(StatusCode.OK);
 
-    /** Generic INFO status. */
+    /**
+     * Generic INFO status.
+     */
     public static final Status INFO = new Status(StatusCode.INFO);
 
-    /** Generic WARN status. */
+    /**
+     * Generic WARN status.
+     */
     public static final Status WARN = new Status(StatusCode.WARN);
 
-    /** Generic ERROR status. */
+    /**
+     * Generic ERROR status.
+     */
     public static final Status ERROR = new Status(StatusCode.ERROR);
 
-    /** Status code. */
+    /**
+     * Status code.
+     */
     private final StatusCode code;
 
-    /** Human-readable status description. */
+    /**
+     * Human-readable status description.
+     */
     private final String description;
 
 
@@ -37,7 +51,6 @@ public class Status {
      * Creates a new status object with the given code.
      *
      * @param code Status code.
-     *
      * @see #getCode()
      */
     public Status(final StatusCode code) {
@@ -50,7 +63,6 @@ public class Status {
      *
      * @param code Status code.
      * @param desc Human-readable status description.
-     *
      * @see #getCode()
      */
     public Status(final StatusCode code, final String desc) {

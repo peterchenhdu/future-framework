@@ -12,17 +12,21 @@ import com.github.peterchenhdu.future.auth.cas.ticket.TicketState;
  * <p>
  * The expiration policy defined by this class is one of inactivity.  If you are inactive for the specified
  * amount of time, the ticket will be expired.
- * 
+ *
  * @author Scott Battaglia
  * @version $Revision$ $Date$
  * @since 3.0
  */
 public final class TimeoutExpirationPolicy implements ExpirationPolicy {
 
-    /** Serializable ID. */
+    /**
+     * Serializable ID.
+     */
     private static final long serialVersionUID = 3545511790222979383L;
 
-    /** The time to kill in milliseconds. */
+    /**
+     * The time to kill in milliseconds.
+     */
     private final long timeToKillInMilliSeconds;
 
     public TimeoutExpirationPolicy(final long timeToKillInMilliSeconds) {
@@ -31,6 +35,6 @@ public final class TimeoutExpirationPolicy implements ExpirationPolicy {
 
     public boolean isExpired(final TicketState ticketState) {
         return (ticketState == null)
-            || (System.currentTimeMillis() - ticketState.getLastTimeUsed() >= this.timeToKillInMilliSeconds);
+                || (System.currentTimeMillis() - ticketState.getLastTimeUsed() >= this.timeToKillInMilliSeconds);
     }
 }

@@ -17,18 +17,22 @@ import java.util.Set;
  * @author Marvin S. Addison
  * @version $Revision: 22120 $
  * @since 3.1.11
- *
  */
 public final class SimpleGroup extends SimplePrincipal implements Group {
 
-    /** SimpleGroup.java */
+    /**
+     * SimpleGroup.java
+     */
     private static final long serialVersionUID = 4382154818494550205L;
 
-    /** Group members */
+    /**
+     * Group members
+     */
     private final Set<Principal> members = new HashSet<Principal>();
 
     /**
      * Creates a new group with the given name.
+     *
      * @param name Group name.
      */
     public SimpleGroup(final String name) {
@@ -50,7 +54,7 @@ public final class SimpleGroup extends SimplePrincipal implements Group {
     public boolean removeMember(final Principal user) {
         return this.members.remove(user);
     }
-    
+
     public String toString() {
         return super.toString() + ": " + members.toString();
     }

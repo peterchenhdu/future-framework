@@ -20,22 +20,26 @@ import javax.validation.constraints.NotNull;
 /**
  * Listener to expire web session as soon as the webflow is ended. The goal is to decrease memory consumption by deleting as soon as
  * possible the web sessions created mainly for login process.
- * 
+ *
  * @author Jerome Leleu
  * @author Marvin S. Addison
  * @since 3.5.1
  */
 public final class TerminateWebSessionListener extends FlowExecutionListenerAdapter {
 
-    /** Session marker that if present indicates a session that should not be terminated by this component. */
+    /**
+     * Session marker that if present indicates a session that should not be terminated by this component.
+     */
     private static final String DO_NOT_TERMINATE = TerminateWebSessionListener.class + ".DO_NOT_TERMINATE";
-    
+
     private static final Logger logger = LoggerFactory.getLogger(TerminateWebSessionListener.class);
 
     @Min(0)
     private int timeToDieInSeconds = 2;
 
-    /** URL to service manager Web application. */
+    /**
+     * URL to service manager Web application.
+     */
     @NotNull
     private String serviceManagerUrl;
 
@@ -85,7 +89,7 @@ public final class TerminateWebSessionListener extends FlowExecutionListenerAdap
     /**
      * Sets the URL to the service manager Web application.
      *
-     * @param  url  URL to service manager.
+     * @param url URL to service manager.
      */
     public void setServiceManagerUrl(final String url) {
         this.serviceManagerUrl = url;

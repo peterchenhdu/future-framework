@@ -19,13 +19,16 @@ import javax.validation.constraints.NotNull;
  * @author Marvin S. Addison
  * @version $Revision$ $Date$
  * @since 3.4.9
- *
  */
 public class GenerateLoginTicketAction {
-    /** 3.5.1 - Login tickets SHOULD begin with characters "LT-" */
+    /**
+     * 3.5.1 - Login tickets SHOULD begin with characters "LT-"
+     */
     private static final String PREFIX = "LT";
 
-    /** Logger instance */
+    /**
+     * Logger instance
+     */
     private final Log logger = LogFactory.getLog(getClass());
 
 

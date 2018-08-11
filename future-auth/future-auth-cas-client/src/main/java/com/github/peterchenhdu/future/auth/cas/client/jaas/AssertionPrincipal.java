@@ -15,20 +15,23 @@ import java.io.Serializable;
  * @author Marvin S. Addison
  * @version $Revision: 22071 $
  * @since 3.1.11
- *
  */
 public class AssertionPrincipal extends SimplePrincipal implements Serializable {
-    
-    /** AssertionPrincipal.java */
+
+    /**
+     * AssertionPrincipal.java
+     */
     private static final long serialVersionUID = 2288520214366461693L;
 
-    /** CAS assertion describing authenticated state */
+    /**
+     * CAS assertion describing authenticated state
+     */
     private Assertion assertion;
 
     /**
      * Creates a new principal containing the CAS assertion.
      *
-     * @param name Principal name.
+     * @param name      Principal name.
      * @param assertion CAS assertion.
      */
     public AssertionPrincipal(final String name, final Assertion assertion) {

@@ -16,7 +16,7 @@ import java.util.Map;
  * <p>
  * Instanciators of the ImmutableAuthentication class must take care that the
  * map they provide is serializable (i.e. HashMap).
- * 
+ *
  * @author Dmitriy Kopylenko
  * @author Scott Battaglia
  * @version $Revision$ $Date$
@@ -24,25 +24,29 @@ import java.util.Map;
  */
 public final class ImmutableAuthentication extends AbstractAuthentication {
 
-    /** UID for serializing. */
+    /**
+     * UID for serializing.
+     */
     private static final long serialVersionUID = 3906647483978365235L;
-    
+
     private static final Map<String, Object> EMPTY_MAP = Collections.unmodifiableMap(new HashMap<String, Object>());
 
-    /** The date/time this authentication object became valid. */
+    /**
+     * The date/time this authentication object became valid.
+     */
     final Date authenticatedDate;
 
     /**
      * Constructor that accepts both a principal and a map.
-     * 
-     * @param principal Principal representing user
+     *
+     * @param principal  Principal representing user
      * @param attributes Authentication attributes map.
      * @throws IllegalArgumentException if the principal is null.
      */
     public ImmutableAuthentication(final Principal principal,
-        final Map<String, Object> attributes) {
+                                   final Map<String, Object> attributes) {
         super(principal, attributes == null || attributes.isEmpty()
-            ? EMPTY_MAP : Collections.unmodifiableMap(attributes));
+                ? EMPTY_MAP : Collections.unmodifiableMap(attributes));
 
         this.authenticatedDate = new Date();
     }
@@ -50,7 +54,7 @@ public final class ImmutableAuthentication extends AbstractAuthentication {
     /**
      * Constructor that assumes there are no additional authentication
      * attributes.
-     * 
+     *
      * @param principal the Principal representing the authenticated entity.
      */
     public ImmutableAuthentication(final Principal principal) {

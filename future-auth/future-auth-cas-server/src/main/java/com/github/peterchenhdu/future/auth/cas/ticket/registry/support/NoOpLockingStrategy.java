@@ -12,7 +12,6 @@ package com.github.peterchenhdu.future.auth.cas.ticket.registry.support;
  * @author Marvin Addison
  * @version $Revision$
  * @since 3.3.6
- *
  */
 public class NoOpLockingStrategy implements LockingStrategy {
 

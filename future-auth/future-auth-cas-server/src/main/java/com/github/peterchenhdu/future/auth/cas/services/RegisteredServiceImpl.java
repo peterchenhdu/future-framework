@@ -12,7 +12,7 @@ import javax.persistence.Entity;
 
 /**
  * Mutable registered service that uses Ant path patterns for service matching.
- * 
+ *
  * @author Scott Battaglia
  * @author Marvin S. Addison
  * @version $Revision$ $Date$
@@ -22,7 +22,9 @@ import javax.persistence.Entity;
 @DiscriminatorValue("ant")
 public class RegisteredServiceImpl extends AbstractRegisteredService {
 
-    /** Unique Id for serialization. */
+    /**
+     * Unique Id for serialization.
+     */
     private static final long serialVersionUID = -5906102762271197627L;
 
     private static final PathMatcher PATH_MATCHER = new AntPathMatcher();

@@ -7,13 +7,13 @@ package com.github.peterchenhdu.future.auth.cas.authentication.principal;
  * HttpBasedServiceCredentialsToPrincipalResolver extracts the callbackUrl from
  * the HttpBasedServiceCredentials and constructs a SimpleService with the
  * callbackUrl as the unique Id.
- * 
+ *
  * @author Scott Battaglia
  * @version $Revision: 1.5 $ $Date: 2007/02/27 19:31:58 $
  * @since 3.0
  */
 public final class HttpBasedServiceCredentialsToPrincipalResolver implements
-    CredentialsToPrincipalResolver {
+        CredentialsToPrincipalResolver {
 
     /**
      * Method to return a simple Service Principal with the identifier set to be
@@ -30,7 +30,7 @@ public final class HttpBasedServiceCredentialsToPrincipalResolver implements
      */
     public boolean supports(final Credentials credentials) {
         return credentials != null
-            && HttpBasedServiceCredentials.class.isAssignableFrom(credentials
+                && HttpBasedServiceCredentials.class.isAssignableFrom(credentials
                 .getClass());
     }
 }

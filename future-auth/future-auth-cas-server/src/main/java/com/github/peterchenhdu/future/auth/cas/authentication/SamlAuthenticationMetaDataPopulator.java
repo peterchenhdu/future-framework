@@ -16,13 +16,13 @@ import java.util.Map;
  * Note: Authentication Methods are exposed under the key:
  * <code>samlAuthenticationStatement::authMethod</code> in the Authentication
  * attributes map.
- * 
+ *
  * @author Scott Battaglia
  * @version $Revision$ $Date$
  * @since 3.1
  */
 public class SamlAuthenticationMetaDataPopulator implements
-    AuthenticationMetaDataPopulator {
+        AuthenticationMetaDataPopulator {
 
     public static final String ATTRIBUTE_AUTHENTICATION_METHOD = "samlAuthenticationStatementAuthMethod";
 
@@ -70,7 +70,7 @@ public class SamlAuthenticationMetaDataPopulator implements
      * <p>
      * Example: (<"com.github.peterchenhdu.future.auth.cas.authentication.principal.HttpBasedServiceCredentials">
      * <SAMLAuthenticationStatement.AuthenticationMethod_SSL_TLS_Client>)
-     * 
+     *
      * @param userDefinedMappings map of user defined authentication types.
      */
     public void setUserDefinedMappings(final Map<String, String> userDefinedMappings) {

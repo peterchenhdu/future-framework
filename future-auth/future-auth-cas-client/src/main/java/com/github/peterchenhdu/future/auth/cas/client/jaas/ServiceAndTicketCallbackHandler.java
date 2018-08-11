@@ -20,21 +20,24 @@ import javax.security.auth.callback.UnsupportedCallbackException;
  * @author Marvin S. Addison
  * @version $Revision: 22086 $
  * @since 3.1.11
- *
  */
 public class ServiceAndTicketCallbackHandler implements CallbackHandler {
 
-    /** CAS service URL */
+    /**
+     * CAS service URL
+     */
     private final String service;
-   
-    /** CAS service ticket */
+
+    /**
+     * CAS service ticket
+     */
     private final String ticket;
-   
+
     /**
      * Creates a new instance with the given service and ticket.
      *
      * @param service CAS service URL.
-     * @param ticket CAS service ticket.
+     * @param ticket  CAS service ticket.
      */
     public ServiceAndTicketCallbackHandler(final String service, final String ticket) {
         this.service = service;

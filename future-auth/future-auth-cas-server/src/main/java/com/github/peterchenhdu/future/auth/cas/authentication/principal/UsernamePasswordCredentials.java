@@ -9,7 +9,7 @@ import javax.validation.constraints.Size;
 /**
  * UsernamePasswordCredentials respresents the username and password that a user
  * may provide in order to prove the authenticity of who they say they are.
- * 
+ *
  * @author Scott Battaglia
  * @version $Revision: 1.2 $ $Date: 2007/01/22 20:35:26 $
  * @since 3.0
@@ -19,17 +19,23 @@ import javax.validation.constraints.Size;
  */
 public class UsernamePasswordCredentials implements Credentials {
 
-    /** Unique ID for serialization. */
+    /**
+     * Unique ID for serialization.
+     */
     private static final long serialVersionUID = -8343864967200862794L;
 
-    /** The username. */
+    /**
+     * The username.
+     */
     @NotNull
-    @Size(min=1,message = "required.username")
+    @Size(min = 1, message = "required.username")
     private String username;
 
-    /** The password. */
+    /**
+     * The password.
+     */
     @NotNull
-    @Size(min=1, message = "required.password")
+    @Size(min = 1, message = "required.password")
     private String password;
 
     /**

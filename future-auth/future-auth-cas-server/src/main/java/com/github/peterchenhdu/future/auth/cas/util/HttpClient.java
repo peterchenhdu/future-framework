@@ -26,23 +26,29 @@ import java.util.concurrent.Future;
  */
 public final class HttpClient implements Serializable, DisposableBean {
 
-    /** Unique Id for serialization. */
+    /**
+     * Unique Id for serialization.
+     */
     private static final long serialVersionUID = -5306738686476129516L;
 
-    /** The default status codes we accept. */
-    private static final int[] DEFAULT_ACCEPTABLE_CODES = new int[] {
-        HttpURLConnection.HTTP_OK, HttpURLConnection.HTTP_NOT_MODIFIED,
-        HttpURLConnection.HTTP_MOVED_TEMP, HttpURLConnection.HTTP_MOVED_PERM,
-        HttpURLConnection.HTTP_ACCEPTED};
+    /**
+     * The default status codes we accept.
+     */
+    private static final int[] DEFAULT_ACCEPTABLE_CODES = new int[]{
+            HttpURLConnection.HTTP_OK, HttpURLConnection.HTTP_NOT_MODIFIED,
+            HttpURLConnection.HTTP_MOVED_TEMP, HttpURLConnection.HTTP_MOVED_PERM,
+            HttpURLConnection.HTTP_ACCEPTED};
 
     private static final Logger log = LoggerFactory.getLogger(HttpClient.class);
 
     private static ExecutorService EXECUTOR_SERVICE = Executors.newFixedThreadPool(100);
 
 
-    /** List of HTTP status codes considered valid by this AuthenticationHandler. */
+    /**
+     * List of HTTP status codes considered valid by this AuthenticationHandler.
+     */
     @NotNull
-    @Size(min=1)
+    @Size(min = 1)
     private int[] acceptableCodes = DEFAULT_ACCEPTABLE_CODES;
 
     @Min(0)
@@ -57,6 +63,7 @@ public final class HttpClient implements Serializable, DisposableBean {
     /**
      * Note that changing this executor will affect all httpClients.  While not ideal, this change was made because certain ticket registries
      * were persisting the HttpClient and thus getting serializable exceptions.
+     *
      * @param executorService
      */
     public void setExecutorService(final ExecutorService executorService) {
@@ -69,9 +76,9 @@ public final class HttpClient implements Serializable, DisposableBean {
      * <p>
      * This is useful when it doesn't matter about the response as you'll perform no action based on the response.
      *
-     * @param url the url to send the message to
+     * @param url     the url to send the message to
      * @param message the message itself
-     * @param async true if you don't want to wait for the response, false otherwise.
+     * @param async   true if you don't want to wait for the response, false otherwise.
      * @return boolean if the message was sent, or async was used.  false if the message failed.
      */
     public boolean sendMessageToEndPoint(final String url, final String message, final boolean async) {
@@ -93,7 +100,7 @@ public final class HttpClient implements Serializable, DisposableBean {
             final URL u = new URL(url);
             return isValidEndPoint(u);
         } catch (final MalformedURLException e) {
-            log.error(e.getMessage(),e);
+            log.error(e.getMessage(), e);
             return false;
         }
     }
@@ -131,7 +138,7 @@ public final class HttpClient implements Serializable, DisposableBean {
                 log.error(String.format("There was an error contacting the endpoint: %s; The error was:\n%s", url.toExternalForm(), value));
             }
         } catch (final IOException e) {
-            log.error(e.getMessage(),e);
+            log.error(e.getMessage(), e);
         } finally {
             IOUtils.closeQuietly(is);
             if (connection != null) {
@@ -144,7 +151,7 @@ public final class HttpClient implements Serializable, DisposableBean {
     /**
      * Set the acceptable HTTP status codes that we will use to determine if the
      * response from the URL was correct.
-     * 
+     *
      * @param acceptableCodes an array of status code integers.
      */
     public final void setAcceptableCodes(final int[] acceptableCodes) {

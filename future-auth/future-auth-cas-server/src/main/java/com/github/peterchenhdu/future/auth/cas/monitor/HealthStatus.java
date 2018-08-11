@@ -13,14 +13,16 @@ import java.util.Map;
  * @since 3.5.0
  */
 public class HealthStatus extends Status {
-    /** Map of names (e.g. monitor that produced it) to status information. */
+    /**
+     * Map of names (e.g. monitor that produced it) to status information.
+     */
     private final Map<String, Status> details;
 
 
     /**
      * Creates a new status object with the given code.
      *
-     * @param code Status code.
+     * @param code      Status code.
      * @param detailMap Map of names to status information. A reasonable name would be, for example, the name of
      *                  the monitor that produced it.
      * @see #getCode()

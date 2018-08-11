@@ -7,18 +7,22 @@ package com.github.peterchenhdu.future.auth.cas.validation;
  * Base validation specification for the CAS protocol. This specification checks
  * for the presence of renew=true and if requested, succeeds only if ticket
  * validation is occurring from a new login.
- * 
+ *
  * @author Scott Battaglia
  * @version $Revision$ $Date$
  * @since 3.0
  */
 public abstract class AbstractCasProtocolValidationSpecification implements
-    ValidationSpecification {
+        ValidationSpecification {
 
-    /** The default value for the renew attribute is false. */
+    /**
+     * The default value for the renew attribute is false.
+     */
     private static final boolean DEFAULT_RENEW = false;
 
-    /** Denotes whether we should always authenticate or not. */
+    /**
+     * Denotes whether we should always authenticate or not.
+     */
     private boolean renew;
 
     public AbstractCasProtocolValidationSpecification() {
@@ -31,7 +35,7 @@ public abstract class AbstractCasProtocolValidationSpecification implements
 
     /**
      * Method to set the renew requirement.
-     * 
+     *
      * @param renew The renew value we want.
      */
     public final void setRenew(final boolean renew) {
@@ -40,7 +44,7 @@ public abstract class AbstractCasProtocolValidationSpecification implements
 
     /**
      * Method to determine if we require renew to be true.
-     * 
+     *
      * @return true if renew is required, false otherwise.
      */
     public final boolean isRenew() {
@@ -49,7 +53,7 @@ public abstract class AbstractCasProtocolValidationSpecification implements
 
     public final boolean isSatisfiedBy(final Assertion assertion) {
         return isSatisfiedByInternal(assertion)
-            && ((!this.renew) || (assertion.isFromNewLogin() && this.renew));
+                && ((!this.renew) || (assertion.isFromNewLogin() && this.renew));
     }
 
     /**

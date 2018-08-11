@@ -30,7 +30,7 @@ public abstract class AbstractUrlBasedTicketValidator implements TicketValidator
      * Commons Logging instance.
      */
     protected final Log log = LogFactory.getLog(getClass());
-   
+
     /**
      * Hostname verifier used when making an SSL request to the CAS server.
      */
@@ -38,7 +38,7 @@ public abstract class AbstractUrlBasedTicketValidator implements TicketValidator
 
     /**
      * Prefix for the CAS server.   Should be everything up to the url endpoint, including the /.
-     *
+     * <p>
      * i.e. https://cas.rutgers.edu/
      */
     private final String casServerUrlPrefix;
@@ -51,7 +51,7 @@ public abstract class AbstractUrlBasedTicketValidator implements TicketValidator
     /**
      * A map containing custom parameters to pass to the validation url.
      */
-    private Map<String,String> customParameters;
+    private Map<String, String> customParameters;
 
     private String encoding;
 
@@ -70,12 +70,13 @@ public abstract class AbstractUrlBasedTicketValidator implements TicketValidator
      *
      * @param urlParameters the map containing the parameters.
      */
-    protected void populateUrlAttributeMap(final Map<String,String> urlParameters) {
+    protected void populateUrlAttributeMap(final Map<String, String> urlParameters) {
         // nothing to do
     }
 
     /**
      * The endpoint of the validation URL.  Should be relative (i.e. not start with a "/").  I.e. validate or serviceValidate.
+     *
      * @return the endpoint of the validation URL.
      */
     protected abstract String getUrlSuffix();
@@ -91,12 +92,12 @@ public abstract class AbstractUrlBasedTicketValidator implements TicketValidator
     /**
      * Constructs the URL to send the validation request to.
      *
-     * @param ticket the ticket to be validated.
+     * @param ticket     the ticket to be validated.
      * @param serviceUrl the service identifier.
      * @return the fully constructed URL.
      */
     protected final String constructValidationUrl(final String ticket, final String serviceUrl) {
-        final Map<String,String> urlParameters = new HashMap<String,String>();
+        final Map<String, String> urlParameters = new HashMap<String, String>();
 
         log.debug("Placing URL parameters in map.");
         urlParameters.put("ticket", ticket);
@@ -115,7 +116,7 @@ public abstract class AbstractUrlBasedTicketValidator implements TicketValidator
         }
 
         final String suffix = getUrlSuffix();
-        final StringBuilder buffer = new StringBuilder(urlParameters.size()*10 + this.casServerUrlPrefix.length() + suffix.length() +1);
+        final StringBuilder buffer = new StringBuilder(urlParameters.size() * 10 + this.casServerUrlPrefix.length() + suffix.length() + 1);
 
         int i = 0;
 
@@ -125,7 +126,7 @@ public abstract class AbstractUrlBasedTicketValidator implements TicketValidator
         }
         buffer.append(suffix);
 
-        for (Map.Entry<String,String> entry : urlParameters.entrySet()) {
+        for (Map.Entry<String, String> entry : urlParameters.entrySet()) {
             final String key = entry.getKey();
             final String value = entry.getValue();
 
@@ -145,13 +146,13 @@ public abstract class AbstractUrlBasedTicketValidator implements TicketValidator
      * Encodes a URL using the URLEncoder format.
      *
      * @param url the url to encode.
-     * @return the encoded url, or the original url if "UTF-8" character encoding could not be found.                       
+     * @return the encoded url, or the original url if "UTF-8" character encoding could not be found.
      */
     protected final String encodeUrl(final String url) {
-    	if (url == null) {
-    		return null;
-    	}
-    	
+        if (url == null) {
+            return null;
+        }
+
         try {
             return URLEncoder.encode(url, "UTF-8");
         } catch (final UnsupportedEncodingException e) {
@@ -165,7 +166,6 @@ public abstract class AbstractUrlBasedTicketValidator implements TicketValidator
      * @param response the response from the server, in any format.
      * @return the CAS assertion if one could be parsed from the response.
      * @throws TicketValidationException if an Assertion could not be created.
-     *
      */
     protected abstract Assertion parseResponseFromServer(final String response) throws TicketValidationException;
 
@@ -173,7 +173,7 @@ public abstract class AbstractUrlBasedTicketValidator implements TicketValidator
      * Contacts the CAS Server to retrieve the response for the ticket validation.
      *
      * @param validationUrl the url to send the validation request to.
-     * @param ticket the ticket to validate.
+     * @param ticket        the ticket to validate.
      * @return the response from the CAS server.
      */
 
@@ -188,15 +188,15 @@ public abstract class AbstractUrlBasedTicketValidator implements TicketValidator
         }
 
         try {
-        	log.debug("Retrieving response from server.");
+            log.debug("Retrieving response from server.");
             final String serverResponse = retrieveResponseFromServer(new URL(validationUrl), ticket);
 
             if (serverResponse == null) {
                 throw new TicketValidationException("The CAS server returned no response.");
             }
-            
+
             if (log.isDebugEnabled()) {
-            	log.debug("Server response: " + serverResponse);
+                log.debug("Server response: " + serverResponse);
             }
 
             return parseResponseFromServer(serverResponse);
@@ -209,10 +209,10 @@ public abstract class AbstractUrlBasedTicketValidator implements TicketValidator
         this.renew = renew;
     }
 
-    public final void setCustomParameters(final Map<String,String> customParameters) {
+    public final void setCustomParameters(final Map<String, String> customParameters) {
         this.customParameters = customParameters;
     }
-    
+
     public final void setHostnameVerifier(final HostnameVerifier verifier) {
         this.hostnameVerifier = verifier;
     }

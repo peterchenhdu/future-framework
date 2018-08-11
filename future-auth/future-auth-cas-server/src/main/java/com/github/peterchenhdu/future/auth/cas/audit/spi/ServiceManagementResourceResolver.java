@@ -33,9 +33,9 @@ public final class ServiceManagementResourceResolver implements AuditResourceRes
         final Long id = (Long) j.getArgs()[0];
 
         if (id == null) {
-            return new String[] {""};
+            return new String[]{""};
         }
 
-        return new String[] {"id=" + id};
+        return new String[]{"id=" + id};
     }
 }

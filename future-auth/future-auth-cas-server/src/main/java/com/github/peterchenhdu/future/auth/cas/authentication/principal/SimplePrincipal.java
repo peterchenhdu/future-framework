@@ -12,7 +12,7 @@ import java.util.Map;
 /**
  * Simple implementation of a AttributePrincipal that exposes an unmodifiable
  * map of attributes.
- * 
+ *
  * @author Scott Battaglia
  * @version $Revision: 1.3 $ $Date: 2007/04/19 20:13:01 $
  * @since 3.1
@@ -20,17 +20,21 @@ import java.util.Map;
 public class SimplePrincipal implements Principal {
 
     private static final Map<String, Object> EMPTY_MAP = Collections
-        .unmodifiableMap(new HashMap<String, Object>());
+            .unmodifiableMap(new HashMap<String, Object>());
 
     /**
      * Unique Id for Serialization.
      */
     private static final long serialVersionUID = -5265620187476296219L;
 
-    /** The unique identifier for the principal. */
+    /**
+     * The unique identifier for the principal.
+     */
     private final String id;
 
-    /** Map of attributes for the Principal. */
+    /**
+     * Map of attributes for the Principal.
+     */
     private Map<String, Object> attributes;
 
     public SimplePrincipal(final String id) {
@@ -42,7 +46,7 @@ public class SimplePrincipal implements Principal {
         this.id = id;
 
         this.attributes = attributes == null || attributes.isEmpty()
-            ? EMPTY_MAP : Collections.unmodifiableMap(attributes);
+                ? EMPTY_MAP : Collections.unmodifiableMap(attributes);
     }
 
     /**

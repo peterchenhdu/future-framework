@@ -15,5 +15,6 @@
     <modules>
         <module>future-example-digester3</module>
         <module>future-example-quartz</module>
+        <module>future-example-tankbattle</module>
     </modules>
 </project>

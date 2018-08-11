@@ -30,7 +30,7 @@ public class CasDefaultFlowUrlHandler extends DefaultFlowUrlHandler {
     @Override
     public String createFlowDefinitionUrl(final String flowId, final AttributeMap input, final HttpServletRequest request) {
         return request.getRequestURI()
-            + (request.getQueryString() != null ? "?"
-            + request.getQueryString() : "");
+                + (request.getQueryString() != null ? "?"
+                + request.getQueryString() : "");
     }
 }

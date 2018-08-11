@@ -16,10 +16,14 @@ public class PoolStatus extends Status {
      */
     public static final int UNKNOWN_COUNT = -1;
 
-    /** Number of idle pool resources. */
+    /**
+     * Number of idle pool resources.
+     */
     private final int idleCount;
 
-    /** Number of active pool resources. */
+    /**
+     * Number of active pool resources.
+     */
     private final int activeCount;
 
 
@@ -28,7 +32,6 @@ public class PoolStatus extends Status {
      *
      * @param code Status code.
      * @param desc Human-readable status description.
-     *
      * @see #getCode()
      */
     public PoolStatus(final StatusCode code, final String desc, final int active, final int idle) {
@@ -56,8 +59,8 @@ public class PoolStatus extends Status {
     public int getActiveCount() {
         return this.activeCount;
     }
-    
-    
+
+
     private static String buildDescription(final String desc, final int active, final int idle) {
         final StringBuilder sb = new StringBuilder();
         if (desc != null) {

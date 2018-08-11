@@ -30,13 +30,19 @@ import java.util.Map;
  */
 public class Cas20ServiceTicketValidator extends AbstractCasProtocolUrlBasedTicketValidator {
 
-    /** The CAS 2.0 protocol proxy callback url. */
+    /**
+     * The CAS 2.0 protocol proxy callback url.
+     */
     private String proxyCallbackUrl;
 
-    /** The storage location of the proxy granting tickets. */
+    /**
+     * The storage location of the proxy granting tickets.
+     */
     private ProxyGrantingTicketStorage proxyGrantingTicketStorage;
 
-    /** Implementation of the proxy retriever. */
+    /**
+     * Implementation of the proxy retriever.
+     */
     private ProxyRetriever proxyRetriever;
 
     /**
@@ -55,7 +61,7 @@ public class Cas20ServiceTicketValidator extends AbstractCasProtocolUrlBasedTick
      *
      * @param urlParameters the Map containing the existing parameters to send to the server.
      */
-    protected final void populateUrlAttributeMap(final Map<String,String> urlParameters) {
+    protected final void populateUrlAttributeMap(final Map<String, String> urlParameters) {
         urlParameters.put("pgtUrl", encodeUrl(this.proxyCallbackUrl));
     }
 
@@ -80,7 +86,7 @@ public class Cas20ServiceTicketValidator extends AbstractCasProtocolUrlBasedTick
         }
 
         final Assertion assertion;
-        final Map<String,Object> attributes = extractCustomAttributes(response);
+        final Map<String, Object> attributes = extractCustomAttributes(response);
         if (CommonUtils.isNotBlank(proxyGrantingTicket)) {
             final AttributePrincipal attributePrincipal = new AttributePrincipalImpl(principal, attributes, proxyGrantingTicket, this.proxyRetriever);
             assertion = new AssertionImpl(attributePrincipal);
@@ -96,8 +102,8 @@ public class Cas20ServiceTicketValidator extends AbstractCasProtocolUrlBasedTick
     /**
      * Default attribute parsing of attributes that look like the following:
      * &lt;cas:attributes&gt;
-     *  &lt;cas:attribute1&gt;value&lt;/cas:attribute1&gt;
-     *  &lt;cas:attribute2&gt;value&lt;/cas:attribute2&gt;
+     * &lt;cas:attribute1&gt;value&lt;/cas:attribute1&gt;
+     * &lt;cas:attribute2&gt;value&lt;/cas:attribute2&gt;
      * &lt;/cas:attributes&gt;
      * <p>
      * This code is here merely for sample/demonstration purposes for those wishing to modify the CAS2 protocol.  You'll
@@ -106,34 +112,34 @@ public class Cas20ServiceTicketValidator extends AbstractCasProtocolUrlBasedTick
      * @param xml the XML to parse.
      * @return the map of attributes.
      */
-    protected Map<String,Object> extractCustomAttributes(final String xml) {
-    	final int pos1 = xml.indexOf("<cas:attributes>");
-    	final int pos2 = xml.indexOf("</cas:attributes>");
-    	
-    	if (pos1 == -1) {
-    		return Collections.emptyMap();
-    	}
-    	
-    	final String attributesText = xml.substring(pos1+16, pos2);
-    	
-    	final Map<String,Object> attributes = new HashMap<String,Object>();
-    	final BufferedReader br = new BufferedReader(new StringReader(attributesText));
-    	
-    	String line;
-    	final List<String> attributeNames = new ArrayList<String>();
-    	try {
-	    	while ((line = br.readLine()) != null) {
-	    		final String trimmedLine = line.trim();
-	    		if (trimmedLine.length() > 0) {
-		    		final int leftPos = trimmedLine.indexOf(":");
-		    		final int rightPos = trimmedLine.indexOf(">");
-		    		attributeNames.add(trimmedLine.substring(leftPos+1, rightPos));
-	    		}
-	    	}
-	    	br.close();
-    	} catch (final IOException e) {
-    		//ignore
-    	}
+    protected Map<String, Object> extractCustomAttributes(final String xml) {
+        final int pos1 = xml.indexOf("<cas:attributes>");
+        final int pos2 = xml.indexOf("</cas:attributes>");
+
+        if (pos1 == -1) {
+            return Collections.emptyMap();
+        }
+
+        final String attributesText = xml.substring(pos1 + 16, pos2);
+
+        final Map<String, Object> attributes = new HashMap<String, Object>();
+        final BufferedReader br = new BufferedReader(new StringReader(attributesText));
+
+        String line;
+        final List<String> attributeNames = new ArrayList<String>();
+        try {
+            while ((line = br.readLine()) != null) {
+                final String trimmedLine = line.trim();
+                if (trimmedLine.length() > 0) {
+                    final int leftPos = trimmedLine.indexOf(":");
+                    final int rightPos = trimmedLine.indexOf(">");
+                    attributeNames.add(trimmedLine.substring(leftPos + 1, rightPos));
+                }
+            }
+            br.close();
+        } catch (final IOException e) {
+            //ignore
+        }
 
         for (final String name : attributeNames) {
             final List<String> values = XmlUtils.getTextForElements(xml, name);
@@ -143,15 +149,15 @@ public class Cas20ServiceTicketValidator extends AbstractCasProtocolUrlBasedTick
             } else {
                 attributes.put(name, values);
             }
-    	}
-    	
-    	return attributes;
+        }
+
+        return attributes;
     }
 
     /**
      * Template method if additional custom parsing (such as Proxying) needs to be done.
      *
-     * @param response the original response from the CAS server.
+     * @param response  the original response from the CAS server.
      * @param assertion the partially constructed assertion.
      * @throws TicketValidationException if there is a problem constructing the Assertion.
      */
@@ -169,5 +175,5 @@ public class Cas20ServiceTicketValidator extends AbstractCasProtocolUrlBasedTick
 
     public final void setProxyRetriever(final ProxyRetriever proxyRetriever) {
         this.proxyRetriever = proxyRetriever;
-    }    
+    }
 }

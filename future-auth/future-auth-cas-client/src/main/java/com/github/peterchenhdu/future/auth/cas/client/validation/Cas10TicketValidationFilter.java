@@ -10,7 +10,7 @@ import javax.servlet.FilterConfig;
  * Implementation of AbstractTicketValidatorFilter that instanciates a Cas10TicketValidator.
  * <p>Deployers can provide the "casServerPrefix" and the "renew" attributes via the standard context or filter init
  * parameters.
- * 
+ *
  * @author Scott Battaglia
  * @version $Revision$ $Date$
  * @since 3.1

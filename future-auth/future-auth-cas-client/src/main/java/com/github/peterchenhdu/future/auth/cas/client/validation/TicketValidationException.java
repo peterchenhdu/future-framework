@@ -14,11 +14,11 @@ package com.github.peterchenhdu.future.auth.cas.client.validation;
 public class TicketValidationException extends Exception {
 
     /**
-	 * Unique Id for Serialization
-	 */
-	private static final long serialVersionUID = -7036248720402711806L;
+     * Unique Id for Serialization
+     */
+    private static final long serialVersionUID = -7036248720402711806L;
 
-	/**
+    /**
      * Constructs an exception with the supplied message.
      *
      * @param string the message
@@ -30,7 +30,7 @@ public class TicketValidationException extends Exception {
     /**
      * Constructs an exception with the supplied message and chained throwable.
      *
-     * @param string the message
+     * @param string    the message
      * @param throwable the original exception
      */
     public TicketValidationException(final String string, final Throwable throwable) {
@@ -39,7 +39,8 @@ public class TicketValidationException extends Exception {
 
     /**
      * Constructs an exception with the chained throwable.
-     * @param throwable the original exception.                                    
+     *
+     * @param throwable the original exception.
      */
     public TicketValidationException(final Throwable throwable) {
         super(throwable);

@@ -17,9 +17,9 @@ public class CacheStatus extends Status {
     /**
      * Creates a new instance describing cache status.
      *
-     * @param code Status code.
+     * @param code        Status code.
      * @param description Optional status description.
-     * @param statistics One or more sets of cache statistics.
+     * @param statistics  One or more sets of cache statistics.
      */
     public CacheStatus(final StatusCode code, final String description, final CacheStatistics... statistics) {
         super(code, buildDescription(description, statistics));

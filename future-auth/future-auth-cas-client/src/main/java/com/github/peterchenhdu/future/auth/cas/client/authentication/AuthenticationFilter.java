@@ -28,7 +28,7 @@ import java.io.IOException;
  * <li><code>renew</code> - true/false on whether to use renew or not.</li>
  * <li><code>gateway</code> - true/false on whether to use gateway or not.</li>
  * </ul>
- *
+ * <p>
  * <p>Please see AbstractCasFilter for additional properties.</p>
  *
  * @author Scott Battaglia
@@ -51,7 +51,7 @@ public class AuthenticationFilter extends AbstractCasFilter {
      * Whether to send the gateway request or not.
      */
     private boolean gateway = false;
-    
+
     private GatewayResolver gatewayStorage = new DefaultGatewayResolverImpl();
 
     protected void initInternal(final FilterConfig filterConfig) throws ServletException {
@@ -70,7 +70,7 @@ public class AuthenticationFilter extends AbstractCasFilter {
                 try {
                     this.gatewayStorage = (GatewayResolver) Class.forName(gatewayStorageClass).newInstance();
                 } catch (final Exception e) {
-                    log.error(e,e);
+                    log.error(e, e);
                     throw new ServletException(e);
                 }
             }
@@ -94,7 +94,7 @@ public class AuthenticationFilter extends AbstractCasFilter {
         }
 
         final String serviceUrl = constructServiceUrl(request, response);
-        final String ticket = CommonUtils.safeGetParameter(request,getArtifactParameterName());
+        final String ticket = CommonUtils.safeGetParameter(request, getArtifactParameterName());
         final boolean wasGatewayed = this.gatewayStorage.hasGatewayedAlready(request, serviceUrl);
 
         if (CommonUtils.isNotBlank(ticket) || wasGatewayed) {
@@ -136,8 +136,8 @@ public class AuthenticationFilter extends AbstractCasFilter {
     public final void setCasServerLoginUrl(final String casServerLoginUrl) {
         this.casServerLoginUrl = casServerLoginUrl;
     }
-    
+
     public final void setGatewayStorage(final GatewayResolver gatewayStorage) {
-    	this.gatewayStorage = gatewayStorage;
+        this.gatewayStorage = gatewayStorage;
     }
 }

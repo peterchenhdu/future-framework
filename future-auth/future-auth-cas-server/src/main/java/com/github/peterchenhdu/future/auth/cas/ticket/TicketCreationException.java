@@ -5,17 +5,21 @@ package com.github.peterchenhdu.future.auth.cas.ticket;
 
 /**
  * Exception thrown if there is an error creating a ticket.
- * 
+ *
  * @author Scott Battaglia
  * @version $Revision$ $Date$
  * @since 3.0
  */
 public class TicketCreationException extends TicketException {
 
-    /** Serializable ID for unique id. */
+    /**
+     * Serializable ID for unique id.
+     */
     private static final long serialVersionUID = 5501212207531289993L;
 
-    /** Code description. */
+    /**
+     * Code description.
+     */
     private static final String CODE = "CREATION_ERROR";
 
     /**
@@ -28,7 +32,7 @@ public class TicketCreationException extends TicketException {
     /**
      * Constructs a TicketCreationException with the default exception code and
      * the original exception that was thrown.
-     * 
+     *
      * @param throwable the chained exception
      */
     public TicketCreationException(final Throwable throwable) {

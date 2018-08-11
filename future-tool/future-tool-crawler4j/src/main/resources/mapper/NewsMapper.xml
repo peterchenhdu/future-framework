@@ -5,26 +5,26 @@
 
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.github.peterchenhdu.future.tool.crawler4j.dao.NewsMapper">
-  <resultMap id="BaseResultMap" type="com.github.peterchenhdu.future.tool.crawler4j.model.News">
-    <!--
-      WARNING - @mbg.generated
-    -->
-    <id column="uuid" jdbcType="VARCHAR" property="uuid" />
-    <result column="url" jdbcType="VARCHAR" property="url" />
-    <result column="title" jdbcType="VARCHAR" property="title" />
-    <result column="content_text" jdbcType="VARCHAR" property="contentText" />
-    <result column="content_html" jdbcType="VARCHAR" property="contentHtml" />
-    <result column="src_url" jdbcType="VARCHAR" property="srcUrl" />
-    <result column="src_name" jdbcType="VARCHAR" property="srcName" />
-    <result column="publish_time" jdbcType="VARCHAR" property="publishTime" />
-    <result column="crawler_name" jdbcType="VARCHAR" property="crawlerName" />
-    <result column="crawler_src" jdbcType="VARCHAR" property="crawlerSrc" />
-  </resultMap>
-  <sql id="Base_Column_List">
-    <!--
-      WARNING - @mbg.generated
-    -->
-    uuid, url, title, content_text, content_html, src_url, src_name, publish_time, crawler_name, 
-    crawler_src
-  </sql>
+    <resultMap id="BaseResultMap" type="com.github.peterchenhdu.future.tool.crawler4j.model.News">
+        <!--
+          WARNING - @mbg.generated
+        -->
+        <id column="uuid" jdbcType="VARCHAR" property="uuid"/>
+        <result column="url" jdbcType="VARCHAR" property="url"/>
+        <result column="title" jdbcType="VARCHAR" property="title"/>
+        <result column="content_text" jdbcType="VARCHAR" property="contentText"/>
+        <result column="content_html" jdbcType="VARCHAR" property="contentHtml"/>
+        <result column="src_url" jdbcType="VARCHAR" property="srcUrl"/>
+        <result column="src_name" jdbcType="VARCHAR" property="srcName"/>
+        <result column="publish_time" jdbcType="VARCHAR" property="publishTime"/>
+        <result column="crawler_name" jdbcType="VARCHAR" property="crawlerName"/>
+        <result column="crawler_src" jdbcType="VARCHAR" property="crawlerSrc"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+        <!--
+          WARNING - @mbg.generated
+        -->
+        uuid, url, title, content_text, content_html, src_url, src_name, publish_time, crawler_name,
+        crawler_src
+    </sql>
 </mapper>

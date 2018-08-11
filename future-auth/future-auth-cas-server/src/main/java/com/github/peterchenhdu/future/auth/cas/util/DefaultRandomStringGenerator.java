@@ -8,25 +8,33 @@ import java.security.SecureRandom;
 /**
  * Implementation of the RandomStringGenerator that allows you to define the
  * length of the random part.
- * 
+ *
  * @author Scott Battaglia
  * @version $Revision$ $Date$
  * @since 3.0
  */
 public final class DefaultRandomStringGenerator implements
-    RandomStringGenerator {
+        RandomStringGenerator {
 
-    /** The array of printable characters to be used in our random string. */
+    /**
+     * The array of printable characters to be used in our random string.
+     */
     private static final char[] PRINTABLE_CHARACTERS = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ012345679"
-        .toCharArray();
+            .toCharArray();
 
-    /** The default maximum length. */
+    /**
+     * The default maximum length.
+     */
     private static final int DEFAULT_MAX_RANDOM_LENGTH = 35;
 
-    /** An instance of secure random to ensure randomness is secure. */
+    /**
+     * An instance of secure random to ensure randomness is secure.
+     */
     private SecureRandom randomizer = new SecureRandom();
 
-    /** The maximum length the random string can be. */
+    /**
+     * The maximum length the random string can be.
+     */
     private final int maximumRandomLength;
 
     public DefaultRandomStringGenerator() {
@@ -56,7 +64,7 @@ public final class DefaultRandomStringGenerator implements
         final byte[] random = new byte[this.maximumRandomLength];
 
         this.randomizer.nextBytes(random);
-        
+
         return random;
     }
 

@@ -10,10 +10,14 @@ package com.github.peterchenhdu.future.auth.cas.monitor;
  * @since 3.5.0
  */
 public class SessionStatus extends Status {
-    /** Total number of SSO sessions maintained by CAS. */
+    /**
+     * Total number of SSO sessions maintained by CAS.
+     */
     private final int sessionCount;
 
-    /** Total number of service tickets in CAS ticket registry. */
+    /**
+     * Total number of service tickets in CAS ticket registry.
+     */
     private final int serviceTicketCount;
 
     /**
@@ -21,7 +25,6 @@ public class SessionStatus extends Status {
      *
      * @param code Status code.
      * @param desc Human-readable status description.
-     *
      * @see #getCode()
      */
     public SessionStatus(final StatusCode code, final String desc) {
@@ -32,14 +35,13 @@ public class SessionStatus extends Status {
     /**
      * Creates a new status object with the given code.
      *
-     * @param code Status code.
-     * @param desc Human-readable status description.
-     * @param sessions Number of established SSO sessions in ticket registry.
+     * @param code           Status code.
+     * @param desc           Human-readable status description.
+     * @param sessions       Number of established SSO sessions in ticket registry.
      * @param serviceTickets Number of service tickets in ticket registry.
-     *
      * @see #getCode()
      */
-     public SessionStatus(final StatusCode code, final String desc, final int sessions, final int serviceTickets) {
+    public SessionStatus(final StatusCode code, final String desc, final int sessions, final int serviceTickets) {
         super(code, desc);
         this.sessionCount = sessions;
         this.serviceTicketCount = serviceTickets;

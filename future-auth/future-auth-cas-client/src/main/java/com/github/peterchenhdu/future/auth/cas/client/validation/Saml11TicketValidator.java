@@ -25,7 +25,9 @@ import java.util.*;
  */
 public final class Saml11TicketValidator extends AbstractUrlBasedTicketValidator {
 
-    /** Time tolerance to allow for time drifting. */
+    /**
+     * Time tolerance to allow for time drifting.
+     */
     private long tolerance = 1000L;
 
     public Saml11TicketValidator(final String casServerUrlPrefix) {
@@ -54,15 +56,15 @@ public final class Saml11TicketValidator extends AbstractUrlBasedTicketValidator
 
     protected Assertion parseResponseFromServer(final String response) throws TicketValidationException {
         try {
-        	final String removeStartOfSoapBody = response.substring(response.indexOf("<SOAP-ENV:Body>") + 15);
-        	final String removeEndOfSoapBody = removeStartOfSoapBody.substring(0, removeStartOfSoapBody.indexOf("</SOAP-ENV:Body>"));
+            final String removeStartOfSoapBody = response.substring(response.indexOf("<SOAP-ENV:Body>") + 15);
+            final String removeEndOfSoapBody = removeStartOfSoapBody.substring(0, removeStartOfSoapBody.indexOf("</SOAP-ENV:Body>"));
             final SAMLResponse samlResponse = new SAMLResponse(new ByteArrayInputStream(CommonUtils.isNotBlank(getEncoding()) ? removeEndOfSoapBody.getBytes(Charset.forName(getEncoding())) : removeEndOfSoapBody.getBytes()));
 
             if (!samlResponse.getAssertions().hasNext()) {
                 throw new TicketValidationException("No assertions found.");
             }
 
-            for (final Iterator<?> iter = samlResponse.getAssertions(); iter.hasNext();) {
+            for (final Iterator<?> iter = samlResponse.getAssertions(); iter.hasNext(); ) {
                 final SAMLAssertion assertion = (SAMLAssertion) iter.next();
 
                 if (!isValidAssertion(assertion)) {
@@ -81,7 +83,7 @@ public final class Saml11TicketValidator extends AbstractUrlBasedTicketValidator
                 }
 
                 final SAMLAttribute[] attributes = getAttributesFor(assertion, subject);
-                final Map<String,Object> personAttributes = new HashMap<String,Object>();
+                final Map<String, Object> personAttributes = new HashMap<String, Object>();
                 for (final SAMLAttribute samlAttribute : attributes) {
                     final List<?> values = getValuesFrom(samlAttribute);
 
@@ -90,12 +92,12 @@ public final class Saml11TicketValidator extends AbstractUrlBasedTicketValidator
 
                 final AttributePrincipal principal = new AttributePrincipalImpl(subject.getNameIdentifier().getName(), personAttributes);
 
-                final Map<String,Object> authenticationAttributes = new HashMap<String,Object>();
+                final Map<String, Object> authenticationAttributes = new HashMap<String, Object>();
                 authenticationAttributes.put("samlAuthenticationStatement::authMethod", authenticationStatement.getAuthMethod());
 
                 return new AssertionImpl(principal, authenticationAttributes);
             }
-       } catch (final SAMLException e) {
+        } catch (final SAMLException e) {
             throw new TicketValidationException(e);
         }
 
@@ -127,7 +129,7 @@ public final class Saml11TicketValidator extends AbstractUrlBasedTicketValidator
     }
 
     private SAMLAuthenticationStatement getSAMLAuthenticationStatement(final SAMLAssertion assertion) {
-        for (final Iterator<?> iter = assertion.getStatements(); iter.hasNext();) {
+        for (final Iterator<?> iter = assertion.getStatements(); iter.hasNext(); ) {
             final SAMLStatement statement = (SAMLStatement) iter.next();
 
             if (statement instanceof SAMLAuthenticationStatement) {
@@ -140,15 +142,15 @@ public final class Saml11TicketValidator extends AbstractUrlBasedTicketValidator
 
     private SAMLAttribute[] getAttributesFor(final SAMLAssertion assertion, final SAMLSubject subject) {
         final List<SAMLAttribute> attributes = new ArrayList<SAMLAttribute>();
-        for (final Iterator<?> iter = assertion.getStatements(); iter.hasNext();) {
+        for (final Iterator<?> iter = assertion.getStatements(); iter.hasNext(); ) {
             final SAMLStatement statement = (SAMLStatement) iter.next();
 
             if (statement instanceof SAMLAttributeStatement) {
                 final SAMLAttributeStatement attributeStatement = (SAMLAttributeStatement) statement;
                 // used because SAMLSubject does not implement equals
                 if (subject.getNameIdentifier().getName().equals(attributeStatement.getSubject().getNameIdentifier().getName())) {
-                    for (final Iterator<?> iter2 = attributeStatement.getAttributes(); iter2.hasNext();)
-                    attributes.add((SAMLAttribute) iter2.next());
+                    for (final Iterator<?> iter2 = attributeStatement.getAttributes(); iter2.hasNext(); )
+                        attributes.add((SAMLAttribute) iter2.next());
                 }
             }
         }
@@ -158,7 +160,7 @@ public final class Saml11TicketValidator extends AbstractUrlBasedTicketValidator
 
     private List<?> getValuesFrom(final SAMLAttribute attribute) {
         final List<Object> list = new ArrayList<Object>();
-        for (final Iterator<?> iter = attribute.getValues(); iter.hasNext();) {
+        for (final Iterator<?> iter = attribute.getValues(); iter.hasNext(); ) {
             list.add(iter.next());
         }
         return list;
@@ -176,8 +178,8 @@ public final class Saml11TicketValidator extends AbstractUrlBasedTicketValidator
 
         try {
             MESSAGE_TO_SEND = "<SOAP-ENV:Envelope xmlns:SOAP-ENV=\"http://schemas.xmlsoap.org/soap/envelope/\"><SOAP-ENV:Header/><SOAP-ENV:Body><samlp:Request xmlns:samlp=\"urn:oasis:names:tc:SAML:1.0:protocol\"  MajorVersion=\"1\" MinorVersion=\"1\" RequestID=\"" + SAMLIdentifierFactory.getInstance().getIdentifier() + "\" IssueInstant=\"" + CommonUtils.formatForUtcTime(new Date()) + "\">"
-                + "<samlp:AssertionArtifact>" + ticket
-                + "</samlp:AssertionArtifact></samlp:Request></SOAP-ENV:Body></SOAP-ENV:Envelope>";
+                    + "<samlp:AssertionArtifact>" + ticket
+                    + "</samlp:AssertionArtifact></samlp:Request></SOAP-ENV:Body></SOAP-ENV:Envelope>";
         } catch (final SAMLException e) {
             throw new RuntimeException(e);
         }
@@ -187,10 +189,10 @@ public final class Saml11TicketValidator extends AbstractUrlBasedTicketValidator
         try {
             conn = (HttpURLConnection) validationUrl.openConnection();
             if (this.hostnameVerifier != null && conn instanceof HttpsURLConnection) {
-                ((HttpsURLConnection)conn).setHostnameVerifier(this.hostnameVerifier);
+                ((HttpsURLConnection) conn).setHostnameVerifier(this.hostnameVerifier);
             }
             conn.setRequestMethod("POST");
-            conn.setRequestProperty("Content-Type", "text/xml"); 
+            conn.setRequestProperty("Content-Type", "text/xml");
             conn.setRequestProperty("Content-Length", Integer.toString(MESSAGE_TO_SEND.length()));
             conn.setRequestProperty("SOAPAction", "http://www.oasis-open.org/committees/security");
             conn.setUseCaches(false);
@@ -212,7 +214,7 @@ public final class Saml11TicketValidator extends AbstractUrlBasedTicketValidator
             }
             return buffer.toString();
         } catch (final IOException e) {
-            throw new RuntimeException(e);       
+            throw new RuntimeException(e);
         } finally {
             if (conn != null) {
                 conn.disconnect();

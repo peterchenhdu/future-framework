@@ -12,9 +12,9 @@ package com.github.peterchenhdu.future.auth.cas.authentication.handler;
 public interface PrincipalNameTransformer {
 
     /**
-     * Transform the string typed into the login form into a tentative Principal Name to be 
+     * Transform the string typed into the login form into a tentative Principal Name to be
      * validated by a specific type of Authentication Handler.
-     *
+     * <p>
      * <p>The Principal Name eventually assigned by the CredentialsToPrincipalResolver may
      * be unqualified ("AENewman"). However, validation of the Principal name against a
      * particular backend source represented by a particular Authentication Handler may

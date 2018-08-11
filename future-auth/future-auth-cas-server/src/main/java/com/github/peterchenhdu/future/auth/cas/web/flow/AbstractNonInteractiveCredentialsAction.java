@@ -25,9 +25,11 @@ import javax.validation.constraints.NotNull;
  * @since 3.0.4
  */
 public abstract class AbstractNonInteractiveCredentialsAction extends
-    AbstractAction {
+        AbstractAction {
 
-    /** Instance of CentralAuthenticationService. */
+    /**
+     * Instance of CentralAuthenticationService.
+     */
     @NotNull
     private CentralAuthenticationService centralAuthenticationService;
 
@@ -46,40 +48,40 @@ public abstract class AbstractNonInteractiveCredentialsAction extends
         final Service service = WebUtils.getService(context);
 
         if (isRenewPresent(context)
-            && ticketGrantingTicketId != null
-            && service != null) {
+                && ticketGrantingTicketId != null
+                && service != null) {
 
             try {
                 final String serviceTicketId = this.centralAuthenticationService
-                    .grantServiceTicket(ticketGrantingTicketId,
-                        service,
-                        credentials);
+                        .grantServiceTicket(ticketGrantingTicketId,
+                                service,
+                                credentials);
                 WebUtils.putServiceTicketInRequestScope(context,
-                    serviceTicketId);
+                        serviceTicketId);
                 return result("warn");
             } catch (final TicketException e) {
                 if (e.getCause() != null
-                    && AuthenticationException.class.isAssignableFrom(e
+                        && AuthenticationException.class.isAssignableFrom(e
                         .getCause().getClass())) {
                     onError(context, credentials);
                     return error();
                 }
                 this.centralAuthenticationService
-                    .destroyTicketGrantingTicket(ticketGrantingTicketId);
+                        .destroyTicketGrantingTicket(ticketGrantingTicketId);
                 if (logger.isDebugEnabled()) {
                     logger
-                        .debug(
-                            "Attempted to generate a ServiceTicket using renew=true with different credentials",
-                            e);
+                            .debug(
+                                    "Attempted to generate a ServiceTicket using renew=true with different credentials",
+                                    e);
                 }
             }
         }
 
         try {
             WebUtils.putTicketGrantingTicketInRequestScope(
-                context,
-                this.centralAuthenticationService
-                    .createTicketGrantingTicket(credentials));
+                    context,
+                    this.centralAuthenticationService
+                            .createTicketGrantingTicket(credentials));
             onSuccess(context, credentials);
             return success();
         } catch (final TicketException e) {
@@ -89,7 +91,7 @@ public abstract class AbstractNonInteractiveCredentialsAction extends
     }
 
     public final void setCentralAuthenticationService(
-        final CentralAuthenticationService centralAuthenticationService) {
+            final CentralAuthenticationService centralAuthenticationService) {
         this.centralAuthenticationService = centralAuthenticationService;
     }
 
@@ -97,11 +99,11 @@ public abstract class AbstractNonInteractiveCredentialsAction extends
      * Hook method to allow for additional processing of the response before
      * returning an error event.
      *
-     * @param context the context for this specific request.
+     * @param context     the context for this specific request.
      * @param credentials the credentials for this request.
      */
     protected void onError(final RequestContext context,
-        final Credentials credentials) {
+                           final Credentials credentials) {
         // default implementation does nothing
     }
 
@@ -109,11 +111,11 @@ public abstract class AbstractNonInteractiveCredentialsAction extends
      * Hook method to allow for additional processing of the response before
      * returning a success event.
      *
-     * @param context the context for this specific request.
+     * @param context     the context for this specific request.
      * @param credentials the credentials for this request.
      */
     protected void onSuccess(final RequestContext context,
-        final Credentials credentials) {
+                             final Credentials credentials) {
         // default implementation does nothing
     }
 
@@ -126,5 +128,5 @@ public abstract class AbstractNonInteractiveCredentialsAction extends
      * from the request.
      */
     protected abstract Credentials constructCredentialsFromRequest(
-        final RequestContext context);
+            final RequestContext context);
 }

@@ -11,27 +11,33 @@ import java.net.URL;
  * The Credentials representing an HTTP-based service. HTTP-based services (such
  * as web applications) are often represented by the URL entry point of the
  * application.
- * 
+ *
  * @author Scott Battaglia
  * @version $Revision: 1.3 $ $Date: 2007/04/24 13:01:51 $
  * @since 3.0
  */
 public class HttpBasedServiceCredentials implements Credentials {
 
-    /** Unique Serializable ID. */
+    /**
+     * Unique Serializable ID.
+     */
     private static final long serialVersionUID = 3904681574350991665L;
 
-    /** The callbackURL to check that identifies the application. */
+    /**
+     * The callbackURL to check that identifies the application.
+     */
     private final URL callbackUrl;
 
-    /** String form of callbackUrl; */
+    /**
+     * String form of callbackUrl;
+     */
     private final String callbackUrlAsString;
 
     /**
      * Constructor that takes the URL of the HTTP-based service and creates the
      * Credentials object. Caches the value of URL.toExternalForm so updates to
      * the URL will not be reflected in a call to toString().
-     * 
+     *
      * @param callbackUrl the URL representing the service
      * @throws IllegalArgumentException if the callbackUrl is null.
      */
@@ -60,8 +66,8 @@ public class HttpBasedServiceCredentials implements Credentials {
         final int prime = 31;
         int result = 1;
         result = prime
-            * result
-            + ((this.callbackUrlAsString == null) ? 0 : this.callbackUrlAsString
+                * result
+                + ((this.callbackUrlAsString == null) ? 0 : this.callbackUrlAsString
                 .hashCode());
         return result;
     }
@@ -81,6 +87,6 @@ public class HttpBasedServiceCredentials implements Credentials {
             return false;
         return true;
     }
-    
-    
+
+
 }

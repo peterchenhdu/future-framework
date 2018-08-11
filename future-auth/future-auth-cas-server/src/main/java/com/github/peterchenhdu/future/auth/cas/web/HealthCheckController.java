@@ -22,7 +22,9 @@ import java.util.Map;
  */
 public class HealthCheckController extends AbstractController {
 
-    /** Prefix for custom response headers with health check details. */
+    /**
+     * Prefix for custom response headers with health check details.
+     */
     private static final String HEADER_PREFIX = "X-CAS-";
 
     @NotNull
@@ -31,6 +33,7 @@ public class HealthCheckController extends AbstractController {
 
     /**
      * Sets the health check monitor used to observe system health.
+     *
      * @param monitor Health monitor configured with subordinate monitors that observe specific aspects of overall
      *                system health.
      */
@@ -39,7 +42,9 @@ public class HealthCheckController extends AbstractController {
     }
 
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     protected ModelAndView handleRequestInternal(
             final HttpServletRequest request, final HttpServletResponse response)
             throws Exception {

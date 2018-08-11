@@ -15,6 +15,6 @@ import com.github.peterchenhdu.future.tool.crawler4j.model.News;
  */
 public interface INewsService {
 
-     int saveNews(News news);
+    int saveNews(News news);
 
 }

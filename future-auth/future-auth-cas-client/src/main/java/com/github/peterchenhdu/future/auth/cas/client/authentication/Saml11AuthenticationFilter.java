@@ -13,8 +13,8 @@ import javax.servlet.ServletException;
  * Note, the "final" on this class helps ensure the compliance required in the initInternal method.
  *
  * @author Scott Battaglia
- * @since 3.1.12
  * @version $Revision$ $Date$
+ * @since 3.1.12
  */
 public final class Saml11AuthenticationFilter extends AuthenticationFilter {
 

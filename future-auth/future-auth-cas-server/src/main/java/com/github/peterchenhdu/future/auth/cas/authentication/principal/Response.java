@@ -13,18 +13,22 @@ import java.util.regex.Pattern;
 
 /**
  * Encapsulates a Response to send back for a particular service.
- * 
+ *
  * @author Scott Battaglia
  * @author Arnaud Lesueur
  * @version $Revision: 1.1 $ $Date: 2005/08/19 18:27:17 $
  * @since 3.1
  */
 public final class Response {
-    /** Pattern to detect unprintable ASCII characters. */
+    /**
+     * Pattern to detect unprintable ASCII characters.
+     */
     private static final Pattern NON_PRINTABLE =
-        Pattern.compile("[\\x00-\\x19\\x7F]+");
-    
-    /** Log instance. */
+            Pattern.compile("[\\x00-\\x19\\x7F]+");
+
+    /**
+     * Log instance.
+     */
     protected static final Logger LOG = LoggerFactory.getLogger(Response.class);
 
     public static enum ResponseType {
@@ -51,16 +55,16 @@ public final class Response {
         final StringBuilder builder = new StringBuilder(parameters.size() * 40 + 100);
         boolean isFirst = true;
         final String[] fragmentSplit = sanitizeUrl(url).split("#");
-        
+
         builder.append(fragmentSplit[0]);
-        
+
         for (final Map.Entry<String, String> entry : parameters.entrySet()) {
             if (entry.getValue() != null) {
                 if (isFirst) {
                     builder.append(url.contains("?") ? "&" : "?");
                     isFirst = false;
                 } else {
-                    builder.append("&");   
+                    builder.append("&");
                 }
                 builder.append(entry.getKey());
                 builder.append("=");
@@ -92,16 +96,15 @@ public final class Response {
     public String getUrl() {
         return this.url;
     }
- 
+
     /**
      * Sanitize a URL provided by a relying party by normalizing non-printable
      * ASCII character sequences into spaces.  This functionality protects
      * against CRLF attacks and other similar attacks using invisible characters
      * that could be abused to trick user agents.
-     * 
-     * @param  url  URL to sanitize.
-     * 
-     * @return  Sanitized URL string.
+     *
+     * @param url URL to sanitize.
+     * @return Sanitized URL string.
      */
     private static String sanitizeUrl(final String url) {
         final Matcher m = NON_PRINTABLE.matcher(url);

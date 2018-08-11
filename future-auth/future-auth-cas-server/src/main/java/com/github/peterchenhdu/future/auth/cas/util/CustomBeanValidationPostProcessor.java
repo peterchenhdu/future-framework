@@ -17,7 +17,6 @@ import java.lang.annotation.ElementType;
  * @author Scott Battaglia
  * @version $Revision$ $Date$
  * @since 3.4
- *
  */
 public final class CustomBeanValidationPostProcessor extends BeanValidationPostProcessor {
 

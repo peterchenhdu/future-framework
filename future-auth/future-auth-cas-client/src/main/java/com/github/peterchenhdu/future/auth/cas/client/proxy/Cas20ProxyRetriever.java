@@ -27,10 +27,12 @@ import java.net.URLEncoder;
  */
 public final class Cas20ProxyRetriever implements ProxyRetriever {
 
-    /** Unique Id for serialization. */
-	private static final long serialVersionUID = 560409469568911791L;
+    /**
+     * Unique Id for serialization.
+     */
+    private static final long serialVersionUID = 560409469568911791L;
 
-	/**
+    /**
      * Instance of Commons Logging.
      */
     private final Log log = LogFactory.getLog(this.getClass());
@@ -46,7 +48,7 @@ public final class Cas20ProxyRetriever implements ProxyRetriever {
      * Main Constructor.
      *
      * @param casServerUrl the URL to the CAS server (i.e. http://localhost/cas/)
-     * @param encoding the encoding to use.
+     * @param encoding     the encoding to use.
      */
     public Cas20ProxyRetriever(final String casServerUrl, final String encoding) {
         CommonUtils.assertNotNull(casServerUrl, "casServerUrl cannot be null.");
@@ -71,9 +73,9 @@ public final class Cas20ProxyRetriever implements ProxyRetriever {
 
     private String constructUrl(final String proxyGrantingTicketId, final String targetService) {
         try {
-        	return this.casServerUrl + (this.casServerUrl.endsWith("/") ? "" : "/") + "proxy" + "?pgt="
-            + proxyGrantingTicketId + "&targetService="
-            + URLEncoder.encode(targetService, "UTF-8");
+            return this.casServerUrl + (this.casServerUrl.endsWith("/") ? "" : "/") + "proxy" + "?pgt="
+                    + proxyGrantingTicketId + "&targetService="
+                    + URLEncoder.encode(targetService, "UTF-8");
         } catch (final UnsupportedEncodingException e) {
             throw new RuntimeException(e);
         }

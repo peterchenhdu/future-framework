@@ -27,7 +27,7 @@ public class WeatherWebServiceStub extends org.apache.axis2.client.Stub {
     private javax.xml.namespace.QName[] opNameArray = null;
 
     /**
-     *Constructor that takes in a configContext
+     * Constructor that takes in a configContext
      */
     public WeatherWebServiceStub(
             org.apache.axis2.context.ConfigurationContext configurationContext,
@@ -155,8 +155,9 @@ public class WeatherWebServiceStub extends org.apache.axis2.client.Stub {
     /**
      * Auto generated method signature
      * &lt;br /&gt;&lt;h3&gt;获得本天气预报Web Services支持的洲、国内外省份和城市信�?&lt;/h3&gt;&lt;p&gt;输入参数：无�? 返回数据：一个一维字符串数组 String()，内容为洲或国内省份的名称�??&lt;/p&gt;&lt;br /&gt;
-     * @see com.github.peterchenhdu.future.client.axis2.stub.WeatherWebService#getSupportProvince
+     *
      * @param getSupportProvince
+     * @see com.github.peterchenhdu.future.client.axis2.stub.WeatherWebService#getSupportProvince
      */
     public GetSupportProvinceResponse getSupportProvince(
             GetSupportProvince getSupportProvince)
@@ -266,8 +267,9 @@ public class WeatherWebServiceStub extends org.apache.axis2.client.Stub {
     /**
      * Auto generated method signature
      * &lt;br /&gt;&lt;h3&gt;查询本天气预报Web Services支持的国内外城市或地区信�?&lt;/h3&gt;&lt;p&gt;输入参数：byProvinceName = 指定的洲或国内的省份，若为ALL或空则表示返回全部城市；返回数据：一个一维字符串数组 String()，结构为：城市名�?(城市代码)�?&lt;/p&gt;&lt;br /&gt;
-     * @see com.github.peterchenhdu.future.client.axis2.stub.WeatherWebService#getSupportCity
+     *
      * @param getSupportCity
+     * @see com.github.peterchenhdu.future.client.axis2.stub.WeatherWebService#getSupportCity
      */
     public GetSupportCityResponse getSupportCity(
             GetSupportCity getSupportCity)
@@ -377,8 +379,9 @@ public class WeatherWebServiceStub extends org.apache.axis2.client.Stub {
     /**
      * Auto generated method signature
      * &lt;br&gt;&lt;h3&gt;获得本天气预报Web Services支持的洲、国内外省份和城市信�?&lt;/h3&gt;&lt;p&gt;输入参数：无；返回：DataSet 。DataSet.Tables(0) 为支持的洲和国内省份数据，DataSet.Tables(1) 为支持的国内外城市或地区数据。DataSet.Tables(0).Rows(i).Item(&quot;ID&quot;) 主键对应 DataSet.Tables(1).Rows(i).Item(&quot;ZoneID&quot;) 外键�?&lt;br /&gt;Tables(0)：ID = ID主键，Zone = 支持的洲、省份；Tables(1)：ID 主键，ZoneID = 对应Tables(0)ID的外键，Area = 城市或地区，AreaCode = 城市或地区代码�??&lt;/p&gt;&lt;br /&gt;
-     * @see com.github.peterchenhdu.future.client.axis2.stub.WeatherWebService#getSupportDataSet
+     *
      * @param getSupportDataSet
+     * @see com.github.peterchenhdu.future.client.axis2.stub.WeatherWebService#getSupportDataSet
      */
     public GetSupportDataSetResponse getSupportDataSet(
             GetSupportDataSet getSupportDataSet)
@@ -488,8 +491,9 @@ public class WeatherWebServiceStub extends org.apache.axis2.client.Stub {
     /**
      * Auto generated method signature
      * &lt;br&gt;&lt;h3&gt;根据城市或地区名称查询获得未来三天内天气情况、现在的天气实况、天气和生活指数（For商业用户�?&lt;/h3&gt;&lt;p&gt;调用方法�? getWeatherbyCityName，输入参数：theUserID = 商业用户ID&lt;/p&gt;&lt;br /&gt;
-     * @see com.github.peterchenhdu.future.client.axis2.stub.WeatherWebService#getWeatherbyCityNamePro
+     *
      * @param getWeatherbyCityNamePro
+     * @see com.github.peterchenhdu.future.client.axis2.stub.WeatherWebService#getWeatherbyCityNamePro
      */
     public GetWeatherbyCityNameProResponse getWeatherbyCityNamePro(
             GetWeatherbyCityNamePro getWeatherbyCityNamePro)
@@ -601,8 +605,9 @@ public class WeatherWebServiceStub extends org.apache.axis2.client.Stub {
     /**
      * Auto generated method signature
      * &lt;br&gt;&lt;h3&gt;根据城市或地区名称查询获得未来三天内天气情况、现在的天气实况、天气和生活指数&lt;/h3&gt;&lt;p&gt;调用方法如下：输入参数：theCityName = 城市中文名称(国外城市可用英文)或城市代�?(不输入默认为上海�?)，如：上�? �? 58367，如有城市名称重复请使用城市代码查询(可�?�过 getSupportCity �? getSupportDataSet 获得)；返回数据： �?个一维数�? String(22)，共�?23个元素�??&lt;br /&gt;String(0) �? String(4)：省份，城市，城市代码，城市图片名称，最后更新时间�?�String(5) �? String(11)：当天的 气温，概况，风向和风力，天气趋势�?始图片名�?(以下称：图标�?)，天气趋势结束图片名�?(以下称：图标�?)，现在的天气实况，天气和生活指数。String(12) �? String(16)：第二天�? 气温，概况，风向和风力，图标�?，图标二。String(17) �? String(21)：第三天�? 气温，概况，风向和风力，图标�?，图标二。String(22) 被查询的城市或地区的介绍 &lt;br /&gt;&lt;a href=&quot;http://www.webxml.com.cn/images/weather.zip&quot;&gt;下载天气图标&lt;img src=&quot;http://www.webxml.com.cn/images/download_w.gif&quot; border=&quot;0&quot; align=&quot;absbottom&quot; /&gt;&lt;/a&gt;(包含大�?�中、小尺寸) &lt;a href=&quot;http://www.webxml.com.cn/zh_cn/weather_icon.aspx&quot; target=&quot;_blank&quot;&gt;天气图例说明&lt;/a&gt; &lt;a href=&quot;http://www.webxml.com.cn/files/weather_eg.zip&quot;&gt;调用此天气预报Web Services实例下载&lt;/a&gt; (VB ASP.net 2.0)&lt;/p&gt;&lt;br /&gt;
-     * @see com.github.peterchenhdu.future.client.axis2.stub.WeatherWebService#getWeatherbyCityName
+     *
      * @param getWeatherbyCityName
+     * @see com.github.peterchenhdu.future.client.axis2.stub.WeatherWebService#getWeatherbyCityName
      */
     public GetWeatherbyCityNameResponse getWeatherbyCityName(
             GetWeatherbyCityName getWeatherbyCityName)
@@ -930,7 +935,7 @@ public class WeatherWebServiceStub extends org.apache.axis2.client.Stub {
     /* methods to provide back word compatibility */
 
     /**
-     *  get the default envelope
+     * get the default envelope
      */
     private org.apache.axiom.soap.SOAPEnvelope toEnvelope(
             org.apache.axiom.soap.SOAPFactory factory) {
@@ -1002,7 +1007,6 @@ public class WeatherWebServiceStub extends org.apache.axis2.client.Stub {
                 "getSupportDataSet", "ns1");
 
         /**
-         *
          * @param parentQName
          * @param factory
          * @return org.apache.axiom.om.OMElement
@@ -1153,7 +1157,7 @@ public class WeatherWebServiceStub extends org.apache.axis2.client.Stub {
         }
 
         /**
-         *  method to handle Qnames
+         * method to handle Qnames
          */
         private void writeQName(javax.xml.namespace.QName qname,
                                 javax.xml.stream.XMLStreamWriter xmlWriter)
@@ -1260,7 +1264,7 @@ public class WeatherWebServiceStub extends org.apache.axis2.client.Stub {
         }
 
         /**
-         *  Factory class that keeps the parse method
+         * Factory class that keeps the parse method
          */
         public static class Factory {
             private static org.apache.commons.logging.Log log = org.apache.commons.logging.LogFactory.getLog(Factory.class);
@@ -1268,9 +1272,9 @@ public class WeatherWebServiceStub extends org.apache.axis2.client.Stub {
             /**
              * static method to create the object
              * Precondition:  If this object is an element, the current or next start element starts this object and any intervening reader events are ignorable
-             *                If this object is not an element, it is a complex type and the reader is at the event just after the outer start element
+             * If this object is not an element, it is a complex type and the reader is at the event just after the outer start element
              * Postcondition: If this object is an element, the reader is positioned at its end element
-             *                If this object is a complex type, the reader is positioned at the end element of its outer element
+             * If this object is a complex type, the reader is positioned at the end element of its outer element
              */
             public static GetSupportDataSet parse(
                     javax.xml.stream.XMLStreamReader reader)
@@ -1349,6 +1353,7 @@ public class WeatherWebServiceStub extends org.apache.axis2.client.Stub {
 
         /**
          * Auto generated getter method
+         *
          * @return org.apache.axiom.om.OMElement
          */
         public org.apache.axiom.om.OMElement getSchema() {
@@ -1357,6 +1362,7 @@ public class WeatherWebServiceStub extends org.apache.axis2.client.Stub {
 
         /**
          * Auto generated setter method
+         *
          * @param param Schema
          */
         public void setSchema(org.apache.axiom.om.OMElement param) {
@@ -1365,6 +1371,7 @@ public class WeatherWebServiceStub extends org.apache.axis2.client.Stub {
 
         /**
          * Auto generated getter method
+         *
          * @return org.apache.axiom.om.OMElement
          */
         public org.apache.axiom.om.OMElement getExtraElement() {
@@ -1373,6 +1380,7 @@ public class WeatherWebServiceStub extends org.apache.axis2.client.Stub {
 
         /**
          * Auto generated setter method
+         *
          * @param param ExtraElement
          */
         public void setExtraElement(org.apache.axiom.om.OMElement param) {
@@ -1380,7 +1388,6 @@ public class WeatherWebServiceStub extends org.apache.axis2.client.Stub {
         }
 
         /**
-         *
          * @param parentQName
          * @param factory
          * @return org.apache.axiom.om.OMElement
@@ -1545,7 +1552,7 @@ public class WeatherWebServiceStub extends org.apache.axis2.client.Stub {
         }
 
         /**
-         *  method to handle Qnames
+         * method to handle Qnames
          */
         private void writeQName(javax.xml.namespace.QName qname,
                                 javax.xml.stream.XMLStreamWriter xmlWriter)
@@ -1652,7 +1659,7 @@ public class WeatherWebServiceStub extends org.apache.axis2.client.Stub {
         }
 
         /**
-         *  Factory class that keeps the parse method
+         * Factory class that keeps the parse method
          */
         public static class Factory {
             private static org.apache.commons.logging.Log log = org.apache.commons.logging.LogFactory.getLog(Factory.class);
@@ -1660,9 +1667,9 @@ public class WeatherWebServiceStub extends org.apache.axis2.client.Stub {
             /**
              * static method to create the object
              * Precondition:  If this object is an element, the current or next start element starts this object and any intervening reader events are ignorable
-             *                If this object is not an element, it is a complex type and the reader is at the event just after the outer start element
+             * If this object is not an element, it is a complex type and the reader is at the event just after the outer start element
              * Postcondition: If this object is an element, the reader is positioned at its end element
-             *                If this object is a complex type, the reader is positioned at the end element of its outer element
+             * If this object is a complex type, the reader is positioned at the end element of its outer element
              */
             public static DataSet parse(javax.xml.stream.XMLStreamReader reader)
                     throws Exception {
@@ -1823,6 +1830,7 @@ public class WeatherWebServiceStub extends org.apache.axis2.client.Stub {
 
         /**
          * Auto generated getter method
+         *
          * @return java.lang.String
          */
         public String getTheCityName() {
@@ -1831,6 +1839,7 @@ public class WeatherWebServiceStub extends org.apache.axis2.client.Stub {
 
         /**
          * Auto generated setter method
+         *
          * @param param TheCityName
          */
         public void setTheCityName(String param) {
@@ -1845,6 +1854,7 @@ public class WeatherWebServiceStub extends org.apache.axis2.client.Stub {
 
         /**
          * Auto generated getter method
+         *
          * @return java.lang.String
          */
         public String getTheUserID() {
@@ -1853,6 +1863,7 @@ public class WeatherWebServiceStub extends org.apache.axis2.client.Stub {
 
         /**
          * Auto generated setter method
+         *
          * @param param TheUserID
          */
         public void setTheUserID(String param) {
@@ -1862,7 +1873,6 @@ public class WeatherWebServiceStub extends org.apache.axis2.client.Stub {
         }
 
         /**
-         *
          * @param parentQName
          * @param factory
          * @return org.apache.axiom.om.OMElement
@@ -2043,7 +2053,7 @@ public class WeatherWebServiceStub extends org.apache.axis2.client.Stub {
         }
 
         /**
-         *  method to handle Qnames
+         * method to handle Qnames
          */
         private void writeQName(javax.xml.namespace.QName qname,
                                 javax.xml.stream.XMLStreamWriter xmlWriter)
@@ -2150,7 +2160,7 @@ public class WeatherWebServiceStub extends org.apache.axis2.client.Stub {
         }
 
         /**
-         *  Factory class that keeps the parse method
+         * Factory class that keeps the parse method
          */
         public static class Factory {
             private static org.apache.commons.logging.Log log = org.apache.commons.logging.LogFactory.getLog(Factory.class);
@@ -2158,9 +2168,9 @@ public class WeatherWebServiceStub extends org.apache.axis2.client.Stub {
             /**
              * static method to create the object
              * Precondition:  If this object is an element, the current or next start element starts this object and any intervening reader events are ignorable
-             *                If this object is not an element, it is a complex type and the reader is at the event just after the outer start element
+             * If this object is not an element, it is a complex type and the reader is at the event just after the outer start element
              * Postcondition: If this object is an element, the reader is positioned at its end element
-             *                If this object is a complex type, the reader is positioned at the end element of its outer element
+             * If this object is a complex type, the reader is positioned at the end element of its outer element
              */
             public static GetWeatherbyCityNamePro parse(
                     javax.xml.stream.XMLStreamReader reader)
@@ -2328,6 +2338,7 @@ public class WeatherWebServiceStub extends org.apache.axis2.client.Stub {
 
         /**
          * Auto generated getter method
+         *
          * @return GetSupportDataSetResult_type0
          */
         public GetSupportDataSetResult_type0 getGetSupportDataSetResult() {
@@ -2336,6 +2347,7 @@ public class WeatherWebServiceStub extends org.apache.axis2.client.Stub {
 
         /**
          * Auto generated setter method
+         *
          * @param param GetSupportDataSetResult
          */
         public void setGetSupportDataSetResult(
@@ -2346,7 +2358,6 @@ public class WeatherWebServiceStub extends org.apache.axis2.client.Stub {
         }
 
         /**
-         *
          * @param parentQName
          * @param factory
          * @return org.apache.axiom.om.OMElement
@@ -2509,7 +2520,7 @@ public class WeatherWebServiceStub extends org.apache.axis2.client.Stub {
         }
 
         /**
-         *  method to handle Qnames
+         * method to handle Qnames
          */
         private void writeQName(javax.xml.namespace.QName qname,
                                 javax.xml.stream.XMLStreamWriter xmlWriter)
@@ -2616,7 +2627,7 @@ public class WeatherWebServiceStub extends org.apache.axis2.client.Stub {
         }
 
         /**
-         *  Factory class that keeps the parse method
+         * Factory class that keeps the parse method
          */
         public static class Factory {
             private static org.apache.commons.logging.Log log = org.apache.commons.logging.LogFactory.getLog(Factory.class);
@@ -2624,9 +2635,9 @@ public class WeatherWebServiceStub extends org.apache.axis2.client.Stub {
             /**
              * static method to create the object
              * Precondition:  If this object is an element, the current or next start element starts this object and any intervening reader events are ignorable
-             *                If this object is not an element, it is a complex type and the reader is at the event just after the outer start element
+             * If this object is not an element, it is a complex type and the reader is at the event just after the outer start element
              * Postcondition: If this object is an element, the reader is positioned at its end element
-             *                If this object is a complex type, the reader is positioned at the end element of its outer element
+             * If this object is a complex type, the reader is positioned at the end element of its outer element
              */
             public static GetSupportDataSetResponse parse(
                     javax.xml.stream.XMLStreamReader reader)
@@ -2726,6 +2737,7 @@ public class WeatherWebServiceStub extends org.apache.axis2.client.Stub {
 
         /**
          * Auto generated getter method
+         *
          * @return ArrayOfString
          */
         public ArrayOfString getArrayOfString() {
@@ -2734,6 +2746,7 @@ public class WeatherWebServiceStub extends org.apache.axis2.client.Stub {
 
         /**
          * Auto generated setter method
+         *
          * @param param ArrayOfString
          */
         public void setArrayOfString(ArrayOfString param) {
@@ -2741,7 +2754,6 @@ public class WeatherWebServiceStub extends org.apache.axis2.client.Stub {
         }
 
         /**
-         *
          * @param parentQName
          * @param factory
          * @return org.apache.axiom.om.OMElement
@@ -2880,7 +2892,7 @@ public class WeatherWebServiceStub extends org.apache.axis2.client.Stub {
         }
 
         /**
-         *  method to handle Qnames
+         * method to handle Qnames
          */
         private void writeQName(javax.xml.namespace.QName qname,
                                 javax.xml.stream.XMLStreamWriter xmlWriter)
@@ -2987,7 +2999,7 @@ public class WeatherWebServiceStub extends org.apache.axis2.client.Stub {
         }
 
         /**
-         *  Factory class that keeps the parse method
+         * Factory class that keeps the parse method
          */
         public static class Factory {
             private static org.apache.commons.logging.Log log = org.apache.commons.logging.LogFactory.getLog(Factory.class);
@@ -2995,9 +3007,9 @@ public class WeatherWebServiceStub extends org.apache.axis2.client.Stub {
             /**
              * static method to create the object
              * Precondition:  If this object is an element, the current or next start element starts this object and any intervening reader events are ignorable
-             *                If this object is not an element, it is a complex type and the reader is at the event just after the outer start element
+             * If this object is not an element, it is a complex type and the reader is at the event just after the outer start element
              * Postcondition: If this object is an element, the reader is positioned at its end element
-             *                If this object is a complex type, the reader is positioned at the end element of its outer element
+             * If this object is a complex type, the reader is positioned at the end element of its outer element
              */
             public static ArrayOfStringE parse(
                     javax.xml.stream.XMLStreamReader reader)
@@ -3091,6 +3103,7 @@ public class WeatherWebServiceStub extends org.apache.axis2.client.Stub {
 
         /**
          * Auto generated getter method
+         *
          * @return java.lang.String
          */
         public String getTheCityName() {
@@ -3099,6 +3112,7 @@ public class WeatherWebServiceStub extends org.apache.axis2.client.Stub {
 
         /**
          * Auto generated setter method
+         *
          * @param param TheCityName
          */
         public void setTheCityName(String param) {
@@ -3108,7 +3122,6 @@ public class WeatherWebServiceStub extends org.apache.axis2.client.Stub {
         }
 
         /**
-         *
          * @param parentQName
          * @param factory
          * @return org.apache.axiom.om.OMElement
@@ -3274,7 +3287,7 @@ public class WeatherWebServiceStub extends org.apache.axis2.client.Stub {
         }
 
         /**
-         *  method to handle Qnames
+         * method to handle Qnames
          */
         private void writeQName(javax.xml.namespace.QName qname,
                                 javax.xml.stream.XMLStreamWriter xmlWriter)
@@ -3381,7 +3394,7 @@ public class WeatherWebServiceStub extends org.apache.axis2.client.Stub {
         }
 
         /**
-         *  Factory class that keeps the parse method
+         * Factory class that keeps the parse method
          */
         public static class Factory {
             private static org.apache.commons.logging.Log log = org.apache.commons.logging.LogFactory.getLog(Factory.class);
@@ -3389,9 +3402,9 @@ public class WeatherWebServiceStub extends org.apache.axis2.client.Stub {
             /**
              * static method to create the object
              * Precondition:  If this object is an element, the current or next start element starts this object and any intervening reader events are ignorable
-             *                If this object is not an element, it is a complex type and the reader is at the event just after the outer start element
+             * If this object is not an element, it is a complex type and the reader is at the event just after the outer start element
              * Postcondition: If this object is an element, the reader is positioned at its end element
-             *                If this object is a complex type, the reader is positioned at the end element of its outer element
+             * If this object is a complex type, the reader is positioned at the end element of its outer element
              */
             public static GetWeatherbyCityName parse(
                     javax.xml.stream.XMLStreamReader reader)
@@ -3512,6 +3525,7 @@ public class WeatherWebServiceStub extends org.apache.axis2.client.Stub {
 
         /**
          * Auto generated getter method
+         *
          * @return ArrayOfString
          */
         public ArrayOfString getGetSupportProvinceResult() {
@@ -3520,6 +3534,7 @@ public class WeatherWebServiceStub extends org.apache.axis2.client.Stub {
 
         /**
          * Auto generated setter method
+         *
          * @param param GetSupportProvinceResult
          */
         public void setGetSupportProvinceResult(ArrayOfString param) {
@@ -3529,7 +3544,6 @@ public class WeatherWebServiceStub extends org.apache.axis2.client.Stub {
         }
 
         /**
-         *
          * @param parentQName
          * @param factory
          * @return org.apache.axiom.om.OMElement
@@ -3692,7 +3706,7 @@ public class WeatherWebServiceStub extends org.apache.axis2.client.Stub {
         }
 
         /**
-         *  method to handle Qnames
+         * method to handle Qnames
          */
         private void writeQName(javax.xml.namespace.QName qname,
                                 javax.xml.stream.XMLStreamWriter xmlWriter)
@@ -3799,7 +3813,7 @@ public class WeatherWebServiceStub extends org.apache.axis2.client.Stub {
         }
 
         /**
-         *  Factory class that keeps the parse method
+         * Factory class that keeps the parse method
          */
         public static class Factory {
             private static org.apache.commons.logging.Log log = org.apache.commons.logging.LogFactory.getLog(Factory.class);
@@ -3807,9 +3821,9 @@ public class WeatherWebServiceStub extends org.apache.axis2.client.Stub {
             /**
              * static method to create the object
              * Precondition:  If this object is an element, the current or next start element starts this object and any intervening reader events are ignorable
-             *                If this object is not an element, it is a complex type and the reader is at the event just after the outer start element
+             * If this object is not an element, it is a complex type and the reader is at the event just after the outer start element
              * Postcondition: If this object is an element, the reader is positioned at its end element
-             *                If this object is a complex type, the reader is positioned at the end element of its outer element
+             * If this object is a complex type, the reader is positioned at the end element of its outer element
              */
             public static GetSupportProvinceResponse parse(
                     javax.xml.stream.XMLStreamReader reader)
@@ -3903,7 +3917,6 @@ public class WeatherWebServiceStub extends org.apache.axis2.client.Stub {
                 "getSupportProvince", "ns1");
 
         /**
-         *
          * @param parentQName
          * @param factory
          * @return org.apache.axiom.om.OMElement
@@ -4054,7 +4067,7 @@ public class WeatherWebServiceStub extends org.apache.axis2.client.Stub {
         }
 
         /**
-         *  method to handle Qnames
+         * method to handle Qnames
          */
         private void writeQName(javax.xml.namespace.QName qname,
                                 javax.xml.stream.XMLStreamWriter xmlWriter)
@@ -4161,7 +4174,7 @@ public class WeatherWebServiceStub extends org.apache.axis2.client.Stub {
         }
 
         /**
-         *  Factory class that keeps the parse method
+         * Factory class that keeps the parse method
          */
         public static class Factory {
             private static org.apache.commons.logging.Log log = org.apache.commons.logging.LogFactory.getLog(Factory.class);
@@ -4169,9 +4182,9 @@ public class WeatherWebServiceStub extends org.apache.axis2.client.Stub {
             /**
              * static method to create the object
              * Precondition:  If this object is an element, the current or next start element starts this object and any intervening reader events are ignorable
-             *                If this object is not an element, it is a complex type and the reader is at the event just after the outer start element
+             * If this object is not an element, it is a complex type and the reader is at the event just after the outer start element
              * Postcondition: If this object is an element, the reader is positioned at its end element
-             *                If this object is a complex type, the reader is positioned at the end element of its outer element
+             * If this object is a complex type, the reader is positioned at the end element of its outer element
              */
             public static GetSupportProvince parse(
                     javax.xml.stream.XMLStreamReader reader)
@@ -4259,6 +4272,7 @@ public class WeatherWebServiceStub extends org.apache.axis2.client.Stub {
 
         /**
          * Auto generated getter method
+         *
          * @return java.lang.String[]
          */
         public String[] getString() {
@@ -4273,6 +4287,7 @@ public class WeatherWebServiceStub extends org.apache.axis2.client.Stub {
 
         /**
          * Auto generated setter method
+         *
          * @param param String
          */
         public void setString(String[] param) {
@@ -4285,6 +4300,7 @@ public class WeatherWebServiceStub extends org.apache.axis2.client.Stub {
 
         /**
          * Auto generated add method for the array for convenience
+         *
          * @param param java.lang.String
          */
         public void addString(String param) {
@@ -4301,7 +4317,6 @@ public class WeatherWebServiceStub extends org.apache.axis2.client.Stub {
         }
 
         /**
-         *
          * @param parentQName
          * @param factory
          * @return org.apache.axiom.om.OMElement
@@ -4490,7 +4505,7 @@ public class WeatherWebServiceStub extends org.apache.axis2.client.Stub {
         }
 
         /**
-         *  method to handle Qnames
+         * method to handle Qnames
          */
         private void writeQName(javax.xml.namespace.QName qname,
                                 javax.xml.stream.XMLStreamWriter xmlWriter)
@@ -4597,7 +4612,7 @@ public class WeatherWebServiceStub extends org.apache.axis2.client.Stub {
         }
 
         /**
-         *  Factory class that keeps the parse method
+         * Factory class that keeps the parse method
          */
         public static class Factory {
             private static org.apache.commons.logging.Log log = org.apache.commons.logging.LogFactory.getLog(Factory.class);
@@ -4605,9 +4620,9 @@ public class WeatherWebServiceStub extends org.apache.axis2.client.Stub {
             /**
              * static method to create the object
              * Precondition:  If this object is an element, the current or next start element starts this object and any intervening reader events are ignorable
-             *                If this object is not an element, it is a complex type and the reader is at the event just after the outer start element
+             * If this object is not an element, it is a complex type and the reader is at the event just after the outer start element
              * Postcondition: If this object is an element, the reader is positioned at its end element
-             *                If this object is a complex type, the reader is positioned at the end element of its outer element
+             * If this object is a complex type, the reader is positioned at the end element of its outer element
              */
             public static ArrayOfString parse(
                     javax.xml.stream.XMLStreamReader reader)
@@ -4771,6 +4786,7 @@ public class WeatherWebServiceStub extends org.apache.axis2.client.Stub {
 
         /**
          * Auto generated getter method
+         *
          * @return ArrayOfString
          */
         public ArrayOfString getGetWeatherbyCityNameProResult() {
@@ -4779,6 +4795,7 @@ public class WeatherWebServiceStub extends org.apache.axis2.client.Stub {
 
         /**
          * Auto generated setter method
+         *
          * @param param GetWeatherbyCityNameProResult
          */
         public void setGetWeatherbyCityNameProResult(ArrayOfString param) {
@@ -4788,7 +4805,6 @@ public class WeatherWebServiceStub extends org.apache.axis2.client.Stub {
         }
 
         /**
-         *
          * @param parentQName
          * @param factory
          * @return org.apache.axiom.om.OMElement
@@ -4951,7 +4967,7 @@ public class WeatherWebServiceStub extends org.apache.axis2.client.Stub {
         }
 
         /**
-         *  method to handle Qnames
+         * method to handle Qnames
          */
         private void writeQName(javax.xml.namespace.QName qname,
                                 javax.xml.stream.XMLStreamWriter xmlWriter)
@@ -5058,7 +5074,7 @@ public class WeatherWebServiceStub extends org.apache.axis2.client.Stub {
         }
 
         /**
-         *  Factory class that keeps the parse method
+         * Factory class that keeps the parse method
          */
         public static class Factory {
             private static org.apache.commons.logging.Log log = org.apache.commons.logging.LogFactory.getLog(Factory.class);
@@ -5066,9 +5082,9 @@ public class WeatherWebServiceStub extends org.apache.axis2.client.Stub {
             /**
              * static method to create the object
              * Precondition:  If this object is an element, the current or next start element starts this object and any intervening reader events are ignorable
-             *                If this object is not an element, it is a complex type and the reader is at the event just after the outer start element
+             * If this object is not an element, it is a complex type and the reader is at the event just after the outer start element
              * Postcondition: If this object is an element, the reader is positioned at its end element
-             *                If this object is a complex type, the reader is positioned at the end element of its outer element
+             * If this object is a complex type, the reader is positioned at the end element of its outer element
              */
             public static GetWeatherbyCityNameProResponse parse(
                     javax.xml.stream.XMLStreamReader reader)
@@ -5178,6 +5194,7 @@ public class WeatherWebServiceStub extends org.apache.axis2.client.Stub {
 
         /**
          * Auto generated getter method
+         *
          * @return ArrayOfString
          */
         public ArrayOfString getGetSupportCityResult() {
@@ -5186,6 +5203,7 @@ public class WeatherWebServiceStub extends org.apache.axis2.client.Stub {
 
         /**
          * Auto generated setter method
+         *
          * @param param GetSupportCityResult
          */
         public void setGetSupportCityResult(ArrayOfString param) {
@@ -5195,7 +5213,6 @@ public class WeatherWebServiceStub extends org.apache.axis2.client.Stub {
         }
 
         /**
-         *
          * @param parentQName
          * @param factory
          * @return org.apache.axiom.om.OMElement
@@ -5357,7 +5374,7 @@ public class WeatherWebServiceStub extends org.apache.axis2.client.Stub {
         }
 
         /**
-         *  method to handle Qnames
+         * method to handle Qnames
          */
         private void writeQName(javax.xml.namespace.QName qname,
                                 javax.xml.stream.XMLStreamWriter xmlWriter)
@@ -5464,7 +5481,7 @@ public class WeatherWebServiceStub extends org.apache.axis2.client.Stub {
         }
 
         /**
-         *  Factory class that keeps the parse method
+         * Factory class that keeps the parse method
          */
         public static class Factory {
             private static org.apache.commons.logging.Log log = org.apache.commons.logging.LogFactory.getLog(Factory.class);
@@ -5472,9 +5489,9 @@ public class WeatherWebServiceStub extends org.apache.axis2.client.Stub {
             /**
              * static method to create the object
              * Precondition:  If this object is an element, the current or next start element starts this object and any intervening reader events are ignorable
-             *                If this object is not an element, it is a complex type and the reader is at the event just after the outer start element
+             * If this object is not an element, it is a complex type and the reader is at the event just after the outer start element
              * Postcondition: If this object is an element, the reader is positioned at its end element
-             *                If this object is a complex type, the reader is positioned at the end element of its outer element
+             * If this object is a complex type, the reader is positioned at the end element of its outer element
              */
             public static GetSupportCityResponse parse(
                     javax.xml.stream.XMLStreamReader reader)
@@ -5583,6 +5600,7 @@ public class WeatherWebServiceStub extends org.apache.axis2.client.Stub {
 
         /**
          * Auto generated getter method
+         *
          * @return java.lang.String
          */
         public String getByProvinceName() {
@@ -5591,6 +5609,7 @@ public class WeatherWebServiceStub extends org.apache.axis2.client.Stub {
 
         /**
          * Auto generated setter method
+         *
          * @param param ByProvinceName
          */
         public void setByProvinceName(String param) {
@@ -5600,7 +5619,6 @@ public class WeatherWebServiceStub extends org.apache.axis2.client.Stub {
         }
 
         /**
-         *
          * @param parentQName
          * @param factory
          * @return org.apache.axiom.om.OMElement
@@ -5766,7 +5784,7 @@ public class WeatherWebServiceStub extends org.apache.axis2.client.Stub {
         }
 
         /**
-         *  method to handle Qnames
+         * method to handle Qnames
          */
         private void writeQName(javax.xml.namespace.QName qname,
                                 javax.xml.stream.XMLStreamWriter xmlWriter)
@@ -5873,7 +5891,7 @@ public class WeatherWebServiceStub extends org.apache.axis2.client.Stub {
         }
 
         /**
-         *  Factory class that keeps the parse method
+         * Factory class that keeps the parse method
          */
         public static class Factory {
             private static org.apache.commons.logging.Log log = org.apache.commons.logging.LogFactory.getLog(Factory.class);
@@ -5881,9 +5899,9 @@ public class WeatherWebServiceStub extends org.apache.axis2.client.Stub {
             /**
              * static method to create the object
              * Precondition:  If this object is an element, the current or next start element starts this object and any intervening reader events are ignorable
-             *                If this object is not an element, it is a complex type and the reader is at the event just after the outer start element
+             * If this object is not an element, it is a complex type and the reader is at the event just after the outer start element
              * Postcondition: If this object is an element, the reader is positioned at its end element
-             *                If this object is a complex type, the reader is positioned at the end element of its outer element
+             * If this object is a complex type, the reader is positioned at the end element of its outer element
              */
             public static GetSupportCity parse(
                     javax.xml.stream.XMLStreamReader reader)
@@ -6004,6 +6022,7 @@ public class WeatherWebServiceStub extends org.apache.axis2.client.Stub {
 
         /**
          * Auto generated getter method
+         *
          * @return ArrayOfString
          */
         public ArrayOfString getGetWeatherbyCityNameResult() {
@@ -6012,6 +6031,7 @@ public class WeatherWebServiceStub extends org.apache.axis2.client.Stub {
 
         /**
          * Auto generated setter method
+         *
          * @param param GetWeatherbyCityNameResult
          */
         public void setGetWeatherbyCityNameResult(ArrayOfString param) {
@@ -6021,7 +6041,6 @@ public class WeatherWebServiceStub extends org.apache.axis2.client.Stub {
         }
 
         /**
-         *
          * @param parentQName
          * @param factory
          * @return org.apache.axiom.om.OMElement
@@ -6184,7 +6203,7 @@ public class WeatherWebServiceStub extends org.apache.axis2.client.Stub {
         }
 
         /**
-         *  method to handle Qnames
+         * method to handle Qnames
          */
         private void writeQName(javax.xml.namespace.QName qname,
                                 javax.xml.stream.XMLStreamWriter xmlWriter)
@@ -6291,7 +6310,7 @@ public class WeatherWebServiceStub extends org.apache.axis2.client.Stub {
         }
 
         /**
-         *  Factory class that keeps the parse method
+         * Factory class that keeps the parse method
          */
         public static class Factory {
             private static org.apache.commons.logging.Log log = org.apache.commons.logging.LogFactory.getLog(Factory.class);
@@ -6299,9 +6318,9 @@ public class WeatherWebServiceStub extends org.apache.axis2.client.Stub {
             /**
              * static method to create the object
              * Precondition:  If this object is an element, the current or next start element starts this object and any intervening reader events are ignorable
-             *                If this object is not an element, it is a complex type and the reader is at the event just after the outer start element
+             * If this object is not an element, it is a complex type and the reader is at the event just after the outer start element
              * Postcondition: If this object is an element, the reader is positioned at its end element
-             *                If this object is a complex type, the reader is positioned at the end element of its outer element
+             * If this object is a complex type, the reader is positioned at the end element of its outer element
              */
             public static GetWeatherbyCityNameResponse parse(
                     javax.xml.stream.XMLStreamReader reader)
@@ -6409,6 +6428,7 @@ public class WeatherWebServiceStub extends org.apache.axis2.client.Stub {
 
         /**
          * Auto generated getter method
+         *
          * @return org.apache.axiom.om.OMElement
          */
         public org.apache.axiom.om.OMElement getSchema() {
@@ -6417,6 +6437,7 @@ public class WeatherWebServiceStub extends org.apache.axis2.client.Stub {
 
         /**
          * Auto generated setter method
+         *
          * @param param Schema
          */
         public void setSchema(org.apache.axiom.om.OMElement param) {
@@ -6425,6 +6446,7 @@ public class WeatherWebServiceStub extends org.apache.axis2.client.Stub {
 
         /**
          * Auto generated getter method
+         *
          * @return org.apache.axiom.om.OMElement
          */
         public org.apache.axiom.om.OMElement getExtraElement() {
@@ -6433,6 +6455,7 @@ public class WeatherWebServiceStub extends org.apache.axis2.client.Stub {
 
         /**
          * Auto generated setter method
+         *
          * @param param ExtraElement
          */
         public void setExtraElement(org.apache.axiom.om.OMElement param) {
@@ -6440,7 +6463,6 @@ public class WeatherWebServiceStub extends org.apache.axis2.client.Stub {
         }
 
         /**
-         *
          * @param parentQName
          * @param factory
          * @return org.apache.axiom.om.OMElement
@@ -6606,7 +6628,7 @@ public class WeatherWebServiceStub extends org.apache.axis2.client.Stub {
         }
 
         /**
-         *  method to handle Qnames
+         * method to handle Qnames
          */
         private void writeQName(javax.xml.namespace.QName qname,
                                 javax.xml.stream.XMLStreamWriter xmlWriter)
@@ -6713,7 +6735,7 @@ public class WeatherWebServiceStub extends org.apache.axis2.client.Stub {
         }
 
         /**
-         *  Factory class that keeps the parse method
+         * Factory class that keeps the parse method
          */
         public static class Factory {
             private static org.apache.commons.logging.Log log = org.apache.commons.logging.LogFactory.getLog(Factory.class);
@@ -6721,9 +6743,9 @@ public class WeatherWebServiceStub extends org.apache.axis2.client.Stub {
             /**
              * static method to create the object
              * Precondition:  If this object is an element, the current or next start element starts this object and any intervening reader events are ignorable
-             *                If this object is not an element, it is a complex type and the reader is at the event just after the outer start element
+             * If this object is not an element, it is a complex type and the reader is at the event just after the outer start element
              * Postcondition: If this object is an element, the reader is positioned at its end element
-             *                If this object is a complex type, the reader is positioned at the end element of its outer element
+             * If this object is a complex type, the reader is positioned at the end element of its outer element
              */
             public static GetSupportDataSetResult_type0 parse(
                     javax.xml.stream.XMLStreamReader reader)

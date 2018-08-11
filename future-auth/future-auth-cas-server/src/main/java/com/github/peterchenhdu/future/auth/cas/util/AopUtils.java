@@ -12,7 +12,6 @@ import org.aspectj.lang.JoinPoint;
  * @author Marvin S. Addison
  * @version $Revision$ $Date$
  * @since 3.4
- *
  */
 public final class AopUtils {
 

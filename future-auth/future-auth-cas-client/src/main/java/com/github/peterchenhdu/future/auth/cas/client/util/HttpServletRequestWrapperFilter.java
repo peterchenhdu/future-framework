@@ -39,10 +39,14 @@ import java.util.Collection;
  */
 public final class HttpServletRequestWrapperFilter extends AbstractConfigurationFilter {
 
-    /** Name of the attribute used to answer role membership queries */
+    /**
+     * Name of the attribute used to answer role membership queries
+     */
     private String roleAttribute;
-   
-    /** Whether or not to ignore case in role membership queries */
+
+    /**
+     * Whether or not to ignore case in role membership queries
+     */
     private boolean ignoreCase;
 
     public void destroy() {
@@ -107,7 +111,7 @@ public final class HttpServletRequestWrapperFilter extends AbstractConfiguration
             }
 
             final Object value = this.principal.getAttributes().get(roleAttribute);
-            
+
             if (value instanceof Collection<?>) {
                 for (final Object o : (Collection<?>) value) {
                     if (rolesEqual(role, o)) {
@@ -121,14 +125,13 @@ public final class HttpServletRequestWrapperFilter extends AbstractConfiguration
             log.debug("User [" + getRemoteUser() + "] is in role [" + role + "]: " + isMember);
             return isMember;
         }
-        
+
         /**
          * Determines whether the given role is equal to the candidate
          * role attribute taking into account case sensitivity.
          *
-         * @param given  Role under consideration.
+         * @param given     Role under consideration.
          * @param candidate Role that the current user possesses.
-         *
          * @return True if roles are equal, false otherwise.
          */
         private boolean rolesEqual(final String given, final Object candidate) {

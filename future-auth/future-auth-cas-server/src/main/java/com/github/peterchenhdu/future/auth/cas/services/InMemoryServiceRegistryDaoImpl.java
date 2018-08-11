@@ -9,17 +9,16 @@ import java.util.List;
 
 /**
  * Default In Memory Service Registry Dao for test/demonstration purposes.
- * 
+ *
  * @author Scott Battaglia
  * @version $Revision: 1.1 $ $Date: 2005/08/19 18:27:17 $
  * @since 3.1
- *
  */
 public final class InMemoryServiceRegistryDaoImpl implements ServiceRegistryDao {
-    
+
     @NotNull
     private List<RegisteredService> registeredServices = new ArrayList<RegisteredService>();
-    
+
     public boolean delete(RegisteredService registeredService) {
         return this.registeredServices.remove(registeredService);
     }
@@ -30,7 +29,7 @@ public final class InMemoryServiceRegistryDaoImpl implements ServiceRegistryDao 
                 return r;
             }
         }
-        
+
         return null;
     }
 
@@ -40,12 +39,12 @@ public final class InMemoryServiceRegistryDaoImpl implements ServiceRegistryDao 
 
     public RegisteredService save(final RegisteredService registeredService) {
         if (registeredService.getId() == -1) {
-            ((AbstractRegisteredService) registeredService).setId(findHighestId()+1);
+            ((AbstractRegisteredService) registeredService).setId(findHighestId() + 1);
         }
 
         this.registeredServices.remove(registeredService);
         this.registeredServices.add(registeredService);
-        
+
         return registeredService;
     }
 

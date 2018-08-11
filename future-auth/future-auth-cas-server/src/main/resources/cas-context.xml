@@ -133,7 +133,7 @@
     <!-- <sec:user name="@@THIS SHOULD BE REPLACED@@" password="notused" authorities="ROLE_ADMIN" />-->
 
     <!--<sec:user-service id="userDetailsService">-->
-        <!--<sec:user name="@@THIS SHOULD BE REPLACED@@" password="notused" authorities="ROLE_ADMIN"/>-->
+    <!--<sec:user name="@@THIS SHOULD BE REPLACED@@" password="notused" authorities="ROLE_ADMIN"/>-->
     <!--</sec:user-service>-->
 
     <!--
@@ -209,8 +209,6 @@
     </bean>
 
 
-
-
     <!--
       Declare the TimingAspect that we want to weave into the other beans
       defined in this config file.
@@ -238,7 +236,8 @@
           p:targetObject-ref="servicesManager"
           p:targetMethod="reload"/>
 
-    <bean id="periodicServiceRegistryReloaderTrigger" class="org.springframework.scheduling.quartz.SimpleTriggerFactoryBean"
+    <bean id="periodicServiceRegistryReloaderTrigger"
+          class="org.springframework.scheduling.quartz.SimpleTriggerFactoryBean"
           p:jobDetail-ref="serviceRegistryReloaderJobDetail"
           p:startDelay="${service.registry.quartz.reloader.startDelay:120000}"
           p:repeatInterval="${service.registry.quartz.reloader.repeatInterval:120000}"/>
@@ -248,14 +247,15 @@
           p:connectionTimeout="5000"/>
 
     <bean id="noRedirectHttpClient" class="com.github.peterchenhdu.future.auth.cas.util.HttpClient" parent="httpClient"
-          p:followRedirects="false" />
+          p:followRedirects="false"/>
 
     <bean id="persistentIdGenerator"
           class="com.github.peterchenhdu.future.auth.cas.authentication.principal.ShibbolethCompatiblePersistentIdGenerator"
           p:salt="casrocks"/>
 
     <!-- CentralAuthenticationService -->
-    <bean id="centralAuthenticationService" class="com.github.peterchenhdu.future.auth.cas.CentralAuthenticationServiceImpl"
+    <bean id="centralAuthenticationService"
+          class="com.github.peterchenhdu.future.auth.cas.CentralAuthenticationServiceImpl"
           p:ticketGrantingTicketExpirationPolicy-ref="grantingTicketExpirationPolicy"
           p:serviceTicketExpirationPolicy-ref="serviceTicketExpirationPolicy"
           p:authenticationManager-ref="authenticationManager"
@@ -276,7 +276,7 @@
           class="org.springframework.aop.framework.autoproxy.DefaultAdvisorAutoProxyCreator"/>
 
     <!--<bean id="validationAnnotationBeanPostProcessor" class="com.github.peterchenhdu.future.auth.cas.util.CustomBeanValidationPostProcessor"-->
-          <!--p:afterInitialization="true" />-->
+    <!--p:afterInitialization="true" />-->
 
     <!-- The scheduler bean wires up any triggers that define scheduled tasks -->
     <bean id="scheduler" class="com.github.peterchenhdu.future.auth.cas.util.AutowiringSchedulerFactoryBean"/>
@@ -286,77 +286,85 @@
             id="casArgumentExtractor"
             class="com.github.peterchenhdu.future.auth.cas.web.support.CasArgumentExtractor"
             p:httpClient-ref="noRedirectHttpClient"
-            p:disableSingleSignOut="${slo.callbacks.disabled:false}" />
+            p:disableSingleSignOut="${slo.callbacks.disabled:false}"/>
 
     <bean id="samlArgumentExtractor" class="com.github.peterchenhdu.future.auth.cas.web.support.SamlArgumentExtractor"
           p:httpClient-ref="noRedirectHttpClient"
-          p:disableSingleSignOut="${slo.callbacks.disabled:false}" />
+          p:disableSingleSignOut="${slo.callbacks.disabled:false}"/>
 
     <util:list id="argumentExtractors">
-        <ref bean="casArgumentExtractor" />
-        <ref bean="samlArgumentExtractor" />
+        <ref bean="casArgumentExtractor"/>
+        <ref bean="samlArgumentExtractor"/>
     </util:list>
-
 
 
     <!-- Expiration policies -->
     <util:constant id="SECONDS" static-field="java.util.concurrent.TimeUnit.SECONDS"/>
-    <bean id="serviceTicketExpirationPolicy" class="com.github.peterchenhdu.future.auth.cas.ticket.support.MultiTimeUseOrTimeoutExpirationPolicy"
+    <bean id="serviceTicketExpirationPolicy"
+          class="com.github.peterchenhdu.future.auth.cas.ticket.support.MultiTimeUseOrTimeoutExpirationPolicy"
           c:numberOfUses="1" c:timeToKill="${st.timeToKillInSeconds:10}" c:timeUnit-ref="SECONDS"/>
 
     <!-- TicketGrantingTicketExpirationPolicy: Default as of 3.5 -->
     <!-- Provides both idle and hard timeouts, for instance 2 hour sliding window with an 8 hour max lifetime -->
-    <bean id="grantingTicketExpirationPolicy" class="com.github.peterchenhdu.future.auth.cas.ticket.support.TicketGrantingTicketExpirationPolicy"
+    <bean id="grantingTicketExpirationPolicy"
+          class="com.github.peterchenhdu.future.auth.cas.ticket.support.TicketGrantingTicketExpirationPolicy"
           p:maxTimeToLiveInSeconds="${tgt.maxTimeToLiveInSeconds:28800}"
           p:timeToKillInSeconds="${tgt.timeToKillInSeconds:7200}"/>
 
-    <bean id="ticketGrantingTicketCookieGenerator" class="com.github.peterchenhdu.future.auth.cas.web.support.CookieRetrievingCookieGenerator"
+    <bean id="ticketGrantingTicketCookieGenerator"
+          class="com.github.peterchenhdu.future.auth.cas.web.support.CookieRetrievingCookieGenerator"
           p:cookieSecure="false"
           p:cookieMaxAge="-1"
           p:cookieName="CASTGC"
-          p:cookiePath="/cas" />
+          p:cookiePath="/cas"/>
 
     <!-- Ticket Registry -->
-    <bean id="ticketRegistry" class="com.github.peterchenhdu.future.auth.cas.ticket.registry.DefaultTicketRegistry" />
+    <bean id="ticketRegistry" class="com.github.peterchenhdu.future.auth.cas.ticket.registry.DefaultTicketRegistry"/>
 
     <!--Quartz -->
     <!-- TICKET REGISTRY CLEANER -->
-    <bean id="ticketRegistryCleaner" class="com.github.peterchenhdu.future.auth.cas.ticket.registry.support.DefaultTicketRegistryCleaner"
-          p:ticketRegistry-ref="ticketRegistry" />
+    <bean id="ticketRegistryCleaner"
+          class="com.github.peterchenhdu.future.auth.cas.ticket.registry.support.DefaultTicketRegistryCleaner"
+          p:ticketRegistry-ref="ticketRegistry"/>
 
-    <bean id="jobDetailTicketRegistryCleaner" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean"
+    <bean id="jobDetailTicketRegistryCleaner"
+          class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean"
           p:targetObject-ref="ticketRegistryCleaner"
-          p:targetMethod="clean" />
+          p:targetMethod="clean"/>
 
-    <bean id="triggerJobDetailTicketRegistryCleaner" class="org.springframework.scheduling.quartz.SimpleTriggerFactoryBean"
+    <bean id="triggerJobDetailTicketRegistryCleaner"
+          class="org.springframework.scheduling.quartz.SimpleTriggerFactoryBean"
           p:jobDetail-ref="jobDetailTicketRegistryCleaner"
           p:startDelay="20000"
-          p:repeatInterval="5000000" />
+          p:repeatInterval="5000000"/>
 
     <!-- ID Generators -->
-    <bean id="ticketGrantingTicketUniqueIdGenerator" class="com.github.peterchenhdu.future.auth.cas.util.DefaultUniqueTicketIdGenerator">
+    <bean id="ticketGrantingTicketUniqueIdGenerator"
+          class="com.github.peterchenhdu.future.auth.cas.util.DefaultUniqueTicketIdGenerator">
         <constructor-arg
                 index="0"
                 type="int"
-                value="50" />
+                value="50"/>
         <constructor-arg
-                index="1" value="${host.name}" />
+                index="1" value="${host.name}"/>
     </bean>
 
-    <bean id="serviceTicketUniqueIdGenerator" class="com.github.peterchenhdu.future.auth.cas.util.DefaultUniqueTicketIdGenerator">
+    <bean id="serviceTicketUniqueIdGenerator"
+          class="com.github.peterchenhdu.future.auth.cas.util.DefaultUniqueTicketIdGenerator">
         <constructor-arg
                 index="0"
                 type="int"
-                value="20" />
+                value="20"/>
         <constructor-arg
-                index="1" value="${host.name}" />
+                index="1" value="${host.name}"/>
     </bean>
 
-    <bean id="loginTicketUniqueIdGenerator" class="com.github.peterchenhdu.future.auth.cas.util.DefaultUniqueTicketIdGenerator">
+    <bean id="loginTicketUniqueIdGenerator"
+          class="com.github.peterchenhdu.future.auth.cas.util.DefaultUniqueTicketIdGenerator">
         <constructor-arg
                 index="0"
                 type="int"
-                value="30" />
+                value="30"/>
     </bean>
 
     <bean
@@ -365,34 +373,36 @@
         <constructor-arg
                 index="0"
                 type="int"
-                value="20" />
+                value="20"/>
         <constructor-arg
-                index="1" value="${host.name}" />
+                index="1" value="${host.name}"/>
     </bean>
 
-    <bean id="samlServiceTicketUniqueIdGenerator" class="com.github.peterchenhdu.future.auth.cas.util.SamlCompliantUniqueTicketIdGenerator">
-        <constructor-arg index="0" value="https://localhost:8443" />
+    <bean id="samlServiceTicketUniqueIdGenerator"
+          class="com.github.peterchenhdu.future.auth.cas.util.SamlCompliantUniqueTicketIdGenerator">
+        <constructor-arg index="0" value="https://localhost:8443"/>
     </bean>
 
     <util:map id="uniqueIdGeneratorsMap">
         <entry
                 key="com.github.peterchenhdu.future.auth.cas.authentication.principal.SimpleWebApplicationServiceImpl"
-                value-ref="serviceTicketUniqueIdGenerator" />
+                value-ref="serviceTicketUniqueIdGenerator"/>
         <entry
                 key="com.github.peterchenhdu.future.auth.cas.support.openid.authentication.principal.OpenIdService"
-                value-ref="serviceTicketUniqueIdGenerator" />
+                value-ref="serviceTicketUniqueIdGenerator"/>
         <entry
                 key="com.github.peterchenhdu.future.auth.cas.authentication.principal.SamlService"
-                value-ref="samlServiceTicketUniqueIdGenerator" />
+                value-ref="samlServiceTicketUniqueIdGenerator"/>
         <entry
                 key="com.github.peterchenhdu.future.auth.cas.authentication.principal.GoogleAccountsService"
-                value-ref="serviceTicketUniqueIdGenerator" />
+                value-ref="serviceTicketUniqueIdGenerator"/>
     </util:map>
 
-    <bean id="warnCookieGenerator" class="com.github.peterchenhdu.future.auth.cas.web.support.CookieRetrievingCookieGenerator"
+    <bean id="warnCookieGenerator"
+          class="com.github.peterchenhdu.future.auth.cas.web.support.CookieRetrievingCookieGenerator"
           p:cookieSecure="false"
           p:cookieMaxAge="-1"
           p:cookieName="CASPRIVACY"
-          p:cookiePath="/cas" />
+          p:cookiePath="/cas"/>
 
 </beans>

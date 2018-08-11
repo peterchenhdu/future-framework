@@ -15,7 +15,7 @@ import java.util.Map;
  * meaningful to the View layer but are generally transparent to the rest of
  * CAS.
  * </p>
- * 
+ *
  * @author Scott Battaglia
  * @version $Revision: 1.3 $ $Date: 2007/04/19 20:13:01 $
  * @since 3.0
@@ -27,12 +27,12 @@ public interface Principal extends Serializable {
 
     /**
      * Returns the unique id for the Principal
+     *
      * @return the unique id for the Principal.
      */
     String getId();
-    
+
     /**
-     * 
      * @return
      */
     Map<String, Object> getAttributes();

@@ -10,11 +10,15 @@ package com.github.peterchenhdu.future.auth.cas.monitor;
  * @since 3.5.0
  */
 public class MemoryMonitor implements Monitor<MemoryStatus> {
-   
-    /** Default percent free memory warning threshold. */
+
+    /**
+     * Default percent free memory warning threshold.
+     */
     public static final int DEFAULT_FREE_MEMORY_WARN_THRESHOLD = 10;
-   
-    /** Percent free memory warning threshold. */
+
+    /**
+     * Percent free memory warning threshold.
+     */
     private long freeMemoryWarnThreshold = DEFAULT_FREE_MEMORY_WARN_THRESHOLD;
 
 
@@ -31,13 +35,17 @@ public class MemoryMonitor implements Monitor<MemoryStatus> {
     }
 
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public String getName() {
         return MemoryMonitor.class.getSimpleName();
     }
 
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public MemoryStatus observe() {
         final StatusCode code;
         final long free = Runtime.getRuntime().freeMemory();

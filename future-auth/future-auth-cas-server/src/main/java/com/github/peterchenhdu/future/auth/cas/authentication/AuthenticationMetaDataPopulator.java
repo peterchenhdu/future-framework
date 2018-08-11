@@ -12,7 +12,7 @@ import com.github.peterchenhdu.future.auth.cas.authentication.principal.Credenti
  * the Principal itself. AuthenticationAttributePopulators are a new feature in
  * CAS3. In order for an installation to be CAS2 compliant, deployers do not
  * need an AuthenticationMetaDataPopulator.
- * 
+ *
  * @author Scott Battaglia
  * @version $Revision$ $Date$
  * @since 3.0
@@ -27,9 +27,9 @@ public interface AuthenticationMetaDataPopulator {
      * presented, provide any additional attributes to the Authentication
      * object. Implementations have the option of returning the same
      * Authentication object, or a new one.
-     * 
+     *
      * @param authentication The Authentication to potentially augment with
-     * additional attributes.
+     *                       additional attributes.
      * @return the original Authentication object or a new Authentication
      * object.
      */

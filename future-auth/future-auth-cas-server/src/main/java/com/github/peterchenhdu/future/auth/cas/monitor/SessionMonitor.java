@@ -14,19 +14,26 @@ import javax.validation.constraints.NotNull;
  * @since 3.5.0
  */
 public class SessionMonitor implements Monitor<SessionStatus> {
-    /** Ticket registry instance that exposes state info. */
+    /**
+     * Ticket registry instance that exposes state info.
+     */
     @NotNull
     private TicketRegistryState registryState;
 
-    /** Threshold above which warnings are issued for session count. */
+    /**
+     * Threshold above which warnings are issued for session count.
+     */
     private int sessionCountWarnThreshold = -1;
 
-    /** Threshold above which warnings are issued for service ticket count. */
+    /**
+     * Threshold above which warnings are issued for service ticket count.
+     */
     private int serviceTicketCountWarnThreshold = -1;
 
 
     /**
      * Sets the ticket registry that exposes state information that may be queried by this monitor.
+     *
      * @param state
      */
     public void setTicketRegistry(final TicketRegistryState state) {
@@ -54,25 +61,29 @@ public class SessionMonitor implements Monitor<SessionStatus> {
     }
 
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public String getName() {
         return SessionMonitor.class.getSimpleName();
     }
 
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public SessionStatus observe() {
         try {
             final int sessionCount = this.registryState.sessionCount();
             final int ticketCount = this.registryState.serviceTicketCount();
-            
+
             if (sessionCount == Integer.MIN_VALUE || ticketCount == Integer.MIN_VALUE) {
-                return new SessionStatus(StatusCode.UNKNOWN, 
-                                         String.format("Ticket registry %s reports unknown session and/or ticket counts.", 
-                                         this.registryState.getClass().getName()),
-                                         sessionCount, ticketCount);
+                return new SessionStatus(StatusCode.UNKNOWN,
+                        String.format("Ticket registry %s reports unknown session and/or ticket counts.",
+                                this.registryState.getClass().getName()),
+                        sessionCount, ticketCount);
             }
-            
+
             final StringBuilder msg = new StringBuilder();
             StatusCode code = StatusCode.OK;
             if (this.sessionCountWarnThreshold > -1 && sessionCount > this.sessionCountWarnThreshold) {

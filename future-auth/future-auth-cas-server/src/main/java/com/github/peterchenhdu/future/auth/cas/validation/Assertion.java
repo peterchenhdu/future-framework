@@ -13,7 +13,7 @@ import java.util.List;
  * Return from CentralAuthenticationService.validateServiceTicket(String,
  * Service), the Assertion contains a chain of Principal objects. The first is
  * the User's login Principal, while any others are Proxy Principals.
- * 
+ *
  * @author Scott Battaglia
  * @version $Revision$ $Date$
  * @since 3.0
@@ -33,7 +33,7 @@ public interface Assertion extends Serializable {
      * this List is that associated with the GrantingTicket that was the
      * immediate grantor of the ticket that was validated. The List returned by
      * this method will contain at least one Authentication.
-     * 
+     *
      * @return a List of Authentication
      */
     List<Authentication> getChainedAuthentications();
@@ -41,7 +41,7 @@ public interface Assertion extends Serializable {
     /**
      * True if the validated ticket was granted in the same transaction as that
      * in which its grantor GrantingTicket was originally issued.
-     * 
+     *
      * @return true if validated ticket was granted simultaneous with its
      * grantor's issuance
      */
@@ -50,7 +50,7 @@ public interface Assertion extends Serializable {
     /**
      * Method to obtain the service for which we are asserting this ticket is
      * valid for.
-     * 
+     *
      * @return the service for which we are asserting this ticket is valid for.
      */
     Service getService();

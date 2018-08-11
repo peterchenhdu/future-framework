@@ -30,7 +30,9 @@ import java.util.List;
 public abstract class AbstractRegisteredService
         implements RegisteredService, Comparable<RegisteredService>, Serializable {
 
-    /** Serialization version marker  */
+    /**
+     * Serialization version marker
+     */
     private static final long serialVersionUID = 7645279151115635245L;
 
     @Id
@@ -70,7 +72,7 @@ public abstract class AbstractRegisteredService
      */
     @Column(name = "username_attr", nullable = true, length = 256)
     private String usernameAttribute = null;
-      
+
     public boolean isAnonymousAccess() {
         return this.anonymousAccess;
     }
@@ -116,14 +118,14 @@ public abstract class AbstractRegisteredService
     }
 
     public boolean equals(Object o) {
-        if (o == null) { 
-            return false; 
+        if (o == null) {
+            return false;
         }
-        
-        if (this == o)  {
+
+        if (this == o) {
             return true;
         }
-        
+
         if (!(o instanceof AbstractRegisteredService)) {
             return false;
         }
@@ -131,35 +133,35 @@ public abstract class AbstractRegisteredService
         final AbstractRegisteredService that = (AbstractRegisteredService) o;
 
         return new EqualsBuilder()
-                  .append(this.allowedToProxy, that.allowedToProxy)
-                  .append(this.anonymousAccess, that.anonymousAccess)
-                  .append(this.enabled, that.enabled)
-                  .append(this.evaluationOrder, that.evaluationOrder)
-                  .append(this.ignoreAttributes, that.ignoreAttributes)
-                  .append(this.ssoEnabled, that.ssoEnabled)
-                  .append(this.allowedAttributes, that.allowedAttributes)
-                  .append(this.description, that.description)
-                  .append(this.name, that.name)
-                  .append(this.serviceId, that.serviceId)
-                  .append(this.theme, that.theme)
-                  .append(this.usernameAttribute, that.usernameAttribute)
-                  .isEquals();
+                .append(this.allowedToProxy, that.allowedToProxy)
+                .append(this.anonymousAccess, that.anonymousAccess)
+                .append(this.enabled, that.enabled)
+                .append(this.evaluationOrder, that.evaluationOrder)
+                .append(this.ignoreAttributes, that.ignoreAttributes)
+                .append(this.ssoEnabled, that.ssoEnabled)
+                .append(this.allowedAttributes, that.allowedAttributes)
+                .append(this.description, that.description)
+                .append(this.name, that.name)
+                .append(this.serviceId, that.serviceId)
+                .append(this.theme, that.theme)
+                .append(this.usernameAttribute, that.usernameAttribute)
+                .isEquals();
     }
 
     public int hashCode() {
         return new HashCodeBuilder(7, 31)
-                  .append(this.allowedAttributes)
-                  .append(this.description)
-                  .append(this.serviceId)
-                  .append(this.name)
-                  .append(this.theme)
-                  .append(this.enabled)
-                  .append(this.ssoEnabled)
-                  .append(this.anonymousAccess)
-                  .append(this.ignoreAttributes)
-                  .append(this.evaluationOrder)
-                  .append(this.usernameAttribute)
-                  .toHashCode();
+                .append(this.allowedAttributes)
+                .append(this.description)
+                .append(this.serviceId)
+                .append(this.name)
+                .append(this.theme)
+                .append(this.enabled)
+                .append(this.ssoEnabled)
+                .append(this.anonymousAccess)
+                .append(this.ignoreAttributes)
+                .append(this.evaluationOrder)
+                .append(this.usernameAttribute)
+                .toHashCode();
     }
 
     public void setAllowedAttributes(final List<String> allowedAttributes) {
@@ -222,24 +224,24 @@ public abstract class AbstractRegisteredService
 
     /**
      * Sets the name of the user attribute to use as the username when providing usernames to this registered service.
-     * 
+     * <p>
      * <p>Note: The username attribute will have no affect on services that are marked for anonymous access.
-     * 
-     * @param username attribute to release for this service that may be one of the following values: 
-     * <ul>
-     *  <li>name of the attribute this service prefers to consume as username</li>. 
-     *  <li><code>null</code> to enforce default CAS behavior</li>
-     * </ul>
+     *
+     * @param username attribute to release for this service that may be one of the following values:
+     *                 <ul>
+     *                 <li>name of the attribute this service prefers to consume as username</li>.
+     *                 <li><code>null</code> to enforce default CAS behavior</li>
+     *                 </ul>
      * @see #isAnonymousAccess()
      */
     public void setUsernameAttribute(final String username) {
         if (StringUtils.isBlank(username)) {
-          this.usernameAttribute = null;
+            this.usernameAttribute = null;
         } else {
-          this.usernameAttribute = username;
+            this.usernameAttribute = username;
         }
     }
-    
+
     public Object clone() throws CloneNotSupportedException {
         final AbstractRegisteredService clone = newInstance();
         clone.copyFrom(this);
@@ -268,16 +270,16 @@ public abstract class AbstractRegisteredService
     }
 
     /**
-     * Compares this instance with the <code>other</code> registered service based on 
+     * Compares this instance with the <code>other</code> registered service based on
      * evaluation order, name. The name comparison is case insensitive.
-     * 
+     *
      * @see #getEvaluationOrder()
      */
     public int compareTo(final RegisteredService other) {
         return new CompareToBuilder()
-                  .append(this.getEvaluationOrder(), other.getEvaluationOrder())
-                  .append(this.getName().toLowerCase(), other.getName().toLowerCase())
-                  .toComparison();
+                .append(this.getEvaluationOrder(), other.getEvaluationOrder())
+                .append(this.getName().toLowerCase(), other.getName().toLowerCase())
+                .toComparison();
     }
 
     public String toString() {

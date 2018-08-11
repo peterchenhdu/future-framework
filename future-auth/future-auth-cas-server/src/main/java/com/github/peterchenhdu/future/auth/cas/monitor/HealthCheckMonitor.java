@@ -17,7 +17,9 @@ import java.util.Map;
  * @since 3.5.0
  */
 public class HealthCheckMonitor implements Monitor<HealthStatus> {
-    /** Individual monitors that comprise health check. */
+    /**
+     * Individual monitors that comprise health check.
+     */
     @NotNull
     private Collection<Monitor> monitors = Collections.emptySet();
 
@@ -31,12 +33,16 @@ public class HealthCheckMonitor implements Monitor<HealthStatus> {
         this.monitors = monitors;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public String getName() {
         return HealthCheckMonitor.class.getSimpleName();
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     public HealthStatus observe() {
         final Map<String, Status> results = new LinkedHashMap<String, Status>(this.monitors.size());
         StatusCode code = StatusCode.UNKNOWN;

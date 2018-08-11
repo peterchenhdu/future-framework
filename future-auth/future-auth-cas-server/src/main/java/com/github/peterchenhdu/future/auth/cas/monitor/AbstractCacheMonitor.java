@@ -12,16 +12,24 @@ package com.github.peterchenhdu.future.auth.cas.monitor;
  */
 public abstract class AbstractCacheMonitor extends AbstractNamedMonitor<CacheStatus> {
 
-    /** Default free capacity threshold is 10%. */
+    /**
+     * Default free capacity threshold is 10%.
+     */
     public static final int DEFAULT_WARN_FREE_THRESHOLD = 10;
 
-    /** Default eviction threshold is 0. */
+    /**
+     * Default eviction threshold is 0.
+     */
     public static final long DEFAULT_EVICTION_THRESHOLD = 0;
 
-    /** Percent free capacity threshold below which a warning is issued.*/
+    /**
+     * Percent free capacity threshold below which a warning is issued.
+     */
     private int warnFreeThreshold = DEFAULT_WARN_FREE_THRESHOLD;
 
-    /** Threshold for number of acceptable evictions above which an error is issued. */
+    /**
+     * Threshold for number of acceptable evictions above which an error is issued.
+     */
     private long evictionThreshold = DEFAULT_EVICTION_THRESHOLD;
 
 
@@ -76,7 +84,6 @@ public abstract class AbstractCacheMonitor extends AbstractNamedMonitor<CacheSta
      * Computes the status code for a given set of cache statistics.
      *
      * @param statistics Cache statistics.
-     *
      * @return {@link StatusCode#WARN} if eviction count is above threshold or if
      * percent free space is below threshold, otherwise {@link StatusCode#OK}.
      */

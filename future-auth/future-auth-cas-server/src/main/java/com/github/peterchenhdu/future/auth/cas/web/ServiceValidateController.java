@@ -32,53 +32,73 @@ import java.net.URL;
  * and (possibly) a chain of Proxy Principals. Store the Assertion in the Model
  * and chain to a View to generate the appropriate response (CAS 1, CAS 2 XML,
  * SAML, ...).
- * 
+ *
  * @author Scott Battaglia
  * @version $Revision$ $Date$
  * @since 3.0
  */
 public class ServiceValidateController extends DelegateController {
 
-    /** View if Service Ticket Validation Fails. */
+    /**
+     * View if Service Ticket Validation Fails.
+     */
     private static final String DEFAULT_SERVICE_FAILURE_VIEW_NAME = "casServiceFailureView";
 
-    /** View if Service Ticket Validation Succeeds. */
+    /**
+     * View if Service Ticket Validation Succeeds.
+     */
     private static final String DEFAULT_SERVICE_SUCCESS_VIEW_NAME = "casServiceSuccessView";
 
-    /** Constant representing the PGTIOU in the model. */
+    /**
+     * Constant representing the PGTIOU in the model.
+     */
     private static final String MODEL_PROXY_GRANTING_TICKET_IOU = "pgtIou";
 
-    /** Constant representing the Assertion in the model. */
+    /**
+     * Constant representing the Assertion in the model.
+     */
     private static final String MODEL_ASSERTION = "assertion";
 
-    /** The CORE which we will delegate all requests to. */
+    /**
+     * The CORE which we will delegate all requests to.
+     */
     @NotNull
     private CentralAuthenticationService centralAuthenticationService;
 
-    /** The validation protocol we want to use. */
+    /**
+     * The validation protocol we want to use.
+     */
     @NotNull
     private Class<?> validationSpecificationClass = Cas20ProtocolValidationSpecification.class;
 
-    /** The proxy handler we want to use with the controller. */
+    /**
+     * The proxy handler we want to use with the controller.
+     */
     @NotNull
     private ProxyHandler proxyHandler;
 
-    /** The view to redirect to on a successful validation. */
+    /**
+     * The view to redirect to on a successful validation.
+     */
     @NotNull
     private String successView = DEFAULT_SERVICE_SUCCESS_VIEW_NAME;
 
-    /** The view to redirect to on a validation failure. */
+    /**
+     * The view to redirect to on a validation failure.
+     */
     @NotNull
     private String failureView = DEFAULT_SERVICE_FAILURE_VIEW_NAME;
 
-    /** Extracts parameters from Request object. */
+    /**
+     * Extracts parameters from Request object.
+     */
     @NotNull
     private ArgumentExtractor argumentExtractor;
 
     /**
      * Overrideable method to determine which credentials to use to grant a
      * proxy granting ticket. Default is to use the pgtUrl.
-     * 
+     *
      * @param request the HttpServletRequest object.
      * @return the credentials or null if there was an error or no credentials
      * provided.
@@ -119,11 +139,11 @@ public class ServiceValidateController extends DelegateController {
             if (serviceCredentials != null) {
                 try {
                     proxyGrantingTicketId = this.centralAuthenticationService
-                        .delegateTicketGrantingTicket(serviceTicketId,
-                            serviceCredentials);
+                            .delegateTicketGrantingTicket(serviceTicketId,
+                                    serviceCredentials);
                 } catch (final TicketException e) {
                     logger.error("TicketException generating ticket for: "
-                        + serviceCredentials, e);
+                            + serviceCredentials, e);
                 }
             }
 
@@ -157,10 +177,10 @@ public class ServiceValidateController extends DelegateController {
 
             return success;
         } catch (final TicketValidationException e) {
-            return generateErrorView(e.getCode(), e.getCode(), new Object[] {serviceTicketId, e.getOriginalService().getId(), service.getId()});
+            return generateErrorView(e.getCode(), e.getCode(), new Object[]{serviceTicketId, e.getOriginalService().getId(), service.getId()});
         } catch (final TicketException te) {
             return generateErrorView(te.getCode(), te.getCode(),
-                new Object[] {serviceTicketId});
+                    new Object[]{serviceTicketId});
         } catch (final UnauthorizedServiceException e) {
             return generateErrorView(e.getMessage(), e.getMessage(), null);
         }
@@ -194,10 +214,10 @@ public class ServiceValidateController extends DelegateController {
     public boolean canHandle(HttpServletRequest request, HttpServletResponse response) {
         return true;
     }
-    
+
     /**
      * @param centralAuthenticationService The centralAuthenticationService to
-     * set.
+     *                                     set.
      */
     public final void setCentralAuthenticationService(final CentralAuthenticationService centralAuthenticationService) {
         this.centralAuthenticationService = centralAuthenticationService;
@@ -209,7 +229,7 @@ public class ServiceValidateController extends DelegateController {
 
     /**
      * @param validationSpecificationClass The authenticationSpecificationClass
-     * to set.
+     *                                     to set.
      */
     public final void setValidationSpecificationClass(final Class<?> validationSpecificationClass) {
         this.validationSpecificationClass = validationSpecificationClass;

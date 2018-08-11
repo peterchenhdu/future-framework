@@ -9,6 +9,7 @@ import tk.mybatis.mapper.common.Mapper;
 
 /**
  * null - Mapper接口
+ *
  * @author PiChen
  * @since 2018-08-09 23:14:10
  */

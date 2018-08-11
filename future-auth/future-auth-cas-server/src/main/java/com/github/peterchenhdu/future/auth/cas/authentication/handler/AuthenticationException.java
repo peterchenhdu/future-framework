@@ -14,13 +14,19 @@ package com.github.peterchenhdu.future.auth.cas.authentication.handler;
  */
 public abstract class AuthenticationException extends Exception {
 
-    /** Serializable ID. */
+    /**
+     * Serializable ID.
+     */
     private static final long serialVersionUID = 3906648604830611762L;
 
-    /** The code to return for resolving to a message description. */
+    /**
+     * The code to return for resolving to a message description.
+     */
     private String code;
 
-    /** The error type that provides additional info about the nature of the exception cause **/
+    /**
+     * The error type that provides additional info about the nature of the exception cause
+     **/
     private String type = "error";
 
     /**
@@ -40,7 +46,7 @@ public abstract class AuthenticationException extends Exception {
      * entries in the messages file for the internationalization of error messages.
      *
      * @param code The short unique identifier for this error.
-     * @param msg The error message associated with this exception for additional logging purposes.
+     * @param msg  The error message associated with this exception for additional logging purposes.
      */
     public AuthenticationException(final String code, final String msg) {
         super(msg);
@@ -53,9 +59,9 @@ public abstract class AuthenticationException extends Exception {
      * These codes normally have a corresponding entries in the messages file for the internationalization of error messages.
      *
      * @param code The short unique identifier for this error.
-     * @param msg The error message associated with this exception for additional logging purposes.
+     * @param msg  The error message associated with this exception for additional logging purposes.
      * @param type The type of the error message that caused the exception to be thrown. By default,
-     * all errors are considered of <code>error</code>.
+     *             all errors are considered of <code>error</code>.
      */
     public AuthenticationException(final String code, final String msg, final String type) {
         super(msg);
@@ -68,7 +74,7 @@ public abstract class AuthenticationException extends Exception {
      * exception. These codes normally have a corresponding entries in the
      * messages file for the internationalization of error messages.
      *
-     * @param code The short unique identifier for this error.
+     * @param code      The short unique identifier for this error.
      * @param throwable The chained exception for this AuthenticationException
      */
     public AuthenticationException(final String code, final Throwable throwable) {

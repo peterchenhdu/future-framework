@@ -75,10 +75,11 @@
         </where>
     </sql>
     <sql id="Base_Column_List">
-    id, class_name, create_time, cron_expression, description, job_group, job_name, last_update_time,
-    trigger_group, trigger_name, pause
-  </sql>
-    <select id="selectByExample" parameterType="com.github.peterchenhdu.future.example.quartz.model.jobdemo.ScheduleJobExample"
+        id, class_name, create_time, cron_expression, description, job_group, job_name, last_update_time,
+        trigger_group, trigger_name, pause
+    </sql>
+    <select id="selectByExample"
+            parameterType="com.github.peterchenhdu.future.example.quartz.model.jobdemo.ScheduleJobExample"
             resultMap="BaseResultMap">
         select
         <if test="distinct">
@@ -104,7 +105,8 @@
         delete from jobdemo.schedule_job
         where id = #{id,jdbcType=BIGINT}
     </delete>
-    <delete id="deleteByExample" parameterType="com.github.peterchenhdu.future.example.quartz.model.jobdemo.ScheduleJobExample">
+    <delete id="deleteByExample"
+            parameterType="com.github.peterchenhdu.future.example.quartz.model.jobdemo.ScheduleJobExample">
         delete from jobdemo.schedule_job
         <if test="_parameter != null">
             <include refid="Example_Where_Clause"/>
@@ -120,7 +122,8 @@
         #{jobName,jdbcType=VARCHAR}, #{lastUpdateTime,jdbcType=TIMESTAMP}, #{triggerGroup,jdbcType=VARCHAR},
         #{triggerName,jdbcType=VARCHAR}, #{pause,jdbcType=BIT})
     </insert>
-    <insert id="insertSelective" parameterType="com.github.peterchenhdu.future.example.quartz.model.jobdemo.ScheduleJob">
+    <insert id="insertSelective"
+            parameterType="com.github.peterchenhdu.future.example.quartz.model.jobdemo.ScheduleJob">
         insert into jobdemo.schedule_job
         <trim prefix="(" suffix=")" suffixOverrides=",">
             <if test="id != null">
@@ -193,7 +196,8 @@
             </if>
         </trim>
     </insert>
-    <select id="countByExample" parameterType="com.github.peterchenhdu.future.example.quartz.model.jobdemo.ScheduleJobExample"
+    <select id="countByExample"
+            parameterType="com.github.peterchenhdu.future.example.quartz.model.jobdemo.ScheduleJobExample"
             resultType="java.lang.Long">
         select count(*) from jobdemo.schedule_job
         <if test="_parameter != null">
@@ -295,7 +299,8 @@
         </set>
         where id = #{id,jdbcType=BIGINT}
     </update>
-    <update id="updateByPrimaryKey" parameterType="com.github.peterchenhdu.future.example.quartz.model.jobdemo.ScheduleJob">
+    <update id="updateByPrimaryKey"
+            parameterType="com.github.peterchenhdu.future.example.quartz.model.jobdemo.ScheduleJob">
         update jobdemo.schedule_job
         set class_name = #{className,jdbcType=VARCHAR},
         create_time = #{createTime,jdbcType=TIMESTAMP},

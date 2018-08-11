@@ -20,36 +20,44 @@ import javax.validation.constraints.NotNull;
  * The default behavior as defined in the CAS 2 Specification is to callback the
  * URL provided and give it a pgtIou and a pgtId.
  * </p>
- * 
+ *
  * @author Scott Battaglia
  * @version $Revision$ $Date$
  * @since 3.0
  */
 public final class Cas20ProxyHandler implements ProxyHandler {
 
-    /** The Commons Logging instance. */
+    /**
+     * The Commons Logging instance.
+     */
     private final Logger log = LoggerFactory.getLogger(getClass());
 
-    /** The PGTIOU ticket prefix. */
+    /**
+     * The PGTIOU ticket prefix.
+     */
     private static final String PGTIOU_PREFIX = "PGTIOU";
 
-    /** Generate unique ids. */
+    /**
+     * Generate unique ids.
+     */
     @NotNull
     private UniqueTicketIdGenerator uniqueTicketIdGenerator = new DefaultUniqueTicketIdGenerator();
 
-    /** Instance of Apache Commons HttpClient */
+    /**
+     * Instance of Apache Commons HttpClient
+     */
     @NotNull
     private HttpClient httpClient;
 
     public String handle(final Credentials credentials,
-        final String proxyGrantingTicketId) {
+                         final String proxyGrantingTicketId) {
         final HttpBasedServiceCredentials serviceCredentials = (HttpBasedServiceCredentials) credentials;
         final String proxyIou = this.uniqueTicketIdGenerator
-            .getNewTicketId(PGTIOU_PREFIX);
+                .getNewTicketId(PGTIOU_PREFIX);
         final String serviceCredentialsAsString = serviceCredentials.getCallbackUrl().toExternalForm();
         final StringBuilder stringBuffer = new StringBuilder(
-            serviceCredentialsAsString.length() + proxyIou.length()
-                + proxyGrantingTicketId.length() + 15);
+                serviceCredentialsAsString.length() + proxyIou.length()
+                        + proxyGrantingTicketId.length() + 15);
 
         stringBuffer.append(serviceCredentialsAsString);
 
@@ -67,14 +75,14 @@ public final class Cas20ProxyHandler implements ProxyHandler {
         if (this.httpClient.isValidEndPoint(stringBuffer.toString())) {
             if (log.isDebugEnabled()) {
                 log.debug("Sent ProxyIou of " + proxyIou + " for service: "
-                    + serviceCredentials.toString());
+                        + serviceCredentials.toString());
             }
             return proxyIou;
         }
 
         if (log.isDebugEnabled()) {
             log.debug("Failed to send ProxyIou of " + proxyIou
-                + " for service: " + serviceCredentials.toString());
+                    + " for service: " + serviceCredentials.toString());
         }
         return null;
     }
@@ -83,7 +91,7 @@ public final class Cas20ProxyHandler implements ProxyHandler {
      * @param uniqueTicketIdGenerator The uniqueTicketIdGenerator to set.
      */
     public void setUniqueTicketIdGenerator(
-        final UniqueTicketIdGenerator uniqueTicketIdGenerator) {
+            final UniqueTicketIdGenerator uniqueTicketIdGenerator) {
         this.uniqueTicketIdGenerator = uniqueTicketIdGenerator;
     }
 

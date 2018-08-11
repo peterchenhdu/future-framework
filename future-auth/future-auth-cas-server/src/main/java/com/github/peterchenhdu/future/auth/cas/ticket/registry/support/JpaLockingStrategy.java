@@ -27,19 +27,24 @@ import org.springframework.transaction.annotation.Transactional;
  *
  * @author Marvin S. Addison
  * @version $Revision: $
- *
  */
 public class JpaLockingStrategy implements LockingStrategy {
-    
-    /** Default lock timeout is 1 hour. */
+
+    /**
+     * Default lock timeout is 1 hour.
+     */
     public static final int DEFAULT_LOCK_TIMEOUT = 3600;
 
-    /** Transactional entity manager from Spring context. */
+    /**
+     * Transactional entity manager from Spring context.
+     */
     @NotNull
     @PersistenceContext
     protected EntityManager entityManager;
 
-    /** Logger instance. */
+    /**
+     * Logger instance.
+     */
     private final Logger logger = LoggerFactory.getLogger(getClass());
 
     /**
@@ -50,19 +55,23 @@ public class JpaLockingStrategy implements LockingStrategy {
     @NotNull
     private String applicationId;
 
-    /** Unique identifier that identifies the client using this lock instance */
+    /**
+     * Unique identifier that identifies the client using this lock instance
+     */
     @NotNull
     private String uniqueId;
 
-    /** Amount of time in seconds lock may be held */
+    /**
+     * Amount of time in seconds lock may be held
+     */
     private int lockTimeout = DEFAULT_LOCK_TIMEOUT;
 
 
     /**
-     * @param  id  Application identifier that identifies a row in the lock
-     *             table for which multiple clients vie to hold the lock.
-     *             This must be the same for all clients contending for a
-     *             particular lock.
+     * @param id Application identifier that identifies a row in the lock
+     *           table for which multiple clients vie to hold the lock.
+     *           This must be the same for all clients contending for a
+     *           particular lock.
      */
     public void setApplicationId(final String id) {
         this.applicationId = id;
@@ -70,9 +79,9 @@ public class JpaLockingStrategy implements LockingStrategy {
 
 
     /**
-     * @param  id  Identifier used to identify this instance in a row of the
-     *             lock table.  Must be unique across all clients vying for
-     *             locks for a given application ID.
+     * @param id Identifier used to identify this instance in a row of the
+     *           lock table.  Must be unique across all clients vying for
+     *           locks for a given application ID.
      */
     public void setUniqueId(final String id) {
         this.uniqueId = id;
@@ -80,10 +89,10 @@ public class JpaLockingStrategy implements LockingStrategy {
 
 
     /**
-     * @param  seconds  Maximum amount of time in seconds lock may be held.
-     *                  A value of zero indicates that locks are held indefinitely.
-     *                  Use of a reasonable timeout facilitates recovery from node failures,
-     *                  so setting to zero is discouraged.
+     * @param seconds Maximum amount of time in seconds lock may be held.
+     *                A value of zero indicates that locks are held indefinitely.
+     *                Use of a reasonable timeout facilitates recovery from node failures,
+     *                so setting to zero is discouraged.
      */
     public void setLockTimeout(final int seconds) {
         if (seconds < 0) {
@@ -91,31 +100,33 @@ public class JpaLockingStrategy implements LockingStrategy {
         }
         this.lockTimeout = seconds;
     }
-    
 
-    /** {@inheritDoc} */
+
+    /**
+     * {@inheritDoc}
+     */
     @Transactional(readOnly = false)
     public boolean acquire() {
         Lock lock;
         try {
             lock = entityManager.find(Lock.class, applicationId, LockModeType.PESSIMISTIC_WRITE);
         } catch (PersistenceException e) {
-            logger.debug("{} failed querying for {} lock.", new Object[] {uniqueId, applicationId, e});
+            logger.debug("{} failed querying for {} lock.", new Object[]{uniqueId, applicationId, e});
             return false;
         }
-        
+
         boolean result = false;
         if (lock != null) {
-	        final Date expDate = lock.getExpirationDate();
-	        if (lock.getUniqueId() == null) {
-	            // No one currently possesses lock
-	            logger.debug("{} trying to acquire {} lock.", uniqueId, applicationId);
-	            result = acquire(entityManager, lock);
-	        } else if (expDate != null && new Date().after(expDate)) {
-	            // Acquire expired lock regardless of who formerly owned it
-	            logger.debug("{} trying to acquire expired {} lock.", uniqueId, applicationId);
-	            result = acquire(entityManager, lock);
-	        }
+            final Date expDate = lock.getExpirationDate();
+            if (lock.getUniqueId() == null) {
+                // No one currently possesses lock
+                logger.debug("{} trying to acquire {} lock.", uniqueId, applicationId);
+                result = acquire(entityManager, lock);
+            } else if (expDate != null && new Date().after(expDate)) {
+                // Acquire expired lock regardless of who formerly owned it
+                logger.debug("{} trying to acquire expired {} lock.", uniqueId, applicationId);
+                result = acquire(entityManager, lock);
+            }
         } else {
             // First acquisition attempt for this applicationId
             logger.debug("Creating {} lock initially held by {}.", applicationId, uniqueId);
@@ -125,11 +136,13 @@ public class JpaLockingStrategy implements LockingStrategy {
     }
 
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Transactional(readOnly = false)
     public void release() {
         final Lock lock = entityManager.find(Lock.class, applicationId, LockModeType.PESSIMISTIC_WRITE);
-      
+
         if (lock == null) {
             return;
         }
@@ -144,13 +157,13 @@ public class JpaLockingStrategy implements LockingStrategy {
             throw new IllegalStateException("Cannot release lock owned by " + owner);
         }
     }
-    
-   
+
+
     /**
      * Gets the current owner of the lock as determined by querying for
      * uniqueId.
      *
-     * @return  Current lock owner or null if no one presently owns lock.
+     * @return Current lock owner or null if no one presently owns lock.
      */
     @Transactional(readOnly = true)
     public String getOwner() {
@@ -162,7 +175,9 @@ public class JpaLockingStrategy implements LockingStrategy {
     }
 
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public String toString() {
         return uniqueId;
@@ -172,9 +187,9 @@ public class JpaLockingStrategy implements LockingStrategy {
     private boolean acquire(final EntityManager em, Lock lock) {
         lock.setUniqueId(uniqueId);
         if (lockTimeout > 0) {
-	        final Calendar cal = Calendar.getInstance();
-	        cal.add(Calendar.SECOND, lockTimeout);
-	        lock.setExpirationDate(cal.getTime());
+            final Calendar cal = Calendar.getInstance();
+            cal.add(Calendar.SECOND, lockTimeout);
+            lock.setExpirationDate(cal.getTime());
         } else {
             lock.setExpirationDate(null);
         }
@@ -190,12 +205,12 @@ public class JpaLockingStrategy implements LockingStrategy {
         } catch (PersistenceException e) {
             success = false;
             if (logger.isDebugEnabled()) {
-                logger.debug("{} could not obtain {} lock.", new Object[] {uniqueId, applicationId, e});
+                logger.debug("{} could not obtain {} lock.", new Object[]{uniqueId, applicationId, e});
             } else {
                 logger.info("{} could not obtain {} lock.", uniqueId, applicationId);
             }
         }
-        return success; 
+        return success;
     }
 
 
@@ -204,23 +219,28 @@ public class JpaLockingStrategy implements LockingStrategy {
      *
      * @author Marvin S. Addison
      * @version $Revision: $
-     *
      */
     @Entity
     @Table(name = "locks")
     public static class Lock {
-        /** column name that holds application identifier */
+        /**
+         * column name that holds application identifier
+         */
         @Id
-        @Column(name="application_id")
+        @Column(name = "application_id")
         private String applicationId;
-        
-        /** Database column name that holds unique identifier */
-        @Column(name="unique_id")
+
+        /**
+         * Database column name that holds unique identifier
+         */
+        @Column(name = "unique_id")
         private String uniqueId;
 
-        /** Database column name that holds expiration date */
+        /**
+         * Database column name that holds expiration date
+         */
         @Temporal(TemporalType.TIMESTAMP)
-        @Column(name="expiration_date")
+        @Column(name = "expiration_date")
         private Date expirationDate;
 
 

@@ -18,16 +18,18 @@ import org.springframework.util.Assert;
  */
 public abstract class AbstractTicketRegistry implements TicketRegistry, TicketRegistryState {
 
-    /** The Commons Logging log instance. */
+    /**
+     * The Commons Logging log instance.
+     */
     protected final Logger log = LoggerFactory.getLogger(getClass());
 
     /**
      * @throws IllegalArgumentException if class is null.
-     * @throws ClassCastException if class does not match requested ticket
-     * class.
+     * @throws ClassCastException       if class does not match requested ticket
+     *                                  class.
      */
     public final Ticket getTicket(final String ticketId,
-        final Class<? extends Ticket> clazz) {
+                                  final Class<? extends Ticket> clazz) {
         Assert.notNull(clazz, "clazz cannot be null");
 
         final Ticket ticket = this.getTicket(ticketId);
@@ -38,22 +40,22 @@ public abstract class AbstractTicketRegistry implements TicketRegistry, TicketRe
 
         if (!clazz.isAssignableFrom(ticket.getClass())) {
             throw new ClassCastException("Ticket [" + ticket.getId()
-                + " is of type " + ticket.getClass()
-                + " when we were expecting " + clazz);
+                    + " is of type " + ticket.getClass()
+                    + " when we were expecting " + clazz);
         }
 
         return ticket;
     }
-    
+
     public int sessionCount() {
-      log.debug("sessionCount() operation is not implemented by the ticket registry instance {}. Returning unknown as {}", 
+        log.debug("sessionCount() operation is not implemented by the ticket registry instance {}. Returning unknown as {}",
                 this.getClass().getName(), Integer.MIN_VALUE);
-      return Integer.MIN_VALUE;
+        return Integer.MIN_VALUE;
     }
 
     public int serviceTicketCount() {
-      log.debug("serviceTicketCount() operation is not implemented by the ticket registry instance {}. Returning unknown as {}", 
+        log.debug("serviceTicketCount() operation is not implemented by the ticket registry instance {}. Returning unknown as {}",
                 this.getClass().getName(), Integer.MIN_VALUE);
-      return Integer.MIN_VALUE;
+        return Integer.MIN_VALUE;
     }
 }

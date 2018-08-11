@@ -17,31 +17,39 @@ import java.util.Set;
 /**
  * RegisteredServiceValidator ensures that a new RegisteredService does not have
  * a conflicting Service Id with another service already in the registry.
- * 
+ *
  * @author Scott Battaglia
  * @version $Revision$ $Date$
  * @since 3.1
  */
 public final class RegisteredServiceValidator implements Validator {
 
-    /** Default length, which matches what is in the view. */
+    /**
+     * Default length, which matches what is in the view.
+     */
     private static final int DEFAULT_MAX_DESCRIPTION_LENGTH = 300;
 
-    /** {@link ServicesManager} to look up services. */
+    /**
+     * {@link ServicesManager} to look up services.
+     */
     @NotNull
     private ServicesManager servicesManager;
 
-    /** The maximum length of the description we will accept. */
+    /**
+     * The maximum length of the description we will accept.
+     */
     @Min(0)
     private int maxDescriptionLength = DEFAULT_MAX_DESCRIPTION_LENGTH;
 
-    /** {@link IPersonAttributeDao} to manage person attributes */
+    /**
+     * {@link IPersonAttributeDao} to manage person attributes
+     */
     @NotNull
     private IPersonAttributeDao personAttributeDao;
 
     /**
      * Supports {@link RegisteredService} objects.
-     * 
+     *
      * @see org.springframework.validation.Validator#supports(Class)
      */
     public boolean supports(final Class<?> clazz) {
@@ -54,20 +62,20 @@ public final class RegisteredServiceValidator implements Validator {
         if (r.getServiceId() != null) {
             for (final RegisteredService service : this.servicesManager.getAllServices()) {
                 if (r.getServiceId().equals(service.getServiceId())
-                    && r.getId() != service.getId()) {
+                        && r.getId() != service.getId()) {
                     errors.rejectValue("serviceId",
-                        "registeredService.serviceId.exists", null);
+                            "registeredService.serviceId.exists", null);
                     break;
                 }
             }
         }
 
         if (r.getDescription() != null
-            && r.getDescription().length() > this.maxDescriptionLength) {
+                && r.getDescription().length() > this.maxDescriptionLength) {
             errors.rejectValue("description",
-                "registeredService.description.length", null);
+                    "registeredService.description.length", null);
         }
-        
+
         if (!StringUtils.isBlank(r.getUsernameAttribute()) && !r.isAnonymousAccess()) {
             if (!r.isIgnoreAttributes() && !r.getAllowedAttributes().contains(r.getUsernameAttribute())) {
                 errors.rejectValue("usernameAttribute", "registeredService.usernameAttribute.notAvailable",
@@ -83,7 +91,7 @@ public final class RegisteredServiceValidator implements Validator {
             }
         }
     }
-    
+
     public void setServicesManager(final ServicesManager serviceRegistry) {
         this.servicesManager = serviceRegistry;
     }
@@ -91,7 +99,7 @@ public final class RegisteredServiceValidator implements Validator {
     public void setMaxDescriptionLength(final int maxLength) {
         this.maxDescriptionLength = maxLength;
     }
-    
+
     public void setPersonAttributeDao(IPersonAttributeDao personAttributeDao) {
         this.personAttributeDao = personAttributeDao;
     }

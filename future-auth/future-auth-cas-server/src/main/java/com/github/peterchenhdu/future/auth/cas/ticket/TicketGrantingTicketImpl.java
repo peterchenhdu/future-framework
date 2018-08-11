@@ -26,36 +26,44 @@ import org.springframework.util.Assert;
  * single-sign on access to any service that opts into single-sign on.
  * Expiration of a TicketGrantingTicket is controlled by the ExpirationPolicy
  * specified as object creation.
- * 
+ *
  * @author Scott Battaglia
  * @version $Revision: 1.3 $ $Date: 2007/02/20 14:41:04 $
  * @since 3.0
  */
 @Entity
-@Table(name="TICKETGRANTINGTICKET")
+@Table(name = "TICKETGRANTINGTICKET")
 public final class TicketGrantingTicketImpl extends AbstractTicket implements
-    TicketGrantingTicket {
+        TicketGrantingTicket {
 
-    /** Unique Id for serialization. */
+    /**
+     * Unique Id for serialization.
+     */
     private static final long serialVersionUID = -5197946718924166491L;
 
     private static final Logger LOG = LoggerFactory.getLogger(TicketGrantingTicketImpl.class);
 
-    /** The authenticated object for which this ticket was generated for. */
+    /**
+     * The authenticated object for which this ticket was generated for.
+     */
     @Lob
-    @Column(name="AUTHENTICATION", nullable=false)
+    @Column(name = "AUTHENTICATION", nullable = false)
     private Authentication authentication;
 
-    /** Flag to enforce manual expiration. */
-    @Column(name="EXPIRED", nullable=false)
+    /**
+     * Flag to enforce manual expiration.
+     */
+    @Column(name = "EXPIRED", nullable = false)
     private Boolean expired = false;
-    
-    @Lob
-    @Column(name="SERVICES_GRANTED_ACCESS_TO", nullable=false)
-    private final HashMap<String,Service> services = new HashMap<String, Service>();
 
-    /** Service that produced a proxy-granting ticket. */
-    @Column(name="PROXIED_BY", nullable=true)
+    @Lob
+    @Column(name = "SERVICES_GRANTED_ACCESS_TO", nullable = false)
+    private final HashMap<String, Service> services = new HashMap<String, Service>();
+
+    /**
+     * Service that produced a proxy-granting ticket.
+     */
+    @Column(name = "PROXIED_BY", nullable = true)
     private String proxiedBy;
 
 
@@ -65,17 +73,17 @@ public final class TicketGrantingTicketImpl extends AbstractTicket implements
 
     /**
      * Constructs a new TicketGrantingTicket.
-     * 
-     * @param id the id of the Ticket
-     * @param proxiedBy Service that produced this proxy ticket.
+     *
+     * @param id                         the id of the Ticket
+     * @param proxiedBy                  Service that produced this proxy ticket.
      * @param parentTicketGrantingTicket the parent ticket
-     * @param authentication the Authentication request for this ticket
-     * @param policy the expiration policy for this ticket.
+     * @param authentication             the Authentication request for this ticket
+     * @param policy                     the expiration policy for this ticket.
      * @throws IllegalArgumentException if the Authentication object is null
      */
     public TicketGrantingTicketImpl(final String id,
-        final String proxiedBy, final TicketGrantingTicketImpl parentTicketGrantingTicket,
-        final Authentication authentication, final ExpirationPolicy policy) {
+                                    final String proxiedBy, final TicketGrantingTicketImpl parentTicketGrantingTicket,
+                                    final Authentication authentication, final ExpirationPolicy policy) {
         super(id, parentTicketGrantingTicket, policy);
 
         Assert.notNull(authentication, "authentication cannot be null");
@@ -90,13 +98,13 @@ public final class TicketGrantingTicketImpl extends AbstractTicket implements
     /**
      * Constructs a new TicketGrantingTicket without a parent
      * TicketGrantingTicket.
-     * 
-     * @param id the id of the Ticket
+     *
+     * @param id             the id of the Ticket
      * @param authentication the Authentication request for this ticket
-     * @param policy the expiration policy for this ticket.
+     * @param policy         the expiration policy for this ticket.
      */
     public TicketGrantingTicketImpl(final String id,
-        final Authentication authentication, final ExpirationPolicy policy) {
+                                    final Authentication authentication, final ExpirationPolicy policy) {
         this(id, null, null, authentication, policy);
     }
 
@@ -109,27 +117,27 @@ public final class TicketGrantingTicketImpl extends AbstractTicket implements
     }
 
     public synchronized ServiceTicket grantServiceTicket(final String id,
-        final Service service, final ExpirationPolicy expirationPolicy,
-        final boolean credentialsProvided) {
+                                                         final Service service, final ExpirationPolicy expirationPolicy,
+                                                         final boolean credentialsProvided) {
         final ServiceTicket serviceTicket = new ServiceTicketImpl(id, this,
-            service, this.getCountOfUses() == 0 || credentialsProvided,
-            expirationPolicy);
+                service, this.getCountOfUses() == 0 || credentialsProvided,
+                expirationPolicy);
 
         updateState();
-        
+
         final List<Authentication> authentications = getChainedAuthentications();
-        service.setPrincipal(authentications.get(authentications.size()-1).getPrincipal());
-        
+        service.setPrincipal(authentications.get(authentications.size() - 1).getPrincipal());
+
         this.services.put(id, service);
 
         return serviceTicket;
     }
-    
+
     private void logOutOfServices() {
         for (final Entry<String, Service> entry : this.services.entrySet()) {
 
             if (!entry.getValue().logOutOfService(entry.getKey())) {
-                LOG.warn("Logout message not sent to [" + entry.getValue().getId() + "]; Continuing processing...");   
+                LOG.warn("Logout message not sent to [" + entry.getValue().getId() + "]; Continuing processing...");
             }
         }
     }
@@ -160,15 +168,15 @@ public final class TicketGrantingTicketImpl extends AbstractTicket implements
 
         return Collections.unmodifiableList(list);
     }
-    
+
     public final boolean equals(final Object object) {
         if (object == null
-            || !(object instanceof TicketGrantingTicket)) {
+                || !(object instanceof TicketGrantingTicket)) {
             return false;
         }
 
         final Ticket ticket = (Ticket) object;
-        
+
         return ticket.getId().equals(this.getId());
     }
 }

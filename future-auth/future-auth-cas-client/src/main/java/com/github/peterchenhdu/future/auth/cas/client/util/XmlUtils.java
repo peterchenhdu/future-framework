@@ -54,7 +54,7 @@ public final class XmlUtils {
      * @return the list of text from the elements.
      */
     public static List<String> getTextForElements(final String xmlAsString,
-                                          final String element) {
+                                                  final String element) {
         final List<String> elements = new ArrayList<String>(2);
         final XMLReader reader = getXmlReader();
 

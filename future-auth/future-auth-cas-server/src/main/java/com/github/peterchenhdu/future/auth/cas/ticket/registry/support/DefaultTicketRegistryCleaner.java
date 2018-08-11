@@ -37,24 +37,30 @@ import java.util.List;
  * <ul>
  * <li>ticketRegistry - CAS ticket registry.</li>
  * </ul>
- * 
+ *
  * @author Scott Battaglia
  * @author Marvin S. Addison
  * @version $Revision$
- * @since 3.0
  * @see JpaLockingStrategy
  * @see NoOpLockingStrategy
+ * @since 3.0
  */
 public final class DefaultTicketRegistryCleaner implements RegistryCleaner {
 
-    /** The Commons Logging instance. */
+    /**
+     * The Commons Logging instance.
+     */
     private final Logger log = LoggerFactory.getLogger(getClass());
 
-    /** The instance of the TicketRegistry to clean. */
+    /**
+     * The instance of the TicketRegistry to clean.
+     */
     @NotNull
     private TicketRegistry ticketRegistry;
 
-    /** Execution locking strategy */
+    /**
+     * Execution locking strategy
+     */
     @NotNull
     private LockingStrategy lock = new NoOpLockingStrategy();
 
@@ -63,7 +69,7 @@ public final class DefaultTicketRegistryCleaner implements RegistryCleaner {
 
     /**
      * @see com.github.peterchenhdu.future.auth.cas.ticket.registry.RegistryCleaner#clean()
-     */ 
+     */
     public void clean() {
         this.log.info("Beginning ticket cleanup.");
         this.log.debug("Attempting to acquire ticket cleanup lock.");
@@ -108,11 +114,11 @@ public final class DefaultTicketRegistryCleaner implements RegistryCleaner {
 
 
     /**
-     * @param  strategy  Ticket cleanup locking strategy.  An exclusive locking
-     * strategy is preferable if not required for some ticket backing stores,
-     * such as JPA, in a clustered CAS environment.  Use {@link JdbcLockingStrategy}
-     * for {@link com.github.peterchenhdu.future.auth.cas.ticket.registry.JpaTicketRegistry} in a clustered
-     * CAS environment.
+     * @param strategy Ticket cleanup locking strategy.  An exclusive locking
+     *                 strategy is preferable if not required for some ticket backing stores,
+     *                 such as JPA, in a clustered CAS environment.  Use {@link JdbcLockingStrategy}
+     *                 for {@link com.github.peterchenhdu.future.auth.cas.ticket.registry.JpaTicketRegistry} in a clustered
+     *                 CAS environment.
      */
     public void setLock(final LockingStrategy strategy) {
         this.lock = strategy;

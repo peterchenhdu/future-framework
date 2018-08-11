@@ -15,13 +15,13 @@ import com.github.peterchenhdu.future.auth.cas.ticket.TicketGrantingTicket;
 /**
  * Abstract Implementation that handles some of the commonalities between
  * distributed ticket registries.
- * 
+ *
  * @author Scott Battaglia
  * @version $Revision$ $Date$
  * @since 3.1
  */
 public abstract class AbstractDistributedTicketRegistry extends AbstractTicketRegistry {
-    
+
     protected abstract void updateTicket(final Ticket ticket);
 
     protected abstract boolean needsCallback();

@@ -15,24 +15,28 @@ import javax.validation.constraints.NotNull;
  * Abstract authentication handler that allows deployers to utilize the bundled
  * AuthenticationHandlers while providing a mechanism to perform tasks before
  * and after authentication.
- * 
+ *
  * @author Scott Battaglia
  * @version $Revision$ $Date$
  * @since 3.1
  */
 public abstract class AbstractPreAndPostProcessingAuthenticationHandler
-    implements NamedAuthenticationHandler {
-    
-    /** Instance of logging for subclasses. */
+        implements NamedAuthenticationHandler {
+
+    /**
+     * Instance of logging for subclasses.
+     */
     protected Logger log = LoggerFactory.getLogger(this.getClass());
-    
-    /** The name of the authentication handler. */
+
+    /**
+     * The name of the authentication handler.
+     */
     @NotNull
     private String name = getClass().getName();
 
     /**
      * Method to execute before authentication occurs.
-     * 
+     *
      * @param credentials the Credentials supplied
      * @return true if authentication should continue, false otherwise.
      */
@@ -42,26 +46,26 @@ public abstract class AbstractPreAndPostProcessingAuthenticationHandler
 
     /**
      * Method to execute after authentication occurs.
-     * 
-     * @param credentials the supplied credentials
+     *
+     * @param credentials   the supplied credentials
      * @param authenticated the result of the authentication attempt.
      * @return true if the handler should return true, false otherwise.
      */
     protected boolean postAuthenticate(final Credentials credentials,
-        final boolean authenticated) {
+                                       final boolean authenticated) {
         return authenticated;
     }
-    
+
     public final void setName(final String name) {
         this.name = name;
     }
-    
+
     public final String getName() {
         return this.name;
     }
 
     public final boolean authenticate(final Credentials credentials)
-        throws AuthenticationException {
+            throws AuthenticationException {
 
         if (!preAuthenticate(credentials)) {
             return false;
@@ -73,5 +77,5 @@ public abstract class AbstractPreAndPostProcessingAuthenticationHandler
     }
 
     protected abstract boolean doAuthentication(final Credentials credentials)
-        throws AuthenticationException;
+            throws AuthenticationException;
 }

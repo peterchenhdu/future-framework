@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 /**
  * Implements the traditional CAS2 protocol.  Accepts an HttpClient reference.  A default
  * one is configured that you can override.
- * 
+ *
  * @author Scott Battaglia
  * @version $Revision$ $Date$
  * @since 3.1

@@ -25,17 +25,21 @@ import java.util.List;
  */
 public abstract class AbstractAuthenticationManager implements AuthenticationManager {
 
-    /** Log instance for logging events, errors, warnings, etc. */
+    /**
+     * Log instance for logging events, errors, warnings, etc.
+     */
     protected final Logger log = LoggerFactory.getLogger(getClass());
 
-    /** An array of AuthenticationAttributesPopulators. */
+    /**
+     * An array of AuthenticationAttributesPopulators.
+     */
     @NotNull
     private List<AuthenticationMetaDataPopulator> authenticationMetaDataPopulators = new ArrayList<AuthenticationMetaDataPopulator>();
 
     @Audit(
-        action="AUTHENTICATION",
-        actionResolverName="AUTHENTICATION_RESOLVER",
-        resourceResolverName="AUTHENTICATION_RESOURCE_RESOLVER")
+            action = "AUTHENTICATION",
+            actionResolverName = "AUTHENTICATION_RESOLVER",
+            resourceResolverName = "AUTHENTICATION_RESOURCE_RESOLVER")
     @Profiled(tag = "AUTHENTICATE", logFailuresSeparately = false)
     public final Authentication authenticate(final Credentials credentials) throws AuthenticationException {
 
@@ -48,7 +52,7 @@ public abstract class AbstractAuthenticationManager implements AuthenticationMan
 
         Authentication authentication = new MutableAuthentication(p);
 
-        if (pair.getFirst()instanceof NamedAuthenticationHandler) {
+        if (pair.getFirst() instanceof NamedAuthenticationHandler) {
             final NamedAuthenticationHandler a = (NamedAuthenticationHandler) pair.getFirst();
             authentication.getAttributes().put(AuthenticationManager.AUTHENTICATION_METHOD_ATTRIBUTE, a.getName());
         }
@@ -63,7 +67,7 @@ public abstract class AbstractAuthenticationManager implements AuthenticationMan
 
 
         return new ImmutableAuthentication(authentication.getPrincipal(),
-            authentication.getAttributes());
+                authentication.getAttributes());
     }
 
     /**
@@ -80,15 +84,15 @@ public abstract class AbstractAuthenticationManager implements AuthenticationMan
      * @return the pair of authentication handler and principal.  CANNOT be NULL.
      * @throws AuthenticationException if there is an error authenticating.
      */
-    protected abstract Pair<AuthenticationHandler,Principal> authenticateAndObtainPrincipal(Credentials credentials) throws AuthenticationException;
+    protected abstract Pair<AuthenticationHandler, Principal> authenticateAndObtainPrincipal(Credentials credentials) throws AuthenticationException;
 
 
     /**
      * Handles an authentication error raised by an {@link AuthenticationHandler}.
-     * 
+     *
      * @param handlerName The class name of the authentication handler.
-     * @param credentials Client credentials subject to authentication. 
-     * @param e The exception that has occurred during authentication attempt.
+     * @param credentials Client credentials subject to authentication.
+     * @param e           The exception that has occurred during authentication attempt.
      */
     protected void handleError(final String handlerName, final Credentials credentials, final Exception e)
             throws AuthenticationException {
@@ -102,7 +106,7 @@ public abstract class AbstractAuthenticationManager implements AuthenticationMan
     }
 
 
-    protected static class Pair<A,B> {
+    protected static class Pair<A, B> {
 
         private final A first;
 

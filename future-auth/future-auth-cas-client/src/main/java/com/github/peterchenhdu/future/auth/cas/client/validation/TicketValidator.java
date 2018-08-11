@@ -18,11 +18,10 @@ public interface TicketValidator {
     /**
      * Attempts to validate a ticket for the provided service.
      *
-     * @param ticket the ticket to attempt to validate.
+     * @param ticket  the ticket to attempt to validate.
      * @param service the service this ticket is valid for.
      * @return an assertion from the ticket.
      * @throws TicketValidationException if the ticket cannot be validated.
-     *
      */
     Assertion validate(String ticket, String service) throws TicketValidationException;
 }

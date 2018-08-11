@@ -26,24 +26,28 @@ import java.util.Set;
  * <ul>
  * <li>centralAuthenticationService - the service layer we are delegating to.</li>
  * </ul>
- * 
+ *
  * @author Scott Battaglia
  * @version $Revision$ $Date$
  * @since 3.0
  */
 public final class RemoteCentralAuthenticationService implements CentralAuthenticationService {
 
-    /** The CORE to delegate to. */
+    /**
+     * The CORE to delegate to.
+     */
     @NotNull
     private CentralAuthenticationService centralAuthenticationService;
 
-    /** The validators to check the Credentials. */
+    /**
+     * The validators to check the Credentials.
+     */
     @NotNull
     private Validator validator = Validation.buildDefaultValidatorFactory().getValidator();
 
     /**
      * @throws IllegalArgumentException if the Credentials are null or if given
-     * invalid credentials.
+     *                                  invalid credentials.
      */
     public String createTicketGrantingTicket(final Credentials credentials) throws TicketException {
         Assert.notNull(credentials, "credentials cannot be null");
@@ -86,7 +90,7 @@ public final class RemoteCentralAuthenticationService implements CentralAuthenti
         if (credentials == null) {
             return;
         }
-        
+
         final Set<ConstraintViolation<Credentials>> errors = this.validator.validate(credentials);
         if (!errors.isEmpty()) {
             throw new IllegalArgumentException("Error validating credentials: " + errors.toString());
@@ -95,18 +99,18 @@ public final class RemoteCentralAuthenticationService implements CentralAuthenti
 
     /**
      * Set the CentralAuthenticationService.
-     * 
+     *
      * @param centralAuthenticationService The CentralAuthenticationService to
-     * set.
+     *                                     set.
      */
     public void setCentralAuthenticationService(
-        final CentralAuthenticationService centralAuthenticationService) {
+            final CentralAuthenticationService centralAuthenticationService) {
         this.centralAuthenticationService = centralAuthenticationService;
     }
 
     /**
      * Set the list of validators.
-     * 
+     *
      * @param validator The array of validators to use.
      */
     public void setValidator(final Validator validator) {

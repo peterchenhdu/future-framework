@@ -8,13 +8,13 @@ package com.github.peterchenhdu.future.auth.cas.validation;
  * the Cas10ProtocolValidationSpecification, checking for the presence of
  * renew=true and if requested, succeeding only if ticket validation is
  * occurring from a new login.
- * 
+ *
  * @author Scott Battaglia
  * @version $Revision$ $Date$
  * @since 3.0
  */
 public class Cas20ProtocolValidationSpecification extends
-    AbstractCasProtocolValidationSpecification {
+        AbstractCasProtocolValidationSpecification {
 
     public Cas20ProtocolValidationSpecification() {
         super();

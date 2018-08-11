@@ -29,56 +29,60 @@ import javax.validation.constraints.NotNull;
  * java.naming.provider.url="ldap://ldapserver.my.edu:389/dc=my,dc=edu"<br />
  * java.naming.security.principal="uid=jaasauth,dc=my,dc=edu"<br />
  * java.naming.security.credentials="password" Attribute="uid" startTLS="true"; };<br />
- * 
+ *
  * @author <a href="mailto:dotmatt@uconn.edu">Matthew J. Smith</a>
  * @version $Revision$ $Date$
- * @since 3.0.5
  * @see CallbackHandler
  * @see PasswordCallback
  * @see NameCallback
+ * @since 3.0.5
  */
 public class JaasAuthenticationHandler extends
-    AbstractUsernamePasswordAuthenticationHandler {
+        AbstractUsernamePasswordAuthenticationHandler {
 
-    /** If no realm is specified, we default to CAS. */
+    /**
+     * If no realm is specified, we default to CAS.
+     */
     private static final String DEFAULT_REALM = "CAS";
 
-    /** The realm that contains the login module information. */
+    /**
+     * The realm that contains the login module information.
+     */
     @NotNull
     private String realm = DEFAULT_REALM;
-    
+
     public JaasAuthenticationHandler() {
         Assert.notNull(Configuration.getConfiguration(), "Static Configuration cannot be null. Did you remember to specify \"java.security.auth.login.config\"?");
     }
 
     protected final boolean authenticateUsernamePasswordInternal(
-        final UsernamePasswordCredentials credentials)
-        throws AuthenticationException {
+            final UsernamePasswordCredentials credentials)
+            throws AuthenticationException {
 
         final String transformedUsername = getPrincipalNameTransformer().transform(credentials.getUsername());
 
         try {
             if (log.isDebugEnabled()) {
                 log.debug("Attempting authentication for: "
-                    + transformedUsername);
+                        + transformedUsername);
             }
             final LoginContext lc = new LoginContext(this.realm,
-                new UsernamePasswordCallbackHandler(transformedUsername,
-                    credentials.getPassword()));
+                    new UsernamePasswordCallbackHandler(transformedUsername,
+                            credentials.getPassword()));
 
             lc.login();
             lc.logout();
         } catch (final LoginException fle) {
             if (log.isDebugEnabled()) {
                 log.debug("Authentication failed for: "
-                    + transformedUsername);
+                        + transformedUsername);
             }
             return false;
         }
 
         if (log.isDebugEnabled()) {
             log.debug("Authentication succeeded for: "
-                + transformedUsername);
+                    + transformedUsername);
         }
         return true;
     }
@@ -95,36 +99,40 @@ public class JaasAuthenticationHandler extends
      */
     protected static final class UsernamePasswordCallbackHandler implements CallbackHandler {
 
-        /** The username of the principal we are trying to authenticate. */
+        /**
+         * The username of the principal we are trying to authenticate.
+         */
         private final String userName;
 
-        /** The password of the principal we are trying to authenticate. */
+        /**
+         * The password of the principal we are trying to authenticate.
+         */
         private final String password;
 
         /**
          * Constuctor accepts name and password to be used for authentication.
-         * 
+         *
          * @param userName name to be used for authentication
          * @param password Password to be used for authentication
          */
         protected UsernamePasswordCallbackHandler(final String userName,
-            final String password) {
+                                                  final String password) {
             this.userName = userName;
             this.password = password;
 
         }
 
         public void handle(final Callback[] callbacks)
-            throws UnsupportedCallbackException {
-            for (final Callback callback : callbacks ) {
+                throws UnsupportedCallbackException {
+            for (final Callback callback : callbacks) {
                 if (callback.getClass().equals(NameCallback.class)) {
                     ((NameCallback) callback).setName(this.userName);
                 } else if (callback.getClass().equals(PasswordCallback.class)) {
                     ((PasswordCallback) callback).setPassword(this.password
-                        .toCharArray());
+                            .toCharArray());
                 } else {
                     throw new UnsupportedCallbackException(callback,
-                        "Unrecognized Callback");
+                            "Unrecognized Callback");
                 }
             }
         }

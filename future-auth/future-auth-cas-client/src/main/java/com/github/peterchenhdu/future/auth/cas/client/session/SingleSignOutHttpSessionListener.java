@@ -13,23 +13,24 @@ import javax.servlet.http.HttpSessionListener;
  * managed sessions.  Also allows for the programmatic removal of sessions.
  * <p>
  * Enables the CAS Single Sign out feature.
- *
+ * <p>
  * Scott Battaglia
+ *
  * @version $Revision$ Date$
  * @since 3.1
  */
 public final class SingleSignOutHttpSessionListener implements HttpSessionListener {
 
-	private SessionMappingStorage sessionMappingStorage;
-	
+    private SessionMappingStorage sessionMappingStorage;
+
     public void sessionCreated(final HttpSessionEvent event) {
         // nothing to do at the moment
     }
 
     public void sessionDestroyed(final HttpSessionEvent event) {
-    	if (sessionMappingStorage == null) {
-    	    sessionMappingStorage = getSessionMappingStorage();
-    	}
+        if (sessionMappingStorage == null) {
+            sessionMappingStorage = getSessionMappingStorage();
+        }
         final HttpSession session = event.getSession();
         sessionMappingStorage.removeBySessionById(session.getId());
     }
@@ -37,10 +38,10 @@ public final class SingleSignOutHttpSessionListener implements HttpSessionListen
     /**
      * Obtains a {@link SessionMappingStorage} object. Assumes this method will always return the same
      * instance of the object.  It assumes this because it generally lazily calls the method.
-     * 
+     *
      * @return the SessionMappingStorage
      */
     protected static SessionMappingStorage getSessionMappingStorage() {
-    	return SingleSignOutFilter.getSingleSignOutHandler().getSessionMappingStorage();
+        return SingleSignOutFilter.getSingleSignOutHandler().getSessionMappingStorage();
     }
 }

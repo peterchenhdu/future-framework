@@ -72,14 +72,20 @@ import java.util.Map;
  */
 public class CentralAuthenticationServiceImpl implements CentralAuthenticationService {
 
-    /** Log instance for logging events, info, warnings, errors, etc. */
+    /**
+     * Log instance for logging events, info, warnings, errors, etc.
+     */
     private final Logger log = LoggerFactory.getLogger(this.getClass());
 
-    /** TicketRegistry for storing and retrieving tickets as needed. */
+    /**
+     * TicketRegistry for storing and retrieving tickets as needed.
+     */
     @NotNull
     private TicketRegistry ticketRegistry;
 
-    /** New Ticket Registry for storing and retrieving services tickets. Can point to the same one as the ticketRegistry variable. */
+    /**
+     * New Ticket Registry for storing and retrieving services tickets. Can point to the same one as the ticketRegistry variable.
+     */
     @NotNull
     private TicketRegistry serviceTicketRegistry;
 
@@ -97,23 +103,33 @@ public class CentralAuthenticationServiceImpl implements CentralAuthenticationSe
     @NotNull
     private UniqueTicketIdGenerator ticketGrantingTicketUniqueTicketIdGenerator;
 
-    /** Map to contain the mappings of service->UniqueTicketIdGenerators */
+    /**
+     * Map to contain the mappings of service->UniqueTicketIdGenerators
+     */
     @NotNull
     private Map<String, UniqueTicketIdGenerator> uniqueTicketIdGeneratorsForService;
 
-    /** Expiration policy for ticket granting tickets. */
+    /**
+     * Expiration policy for ticket granting tickets.
+     */
     @NotNull
     private ExpirationPolicy ticketGrantingTicketExpirationPolicy;
 
-    /** ExpirationPolicy for Service Tickets. */
+    /**
+     * ExpirationPolicy for Service Tickets.
+     */
     @NotNull
     private ExpirationPolicy serviceTicketExpirationPolicy;
 
-    /** Implementation of Service Manager */
+    /**
+     * Implementation of Service Manager
+     */
     @NotNull
     private ServicesManager servicesManager;
 
-    /** Encoder to generate PseudoIds. */
+    /**
+     * Encoder to generate PseudoIds.
+     */
     @NotNull
     private PersistentIdGenerator persistentIdGenerator = new ShibbolethCompatiblePersistentIdGenerator();
 
@@ -124,10 +140,10 @@ public class CentralAuthenticationServiceImpl implements CentralAuthenticationSe
      * @throws IllegalArgumentException if the TicketGrantingTicket ID is null.
      */
     @Audit(
-        action="TICKET_GRANTING_TICKET_DESTROYED",
-        actionResolverName="DESTROY_TICKET_GRANTING_TICKET_RESOLVER",
-        resourceResolverName="DESTROY_TICKET_GRANTING_TICKET_RESOURCE_RESOLVER")
-    @Profiled(tag = "DESTROY_TICKET_GRANTING_TICKET",logFailuresSeparately = false)
+            action = "TICKET_GRANTING_TICKET_DESTROYED",
+            actionResolverName = "DESTROY_TICKET_GRANTING_TICKET_RESOLVER",
+            resourceResolverName = "DESTROY_TICKET_GRANTING_TICKET_RESOURCE_RESOLVER")
+    @Profiled(tag = "DESTROY_TICKET_GRANTING_TICKET", logFailuresSeparately = false)
     @Transactional(readOnly = false)
     public void destroyTicketGrantingTicket(final String ticketGrantingTicketId) {
         Assert.notNull(ticketGrantingTicketId);
@@ -150,13 +166,13 @@ public class CentralAuthenticationServiceImpl implements CentralAuthenticationSe
 
     /**
      * @throws IllegalArgumentException if TicketGrantingTicket ID, Credentials
-     * or Service are null.
+     *                                  or Service are null.
      */
     @Audit(
-        action="SERVICE_TICKET",
-        actionResolverName="GRANT_SERVICE_TICKET_RESOLVER",
-        resourceResolverName="GRANT_SERVICE_TICKET_RESOURCE_RESOLVER")
-    @Profiled(tag="GRANT_SERVICE_TICKET", logFailuresSeparately = false)
+            action = "SERVICE_TICKET",
+            actionResolverName = "GRANT_SERVICE_TICKET_RESOLVER",
+            resourceResolverName = "GRANT_SERVICE_TICKET_RESOURCE_RESOLVER")
+    @Profiled(tag = "GRANT_SERVICE_TICKET", logFailuresSeparately = false)
     @Transactional(readOnly = false)
     public String grantServiceTicket(final String ticketGrantingTicketId, final Service service, final Credentials credentials) throws TicketException {
 
@@ -178,7 +194,7 @@ public class CentralAuthenticationServiceImpl implements CentralAuthenticationSe
         }
 
         final RegisteredService registeredService = this.servicesManager
-            .findServiceBy(service);
+                .findServiceBy(service);
 
         if (registeredService == null || !registeredService.isEnabled()) {
             log.warn("ServiceManagement: Unauthorized Service Access. Service [" + service.getId() + "] not found in Service Registry.");
@@ -186,13 +202,13 @@ public class CentralAuthenticationServiceImpl implements CentralAuthenticationSe
         }
 
         if (!registeredService.isSsoEnabled() && credentials == null
-            && ticketGrantingTicket.getCountOfUses() > 0) {
+                && ticketGrantingTicket.getCountOfUses() > 0) {
             log.warn("ServiceManagement: Service Not Allowed to use SSO.  Service [" + service.getId() + "]");
             throw new UnauthorizedSsoServiceException();
         }
 
         final String proxiedBy = ticketGrantingTicket.getProxiedBy();
-        if(proxiedBy != null) {
+        if (proxiedBy != null) {
             final RegisteredService proxyingService = servicesManager.findServiceBy(new SimpleWebApplicationServiceImpl(proxiedBy));
             if (proxyingService == null || !proxyingService.isAllowedToProxy()) {
                 final String message = String.format("ServiceManagement: Service Attempted to Proxy, but is not allowed. Service: [%s] | Registered Service: [%s]", service.getId(), proxyingService);
@@ -204,7 +220,7 @@ public class CentralAuthenticationServiceImpl implements CentralAuthenticationSe
         if (credentials != null) {
             try {
                 final Authentication authentication = this.authenticationManager
-                    .authenticate(credentials);
+                        .authenticate(credentials);
                 final Authentication originalAuthentication = ticketGrantingTicket.getAuthentication();
 
                 if (!(authentication.getPrincipal().equals(originalAuthentication.getPrincipal()) && authentication.getAttributes().equals(originalAuthentication.getAttributes()))) {
@@ -217,12 +233,12 @@ public class CentralAuthenticationServiceImpl implements CentralAuthenticationSe
 
         // this code is a bit brittle by depending on the class name.  Future versions (i.e. CAS4 will know inherently how to identify themselves)
         final UniqueTicketIdGenerator serviceTicketUniqueTicketIdGenerator = this.uniqueTicketIdGeneratorsForService
-            .get(service.getClass().getName());
+                .get(service.getClass().getName());
 
         final ServiceTicket serviceTicket = ticketGrantingTicket
-            .grantServiceTicket(serviceTicketUniqueTicketIdGenerator
-                .getNewTicketId(ServiceTicket.PREFIX), service,
-                this.serviceTicketExpirationPolicy, credentials != null);
+                .grantServiceTicket(serviceTicketUniqueTicketIdGenerator
+                                .getNewTicketId(ServiceTicket.PREFIX), service,
+                        this.serviceTicketExpirationPolicy, credentials != null);
 
         this.serviceTicketRegistry.addTicket(serviceTicket);
 
@@ -230,7 +246,7 @@ public class CentralAuthenticationServiceImpl implements CentralAuthenticationSe
             final List<Authentication> authentications = serviceTicket.getGrantingTicket().getChainedAuthentications();
             final String formatString = "Granted %s ticket [%s] for service [%s] for user [%s]";
             final String type;
-            final String principalId = authentications.get(authentications.size()-1).getPrincipal().getId();
+            final String principalId = authentications.get(authentications.size() - 1).getPrincipal().getId();
 
             if (authentications.size() == 1) {
                 type = "service";
@@ -246,28 +262,28 @@ public class CentralAuthenticationServiceImpl implements CentralAuthenticationSe
     }
 
     @Audit(
-        action="SERVICE_TICKET",
-        actionResolverName="GRANT_SERVICE_TICKET_RESOLVER",
-        resourceResolverName="GRANT_SERVICE_TICKET_RESOURCE_RESOLVER")
-    @Profiled(tag = "GRANT_SERVICE_TICKET",logFailuresSeparately = false)
+            action = "SERVICE_TICKET",
+            actionResolverName = "GRANT_SERVICE_TICKET_RESOLVER",
+            resourceResolverName = "GRANT_SERVICE_TICKET_RESOURCE_RESOLVER")
+    @Profiled(tag = "GRANT_SERVICE_TICKET", logFailuresSeparately = false)
     @Transactional(readOnly = false)
     public String grantServiceTicket(final String ticketGrantingTicketId,
-        final Service service) throws TicketException {
+                                     final Service service) throws TicketException {
         return this.grantServiceTicket(ticketGrantingTicketId, service, null);
     }
 
     /**
      * @throws IllegalArgumentException if the ServiceTicketId or the
-     * Credentials are null.
+     *                                  Credentials are null.
      */
     @Audit(
-        action="PROXY_GRANTING_TICKET",
-        actionResolverName="GRANT_PROXY_GRANTING_TICKET_RESOLVER",
-        resourceResolverName="GRANT_PROXY_GRANTING_TICKET_RESOURCE_RESOLVER")
-    @Profiled(tag="GRANT_PROXY_GRANTING_TICKET",logFailuresSeparately = false)
+            action = "PROXY_GRANTING_TICKET",
+            actionResolverName = "GRANT_PROXY_GRANTING_TICKET_RESOLVER",
+            resourceResolverName = "GRANT_PROXY_GRANTING_TICKET_RESOURCE_RESOLVER")
+    @Profiled(tag = "GRANT_PROXY_GRANTING_TICKET", logFailuresSeparately = false)
     @Transactional(readOnly = false)
     public String delegateTicketGrantingTicket(final String serviceTicketId,
-        final Credentials credentials) throws TicketException {
+                                               final Credentials credentials) throws TicketException {
 
         Assert.notNull(serviceTicketId, "serviceTicketId cannot be null");
         Assert.notNull(credentials, "credentials cannot be null");
@@ -281,10 +297,10 @@ public class CentralAuthenticationServiceImpl implements CentralAuthenticationSe
             }
 
             final RegisteredService registeredService = this.servicesManager
-                .findServiceBy(serviceTicket.getService());
+                    .findServiceBy(serviceTicket.getService());
 
             if (registeredService == null || !registeredService.isEnabled()
-                || !registeredService.isAllowedToProxy()) {
+                    || !registeredService.isAllowedToProxy()) {
                 log.warn("ServiceManagement: Service Attempted to Proxy, but is not allowed.  Service: [" + serviceTicket.getService().getId() + "]");
                 throw new UnauthorizedProxyingException();
             }
@@ -292,10 +308,10 @@ public class CentralAuthenticationServiceImpl implements CentralAuthenticationSe
             final Authentication authentication = this.authenticationManager.authenticate(credentials);
 
             final TicketGrantingTicket ticketGrantingTicket = serviceTicket
-                .grantTicketGrantingTicket(
-                    this.ticketGrantingTicketUniqueTicketIdGenerator
-                        .getNewTicketId(TicketGrantingTicket.PREFIX),
-                    authentication, this.ticketGrantingTicketExpirationPolicy);
+                    .grantTicketGrantingTicket(
+                            this.ticketGrantingTicketUniqueTicketIdGenerator
+                                    .getNewTicketId(TicketGrantingTicket.PREFIX),
+                            authentication, this.ticketGrantingTicketExpirationPolicy);
 
             this.ticketRegistry.addTicket(ticketGrantingTicket);
 
@@ -307,13 +323,13 @@ public class CentralAuthenticationServiceImpl implements CentralAuthenticationSe
 
     /**
      * @throws IllegalArgumentException if the ServiceTicketId or the Service
-     * are null.
+     *                                  are null.
      */
     @Audit(
-        action="SERVICE_TICKET_VALIDATE",
-        actionResolverName="VALIDATE_SERVICE_TICKET_RESOLVER",
-        resourceResolverName="VALIDATE_SERVICE_TICKET_RESOURCE_RESOLVER")
-    @Profiled(tag="VALIDATE_SERVICE_TICKET",logFailuresSeparately = false)
+            action = "SERVICE_TICKET_VALIDATE",
+            actionResolverName = "VALIDATE_SERVICE_TICKET_RESOLVER",
+            resourceResolverName = "VALIDATE_SERVICE_TICKET_RESOURCE_RESOLVER")
+    @Profiled(tag = "VALIDATE_SERVICE_TICKET", logFailuresSeparately = false)
     @Transactional(readOnly = false)
     public Assertion validateServiceTicket(final String serviceTicketId, final Service service) throws TicketException {
         Assert.notNull(serviceTicketId, "serviceTicketId cannot be null");
@@ -349,7 +365,7 @@ public class CentralAuthenticationServiceImpl implements CentralAuthenticationSe
             final List<Authentication> chainedAuthenticationsList = serviceTicket.getGrantingTicket().getChainedAuthentications();
             final Authentication authentication = chainedAuthenticationsList.get(chainedAuthenticationsList.size() - 1);
             final Principal principal = authentication.getPrincipal();
-           
+
             final String principalId = determinePrincipalIdForRegisteredService(principal, registeredService, serviceTicket);
             final Authentication authToUse;
 
@@ -366,17 +382,17 @@ public class CentralAuthenticationServiceImpl implements CentralAuthenticationSe
 
                 final Principal modifiedPrincipal = new SimplePrincipal(principalId, attributes);
                 final MutableAuthentication mutableAuthentication = new MutableAuthentication(
-                    modifiedPrincipal, authentication.getAuthenticatedDate());
+                        modifiedPrincipal, authentication.getAuthenticatedDate());
                 mutableAuthentication.getAttributes().putAll(
-                    authentication.getAttributes());
+                        authentication.getAttributes());
                 mutableAuthentication.getAuthenticatedDate().setTime(
-                    authentication.getAuthenticatedDate().getTime());
+                        authentication.getAuthenticatedDate().getTime());
                 authToUse = mutableAuthentication;
             } else {
                 final Principal modifiedPrincipal = new SimplePrincipal(principalId, principal.getAttributes());
                 authToUse = new MutableAuthentication(modifiedPrincipal, authentication.getAuthenticatedDate());
             }
-           
+
             final List<Authentication> authentications = new ArrayList<Authentication>();
 
             for (int i = 0; i < chainedAuthenticationsList.size() - 1; i++) {
@@ -393,24 +409,23 @@ public class CentralAuthenticationServiceImpl implements CentralAuthenticationSe
     }
 
     /**
-     * Determines the principal id to use for a {@link RegisteredService} using the following rules: 
-     * 
+     * Determines the principal id to use for a {@link RegisteredService} using the following rules:
+     * <p>
      * <ul>
-     *  <li> If the service is marked to allow anonymous access, a persistent id is returned. </li>
-     *  <li> If the attribute name matches {@link RegisteredService#DEFAULT_USERNAME_ATTRIBUTE}, then the default principal id is returned.</li>
-     *  <li>If the service is set to ignore attributes, or the username attribute exists in the allowed attributes for the service, 
-     *      the corresponding attribute value will be returned.
-     *  </li>
-     *   <li>Otherwise, the default principal's id is returned as the username attribute with an additional warning.</li>
+     * <li> If the service is marked to allow anonymous access, a persistent id is returned. </li>
+     * <li> If the attribute name matches {@link RegisteredService#DEFAULT_USERNAME_ATTRIBUTE}, then the default principal id is returned.</li>
+     * <li>If the service is set to ignore attributes, or the username attribute exists in the allowed attributes for the service,
+     * the corresponding attribute value will be returned.
+     * </li>
+     * <li>Otherwise, the default principal's id is returned as the username attribute with an additional warning.</li>
      * </ul>
-     * 
-     * @param principal The principal object to be validated and constructed
-     * @param registeredService Requesting service for which a principal is being validated. 
-     * @param serviceTicket An instance of the service ticket used for validation
-     * 
+     *
+     * @param principal         The principal object to be validated and constructed
+     * @param registeredService Requesting service for which a principal is being validated.
+     * @param serviceTicket     An instance of the service ticket used for validation
      * @return The principal id to use for the requesting registered service
      */
-    private String determinePrincipalIdForRegisteredService(final Principal principal, final RegisteredService registeredService, 
+    private String determinePrincipalIdForRegisteredService(final Principal principal, final RegisteredService registeredService,
                                                             final ServiceTicket serviceTicket) {
         String principalId = null;
         final String serviceUsernameAttribute = registeredService.getUsernameAttribute();
@@ -424,17 +439,17 @@ public class CentralAuthenticationServiceImpl implements CentralAuthenticationSe
                 principalId = principal.getAttributes().get(registeredService.getUsernameAttribute()).toString();
             } else {
                 principalId = principal.getId();
-                final Object[] errorLogParameters = new Object[] { principalId, registeredService.getUsernameAttribute(),
-                        principal.getAttributes(), registeredService.getServiceId(), principalId };
+                final Object[] errorLogParameters = new Object[]{principalId, registeredService.getUsernameAttribute(),
+                        principal.getAttributes(), registeredService.getServiceId(), principalId};
                 log.warn("Principal [{}] did not have attribute [{}] among attributes [{}] so CAS cannot "
                         + "provide on the validation response the user attribute the registered service [{}] expects. "
                         + "CAS will instead return the default username attribute [{}]", errorLogParameters);
             }
 
         }
-        
-        log.debug("Principal id to return for service [{}] is [{}]. The default principal id is [{}].", 
-                  new Object[] {registeredService.getName(), principal.getId(), principalId});
+
+        log.debug("Principal id to return for service [{}] is [{}]. The default principal id is [{}].",
+                new Object[]{registeredService.getName(), principal.getId(), principalId});
         return principalId;
     }
 
@@ -442,9 +457,9 @@ public class CentralAuthenticationServiceImpl implements CentralAuthenticationSe
      * @throws IllegalArgumentException if the credentials are null.
      */
     @Audit(
-        action="TICKET_GRANTING_TICKET",
-        actionResolverName="CREATE_TICKET_GRANTING_TICKET_RESOLVER",
-        resourceResolverName="CREATE_TICKET_GRANTING_TICKET_RESOURCE_RESOLVER")
+            action = "TICKET_GRANTING_TICKET",
+            actionResolverName = "CREATE_TICKET_GRANTING_TICKET_RESOLVER",
+            resourceResolverName = "CREATE_TICKET_GRANTING_TICKET_RESOURCE_RESOLVER")
     @Profiled(tag = "CREATE_TICKET_GRANTING_TICKET", logFailuresSeparately = false)
     @Transactional(readOnly = false)
     public String createTicketGrantingTicket(final Credentials credentials) throws TicketCreationException {
@@ -452,12 +467,12 @@ public class CentralAuthenticationServiceImpl implements CentralAuthenticationSe
 
         try {
             final Authentication authentication = this.authenticationManager
-                .authenticate(credentials);
+                    .authenticate(credentials);
 
             final TicketGrantingTicket ticketGrantingTicket = new TicketGrantingTicketImpl(
-                this.ticketGrantingTicketUniqueTicketIdGenerator
-                    .getNewTicketId(TicketGrantingTicket.PREFIX),
-                authentication, this.ticketGrantingTicketExpirationPolicy);
+                    this.ticketGrantingTicketUniqueTicketIdGenerator
+                            .getNewTicketId(TicketGrantingTicket.PREFIX),
+                    authentication, this.ticketGrantingTicketExpirationPolicy);
 
             this.ticketRegistry.addTicket(ticketGrantingTicket);
             return ticketGrantingTicket.getId();
@@ -489,7 +504,7 @@ public class CentralAuthenticationServiceImpl implements CentralAuthenticationSe
      * @param authenticationManager The authenticationManager to set.
      */
     public void setAuthenticationManager(
-        final AuthenticationManager authenticationManager) {
+            final AuthenticationManager authenticationManager) {
         this.authenticationManager = authenticationManager;
     }
 
@@ -497,10 +512,10 @@ public class CentralAuthenticationServiceImpl implements CentralAuthenticationSe
      * Method to inject the TicketGrantingTicket Expiration Policy.
      *
      * @param ticketGrantingTicketExpirationPolicy The
-     * ticketGrantingTicketExpirationPolicy to set.
+     *                                             ticketGrantingTicketExpirationPolicy to set.
      */
     public void setTicketGrantingTicketExpirationPolicy(
-        final ExpirationPolicy ticketGrantingTicketExpirationPolicy) {
+            final ExpirationPolicy ticketGrantingTicketExpirationPolicy) {
         this.ticketGrantingTicketExpirationPolicy = ticketGrantingTicketExpirationPolicy;
     }
 
@@ -510,7 +525,7 @@ public class CentralAuthenticationServiceImpl implements CentralAuthenticationSe
      * @param uniqueTicketIdGenerator The uniqueTicketIdGenerator to use
      */
     public void setTicketGrantingTicketUniqueTicketIdGenerator(
-        final UniqueTicketIdGenerator uniqueTicketIdGenerator) {
+            final UniqueTicketIdGenerator uniqueTicketIdGenerator) {
         this.ticketGrantingTicketUniqueTicketIdGenerator = uniqueTicketIdGenerator;
     }
 
@@ -518,15 +533,15 @@ public class CentralAuthenticationServiceImpl implements CentralAuthenticationSe
      * Method to inject the TicketGrantingTicket Expiration Policy.
      *
      * @param serviceTicketExpirationPolicy The serviceTicketExpirationPolicy to
-     * set.
+     *                                      set.
      */
     public void setServiceTicketExpirationPolicy(
-        final ExpirationPolicy serviceTicketExpirationPolicy) {
+            final ExpirationPolicy serviceTicketExpirationPolicy) {
         this.serviceTicketExpirationPolicy = serviceTicketExpirationPolicy;
     }
 
     public void setUniqueTicketIdGeneratorsForService(
-        final Map<String, UniqueTicketIdGenerator> uniqueTicketIdGeneratorsForService) {
+            final Map<String, UniqueTicketIdGenerator> uniqueTicketIdGeneratorsForService) {
         this.uniqueTicketIdGeneratorsForService = uniqueTicketIdGeneratorsForService;
     }
 
@@ -535,7 +550,7 @@ public class CentralAuthenticationServiceImpl implements CentralAuthenticationSe
     }
 
     public void setPersistentIdGenerator(
-        final PersistentIdGenerator persistentIdGenerator) {
+            final PersistentIdGenerator persistentIdGenerator) {
         this.persistentIdGenerator = persistentIdGenerator;
     }
 }

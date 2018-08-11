@@ -6,20 +6,22 @@ package com.github.peterchenhdu.future.auth.cas.services;
 /**
  * Exception thrown when a service attempts to use SSO when it should not be
  * allowed to.
- * 
+ *
  * @author Scott Battaglia
  * @version $Revision$ $Date$
  * @since 3.1
  */
 public class UnauthorizedSsoServiceException extends
-    UnauthorizedServiceException {
+        UnauthorizedServiceException {
 
     /**
      * Comment for <code>serialVersionUID</code>
      */
     private static final long serialVersionUID = 8909291297815558561L;
 
-    /** The code description. */
+    /**
+     * The code description.
+     */
     private static final String CODE = "service.not.authorized.sso";
 
     public UnauthorizedSsoServiceException() {
@@ -27,7 +29,7 @@ public class UnauthorizedSsoServiceException extends
     }
 
     public UnauthorizedSsoServiceException(final String message,
-        final Throwable cause) {
+                                           final Throwable cause) {
         super(message, cause);
     }
 

@@ -28,8 +28,8 @@ public class LinkedAuthenticationHandlerAndCredentialsToPrincipalResolverAuthent
     @Size(min = 1)
     private final Map<AuthenticationHandler, CredentialsToPrincipalResolver> linkedHandlers;
 
-    public LinkedAuthenticationHandlerAndCredentialsToPrincipalResolverAuthenticationManager(final Map<AuthenticationHandler,CredentialsToPrincipalResolver> linkedHandlers) {
-        this.linkedHandlers = linkedHandlers; 
+    public LinkedAuthenticationHandlerAndCredentialsToPrincipalResolverAuthenticationManager(final Map<AuthenticationHandler, CredentialsToPrincipalResolver> linkedHandlers) {
+        this.linkedHandlers = linkedHandlers;
     }
 
     @Override
@@ -45,7 +45,7 @@ public class LinkedAuthenticationHandlerAndCredentialsToPrincipalResolverAuthent
             foundOneThatWorks = true;
             boolean authenticated = false;
             handlerName = authenticationHandler.getClass().getName();
-                        
+
             try {
                 authenticated = authenticationHandler.authenticate(credentials);
             } catch (final Exception e) {
@@ -55,7 +55,7 @@ public class LinkedAuthenticationHandlerAndCredentialsToPrincipalResolverAuthent
             if (authenticated) {
                 log.info("{} successfully authenticated {}", handlerName, credentials);
                 final Principal p = this.linkedHandlers.get(authenticationHandler).resolvePrincipal(credentials);
-                return new Pair<AuthenticationHandler,Principal>(authenticationHandler, p);
+                return new Pair<AuthenticationHandler, Principal>(authenticationHandler, p);
             }
             log.info("{} failed to authenticate {}", handlerName, credentials);
         }

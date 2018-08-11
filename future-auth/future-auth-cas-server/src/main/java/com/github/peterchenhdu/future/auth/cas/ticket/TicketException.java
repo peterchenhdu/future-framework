@@ -5,23 +5,27 @@ package com.github.peterchenhdu.future.auth.cas.ticket;
 
 /**
  * Generic ticket exception. Top of the TicketException heirarchy.
- * 
+ *
  * @author Scott Battaglia
  * @version $Revision$ $Date$
  * @since 3.0
  */
 public abstract class TicketException extends Exception {
 
-    /** Serializable Unique ID. */
+    /**
+     * Serializable Unique ID.
+     */
     private static final long serialVersionUID = -6000583436059919480L;
 
-    /** The code description of the TicketException. */
+    /**
+     * The code description of the TicketException.
+     */
     private String code;
 
     /**
      * Constructs a new TicketException with the code identifying the exception
      * type.
-     * 
+     *
      * @param code the code to describe what type of exception this is.
      */
     public TicketException(final String code) {
@@ -31,8 +35,8 @@ public abstract class TicketException extends Exception {
     /**
      * Constructs a new TicketException with the code identifying the exception
      * and the original Throwable.
-     * 
-     * @param code the code to describe what type of exception this is.
+     *
+     * @param code      the code to describe what type of exception this is.
      * @param throwable the original exception we are chaining.
      */
     public TicketException(final String code, final Throwable throwable) {
@@ -46,6 +50,6 @@ public abstract class TicketException extends Exception {
      */
     public final String getCode() {
         return (this.getCause() != null) ? this.getCause().toString()
-            : this.code;
+                : this.code;
     }
 }

@@ -24,7 +24,7 @@ import java.util.Map;
  * Implementing classes must take care to ensure that the Map returned by
  * getAttributes is serializable by using a Serializable map such as HashMap.
  * </p>
- * 
+ *
  * @author Dmitriy Kopylenko
  * @author Scott Battaglia
  * @version $Revision$ $Date$
@@ -37,7 +37,7 @@ public interface Authentication extends Serializable {
 
     /**
      * Method to obtain the Principal.
-     * 
+     *
      * @return a Principal implementation
      */
     Principal getPrincipal();
@@ -45,14 +45,14 @@ public interface Authentication extends Serializable {
     /**
      * Method to retrieve the timestamp of when this Authentication object was
      * created.
-     * 
+     *
      * @return the date/time the authentication occurred.
      */
     Date getAuthenticatedDate();
 
     /**
      * Attributes of the authentication (not the Principal).
-     * 
+     *
      * @return the map of attributes.
      */
     Map<String, Object> getAttributes();

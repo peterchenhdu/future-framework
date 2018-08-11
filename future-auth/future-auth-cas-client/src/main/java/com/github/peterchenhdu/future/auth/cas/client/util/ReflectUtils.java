@@ -16,7 +16,6 @@ import java.lang.reflect.InvocationTargetException;
  * @author Marvin S. Addison
  * @version $Revision: 22122 $
  * @since 3.1.11
- *
  */
 public final class ReflectUtils {
 
@@ -26,6 +25,7 @@ public final class ReflectUtils {
 
     /**
      * Attempts to create a class from a String.
+     *
      * @param className the name of the class to create.
      * @return the class.  CANNOT be NULL.
      * @throws IllegalArgumentException if the className does not exist.
@@ -43,22 +43,24 @@ public final class ReflectUtils {
     /**
      * Creates a new instance of the given class by passing the given arguments
      * to the constructor.
+     *
      * @param className Name of class to be created.
-     * @param args Constructor arguments.
+     * @param args      Constructor arguments.
      * @return New instance of given class.
      */
-    public static <T> T newInstance(final String className, final Object ... args) {
+    public static <T> T newInstance(final String className, final Object... args) {
         return newInstance(ReflectUtils.<T>loadClass(className), args);
     }
-    
+
     /**
      * Creates a new instance of the given class by passing the given arguments
      * to the constructor.
+     *
      * @param clazz Class of instance to be created.
-     * @param args Constructor arguments.
+     * @param args  Constructor arguments.
      * @return New instance of given class.
      */
-    public static <T> T newInstance(final Class<T> clazz, final Object ... args) {
+    public static <T> T newInstance(final Class<T> clazz, final Object... args) {
         final Class<?>[] argClasses = new Class[args.length];
         for (int i = 0; i < args.length; i++) {
             argClasses[i] = args[i].getClass();
@@ -72,7 +74,8 @@ public final class ReflectUtils {
 
     /**
      * Gets the property descriptor for the named property on the given class.
-     * @param clazz Class to which property belongs.
+     *
+     * @param clazz        Class to which property belongs.
      * @param propertyName Name of property.
      * @return Property descriptor for given property or null if no property with given
      * name exists in given class.
@@ -88,7 +91,8 @@ public final class ReflectUtils {
     /**
      * Gets the property descriptor for the named property from the bean info describing
      * a particular class to which property belongs.
-     * @param info Bean info describing class to which property belongs.
+     *
+     * @param info         Bean info describing class to which property belongs.
      * @param propertyName Name of property.
      * @return Property descriptor for given property or null if no property with given
      * name exists.
@@ -105,9 +109,10 @@ public final class ReflectUtils {
 
     /**
      * Sets the given property on the target JavaBean using bean instrospection.
+     *
      * @param propertyName Property to set.
-     * @param value Property value to set.
-     * @param target Target java bean on which to set property.
+     * @param value        Property value to set.
+     * @param target       Target java bean on which to set property.
      */
     public static void setProperty(final String propertyName, final Object value, final Object target) {
         try {
@@ -119,10 +124,11 @@ public final class ReflectUtils {
 
     /**
      * Sets the given property on the target JavaBean using bean instrospection.
+     *
      * @param propertyName Property to set.
-     * @param value Property value to set.
-     * @param target Target JavaBean on which to set property.
-     * @param info BeanInfo describing the target JavaBean.
+     * @param value        Property value to set.
+     * @param target       Target JavaBean on which to set property.
+     * @param info         BeanInfo describing the target JavaBean.
      */
     public static void setProperty(final String propertyName, final Object value, final Object target, final BeanInfo info) {
         try {

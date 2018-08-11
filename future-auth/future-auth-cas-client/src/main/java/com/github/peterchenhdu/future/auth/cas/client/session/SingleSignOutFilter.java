@@ -36,7 +36,7 @@ public final class SingleSignOutFilter extends AbstractConfigurationFilter {
     public void setArtifactParameterName(final String name) {
         handler.setArtifactParameterName(name);
     }
-    
+
     public void setLogoutParameterName(final String name) {
         handler.setLogoutParameterName(name);
     }
@@ -44,7 +44,7 @@ public final class SingleSignOutFilter extends AbstractConfigurationFilter {
     public void setSessionMappingStorage(final SessionMappingStorage storage) {
         handler.setSessionMappingStorage(storage);
     }
-    
+
     public void doFilter(final ServletRequest servletRequest, final ServletResponse servletResponse, final FilterChain filterChain) throws IOException, ServletException {
         final HttpServletRequest request = (HttpServletRequest) servletRequest;
 
@@ -64,7 +64,7 @@ public final class SingleSignOutFilter extends AbstractConfigurationFilter {
     public void destroy() {
         // nothing to do
     }
-    
+
     protected static SingleSignOutHandler getSingleSignOutHandler() {
         return handler;
     }

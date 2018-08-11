@@ -24,7 +24,7 @@ public final class CasVersion {
 
     /**
      * Return the full CAS version string.
-     * 
+     *
      * @see Package#getImplementationVersion
      */
     public static String getVersion() {

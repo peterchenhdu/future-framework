@@ -47,7 +47,7 @@ public class InspektrThrottledSubmissionByIpAddressAndUsernameHandlerInterceptor
     private final JdbcTemplate jdbcTemplate;
 
     private String applicationCode = DEFAULT_APPLICATION_CODE;
-    
+
     private String authenticationFailureCode = DEFAULT_AUTHN_FAILED_ACTION;
 
     public InspektrThrottledSubmissionByIpAddressAndUsernameHandlerInterceptorAdapter(final AuditTrailManager auditTrailManager, final DataSource dataSource) {
@@ -64,8 +64,8 @@ public class InspektrThrottledSubmissionByIpAddressAndUsernameHandlerInterceptor
         cutoff.add(Calendar.SECOND, -1 * getFailureRangeInSeconds());
         final List<Timestamp> failures = this.jdbcTemplate.query(
                 query,
-                new Object[] {request.getRemoteAddr(), userToUse, this.authenticationFailureCode, this.applicationCode, cutoff.getTime()},
-                new int[] {Types.VARCHAR, Types.VARCHAR, Types.VARCHAR, Types.VARCHAR, Types.TIMESTAMP},
+                new Object[]{request.getRemoteAddr(), userToUse, this.authenticationFailureCode, this.applicationCode, cutoff.getTime()},
+                new int[]{Types.VARCHAR, Types.VARCHAR, Types.VARCHAR, Types.VARCHAR, Types.TIMESTAMP},
                 new RowMapper<Timestamp>() {
                     public Timestamp mapRow(ResultSet resultSet, int i) throws SQLException {
                         return resultSet.getTimestamp(1);
@@ -108,7 +108,7 @@ public class InspektrThrottledSubmissionByIpAddressAndUsernameHandlerInterceptor
     public final void setApplicationCode(final String applicationCode) {
         this.applicationCode = applicationCode;
     }
-    
+
     public final void setAuthenticationFailureCode(final String authenticationFailureCode) {
         this.authenticationFailureCode = authenticationFailureCode;
     }

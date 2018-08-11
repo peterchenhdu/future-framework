@@ -21,26 +21,34 @@ import org.springframework.web.servlet.view.RedirectView;
  * single sign on. This controller implements the idea of the ESUP Portail's
  * Logout patch to allow for redirecting to a url on logout. It also exposes a
  * log out link to the view via the WebConstants.LOGOUT constant.
- * 
+ *
  * @author Scott Battaglia
  * @version $Revision$ $Date$
  * @since 3.0
  */
 public final class LogoutController extends AbstractController {
 
-    /** The CORE to which we delegate for all CAS functionality. */
+    /**
+     * The CORE to which we delegate for all CAS functionality.
+     */
     @NotNull
     private CentralAuthenticationService centralAuthenticationService;
 
-    /** CookieGenerator for TGT Cookie */
+    /**
+     * CookieGenerator for TGT Cookie
+     */
     @NotNull
     private CookieRetrievingCookieGenerator ticketGrantingTicketCookieGenerator;
 
-    /** CookieGenerator for Warn Cookie */
+    /**
+     * CookieGenerator for Warn Cookie
+     */
     @NotNull
     private CookieRetrievingCookieGenerator warnCookieGenerator;
 
-    /** Logout view name. */
+    /**
+     * Logout view name.
+     */
     @NotNull
     private String logoutView;
 
@@ -52,20 +60,20 @@ public final class LogoutController extends AbstractController {
      * service request parameter.
      */
     private boolean followServiceRedirects;
-    
+
     public LogoutController() {
         setCacheSeconds(0);
     }
 
     protected ModelAndView handleRequestInternal(
-        final HttpServletRequest request, final HttpServletResponse response)
-        throws Exception {
+            final HttpServletRequest request, final HttpServletResponse response)
+            throws Exception {
         final String ticketGrantingTicketId = this.ticketGrantingTicketCookieGenerator.retrieveCookieValue(request);
         final String service = request.getParameter("service");
 
         if (ticketGrantingTicketId != null) {
             this.centralAuthenticationService
-                .destroyTicketGrantingTicket(ticketGrantingTicketId);
+                    .destroyTicketGrantingTicket(ticketGrantingTicketId);
 
             this.ticketGrantingTicketCookieGenerator.removeCookie(response);
             this.warnCookieGenerator.removeCookie(response);
@@ -83,7 +91,7 @@ public final class LogoutController extends AbstractController {
     }
 
     public void setTicketGrantingTicketCookieGenerator(
-        final CookieRetrievingCookieGenerator ticketGrantingTicketCookieGenerator) {
+            final CookieRetrievingCookieGenerator ticketGrantingTicketCookieGenerator) {
         this.ticketGrantingTicketCookieGenerator = ticketGrantingTicketCookieGenerator;
     }
 
@@ -93,10 +101,10 @@ public final class LogoutController extends AbstractController {
 
     /**
      * @param centralAuthenticationService The centralAuthenticationService to
-     * set.
+     *                                     set.
      */
     public void setCentralAuthenticationService(
-        final CentralAuthenticationService centralAuthenticationService) {
+            final CentralAuthenticationService centralAuthenticationService) {
         this.centralAuthenticationService = centralAuthenticationService;
     }
 

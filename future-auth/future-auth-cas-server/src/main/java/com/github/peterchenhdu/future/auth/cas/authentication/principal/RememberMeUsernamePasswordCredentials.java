@@ -5,24 +5,25 @@ package com.github.peterchenhdu.future.auth.cas.authentication.principal;
 
 /**
  * Handles both remember me services and username and password.
- * 
+ *
  * @author Scott Battaglia
  * @version $Revision: 1.1 $ $Date: 2005/08/19 18:27:17 $
  * @since 3.2.1
- *
  */
 public class RememberMeUsernamePasswordCredentials extends
-    UsernamePasswordCredentials implements RememberMeCredentials {
-    
-    /** Unique Id for serialization. */
+        UsernamePasswordCredentials implements RememberMeCredentials {
+
+    /**
+     * Unique Id for serialization.
+     */
     private static final long serialVersionUID = -9178853167397038282L;
-    
+
     private boolean rememberMe;
 
     public final boolean isRememberMe() {
         return this.rememberMe;
     }
-    
+
     public int hashCode() {
         final int prime = 31;
         int result = super.hashCode();

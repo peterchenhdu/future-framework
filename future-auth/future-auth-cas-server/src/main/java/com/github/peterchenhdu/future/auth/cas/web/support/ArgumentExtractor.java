@@ -12,7 +12,7 @@ import javax.servlet.http.HttpServletRequest;
  * <p>
  * These are the two things the CAS protocol and the SAML protocol have in
  * common.
- * 
+ *
  * @author Scott Battatglia
  * @version $Revision$ $Date$
  * @since 3.1
@@ -20,7 +20,7 @@ import javax.servlet.http.HttpServletRequest;
 public interface ArgumentExtractor {
     /**
      * Retrieve the service from the request.
-     * 
+     *
      * @param request the request context.
      * @return the fully formed Service or null if it could not be found.
      */

@@ -14,7 +14,7 @@ import java.security.PublicKey;
 /**
  * Constructs a GoogleAccounts compatible service and provides the public and
  * private keys.
- * 
+ *
  * @author Scott Battaglia
  * @version $Revision: 1.1 $ $Date: 2005/08/19 18:27:17 $
  * @since 3.1
@@ -31,7 +31,7 @@ public final class GoogleAccountsArgumentExtractor extends AbstractSingleSignOut
 
     public WebApplicationService extractServiceInternal(final HttpServletRequest request) {
         return GoogleAccountsService.createServiceFrom(request,
-            this.privateKey, this.publicKey, this.alternateUsername);
+                this.privateKey, this.publicKey, this.alternateUsername);
     }
 
     public void setPrivateKey(final PrivateKey privateKey) {

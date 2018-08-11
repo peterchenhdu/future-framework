@@ -15,18 +15,22 @@ import java.security.Principal;
  * @author Marvin S. Addison
  * @version $Revision: 22071 $
  * @since 3.1.11
- *
  */
 public class SimplePrincipal implements Principal, Serializable {
 
-    /** SimplePrincipal.java */
+    /**
+     * SimplePrincipal.java
+     */
     private static final long serialVersionUID = -5645357206342793145L;
 
-    /** The unique identifier for this principal. */
+    /**
+     * The unique identifier for this principal.
+     */
     private final String name;
 
     /**
      * Creates a new principal with the given name.
+     *
      * @param name Principal name.
      */
     public SimplePrincipal(final String name) {
@@ -48,7 +52,7 @@ public class SimplePrincipal implements Principal, Serializable {
         } else if (!(o instanceof SimplePrincipal)) {
             return false;
         } else {
-            return getName().equals(((SimplePrincipal)o).getName());
+            return getName().equals(((SimplePrincipal) o).getName());
         }
     }
 

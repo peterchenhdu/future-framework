@@ -41,7 +41,7 @@ public final class DelegatingFilter implements Filter {
     /**
      * The map of filters to delegate to and the criteria (as key).
      */
-    private final Map<String,Filter> delegators;
+    private final Map<String, Filter> delegators;
 
     /**
      * The default filter to use if there is no match.
@@ -54,11 +54,11 @@ public final class DelegatingFilter implements Filter {
      */
     private final boolean exactMatch;
 
-    public DelegatingFilter(final String requestParameterName, final Map<String,Filter> delegators, final boolean exactMatch) {
+    public DelegatingFilter(final String requestParameterName, final Map<String, Filter> delegators, final boolean exactMatch) {
         this(requestParameterName, delegators, exactMatch, null);
     }
 
-    public DelegatingFilter(final String requestParameterName, final Map<String,Filter> delegators, final boolean exactMatch, final Filter defaultFilter) {
+    public DelegatingFilter(final String requestParameterName, final Map<String, Filter> delegators, final boolean exactMatch, final Filter defaultFilter) {
         CommonUtils.assertNotNull(requestParameterName, "requestParameterName cannot be null.");
         CommonUtils.assertTrue(!delegators.isEmpty(), "delegators cannot be empty.");
 

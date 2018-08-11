@@ -13,35 +13,43 @@ import java.util.List;
 /**
  * Default implementation of the Assertion interface which returns the minimum
  * number of attributes required to conform to the CAS 2 protocol.
- * 
+ *
  * @author Scott Battaglia
  * @version $Revision$ $Date$
  * @since 3.0
  */
 public final class ImmutableAssertionImpl implements Assertion {
 
-    /** Unique Id for Serialization. */
+    /**
+     * Unique Id for Serialization.
+     */
     private static final long serialVersionUID = -1921502350732798866L;
 
-    /** The list of principals. */
+    /**
+     * The list of principals.
+     */
     private final List<Authentication> principals;
 
-    /** Was this the result of a new login. */
+    /**
+     * Was this the result of a new login.
+     */
     private final boolean fromNewLogin;
 
-    /** The service we are asserting this ticket for. */
+    /**
+     * The service we are asserting this ticket for.
+     */
     private final Service service;
 
     /**
      * Constructs a new ImmutableAssertion out of the given parameters.
-     * 
-     * @param principals the chain of principals
-     * @param service The service we are asserting this ticket for.
+     *
+     * @param principals   the chain of principals
+     * @param service      The service we are asserting this ticket for.
      * @param fromNewLogin was the service ticket from a new login.
      * @throws IllegalArgumentException if there are no principals.
      */
     public ImmutableAssertionImpl(final List<Authentication> principals, final Service service,
-        final boolean fromNewLogin) {
+                                  final boolean fromNewLogin) {
         Assert.notNull(principals, "principals cannot be null");
         Assert.notNull(service, "service cannot be null");
         Assert.notEmpty(principals, "principals cannot be empty");
@@ -65,12 +73,12 @@ public final class ImmutableAssertionImpl implements Assertion {
 
     public boolean equals(final Object o) {
         if (o == null
-            || !this.getClass().isAssignableFrom(o.getClass())) {
+                || !this.getClass().isAssignableFrom(o.getClass())) {
             return false;
         }
-        
+
         final Assertion a = (Assertion) o;
-        
+
         return this.service.equals(a.getService()) && this.fromNewLogin == a.isFromNewLogin() && this.principals.equals(a.getChainedAuthentications());
     }
 

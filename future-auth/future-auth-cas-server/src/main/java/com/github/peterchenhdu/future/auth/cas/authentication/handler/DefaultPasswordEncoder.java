@@ -14,7 +14,7 @@ import java.security.NoSuchAlgorithmException;
  * Implementation of PasswordEncoder using message digest. Can accept any
  * message digest that the JDK can accept, including MD5 and SHA1. Returns the
  * equivalent Hash you would get from a Perl digest.
- * 
+ *
  * @author Scott Battaglia
  * @author Stephen More
  * @version $Revision$ $Date$
@@ -40,7 +40,7 @@ public final class DefaultPasswordEncoder implements PasswordEncoder {
 
         try {
             MessageDigest messageDigest = MessageDigest
-                .getInstance(this.encodingAlgorithm);
+                    .getInstance(this.encodingAlgorithm);
 
             if (StringUtils.hasText(this.characterEncoding)) {
                 messageDigest.update(password.getBytes(this.characterEncoding));
@@ -61,7 +61,7 @@ public final class DefaultPasswordEncoder implements PasswordEncoder {
 
     /**
      * Takes the raw bytes from the digest and formats them correct.
-     * 
+     *
      * @param bytes the raw bytes from the digest.
      * @return the formatted bytes.
      */

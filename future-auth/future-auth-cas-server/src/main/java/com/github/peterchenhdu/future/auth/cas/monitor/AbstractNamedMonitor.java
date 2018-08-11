@@ -13,7 +13,9 @@ import org.springframework.util.Assert;
  * @since 3.5.0
  */
 public abstract class AbstractNamedMonitor<S extends Status> implements Monitor<S> {
-    /** Monitor name. */
+    /**
+     * Monitor name.
+     */
     protected String name;
 
 

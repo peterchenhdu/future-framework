@@ -16,14 +16,18 @@ import java.util.Map;
  */
 public abstract class AbstractAuthentication implements Authentication {
 
-    /** A Principal object representing the authenticated entity. */
+    /**
+     * A Principal object representing the authenticated entity.
+     */
     private final Principal principal;
 
-    /** Associated authentication attributes. */
+    /**
+     * Associated authentication attributes.
+     */
     private final Map<String, Object> attributes;
 
     public AbstractAuthentication(final Principal principal,
-        final Map<String, Object> attributes) {
+                                  final Map<String, Object> attributes) {
         Assert.notNull(principal, "principal cannot be null");
         Assert.notNull(attributes, "attributes cannot be null");
 
@@ -47,16 +51,16 @@ public abstract class AbstractAuthentication implements Authentication {
         Authentication a = (Authentication) o;
 
         return this.principal.equals(a.getPrincipal())
-            && this.getAuthenticatedDate().equals(a.getAuthenticatedDate()) && this.attributes.equals(a.getAttributes());
+                && this.getAuthenticatedDate().equals(a.getAuthenticatedDate()) && this.attributes.equals(a.getAttributes());
     }
 
     public final int hashCode() {
         return 49 * this.principal.hashCode()
-            ^ this.getAuthenticatedDate().hashCode();
+                ^ this.getAuthenticatedDate().hashCode();
     }
 
     public final String toString() {
         return "[Principal=" + this.principal.getId() + ", attributes="
-            + this.attributes.toString() + "]";
+                + this.attributes.toString() + "]";
     }
 }

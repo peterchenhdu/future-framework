@@ -18,7 +18,7 @@ import javax.validation.constraints.NotNull;
  * Default implementation of the {@link ServicesManager} interface. If there are
  * no services registered with the server, it considers the ServicecsManager
  * disabled and will not prevent any service from using CAS.
- * 
+ *
  * @author Scott Battaglia
  * @version $Revision$ $Date$
  * @since 3.1
@@ -27,32 +27,38 @@ public class DefaultServicesManagerImpl implements ReloadableServicesManager {
 
     private final Logger log = LoggerFactory.getLogger(getClass());
 
-    /** Instance of ServiceRegistryDao. */
+    /**
+     * Instance of ServiceRegistryDao.
+     */
     @NotNull
     private ServiceRegistryDao serviceRegistryDao;
 
-    /** Map to store all services. */
+    /**
+     * Map to store all services.
+     */
     private ConcurrentHashMap<Long, RegisteredService> services = new ConcurrentHashMap<Long, RegisteredService>();
 
-    /** Default service to return if none have been registered. */
+    /**
+     * Default service to return if none have been registered.
+     */
     private RegisteredService disabledRegisteredService;
-    
+
     public DefaultServicesManagerImpl(
-        final ServiceRegistryDao serviceRegistryDao) {
+            final ServiceRegistryDao serviceRegistryDao) {
         this(serviceRegistryDao, new ArrayList<String>());
     }
-    
+
     /**
      * Constructs an instance of the {@link DefaultServicesManagerImpl} where the default RegisteredService
      * can include a set of default attributes to use if no services are defined in the registry.
-     * 
+     *
      * @param serviceRegistryDao the Service Registry Dao.
-     * @param defaultAttributes the list of default attributes to use.
+     * @param defaultAttributes  the list of default attributes to use.
      */
     public DefaultServicesManagerImpl(final ServiceRegistryDao serviceRegistryDao, final List<String> defaultAttributes) {
         this.serviceRegistryDao = serviceRegistryDao;
         this.disabledRegisteredService = constructDefaultRegisteredService(defaultAttributes);
-        
+
         load();
     }
 
@@ -63,10 +69,10 @@ public class DefaultServicesManagerImpl implements ReloadableServicesManager {
         if (r == null) {
             return null;
         }
-        
+
         this.serviceRegistryDao.delete(r);
         this.services.remove(id);
-        
+
         return r;
     }
 
@@ -77,7 +83,7 @@ public class DefaultServicesManagerImpl implements ReloadableServicesManager {
      */
     public RegisteredService findServiceBy(final Service service) {
         final Collection<RegisteredService> c = convertToTreeSet();
-        
+
         if (c.isEmpty()) {
             return this.disabledRegisteredService;
         }
@@ -93,14 +99,14 @@ public class DefaultServicesManagerImpl implements ReloadableServicesManager {
 
     public RegisteredService findServiceBy(final long id) {
         final RegisteredService r = this.services.get(id);
-        
+
         try {
             return r == null ? null : (RegisteredService) r.clone();
         } catch (final CloneNotSupportedException e) {
             return r;
         }
     }
-    
+
     protected TreeSet<RegisteredService> convertToTreeSet() {
         return new TreeSet<RegisteredService>(this.services.values());
     }
@@ -120,24 +126,24 @@ public class DefaultServicesManagerImpl implements ReloadableServicesManager {
         this.services.put(r.getId(), r);
         return r;
     }
-    
+
     public void reload() {
         log.info("Reloading registered services.");
         load();
     }
-    
+
     private void load() {
         final ConcurrentHashMap<Long, RegisteredService> localServices = new ConcurrentHashMap<Long, RegisteredService>();
-                
+
         for (final RegisteredService r : this.serviceRegistryDao.load()) {
             log.debug("Adding registered service " + r.getServiceId());
             localServices.put(r.getId(), r);
         }
-        
+
         this.services = localServices;
         log.info(String.format("Loaded %s services.", this.services.size()));
     }
-    
+
     private RegisteredService constructDefaultRegisteredService(final List<String> attributes) {
         final RegisteredServiceImpl r = new RegisteredServiceImpl();
         r.setAllowedToProxy(true);
@@ -145,7 +151,7 @@ public class DefaultServicesManagerImpl implements ReloadableServicesManager {
         r.setEnabled(true);
         r.setSsoEnabled(true);
         r.setAllowedAttributes(attributes);
-        
+
         if (attributes == null || attributes.isEmpty()) {
             r.setIgnoreAttributes(true);
         }

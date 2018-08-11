@@ -38,7 +38,7 @@ public interface Assertion extends Serializable {
      *
      * @return the map of attributes.
      */
-    Map<String,Object> getAttributes();
+    Map<String, Object> getAttributes();
 
     /**
      * The principal for which this assertion is valid.

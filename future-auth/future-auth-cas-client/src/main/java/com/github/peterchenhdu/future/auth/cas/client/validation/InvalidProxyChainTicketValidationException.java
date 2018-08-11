@@ -5,7 +5,7 @@
 package com.github.peterchenhdu.future.auth.cas.client.validation;
 
 /**
- * Exception denotes that an invalid proxy chain was sent from the CAS server to the local application. 
+ * Exception denotes that an invalid proxy chain was sent from the CAS server to the local application.
  *
  * @author Scott Battaglia
  * @version $Revision$ $Date$
@@ -14,12 +14,13 @@ package com.github.peterchenhdu.future.auth.cas.client.validation;
 public final class InvalidProxyChainTicketValidationException extends TicketValidationException {
 
     /**
-	 * Unique Id for Serialization
-	 */
-	private static final long serialVersionUID = -7736653266370691534L;
+     * Unique Id for Serialization
+     */
+    private static final long serialVersionUID = -7736653266370691534L;
 
-	/**
+    /**
      * Constructs an exception with the supplied message.
+     *
      * @param string the supplied message.
      */
 
@@ -29,7 +30,8 @@ public final class InvalidProxyChainTicketValidationException extends TicketVali
 
     /**
      * Constructs an exception with the supplied message and chained throwable.
-     * @param string the message.
+     *
+     * @param string    the message.
      * @param throwable the root exception.
      */
     public InvalidProxyChainTicketValidationException(final String string, final Throwable throwable) {
@@ -38,6 +40,7 @@ public final class InvalidProxyChainTicketValidationException extends TicketVali
 
     /**
      * Constructs an exception with the chained throwable.
+     *
      * @param throwable the root exception.
      */
     public InvalidProxyChainTicketValidationException(final Throwable throwable) {

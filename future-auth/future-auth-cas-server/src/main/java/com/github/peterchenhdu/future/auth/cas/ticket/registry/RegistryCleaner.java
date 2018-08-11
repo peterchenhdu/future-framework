@@ -6,7 +6,7 @@ package com.github.peterchenhdu.future.auth.cas.ticket.registry;
 
 /**
  * Strategy interface to denote the start of cleaning the registry.
- * 
+ *
  * @author Scott Battaglia
  * @version $Revision$ $Date$
  * @since 3.0

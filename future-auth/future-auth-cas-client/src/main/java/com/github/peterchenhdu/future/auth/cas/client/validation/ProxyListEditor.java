@@ -15,35 +15,34 @@ import java.util.List;
 
 /**
  * Convert a String-formatted list of acceptable proxies to an array.
- * 
+ *
  * @author Scott Battaglia
  * @version $Revision$ $Date$
  * @since 3.1
- * 
  */
 public final class ProxyListEditor extends PropertyEditorSupport {
 
-	public void setAsText(final String text) throws IllegalArgumentException {
-		final BufferedReader reader = new BufferedReader(new StringReader(text));
-		final List<String[]> proxyChains = new ArrayList<String[]>();
+    public void setAsText(final String text) throws IllegalArgumentException {
+        final BufferedReader reader = new BufferedReader(new StringReader(text));
+        final List<String[]> proxyChains = new ArrayList<String[]>();
 
-		try {
-			String line;
-			while ((line = reader.readLine()) != null) {
-				if (CommonUtils.isNotBlank(line)) {
-					proxyChains.add(line.trim().split(" "));
-				}
-			}
-		} catch (final IOException e) {
-			// ignore this
-		} finally {
-			try {
-				reader.close();
-			} catch (final IOException e) {
-				// nothing to do
-			}
-		}
+        try {
+            String line;
+            while ((line = reader.readLine()) != null) {
+                if (CommonUtils.isNotBlank(line)) {
+                    proxyChains.add(line.trim().split(" "));
+                }
+            }
+        } catch (final IOException e) {
+            // ignore this
+        } finally {
+            try {
+                reader.close();
+            } catch (final IOException e) {
+                // nothing to do
+            }
+        }
 
-		setValue(new ProxyList(proxyChains));
-	}
+        setValue(new ProxyList(proxyChains));
+    }
 }

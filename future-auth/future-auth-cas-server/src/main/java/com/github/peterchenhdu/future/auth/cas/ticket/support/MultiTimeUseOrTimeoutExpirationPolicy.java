@@ -12,25 +12,31 @@ import java.util.concurrent.TimeUnit;
 /**
  * ExpirationPolicy that is based on certain number of uses of a ticket or a
  * certain time period for a ticket to exist.
- * 
+ *
  * @author Scott Battaglia
  * @version $Revision$ $Date$
  * @since 3.0
  */
 public final class MultiTimeUseOrTimeoutExpirationPolicy implements
-    ExpirationPolicy {
+        ExpirationPolicy {
 
-    /** Serializable Unique ID. */
+    /**
+     * Serializable Unique ID.
+     */
     private static final long serialVersionUID = 3257844372614558261L;
 
-    /** The time to kill in millseconds. */
+    /**
+     * The time to kill in millseconds.
+     */
     private final long timeToKillInMilliSeconds;
 
-    /** The maximum number of uses before expiration. */
+    /**
+     * The maximum number of uses before expiration.
+     */
     private final int numberOfUses;
 
     public MultiTimeUseOrTimeoutExpirationPolicy(final int numberOfUses,
-        final long timeToKillInMilliSeconds) {
+                                                 final long timeToKillInMilliSeconds) {
         this.timeToKillInMilliSeconds = timeToKillInMilliSeconds;
         this.numberOfUses = numberOfUses;
         Assert.isTrue(this.numberOfUses > 0, "numberOfUsers must be greater than 0.");
@@ -44,7 +50,7 @@ public final class MultiTimeUseOrTimeoutExpirationPolicy implements
 
     public boolean isExpired(final TicketState ticketState) {
         return (ticketState == null)
-            || (ticketState.getCountOfUses() >= this.numberOfUses)
-            || (System.currentTimeMillis() - ticketState.getLastTimeUsed() >= this.timeToKillInMilliSeconds);
+                || (ticketState.getCountOfUses() >= this.numberOfUses)
+                || (System.currentTimeMillis() - ticketState.getLastTimeUsed() >= this.timeToKillInMilliSeconds);
     }
 }

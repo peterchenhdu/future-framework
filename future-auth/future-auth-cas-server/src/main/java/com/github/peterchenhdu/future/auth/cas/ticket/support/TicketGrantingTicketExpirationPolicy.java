@@ -24,16 +24,22 @@ public final class TicketGrantingTicketExpirationPolicy implements ExpirationPol
 
     private static final Logger log = LoggerFactory.getLogger(TicketGrantingTicketExpirationPolicy.class);
 
-    /** Static ID for serialization. */
+    /**
+     * Static ID for serialization.
+     */
     private static final long serialVersionUID = 2136490343650084287L;
 
-    /** Maximum time this ticket is valid  */
+    /**
+     * Maximum time this ticket is valid
+     */
     private long maxTimeToLiveInMilliSeconds;
 
-    /** Time to kill in milliseconds. */
+    /**
+     * Time to kill in milliseconds.
+     */
     private long timeToKillInMilliSeconds;
 
-    public void setMaxTimeToLiveInMilliSeconds(final long maxTimeToLiveInMilliSeconds){
+    public void setMaxTimeToLiveInMilliSeconds(final long maxTimeToLiveInMilliSeconds) {
         this.maxTimeToLiveInMilliSeconds = maxTimeToLiveInMilliSeconds;
     }
 
@@ -41,16 +47,20 @@ public final class TicketGrantingTicketExpirationPolicy implements ExpirationPol
         this.timeToKillInMilliSeconds = timeToKillInMilliSeconds;
     }
 
-    /** Convenient virtual property setter to set time in seconds */
-    public void setMaxTimeToLiveInSeconds(final long maxTimeToLiveInSeconds){
-        if(this.maxTimeToLiveInMilliSeconds == 0L) {
+    /**
+     * Convenient virtual property setter to set time in seconds
+     */
+    public void setMaxTimeToLiveInSeconds(final long maxTimeToLiveInSeconds) {
+        if (this.maxTimeToLiveInMilliSeconds == 0L) {
             this.maxTimeToLiveInMilliSeconds = TimeUnit.SECONDS.toMillis(maxTimeToLiveInSeconds);
         }
     }
 
-    /** Convenient virtual property setter to set time in seconds */
+    /**
+     * Convenient virtual property setter to set time in seconds
+     */
     public void setTimeToKillInSeconds(final long timeToKillInSeconds) {
-        if(this.timeToKillInMilliSeconds == 0L) {
+        if (this.timeToKillInMilliSeconds == 0L) {
             this.timeToKillInMilliSeconds = TimeUnit.SECONDS.toMillis(timeToKillInSeconds);
         }
     }

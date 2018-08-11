@@ -12,7 +12,7 @@ import javax.validation.constraints.NotNull;
 /**
  * Abstract class to override supports so that we don't need to duplicate the
  * check for UsernamePasswordCredentials.
- * 
+ *
  * @author Scott Battaglia
  * @version $Revision$ $Date$
  * @since 3.0
@@ -21,14 +21,18 @@ import javax.validation.constraints.NotNull;
  * </p>
  */
 public abstract class AbstractUsernamePasswordAuthenticationHandler extends
-    AbstractPreAndPostProcessingAuthenticationHandler {
+        AbstractPreAndPostProcessingAuthenticationHandler {
 
-    /** Default class to support if one is not supplied. */
+    /**
+     * Default class to support if one is not supplied.
+     */
     private static final Class<UsernamePasswordCredentials> DEFAULT_CLASS = UsernamePasswordCredentials.class;
 
-    /** Class that this instance will support. */
+    /**
+     * Class that this instance will support.
+     */
     @NotNull
-    private Class< ? > classToSupport = DEFAULT_CLASS;
+    private Class<?> classToSupport = DEFAULT_CLASS;
 
     /**
      * Boolean to determine whether to support subclasses of the class to
@@ -52,26 +56,26 @@ public abstract class AbstractUsernamePasswordAuthenticationHandler extends
      * subclasses do not need to cast.
      */
     protected final boolean doAuthentication(final Credentials credentials)
-        throws AuthenticationException {
+            throws AuthenticationException {
         return authenticateUsernamePasswordInternal((UsernamePasswordCredentials) credentials);
     }
 
     /**
      * Abstract convenience method that assumes the credentials passed in are a
      * subclass of UsernamePasswordCredentials.
-     * 
+     *
      * @param credentials the credentials representing the Username and Password
-     * presented to CAS
+     *                    presented to CAS
      * @return true if the credentials are authentic, false otherwise.
      * @throws AuthenticationException if authenticity cannot be determined.
      */
     protected abstract boolean authenticateUsernamePasswordInternal(
-        final UsernamePasswordCredentials credentials)
-        throws AuthenticationException;
+            final UsernamePasswordCredentials credentials)
+            throws AuthenticationException;
 
     /**
      * Method to return the PasswordEncoder to be used to encode passwords.
-     * 
+     *
      * @return the PasswordEncoder associated with this class.
      */
     protected final PasswordEncoder getPasswordEncoder() {
@@ -84,18 +88,18 @@ public abstract class AbstractUsernamePasswordAuthenticationHandler extends
 
     /**
      * Method to set the class to support.
-     * 
+     *
      * @param classToSupport the class we want this handler to support
-     * explicitly.
+     *                       explicitly.
      */
-    public final void setClassToSupport(final Class< ? > classToSupport) {
+    public final void setClassToSupport(final Class<?> classToSupport) {
         this.classToSupport = classToSupport;
     }
 
     /**
      * Method to set whether this handler will support subclasses of the
      * supported class.
-     * 
+     *
      * @param supportSubClasses boolean of whether to support subclasses or not.
      */
     public final void setSupportSubClasses(final boolean supportSubClasses) {
@@ -104,9 +108,9 @@ public abstract class AbstractUsernamePasswordAuthenticationHandler extends
 
     /**
      * Sets the PasswordEncoder to be used with this class.
-     * 
+     *
      * @param passwordEncoder the PasswordEncoder to use when encoding
-     * passwords.
+     *                        passwords.
      */
     public final void setPasswordEncoder(final PasswordEncoder passwordEncoder) {
         this.passwordEncoder = passwordEncoder;
@@ -122,7 +126,7 @@ public abstract class AbstractUsernamePasswordAuthenticationHandler extends
      */
     public final boolean supports(final Credentials credentials) {
         return credentials != null
-            && (this.classToSupport.equals(credentials.getClass()) || (this.classToSupport
+                && (this.classToSupport.equals(credentials.getClass()) || (this.classToSupport
                 .isAssignableFrom(credentials.getClass()))
                 && this.supportSubClasses);
     }

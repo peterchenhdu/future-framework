@@ -34,10 +34,6 @@
         <!-- http://mvnrepository.com/artifact/org.slf4j/slf4j-api -->
 
 
-
-
-
-
         <dependency>
             <groupId>com.github.peterchenhdu</groupId>
             <artifactId>future-datasource</artifactId>
@@ -52,21 +48,20 @@
             <artifactId>mapper</artifactId>
             <version>4.0.3</version>
             <exclusions>
-            <exclusion>
-            <groupId>log4j</groupId>
-            <artifactId>*</artifactId>
-            </exclusion>
-            <exclusion>
-            <groupId>org.slf4j</groupId>
-            <artifactId>*</artifactId>
-            </exclusion>
-            <exclusion>
-            <groupId>org.apache.logging.log4j</groupId>
-            <artifactId>*</artifactId>
-            </exclusion>
+                <exclusion>
+                    <groupId>log4j</groupId>
+                    <artifactId>*</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>org.slf4j</groupId>
+                    <artifactId>*</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>org.apache.logging.log4j</groupId>
+                    <artifactId>*</artifactId>
+                </exclusion>
             </exclusions>
         </dependency>
-
 
 
         <dependency>

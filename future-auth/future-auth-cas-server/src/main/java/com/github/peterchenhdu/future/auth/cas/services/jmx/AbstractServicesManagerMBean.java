@@ -43,31 +43,31 @@ public abstract class AbstractServicesManagerMBean<T extends ServicesManager> {
         final List<String> services = new ArrayList<String>();
 
         for (final RegisteredService r : this.servicesManager.getAllServices()) {
-        services.add(new StringBuilder().append("id: ").append(r.getId())
-                .append(" name: ").append(r.getName())
-                .append(" enabled: ").append(r.isEnabled())
-                .append(" ssoEnabled: ").append(r.isSsoEnabled())
-                .append(" serviceId: ").append(r.getServiceId())
-                .toString());
+            services.add(new StringBuilder().append("id: ").append(r.getId())
+                    .append(" name: ").append(r.getName())
+                    .append(" enabled: ").append(r.isEnabled())
+                    .append(" ssoEnabled: ").append(r.isSsoEnabled())
+                    .append(" serviceId: ").append(r.getServiceId())
+                    .toString());
         }
 
         return services;
     }
 
     @ManagedOperation(description = "Can remove a service based on its identifier.")
-    @ManagedOperationParameter(name="id", description = "the identifier to remove")
+    @ManagedOperationParameter(name = "id", description = "the identifier to remove")
     public final RegisteredService removeService(final long id) {
         return this.servicesManager.delete(id);
     }
 
     @ManagedOperation(description = "Disable a service by id.")
-    @ManagedOperationParameter(name="id", description = "the identifier to disable")
+    @ManagedOperationParameter(name = "id", description = "the identifier to disable")
     public final void disableService(final long id) {
         changeEnabledState(id, false);
     }
 
     @ManagedOperation(description = "Enable a service by its id.")
-    @ManagedOperationParameter(name="id", description = "the identifier to enable.")
+    @ManagedOperationParameter(name = "id", description = "the identifier to enable.")
     public final void enableService(final long id) {
         changeEnabledState(id, true);
     }

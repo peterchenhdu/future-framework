@@ -12,18 +12,22 @@ import java.security.Principal;
  * @author Marvin S. Addison
  * @version $Revision$ $Date$
  * @since 3.1.12
- *
  */
 public final class TicketCredential implements Principal {
 
-    /** Hash code seed value */
+    /**
+     * Hash code seed value
+     */
     private static final int HASHCODE_SEED = 17;
-    
-    /** Ticket ID string */
+
+    /**
+     * Ticket ID string
+     */
     private String ticket;
 
     /**
      * Creates a new instance that wraps the given ticket.
+     *
      * @param ticket Ticket identifier string.
      */
     public TicketCredential(final String ticket) {

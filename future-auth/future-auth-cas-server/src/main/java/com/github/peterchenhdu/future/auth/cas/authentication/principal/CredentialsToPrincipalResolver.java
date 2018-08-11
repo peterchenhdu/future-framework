@@ -27,15 +27,15 @@ package com.github.peterchenhdu.future.auth.cas.authentication.principal;
  * as needed, and will be available to the View layer, but it is transparent to
  * most CAS processing.
  * </p>
- * 
+ *
  * @author Scott Battaglia
  * @version $Revision: 1.2 $ $Date: 2007/01/22 20:35:27 $
+ * @see com.github.peterchenhdu.future.auth.cas.authentication.principal.Principal
+ * @see com.github.peterchenhdu.future.auth.cas.authentication.principal.Credentials
  * @since 3.0
  * <p>
  * This is a published and supported CAS Server 3 API.
  * </p>
- * @see com.github.peterchenhdu.future.auth.cas.authentication.principal.Principal
- * @see com.github.peterchenhdu.future.auth.cas.authentication.principal.Credentials
  */
 public interface CredentialsToPrincipalResolver {
 
@@ -43,7 +43,7 @@ public interface CredentialsToPrincipalResolver {
      * Turn Credentials into a Principal object by analyzing the information
      * provided in the Credentials and constructing a Principal object based on
      * that information or information derived from the Credentials object.
-     * 
+     *
      * @param credentials from which to resolve Principal
      * @return resolved Principal, or null if the principal could not be resolved.
      */
@@ -52,7 +52,7 @@ public interface CredentialsToPrincipalResolver {
     /**
      * Determine if a credentials type is supported by this resolver. This is
      * checked before calling resolve principal.
-     * 
+     *
      * @param credentials The credentials to check if we support.
      * @return true if we support these credentials, false otherwise.
      */

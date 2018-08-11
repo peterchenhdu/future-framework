@@ -22,19 +22,21 @@ import java.util.regex.Pattern;
  * and attempt to match the URL provided to a Service Id. If the service is
  * found, the theme associated with it will be used. If not, these is associated
  * with the service or the service was not found, a default theme will be used.
- * 
+ *
  * @author Scott Battaglia
  * @version $Revision$ $Date$
  * @since 3.0
  */
 public final class ServiceThemeResolver extends AbstractThemeResolver {
 
-    /** The ServiceRegistry to look up the service. */
+    /**
+     * The ServiceRegistry to look up the service.
+     */
     private ServicesManager servicesManager;
 
     private List<ArgumentExtractor> argumentExtractors;
 
-    private Map<Pattern,String> overrides = new HashMap<Pattern,String>();
+    private Map<Pattern, String> overrides = new HashMap<Pattern, String>();
 
     public String resolveThemeName(final HttpServletRequest request) {
         if (this.servicesManager == null) {
@@ -52,9 +54,9 @@ public final class ServiceThemeResolver extends AbstractThemeResolver {
             return getDefaultThemeName();
         }
 
-        for (final Map.Entry<Pattern,String> entry : this.overrides.entrySet()) {
+        for (final Map.Entry<Pattern, String> entry : this.overrides.entrySet()) {
             if (entry.getKey().matcher(userAgent).matches()) {
-                request.setAttribute("isMobile","true");
+                request.setAttribute("isMobile", "true");
                 request.setAttribute("browserType", entry.getValue());
                 break;
             }
@@ -83,11 +85,11 @@ public final class ServiceThemeResolver extends AbstractThemeResolver {
      *
      * @param mobileOverrides the list of mobile browsers.
      */
-    public void setMobileBrowsers(final Map<String,String> mobileOverrides) {
+    public void setMobileBrowsers(final Map<String, String> mobileOverrides) {
         // initialize the overrides variable to an empty map
-        this.overrides = new HashMap<Pattern,String>();
+        this.overrides = new HashMap<Pattern, String>();
 
-        for (final Map.Entry<String,String> entry : mobileOverrides.entrySet()) {
+        for (final Map.Entry<String, String> entry : mobileOverrides.entrySet()) {
             this.overrides.put(Pattern.compile(entry.getKey()), entry.getValue());
         }
     }
