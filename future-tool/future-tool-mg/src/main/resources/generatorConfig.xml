@@ -20,7 +20,7 @@
         </commentGenerator>
 
         <!--数据库链接地址账号密码-->
-        <jdbcConnection driverClass="org.postgresql.Driver" connectionURL="jdbc:postgresql://localhost:5432/future"
+        <jdbcConnection driverClass="org.postgresql.Driver" connectionURL="jdbc:postgresql://132.232.134.171:5432/future"
                         userId="postgres" password="123456">
         </jdbcConnection>
         <javaTypeResolver>
@@ -28,7 +28,7 @@
         </javaTypeResolver>
 
         <!--生成Model类存放位置-->
-        <javaModelGenerator targetPackage="com.github.peterchenhdu.future.tool.mb.crawler4j.model"
+        <javaModelGenerator targetPackage="com.github.peterchenhdu.future.example.crawler4j.entity"
                             targetProject="src/main/java">
             <property name="enableSubPackages" value="false"/><!--如果true,MBG会根据catalog和schema来生成子包-->
             <property name="trimStrings" value="true"/>
@@ -42,13 +42,13 @@
 
         <!--生成Dao类存放位置-->
         <javaClientGenerator type="XMLMAPPER"
-                             targetPackage="com.github.peterchenhdu.future.tool.mb.crawler4j.dao"
+                             targetPackage="com.github.peterchenhdu.future.example.crawler4j.mapper"
                              targetProject="src/main/java">
             <property name="enableSubPackages" value="false"/>
         </javaClientGenerator>
 
         <!--生成对应表及类名-->
-        <table tableName="news" schema="crawler4j" domainObjectName="News"
+        <table tableName="day_statistics" schema="crawler4j" domainObjectName="DayStatistics"
                enableCountByExample="false"
                enableUpdateByExample="false"
                enableDeleteByExample="false"
