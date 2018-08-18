@@ -37,6 +37,8 @@ public class QuartzRunner implements CommandLineRunner {
         scheduleJob.setDescription("This is a test job");
         scheduleJob.setClassName("com.github.peterchenhdu.future.example.crawler4j.job.TestJob");
         //每5秒执行一次
+//        scheduleJob.setCronExpression("0/5 * * * * ?");
+
         scheduleJob.setCronExpression("0 0 0/1 * * ?");
         try {
             ScheduleUtil.createScheduleJob(scheduler, scheduleJob);

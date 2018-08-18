@@ -6,8 +6,11 @@ package com.github.peterchenhdu.future.example.crawler4j.controller;
 
 import com.github.peterchenhdu.future.common.dto.ApiResponse;
 import com.github.peterchenhdu.future.common.enums.ResponseEnum;
+import com.github.peterchenhdu.future.example.crawler4j.dto.DayStatisticsDto;
 import com.github.peterchenhdu.future.example.crawler4j.dto.HourStatisticsDto;
+import com.github.peterchenhdu.future.example.crawler4j.entity.DayStatistics;
 import com.github.peterchenhdu.future.example.crawler4j.entity.HourStatistics;
+import com.github.peterchenhdu.future.example.crawler4j.service.DayStatisticsService;
 import com.github.peterchenhdu.future.example.crawler4j.service.HourStatisticsService;
 import com.github.peterchenhdu.future.util.DateTimeUtils;
 import io.swagger.annotations.Api;
@@ -34,6 +37,8 @@ public class HouseStatisticsController {
 
     @Autowired
     private HourStatisticsService hourStatisticsService;
+    @Autowired
+    private DayStatisticsService dayStatisticsService;
 
     @ApiOperation(value = "获取所有", tags = {"获取所有"}, notes = "注意问题点")
     @GetMapping("/hourStatistics")
@@ -50,6 +55,19 @@ public class HouseStatisticsController {
             HourStatisticsDto dto = new HourStatisticsDto();
             BeanUtils.copyProperties(s, dto);
             dto.setHour(DateTimeUtils.getHour(s.getCreateDate()) + "点");
+            rstList.add(dto);
+        });
+        return new ApiResponse<>(ResponseEnum.SUCCESS, rstList);
+    }
+
+    @PostMapping("/getLast30Day")
+    public ApiResponse<List<DayStatisticsDto>> getLast30Day() {
+        List<DayStatisticsDto> rstList = new ArrayList<>();
+        List<DayStatistics> list = dayStatisticsService.getLast30Day();
+        list.forEach(s->{
+            DayStatisticsDto dto = new DayStatisticsDto();
+            BeanUtils.copyProperties(s, dto);
+            dto.setHour(DateTimeUtils.getDay(s.getCreateDate()) + "日");
             rstList.add(dto);
         });
         return new ApiResponse<>(ResponseEnum.SUCCESS, rstList);

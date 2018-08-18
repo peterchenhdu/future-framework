@@ -7,6 +7,7 @@ package com.github.peterchenhdu.future;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.web.servlet.ServletComponentScan;
+import org.springframework.cache.annotation.EnableCaching;
 import tk.mybatis.spring.annotation.MapperScan;
 
 /**
@@ -18,6 +19,7 @@ import tk.mybatis.spring.annotation.MapperScan;
  * @since 2018/7/28 15:42
  */
 @SpringBootApplication
+@EnableCaching
 @ServletComponentScan
 @MapperScan(basePackages = "com.github.peterchenhdu.future.example.crawler4j.mapper")
 public class Application {

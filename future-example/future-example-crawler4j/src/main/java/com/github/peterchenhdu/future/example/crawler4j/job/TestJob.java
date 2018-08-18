@@ -32,6 +32,7 @@ public class TestJob implements Job, Serializable {
         logger.info("开始运行任务 - hourStatisticsCrawlerService...");
         try {
             hourStatisticsCrawlerService.start();
+
         } catch (Exception e) {
             e.printStackTrace();
         }

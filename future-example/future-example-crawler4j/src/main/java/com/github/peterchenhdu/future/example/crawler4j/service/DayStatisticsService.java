@@ -4,10 +4,10 @@
 
 package com.github.peterchenhdu.future.example.crawler4j.service;
 
-
 import com.github.peterchenhdu.future.common.enums.CalendarFieldEnum;
+import com.github.peterchenhdu.future.example.crawler4j.entity.DayStatistics;
 import com.github.peterchenhdu.future.example.crawler4j.entity.HourStatistics;
-import com.github.peterchenhdu.future.example.crawler4j.mapper.HourStatisticsMapper;
+import com.github.peterchenhdu.future.example.crawler4j.mapper.DayStatisticsMapper;
 import com.github.peterchenhdu.future.util.DateTimeUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.CacheConfig;
@@ -20,31 +20,30 @@ import java.util.List;
 
 /**
  * @author PiChen
- * @since 2018/8/13 23:31
+ * @since 2018/8/16 22:51
  */
 @CacheConfig(cacheNames = {"lemonCache"})
 @Service
-public class HourStatisticsService {
-
+public class DayStatisticsService {
     @Autowired
-    private HourStatisticsMapper hourStatisticsMapper;
+    private DayStatisticsMapper dayStatisticsMapper;
 
-    public int save(HourStatistics hourStatistics) {
-        return hourStatisticsMapper.insert(hourStatistics);
+    public int save(DayStatistics dayStatistics) {
+        return dayStatisticsMapper.insert(dayStatistics);
     }
 
-    public List<HourStatistics> findAll() {
-        return hourStatisticsMapper.selectAll();
+    public List<DayStatistics> findAll() {
+        return dayStatisticsMapper.selectAll();
     }
 
     @Cacheable(key="#root.targetClass + #root.methodName")
-    public List<HourStatistics> getLast24Hour() {
+    public List<DayStatistics> getLast30Day() {
         Date now = new Date();
         Example example = new Example(HourStatistics.class);
         example.setOrderByClause("create_date ASC");
         example.createCriteria()
-                .andGreaterThan("createDate", DateTimeUtils.toDate(DateTimeUtils.add(now, CalendarFieldEnum.HOUR, -24)))
+                .andGreaterThan("createDate", DateTimeUtils.toDate(DateTimeUtils.add(now, CalendarFieldEnum.DATE, -30)))
                 .andLessThanOrEqualTo("createDate",now);
-        return hourStatisticsMapper.selectByExample(example);
+        return dayStatisticsMapper.selectByExample(example);
     }
 }
