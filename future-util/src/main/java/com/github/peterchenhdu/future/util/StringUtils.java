@@ -29,4 +29,22 @@ public class StringUtils {
         return dest;
     }
 
+    public static boolean isBlank(CharSequence cs) {
+        return org.apache.commons.lang3.StringUtils.isBlank(cs);
+    }
+
+    public static String limitLength(String target, int maxLength) {
+        return target.length() > maxLength ? target.substring(0, maxLength) : target;
+    }
+
+    public static String getFrontString(String target, String split) {
+        if (!target.contains(split)) {
+            return target;
+        }
+        return target.substring(0, target.indexOf(split));
+    }
+
+    public static void main(String[] args) {
+        System.out.println(getFrontString("40820元/㎡", "元/㎡"));
+    }
 }

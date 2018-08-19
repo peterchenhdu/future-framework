@@ -2,14 +2,10 @@
  * Copyright (c) 2011-2025 PiChen
  */
 
-package com.github.peterchenhdu.future.example.crawler4j.crawler;
+package com.github.peterchenhdu.future.tool.crawler4j.service.crawler;
 
-import com.github.peterchenhdu.future.common.enums.CalendarFieldEnum;
-import com.github.peterchenhdu.future.example.crawler4j.entity.DayStatistics;
-import com.github.peterchenhdu.future.example.crawler4j.entity.HourStatistics;
-import com.github.peterchenhdu.future.example.crawler4j.service.DayStatisticsService;
-import com.github.peterchenhdu.future.example.crawler4j.service.HourStatisticsService;
-import com.github.peterchenhdu.future.util.DateTimeUtils;
+import com.github.peterchenhdu.future.tool.crawler4j.model.HourStatistics;
+import com.github.peterchenhdu.future.tool.crawler4j.service.hourse.HourStatisticsService;
 import com.github.peterchenhdu.future.util.SpringContextUtils;
 import com.github.peterchenhdu.future.util.UuidUtils;
 import edu.uci.ics.crawler4j.crawler.CrawlConfig;
@@ -24,11 +20,13 @@ import edu.uci.ics.crawler4j.url.WebURL;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.select.Elements;
-import org.springframework.beans.BeanUtils;
 import org.springframework.context.annotation.DependsOn;
+import org.springframework.scheduling.annotation.EnableScheduling;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 
 import java.util.Date;
+import java.util.regex.Pattern;
 
 /**
  * @author PiChen
@@ -36,6 +34,7 @@ import java.util.Date;
  */
 @Service
 @DependsOn("springContextUtils")
+@EnableScheduling
 public class HourStatisticsCrawlerService extends WebCrawler {
     private static long count = 0;
     private String hrefStartWith = "http://www.howzf.com/";
@@ -56,23 +55,36 @@ public class HourStatisticsCrawlerService extends WebCrawler {
     //种子数组
     private String[] seedArr = new String[]{
             "http://www.howzf.com/"
+//        "http://news.163.com/",
+//        "http://news.163.com/rank/",
+//        "http://news.163.com/domestic/",
+//        "http://news.163.com/world/",
+//        "http://news.163.com/special/"
     };
 
+    private HourStatisticsService hourStatisticsService = SpringContextUtils.getBean("hourStatisticsService",
+            HourStatisticsService.class);
 
+
+    private static final Pattern IMAGE_EXTENSIONS = Pattern.compile(".*\\.(bmp|gif|jpg|png)$");
 
     @Override
     public boolean shouldVisit(Page referringPage, WebURL url) {
         String href = url.getURL().toLowerCase();
+        // Ignore the url if it has an extension that matches our defined set of
+        // image extensions.
+//        if (IMAGE_EXTENSIONS.matcher(href).matches()) {
+//            return false;
+//        }
+
+        // Only accept the url if it is in the "www.ics.uci.edu" domain and
+        // protocol is "http".
         return href.startsWith(hrefStartWith);
 
     }
-
     @Override
     public void visit(Page page) {
-        HourStatisticsService hourStatisticsService = SpringContextUtils
-                .getBean("hourStatisticsService", HourStatisticsService.class);
-        DayStatisticsService dayStatisticsService = SpringContextUtils
-                .getBean("dayStatisticsService", DayStatisticsService.class);
+
 
         String url = page.getWebURL().getURL();
 
@@ -84,13 +96,26 @@ public class HourStatisticsCrawlerService extends WebCrawler {
             //使用jsoup解析html网页
             Document doc = Jsoup.parse(htmlParseData.getHtml());
 
-
+//            Element content = doc.getElementById("endText");
+//            if (content == null) {
+//                logger.info("invalid source:" + url);
+//                return;
+//            }
             Elements e1 = doc.getElementsByClass("f24 f_blue");
-
+//            System.out.println(e1.get(0).text());
+//            System.out.println(e1.get(1).text());
+//            System.out.println(e1.get(2).text());
             Elements e2 = doc.getElementsByClass("f30 line16 f_blue");
-
+//            System.out.println(e2.get(2).ownText());
+//            System.out.println(e2.get(3).ownText());
+//            doc.getElementById();
+//
+//            HourStatistics hourStatistics = new HourStatistics();
+//
+//            newsService.saveNews(news);
             HourStatistics hourStatistics = new HourStatistics();
             hourStatistics.setUuid(UuidUtils.getUuid());
+            //hourStatistics.setAreaId();
             hourStatistics.setHouseSum(Long.valueOf(e1.get(0).ownText()));
             hourStatistics.setAgentSum(Long.valueOf(e1.get(1).ownText()));
             hourStatistics.setGoldConsultantSum(Long.valueOf(e1.get(2).ownText()));
@@ -98,20 +123,11 @@ public class HourStatisticsCrawlerService extends WebCrawler {
             hourStatistics.setTodaySign(Long.valueOf(e2.get(3).ownText()));
             hourStatistics.setCreateDate(new Date());
             hourStatisticsService.save(hourStatistics);
-
-            if(DateTimeUtils.getIntHour(new Date()) == 0) {
-                DayStatistics dayStatistics = new DayStatistics();
-                BeanUtils.copyProperties(hourStatistics,dayStatistics);
-                dayStatistics.setUuid(UuidUtils.getUuid());
-                dayStatistics.setCreateDate(DateTimeUtils
-                        .toDate(DateTimeUtils.add(new Date(), CalendarFieldEnum.MINUTE, -2)));
-                dayStatisticsService.save(dayStatistics);
-            }
-
             logger.info("[保存成功-{}] URL: {} ", ++count, url);
         }
     }
 
+    @Scheduled(cron="0 0 0/1 * * ?")
     public void start() throws Exception {
 
         /*
@@ -189,9 +205,7 @@ public class HourStatisticsCrawlerService extends WebCrawler {
         }
 
         //开始爬取，阻塞操作，直到爬取结束.
-        controller.start(this.getClass(), numberOfCrawlers);
+        controller.start(HourStatisticsCrawlerService.class, numberOfCrawlers);
         logger.info("Finish Crawler...");
     }
-
-
 }

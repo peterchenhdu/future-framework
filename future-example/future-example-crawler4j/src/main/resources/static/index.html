@@ -10,9 +10,12 @@
 <body>
 <!-- 为ECharts准备一个具备大小（宽高）的Dom -->
 <p id="now-time"></p>
-<div id="main" style="width: 100%;height:600px;"></div>
-<div id="main2" style="width: 100%;height:600px;"></div>
+<div id="main-house-sign-hour" style="width: 100%;height:600px;"></div>
+<div id="main-house-listing-price" style="width: 100%;height:600px;"></div>
+<div id="main-house-sign-day" style="width: 100%;height:600px;"></div>
+<div id="main-house-acc-day" style="width: 100%;height:600px;"></div>
 <script type="text/javascript">
+    $("#now-time").text("更新时间：" + getNowFormatDate());
     function getNowFormatDate() {
         var date = new Date();
         var seperator1 = "-";
@@ -30,9 +33,6 @@
             + seperator2 + date.getSeconds();
         return currentdate;
     }
-
-    // 基于准备好的dom，初始化echarts实例
-    var myChart = echarts.init(document.getElementById('main'));
 
     //    // 指定图表的配置项和数据
     //    var option = {
@@ -110,7 +110,8 @@
     //    var nums2 = [];    //销量数组（实际用来盛放Y坐标值）
     //    /////
 
-    $("#now-time").text("更新时间：" + getNowFormatDate());
+    // 基于准备好的dom，初始化echarts实例
+    var myChart = echarts.init(document.getElementById('main-house-sign-hour'));
 
     var xAxisData = [];
     var data1 = [];
@@ -218,6 +219,291 @@
             myChart.hideLoading();
         }
     })
+
+
+
+    //////////////////////
+    var myChart2 = echarts.init(document.getElementById('main-house-sign-day'));
+
+    var xAxisData2 = [];
+    var data12 = [];
+    var data22 = [];
+
+    option2 = {
+        title: {
+            text: '杭州二手房最近30天挂牌/签约量'
+        },
+        legend: {
+            data: ['挂牌', '签约'],
+            align: 'left'
+        },
+        toolbox: {
+            // y: 'bottom',
+            feature: {
+                magicType: {
+                    type: ['stack', 'tiled']
+                },
+                dataView: {},
+                saveAsImage: {
+                    pixelRatio: 2
+                }
+            }
+        },
+        tooltip: {},
+        xAxis: {
+            data: xAxisData2,
+            name: '日',
+            silent: false,
+            splitLine: {
+                show: false
+            }
+        },
+        yAxis: {
+            name: '套数',
+        },
+        series: [{
+            name: '挂牌',
+            type: 'bar',
+            data: data12,
+            itemStyle: {
+                normal: {
+                    color: '#3ac1ff',
+                    label: {
+                        show: true, position: 'top'
+                    }
+                }
+            },
+            animationDelay: function (idx) {
+                return idx * 10;
+            }
+        }, {
+            name: '签约',
+            type: 'bar',
+            data: data22,
+            itemStyle: {
+                normal: {
+                    color: '#05ff12',
+                    label: {
+                        show: true, position: 'top'
+                    }
+                }
+            },
+            animationDelay: function (idx) {
+                return idx * 10 + 100;
+            }
+        }],
+        animationEasing: 'elasticOut',
+        animationDelayUpdate: function (idx) {
+            return idx * 5;
+        }
+    };
+
+
+    myChart2.showLoading();    //数据加载完之前先显示一段简单的loading动画
+///////////
+
+    var myChartAcc = echarts.init(document.getElementById('main-house-acc-day'));
+
+    var xAxisDataAcc = [];
+    var data1Acc = [];
+
+    optionAcc = {
+        title: {
+            text: '杭州二手房最近30天挂牌累计总套数'
+        },
+        legend: {
+            data: ['挂牌'],
+            align: 'left'
+        },
+        toolbox: {
+            // y: 'bottom',
+            feature: {
+                magicType: {
+                    type: ['stack', 'tiled']
+                },
+                dataView: {},
+                saveAsImage: {
+                    pixelRatio: 2
+                }
+            }
+        },
+        tooltip: {},
+        xAxis: {
+            data: xAxisDataAcc,
+            name: '日',
+            silent: false,
+            splitLine: {
+                show: false
+            }
+        },
+        yAxis: {
+            name: '套数',
+        },
+        series: [{
+            name: '挂牌',
+            type: 'bar',
+            data: data1Acc,
+            itemStyle: {
+                normal: {
+                    color: '#102bff',
+                    label: {
+                        show: true, position: 'top'
+                    }
+                }
+            },
+            animationDelay: function (idx) {
+                return idx * 10;
+            }
+        }],
+        animationEasing: 'elasticOut',
+        animationDelayUpdate: function (idx) {
+            return idx * 5;
+        }
+    };
+
+
+    myChartAcc.showLoading();    //数据加载完之前先显示一段简单的loading动画
+
+    //////
+
+
+
+    $.ajax({
+        type: "post",
+        async: true,            //异步请求（同步请求将会锁住浏览器，用户其他操作必须等待请求完成才可以执行）
+        url: "house/getLast30Day",    //请求发送到TestServlet处
+        data: {},
+        dataType: "json",        //返回数据形式为json
+        success: function (response) {
+            var result = response.data;
+            //请求成功时执行该函数内容，result即为服务器返回的json对象
+            if (result) {
+                for (var i = 0; i < result.length; i++) {
+                    xAxisData2.push(result[i].hour);    //挨个取出类别并填入类别数组
+                    xAxisDataAcc.push(result[i].hour);
+                }
+                for (var i = 0; i < result.length; i++) {
+                    data22.push(result[i].todaySign);    //挨个取出销量并填入销量数组
+                    data12.push(result[i].todayListCount);
+                    data1Acc.push(result[i].houseSum);
+
+                }
+                myChart2.hideLoading();    //隐藏加载动画
+                myChart2.setOption(option2);
+
+                myChartAcc.hideLoading();    //隐藏加载动画
+                myChartAcc.setOption(optionAcc);
+
+            }
+
+        },
+        error: function (errorMsg) {
+            //请求失败时执行该函数
+            alert("图表请求数据失败!");
+            myChart2.hideLoading();
+        }
+    })
+
+
+
+
+
+    var myChartPrice = echarts.init(document.getElementById('main-house-listing-price'));
+
+    var xAxisDataPrice = [];
+    var data1Price = [];
+
+    optionPrice = {
+        title: {
+            text: '杭州二手房最近30天挂牌均价'
+        },
+        legend: {
+            data: ['均价'],
+            align: 'left'
+        },
+        toolbox: {
+            // y: 'bottom',
+            feature: {
+                magicType: {
+                    type: ['stack', 'tiled']
+                },
+                dataView: {},
+                saveAsImage: {
+                    pixelRatio: 2
+                }
+            }
+        },
+        tooltip: {},
+        xAxis: {
+            data: xAxisDataPrice,
+            name: '日',
+            silent: false,
+            splitLine: {
+                show: false
+            }
+        },
+        yAxis: {
+            name: '元/㎡',
+        },
+        series: [{
+            name: '均价',
+            type: 'bar',
+            data: data1Price,
+            itemStyle: {
+                normal: {
+                    color: '#ff6a16',
+                    label: {
+                        show: true, position: 'top'
+                    }
+                }
+            },
+            animationDelay: function (idx) {
+                return idx * 10;
+            }
+        }],
+        animationEasing: 'elasticOut',
+        animationDelayUpdate: function (idx) {
+            return idx * 5;
+        }
+    };
+
+
+    myChartPrice.showLoading();    //数据加载完之前先显示一段简单的loading动画
+
+
+
+
+
+    $.ajax({
+        type: "post",
+        async: true,            //异步请求（同步请求将会锁住浏览器，用户其他操作必须等待请求完成才可以执行）
+        url: "house/price/getLast30DayPrice",    //请求发送到TestServlet处
+        data: {},
+        dataType: "json",        //返回数据形式为json
+        success: function (response) {
+            var result = response.data;
+            //请求成功时执行该函数内容，result即为服务器返回的json对象
+            if (result) {
+                for (var i = 0; i < result.length; i++) {
+                    xAxisDataPrice.push(result[i].day+"日");    //挨个取出类别并填入类别数组
+                    data1Price.push(result[i].price);
+                }
+
+                myChartPrice.hideLoading();    //隐藏加载动画
+                myChartPrice.setOption(optionPrice);
+
+
+
+            }
+
+        },
+        error: function (errorMsg) {
+            //请求失败时执行该函数
+            alert("图表请求数据失败!");
+            myChart2.hideLoading();
+        }
+    })
+    //////
 </script>
 </body>
 </html>

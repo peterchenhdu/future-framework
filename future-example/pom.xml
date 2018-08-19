@@ -16,5 +16,8 @@
         <module>future-example-digester3</module>
         <module>future-example-quartz</module>
         <module>future-example-tankbattle</module>
+        <module>future-example-websys</module>
+        <module>future-example-crawler4j</module>
+        <module>future-example-crawler4j-service</module>
     </modules>
 </project>

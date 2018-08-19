@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.github.peterchenhdu.future.tool.crawler4j.dao.HourStatisticsMapper">
+  <resultMap id="BaseResultMap" type="com.github.peterchenhdu.future.tool.crawler4j.model.HourStatistics">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <id column="uuid" jdbcType="VARCHAR" property="uuid" />
+    <result column="create_date" jdbcType="TIMESTAMP" property="createDate" />
+    <result column="area_id" jdbcType="VARCHAR" property="areaId" />
+    <result column="house_sum" jdbcType="BIGINT" property="houseSum" />
+    <result column="agent_sum" jdbcType="BIGINT" property="agentSum" />
+    <result column="gold_consultant_sum" jdbcType="BIGINT" property="goldConsultantSum" />
+    <result column="today_list_count" jdbcType="BIGINT" property="todayListCount" />
+    <result column="today_sign" jdbcType="BIGINT" property="todaySign" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    uuid, create_date, area_id, house_sum, agent_sum, gold_consultant_sum, today_list_count, 
+    today_sign
+  </sql>
+</mapper>

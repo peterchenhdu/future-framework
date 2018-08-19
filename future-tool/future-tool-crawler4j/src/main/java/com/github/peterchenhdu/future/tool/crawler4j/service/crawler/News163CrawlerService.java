@@ -23,7 +23,6 @@ import org.jsoup.nodes.Element;
 import org.springframework.context.annotation.DependsOn;
 import org.springframework.stereotype.Service;
 
-import javax.annotation.PostConstruct;
 import java.util.regex.Pattern;
 
 /**
@@ -271,7 +270,7 @@ public class News163CrawlerService extends WebCrawler {
     }
 
 
-    @PostConstruct
+//    @PostConstruct
     public void start() throws Exception {
 
         /*

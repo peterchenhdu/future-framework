@@ -42,7 +42,7 @@ public class DayStatisticsService {
         Example example = new Example(HourStatistics.class);
         example.setOrderByClause("create_date ASC");
         example.createCriteria()
-                .andGreaterThan("createDate", DateTimeUtils.toDate(DateTimeUtils.add(now, CalendarFieldEnum.DATE, -30)))
+                .andGreaterThan("createDate", DateTimeUtils.toDateTime(DateTimeUtils.add(now, CalendarFieldEnum.DATE, -30)))
                 .andLessThanOrEqualTo("createDate",now);
         return dayStatisticsMapper.selectByExample(example);
     }

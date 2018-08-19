@@ -20,14 +20,31 @@ import java.util.GregorianCalendar;
  */
 public class DateTimeUtils {
     private static final String DATE_TIME_FORMAT = "yyyy-MM-dd HH:mm:ss";
+    private static final String DATE_DATE_FORMAT = "yyyy-MM-dd";
 
-    public String toString(Date dateTime) {
+    public static String toString(Date dateTime) {
         SimpleDateFormat formatter = new SimpleDateFormat(DATE_TIME_FORMAT);
         return formatter.format(dateTime);
     }
 
-    public Date toDate(String dateTime) {
+    public static String toDateString(Date dateTime) {
+        SimpleDateFormat formatter = new SimpleDateFormat(DATE_DATE_FORMAT);
+        return formatter.format(dateTime);
+    }
+
+    public static Date toDateTime(String dateTime) {
         SimpleDateFormat sdf = new SimpleDateFormat(DATE_TIME_FORMAT);
+        Date resultDate;
+        try {
+            resultDate = sdf.parse(dateTime);
+        } catch (ParseException e) {
+            throw new FutureException(ResponseEnum.SYS_EXCEPTION, "DateTime ParseException");
+
+        }
+        return resultDate;
+    }
+    public static Date toDate(String dateTime) {
+        SimpleDateFormat sdf = new SimpleDateFormat(DATE_DATE_FORMAT);
         Date resultDate;
         try {
             resultDate = sdf.parse(dateTime);
@@ -57,6 +74,8 @@ public class DateTimeUtils {
         return dateTime;
     }
 
+
+
     /**
      * @param comparedDate
      * @param field
@@ -84,6 +103,27 @@ public class DateTimeUtils {
         Date resultDate = calendar.getTime();
         SimpleDateFormat formatter = new SimpleDateFormat(DATE_TIME_FORMAT);
         return formatter.format(resultDate);
+    }
+
+    /**
+     * 字符串形式，01 02...
+     * @param date
+     * @return
+     */
+    public static String getHour(Date date){
+        Calendar calendar = new GregorianCalendar();
+        calendar.setTime(date);
+        return calendar.get(Calendar.HOUR_OF_DAY) + "";
+    }
+    public static String getDay(Date date){
+        Calendar calendar = new GregorianCalendar();
+        calendar.setTime(date);
+        return calendar.get(Calendar.DAY_OF_MONTH) + "";
+    }
+    public static int getIntHour(Date date){
+        Calendar calendar = new GregorianCalendar();
+        calendar.setTime(date);
+        return calendar.get(Calendar.HOUR_OF_DAY);
     }
 
     public static void main(String[] args) {

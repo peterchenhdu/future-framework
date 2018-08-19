@@ -13,21 +13,6 @@
     <name>future-example-crawler4j</name>
 
 
-    <properties>
-        <maven.compiler.source>1.8</maven.compiler.source>
-        <maven.compiler.target>1.8</maven.compiler.target>
-
-        <weixin-java-mp.version>3.1.0</weixin-java-mp.version>
-        <spring.version>4.3.2.RELEASE</spring.version>
-        <spring-security.version>4.1.3.RELEASE</spring-security.version>
-        <guava.version>20.0</guava.version>
-        <slf4j.version>1.7.24</slf4j.version>
-        <aspectj.version>1.8.9</aspectj.version>
-        <fastjson.version>1.2.6</fastjson.version>
-        <commons-lang3.version>3.5</commons-lang3.version>
-        <jackson.version>2.8.3</jackson.version>
-        <jetty-maven-plugin.version>9.3.0.RC0</jetty-maven-plugin.version>
-    </properties>
     <dependencies>
         <dependency>
             <groupId>org.mybatis.spring.boot</groupId>
@@ -45,7 +30,7 @@
 
         <dependency>
             <groupId>com.github.peterchenhdu</groupId>
-            <artifactId>future-component-quartz</artifactId>
+            <artifactId>future-datasource</artifactId>
         </dependency>
         <dependency>
             <groupId>com.github.peterchenhdu</groupId>
@@ -68,17 +53,6 @@
 
 
         <dependency>
-            <groupId>edu.uci.ics</groupId>
-            <artifactId>crawler4j</artifactId>
-            <version>4.4.0</version>
-        </dependency>
-        <dependency>
-            <groupId>org.jsoup</groupId>
-            <artifactId>jsoup</artifactId>
-            <version>1.10.1</version>
-        </dependency>
-
-        <dependency>
             <groupId>com.github.peterchenhdu</groupId>
             <artifactId>future-util</artifactId>
         </dependency>
@@ -93,36 +67,13 @@
             <version>20180130</version>
         </dependency>
 
-
         <dependency>
-            <groupId>com.fasterxml.jackson.core</groupId>
-            <artifactId>jackson-databind</artifactId>
-            <version>${jackson.version}</version>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-cache</artifactId>
         </dependency>
         <dependency>
-            <groupId>com.google.guava</groupId>
-            <artifactId>guava</artifactId>
-            <version>${guava.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>com.alibaba</groupId>
-            <artifactId>fastjson</artifactId>
-            <version>${fastjson.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>org.apache.httpcomponents</groupId>
-            <artifactId>httpclient</artifactId>
-            <version>4.1.2</version>
-        </dependency>
-        <dependency>
-            <groupId>org.apache.httpcomponents</groupId>
-            <artifactId>httpclient-cache</artifactId>
-            <version>4.1.2</version>
-        </dependency>
-        <dependency>
-            <groupId>org.apache.httpcomponents</groupId>
-            <artifactId>httpmime</artifactId>
-            <version>4.1.2</version>
+            <groupId>net.sf.ehcache</groupId>
+            <artifactId>ehcache</artifactId>
         </dependency>
 
 
