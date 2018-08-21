@@ -12,7 +12,7 @@ import java.util.Date;
 /**
  * null - 实体类
  * @author PiChen
- * @since 2018-08-19 23:38:07
+ * @since 2018-08-21 22:56:56
  */
 @Table(name = "crawler4j.house_simple")
 public class HouseSimple {
@@ -25,6 +25,9 @@ public class HouseSimple {
     private Date createTime;
 
     private String title;
+
+    @Column(name = "visited_flag")
+    private Short visitedFlag;
 
     /**
      * @return uuid
@@ -80,5 +83,19 @@ public class HouseSimple {
      */
     public void setTitle(String title) {
         this.title = title == null ? null : title.trim();
+    }
+
+    /**
+     * @return visited_flag
+     */
+    public Short getVisitedFlag() {
+        return visitedFlag;
+    }
+
+    /**
+     * @param visitedFlag
+     */
+    public void setVisitedFlag(Short visitedFlag) {
+        this.visitedFlag = visitedFlag;
     }
 }

@@ -31,14 +31,19 @@ import java.util.Date;
 
 public class HouseSimpleJob implements Job, Serializable {
     private final static Logger logger = LoggerFactory.getLogger(HouseSimpleJob.class);
+    public static volatile int runningFlag = 0;
     @Autowired
     private HouseSimpleMapper houseSimpleMapper;
 
     @Override
     public void execute(JobExecutionContext jobExecutionContext) throws JobExecutionException {
-
+        if (runningFlag == 1) {
+            logger.warn("job is running, return...");
+            return;
+        }
+        runningFlag = 1;
         //最后一页接下来，仍然会请求最后一页
-        l:for (int p = 0; p < Integer.MAX_VALUE; p++) {
+        l:for (int p = 1; p < Integer.MAX_VALUE; p++) {
             try (final WebClient webClient = new WebClient()) {
                 final HtmlPage page = webClient.getPage("http://www.howzf.com/esf/esfnSearch_csnew.htm?page=" + p);
                 final String pageAsText = page.asXml();
@@ -46,11 +51,12 @@ public class HouseSimpleJob implements Job, Serializable {
                 Elements e = doc.getElementsByClass("fl w480");
 
                 for (int i = 0; i < e.size(); i++) {
-                    String url = "http://www.howzf.com/" + e.get(i).attr("href");
+                    String url = "http://www.howzf.com" + e.get(i).attr("href");
                     HouseSimple h = new HouseSimple();
                     h.setUuid(UuidUtils.getUuid());
                     h.setCreateTime(new Date());
                     h.setTitle(e.get(i).text());
+                    h.setVisitedFlag((short) 0);
                     h.setUrl(url);
 
                     Example example = new Example(HouseSimple.class);
@@ -67,6 +73,6 @@ public class HouseSimpleJob implements Job, Serializable {
                 logger.error(e.toString(), e);
             }
         }
-
+        runningFlag = 0;
     }
 }

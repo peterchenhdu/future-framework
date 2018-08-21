@@ -10,7 +10,7 @@ import tk.mybatis.mapper.common.Mapper;
 /**
  * null - Mapper接口
  * @author PiChen
- * @since 2018-08-19 23:38:07
+ * @since 2018-08-21 22:56:55
  */
 public interface HouseSimpleMapper extends Mapper<HouseSimple> {
 }

@@ -67,7 +67,7 @@ public class HouseStatisticsController {
         list.forEach(s->{
             DayStatisticsDto dto = new DayStatisticsDto();
             BeanUtils.copyProperties(s, dto);
-            dto.setHour(DateTimeUtils.getDay(s.getCreateDate()) + "日");
+            dto.setHour(DateTimeUtils.toDateString(s.getCreateDate()).substring(5,10) + "日");
             rstList.add(dto);
         });
         return new ApiResponse<>(ResponseEnum.SUCCESS, rstList);

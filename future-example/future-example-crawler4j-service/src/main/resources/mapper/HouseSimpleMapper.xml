@@ -9,11 +9,12 @@
     <result column="url" jdbcType="VARCHAR" property="url" />
     <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
     <result column="title" jdbcType="VARCHAR" property="title" />
+    <result column="visited_flag" jdbcType="SMALLINT" property="visitedFlag" />
   </resultMap>
   <sql id="Base_Column_List">
     <!--
       WARNING - @mbg.generated
     -->
-    uuid, url, create_time, title
+    uuid, url, create_time, title, visited_flag
   </sql>
 </mapper>

@@ -33,7 +33,7 @@ public class HousePriceService {
         Example example = new Example(HouseDetail.class);
         example.setOrderByClause("create_date ASC");
         example.createCriteria()
-                .andGreaterThan("listingTime", DateTimeUtils.add(now, CalendarFieldEnum.DATE, -30).substring(0,10))
+                .andGreaterThan("listingTime", DateTimeUtils.add(now, CalendarFieldEnum.DATE, -32).substring(0,10))
                 .andLessThanOrEqualTo("listingTime",DateTimeUtils.toDateString(now));
         return houseDetailMapper.selectByExample(example);
     }
