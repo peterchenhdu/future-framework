@@ -6,6 +6,7 @@ package com.github.peterchenhdu.future.util;
 
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.net.URL;
 import java.util.Properties;
 
@@ -18,7 +19,7 @@ import java.util.Properties;
  * @since infosys V1.0.0
  */
 
-public class ProjectFileUtils {
+public class FileUtils {
 
     /**
      * 获取配置信息
@@ -36,7 +37,7 @@ public class ProjectFileUtils {
      * @return
      */
     public static String getProjectClassesPath() {
-        URL fileUrl = ProjectFileUtils.class.getClassLoader().getResource("");
+        URL fileUrl = FileUtils.class.getClassLoader().getResource("");
         String path = fileUrl.getPath();
         return path;
     }
@@ -65,5 +66,13 @@ public class ProjectFileUtils {
             throw new RuntimeException("couldn't load properties file '" + filePath + "'", e);
         }
         return properties;
+    }
+
+    public static InputStream getResourceAsStream(Class clazz, String name) {
+        InputStream in = Thread.currentThread().getContextClassLoader().getResourceAsStream(name);
+        if (in == null) {
+            in = clazz.getResourceAsStream(name);
+        }
+        return in;
     }
 }
